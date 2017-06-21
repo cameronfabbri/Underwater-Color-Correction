@@ -1,0 +1,15 @@
+(dp1
+S'EPOCHS'
+p2
+I1
+sS'LOSS_METHOD'
+p3
+S'gan'
+p4
+sS'LEARNING_RATE'
+p5
+F0.0001
+sS'BATCH_SIZE'
+p6
+I4
+s.
