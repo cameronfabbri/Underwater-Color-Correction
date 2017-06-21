@@ -1,0 +1,7 @@
+*.png
+*.jpg
+*checkpoint*
+checkpoints/*
+*.*~
+*.*swp
+*.swp
