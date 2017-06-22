@@ -22,7 +22,7 @@ import os
 import fnmatch
 import cPickle as pickle
 
-Data = collections.namedtuple('trainData', 'ugray, uab, coco')
+Data = collections.namedtuple('trainData', 'ugray, uab, coco_L, coco_ab')
 
 def preprocess(image):
     with tf.name_scope('preprocess'):
@@ -157,16 +157,25 @@ def lab_to_rgb(lab):
 
         return tf.reshape(srgb_pixels, tf.shape(lab))
 
-def getPaths(data_dir, gray_images=None, ext='png'):
+
+def getFeedDict(utrain_paths,coco_paths,BATCH_SIZE):
+
+   utrain_batch    = random.sample(utrain_paths, BATCH_SIZE)
+   cocotrain_batch = random.sample(coco_paths, BATCH_SIZE)
+
+   img = tf.image.decode_image(utrain_batch[0])
+   print img
+
+
+   exit()
+
+def getPaths(data_dir,ext='jpg'):
    pattern   = '*.'+ext
    image_paths = []
    for d, s, fList in os.walk(data_dir):
       for filename in fList:
          if fnmatch.fnmatch(filename, pattern):
             fname_ = os.path.join(d,filename)
-            if gray_images is not None:
-               if fname_ in gray_images:
-                  continue
             image_paths.append(fname_)
    return image_paths
 
@@ -186,10 +195,11 @@ def loadData(batch_size, train=True):
       print 'Found pickle files'
       utrain_paths     = pickle.load(open(pkl_utrain_file, 'rb'))
       utest_paths      = pickle.load(open(pkl_utest_file, 'rb'))
-      coco_train_paths = pickle.load(open(pkl_coco_file, 'rb'))
+      coco_paths = pickle.load(open(pkl_coco_file, 'rb'))
    else:
       print 'Reading data...'
-      utrain_dir  = '/mnt/data2/images/underwater/youtube/'
+      utrain_dir  = '/mnt/data2/images/underwater/youtube/diving/'
+      #coco_dir  = '/mnt/data2/images/underwater/youtube/diving1/'
       coco_dir    = '/mnt/data2/images/coco/'
 
       # get all paths for underwater images
@@ -226,10 +236,14 @@ def loadData(batch_size, train=True):
       pf.write(data)
       pf.close()
 
+   print
+   print len(utrain_paths), 'underwater train images'
+   print len(utest_paths), 'underwater test images'
+   print len(coco_paths), 'coco images'
+   print
 
-   decode = tf.image.decode_image
-
-   coco_paths = utrain_paths
+   #decode = tf.image.decode_image
+   decode = tf.image.decode_jpeg
 
    # load underwater images
    with tf.name_scope('load_underwater'):
@@ -239,9 +253,9 @@ def loadData(batch_size, train=True):
       raw_input = decode(contents)
       raw_input = tf.image.convert_image_dtype(raw_input, dtype=tf.float32)
 
-      assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
-      with tf.control_dependencies([assertion]):
-         raw_input = tf.identity(raw_input)
+      #assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
+      #with tf.control_dependencies([assertion]):
+      #   raw_input = tf.identity(raw_input)
 
       raw_input.set_shape([None, None, 3])
 
@@ -258,7 +272,7 @@ def loadData(batch_size, train=True):
       gray_images = tf.image.resize_images(gray_images, [256, 256], method=tf.image.ResizeMethod.AREA)
       ab_images   = tf.image.resize_images(ab_images, [256, 256], method=tf.image.ResizeMethod.AREA)
 
-      u_paths_batch, gray_batch, ab_batch = tf.train.batch([paths, gray_images, ab_images], batch_size=batch_size)
+      u_paths_batch, gray_batch, ab_batch = tf.train.shuffle_batch([paths, gray_images, ab_images], batch_size=batch_size, num_threads=8, min_after_dequeue=int(0.1*100), capacity=int(0.1*100)+8*batch_size)
       
    # load the coco images
    with tf.name_scope('load_coco'):
@@ -268,9 +282,9 @@ def loadData(batch_size, train=True):
       raw_input = decode(contents)
       raw_input = tf.image.convert_image_dtype(raw_input, dtype=tf.float32)
 
-      assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
-      with tf.control_dependencies([assertion]):
-         raw_input = tf.identity(raw_input)
+      #assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
+      #with tf.control_dependencies([assertion]):
+      #   raw_input = tf.identity(raw_input)
 
       raw_input.set_shape([None, None, 3])
 
@@ -278,11 +292,17 @@ def loadData(batch_size, train=True):
       seed = random.randint(0, 2**31 - 1) 
       raw_input = tf.image.random_flip_left_right(raw_input, seed=seed)
       
-      # convert to LAB. Don't need them separated though
+      # convert to LAB
       coco_images = rgb_to_lab(raw_input)
-      coco_images = tf.image.resize_images(coco_images, [256,256], method=tf.image.ResizeMethod.AREA)
+      L_chan, a_chan, b_chan = preprocess_lab(coco_images)
+      gray_images = tf.expand_dims(L_chan, axis=2)   # shape (?,?,1)
+      ab_images = tf.stack([a_chan, b_chan], axis=2) # shape (?,?,2)
 
-      coco_paths_batch, coco_batch = tf.train.batch([paths, coco_images], batch_size=batch_size)
+      coco_L  = tf.image.resize_images(gray_images, [256,256], method=tf.image.ResizeMethod.AREA)
+      coco_ab = tf.image.resize_images(ab_images, [256,256], method=tf.image.ResizeMethod.AREA)
+
+      #coco_paths_batch, coco_L_batch, coco_ab_batch = tf.train.batch([paths, coco_L, coco_ab], batch_size=batch_size, num_threads=2)
+      coco_paths_batch, coco_L_batch, coco_ab_batch = tf.train.shuffle_batch([paths, coco_L, coco_ab], batch_size=batch_size, num_threads=8, min_after_dequeue=int(0.1*100), capacity=int(0.1*100)+8*batch_size)
       
 
    # need to return underwater L, a, b. coco LAB
@@ -290,5 +310,6 @@ def loadData(batch_size, train=True):
    return Data(
       ugray=gray_batch,
       uab=ab_batch,
-      coco=coco_batch,
+      coco_L=coco_L_batch,
+      coco_ab=coco_ab_batch
    )
