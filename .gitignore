@@ -6,3 +6,6 @@ checkpoints/*
 *.*swp
 *.swp
 *.pyc
+*.pkl
+checkpoint/
+checkpoints/
