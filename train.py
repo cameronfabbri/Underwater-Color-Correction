@@ -18,9 +18,9 @@ import data_ops
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
-   parser.add_argument('--BATCH_SIZE',    required=False,default=4,type=int,help='Batch size')
+   parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
    parser.add_argument('--LOSS_METHOD',   required=False,default='gan',help='Loss function for GAN')
-   parser.add_argument('--LEARNING_RATE', required=False,default=1e-4,type=float,help='Learning rate')
+   parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
    a = parser.parse_args()
 
    LEARNING_RATE = a.LEARNING_RATE

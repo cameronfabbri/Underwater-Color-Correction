@@ -198,9 +198,10 @@ def loadData(batch_size, train=True):
       coco_paths = pickle.load(open(pkl_coco_file, 'rb'))
    else:
       print 'Reading data...'
-      utrain_dir  = '/mnt/data2/images/underwater/youtube/diving/'
-      #coco_dir  = '/mnt/data2/images/underwater/youtube/diving1/'
-      coco_dir    = '/mnt/data2/images/coco/'
+      utrain_dir  = '/mnt/data2/images/underwater/youtube/'
+      #coco_dir  = '/mnt/data2/images/underwater/youtube/'
+      #coco_dir    = '/mnt/data2/images/coco/test2014/'
+      coco_dir    = '/mnt/data2/images/places2_challenge/train_256/'
 
       # get all paths for underwater images
       u_paths    = getPaths(utrain_dir)
@@ -214,7 +215,7 @@ def loadData(batch_size, train=True):
       random.shuffle(coco_paths)
 
       # take 90% for train, 10% for test
-      train_num = int(0.9*len(u_paths))
+      train_num = int(0.95*len(u_paths))
       utrain_paths = u_paths[:train_num]
       utest_paths  = u_paths[train_num:]
 
@@ -230,7 +231,7 @@ def loadData(batch_size, train=True):
       pf.write(data)
       pf.close()
 
-      # write test underwater data
+      # write test coco data
       pf   = open(pkl_coco_file, 'wb')
       data = pickle.dumps(coco_paths)
       pf.write(data)
@@ -242,29 +243,28 @@ def loadData(batch_size, train=True):
    print len(coco_paths), 'coco images'
    print
 
-   #decode = tf.image.decode_image
-   decode = tf.image.decode_jpeg
+   decode = tf.image.decode_image
 
    # load underwater images
    with tf.name_scope('load_underwater'):
       path_queue = tf.train.string_input_producer(utrain_paths, shuffle=True)
       reader = tf.WholeFileReader()
       paths, contents = reader.read(path_queue)
-      raw_input = decode(contents)
-      raw_input = tf.image.convert_image_dtype(raw_input, dtype=tf.float32)
+      raw_input_ = decode(contents)
+      raw_input_ = tf.image.convert_image_dtype(raw_input_, dtype=tf.float32)
 
-      #assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
+      #assertion = tf.assert_equal(tf.shape(raw_input_)[2], 3, message='image does not have 3 channels')
       #with tf.control_dependencies([assertion]):
-      #   raw_input = tf.identity(raw_input)
+      #   raw_input_ = tf.identity(raw_input_)
 
-      raw_input.set_shape([None, None, 3])
+      raw_input_.set_shape([None, None, 3])
 
       # randomly flip image
       seed = random.randint(0, 2**31 - 1) 
-      raw_input = tf.image.random_flip_left_right(raw_input, seed=seed)
+      raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
       
       # convert to LAB and process gray channel and color channels
-      lab = rgb_to_lab(raw_input)
+      lab = rgb_to_lab(raw_input_)
       L_chan, a_chan, b_chan = preprocess_lab(lab)
       gray_images = tf.expand_dims(L_chan, axis=2)   # shape (?,?,1)
       ab_images = tf.stack([a_chan, b_chan], axis=2) # shape (?,?,2)
@@ -279,21 +279,21 @@ def loadData(batch_size, train=True):
       path_queue = tf.train.string_input_producer(coco_paths, shuffle=True)
       reader = tf.WholeFileReader()
       paths, contents = reader.read(path_queue)
-      raw_input = decode(contents)
-      raw_input = tf.image.convert_image_dtype(raw_input, dtype=tf.float32)
+      raw_input_ = decode(contents)
+      raw_input_ = tf.image.convert_image_dtype(raw_input_, dtype=tf.float32)
 
-      #assertion = tf.assert_equal(tf.shape(raw_input)[2], 3, message='image does not have 3 channels')
+      #assertion = tf.assert_equal(tf.shape(raw_input_)[2], 3, message='image does not have 3 channels')
       #with tf.control_dependencies([assertion]):
-      #   raw_input = tf.identity(raw_input)
+      #   raw_input_ = tf.identity(raw_input_)
 
-      raw_input.set_shape([None, None, 3])
+      raw_input_.set_shape([None, None, 3])
 
       # randomly flip image
       seed = random.randint(0, 2**31 - 1) 
-      raw_input = tf.image.random_flip_left_right(raw_input, seed=seed)
+      raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
       
       # convert to LAB
-      coco_images = rgb_to_lab(raw_input)
+      coco_images = rgb_to_lab(raw_input_)
       L_chan, a_chan, b_chan = preprocess_lab(coco_images)
       gray_images = tf.expand_dims(L_chan, axis=2)   # shape (?,?,1)
       ab_images = tf.stack([a_chan, b_chan], axis=2) # shape (?,?,2)
