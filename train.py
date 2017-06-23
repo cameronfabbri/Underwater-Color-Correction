@@ -59,7 +59,7 @@ if __name__ == '__main__':
    print
 
    # first load the data
-   #utrain_paths, utest_paths, coco_paths = load()
+   #utrain_paths, utest_paths, places2_paths = load()
 
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -71,10 +71,10 @@ if __name__ == '__main__':
    ugray = Data.ugray
    # underwater ab channels
    uab   = Data.uab
-   # coco gray
-   coco_L  = Data.coco_L
-   # coco ab channels
-   coco_ab = Data.coco_ab
+   # places2 gray
+   places2_L  = Data.places2_L
+   # places2 ab channels
+   places2_ab = Data.places2_ab
    # want to send underwater LAB to G and have it predict new AB
    x = tf.concat([ugray, uab], axis=3)
    '''
@@ -94,16 +94,16 @@ if __name__ == '__main__':
    #underwater_ab = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,2],name='underwater_ab')
 
    # above water images
-   #coco_L  = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,1],name='coco_L')
-   #coco_ab = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,2],name='coco_ab')
+   #places2_L  = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,1],name='places2_L')
+   #places2_ab = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,2],name='places2_ab')
    '''
 
    # generated corrected colors
    #gen_ab = pix2pix.netG(underwater_L, underwater_ab)
    gen_ab = pix2pix.netG(ugray, uab)
 
-   # send coco images to D
-   D_real = pix2pix.netD(coco_L, coco_ab)
+   # send places2 images to D
+   D_real = pix2pix.netD(places2_L, places2_ab)
 
    # send corrected underwater images to D
    #D_fake = pix2pix.netD(underwater_L, gen_ab, reuse=True)

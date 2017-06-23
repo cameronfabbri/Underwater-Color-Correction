@@ -54,7 +54,7 @@ if __name__ == '__main__':
          print "Could not restore model"
          pass
 
-   step = sess.run(global_step)
+   step = int(sess.run(global_step))
 
    coord = tf.train.Coordinator()
    threads = tf.train.start_queue_runners(sess, coord=coord)
@@ -63,10 +63,14 @@ if __name__ == '__main__':
 
    old, new = sess.run([og_u, new_u])
 
+   i = 0
    for img in old:
-      misc.imsave(IMAGES_DIR+str(global_step)+'_old.png', img)
+      misc.imsave(IMAGES_DIR+str(step)+'_'+str(i)+'_old.png', img)
+      i += 1
+   i = 0
    for img in new:
-      misc.imsave(IMAGES_DIR+str(global_step)+'_new.png', img)
+      misc.imsave(IMAGES_DIR+str(step)+'_'+str(i)+'_new.png', img)
+      i += 1
 
    coord.request_stop()
    coord.join(threads)

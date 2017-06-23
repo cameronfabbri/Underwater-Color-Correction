@@ -22,7 +22,7 @@ import os
 import fnmatch
 import cPickle as pickle
 
-Data = collections.namedtuple('trainData', 'ugray, uab, coco_L, coco_ab')
+Data = collections.namedtuple('trainData', 'ugray, uab, places2_L, places2_ab')
 
 def preprocess(image):
     with tf.name_scope('preprocess'):
@@ -158,10 +158,10 @@ def lab_to_rgb(lab):
         return tf.reshape(srgb_pixels, tf.shape(lab))
 
 
-def getFeedDict(utrain_paths,coco_paths,BATCH_SIZE):
+def getFeedDict(utrain_paths,places2_paths,BATCH_SIZE):
 
    utrain_batch    = random.sample(utrain_paths, BATCH_SIZE)
-   cocotrain_batch = random.sample(coco_paths, BATCH_SIZE)
+   places2train_batch = random.sample(places2_paths, BATCH_SIZE)
 
    img = tf.image.decode_image(utrain_batch[0])
    print img
@@ -187,32 +187,33 @@ def loadData(batch_size, train=True):
    pkl_utrain_file = 'files/underwater_train.pkl'
    pkl_utest_file  = 'files/underwater_test.pkl'
 
-   # microsoft coco images
-   pkl_coco_file = 'files/coco_train.pkl'
+   # microsoft places2 images
+   pkl_places2_file = 'files/places2_train.pkl'
 
    # load saved pickle files if already have them
-   if os.path.isfile(pkl_utrain_file) and os.path.isfile(pkl_utest_file) and os.path.isfile(pkl_coco_file):
+   if os.path.isfile(pkl_utrain_file) and os.path.isfile(pkl_utest_file) and os.path.isfile(pkl_places2_file):
       print 'Found pickle files'
-      utrain_paths     = pickle.load(open(pkl_utrain_file, 'rb'))
       utest_paths      = pickle.load(open(pkl_utest_file, 'rb'))
-      coco_paths = pickle.load(open(pkl_coco_file, 'rb'))
+      if train:
+         utrain_paths     = pickle.load(open(pkl_utrain_file, 'rb'))
+         places2_paths = pickle.load(open(pkl_places2_file, 'rb'))
    else:
       print 'Reading data...'
       utrain_dir  = '/mnt/data2/images/underwater/youtube/'
-      #coco_dir  = '/mnt/data2/images/underwater/youtube/'
-      #coco_dir    = '/mnt/data2/images/coco/test2014/'
-      coco_dir    = '/mnt/data2/images/places2_challenge/train_256/'
+      #places2_dir  = '/mnt/data2/images/underwater/youtube/'
+      #places2_dir    = '/mnt/data2/images/places2/test2014/'
+      places2_dir    = '/mnt/data2/images/places2_standard/train_256/'
 
       # get all paths for underwater images
       u_paths    = getPaths(utrain_dir)
-      # get all paths for coco images
-      coco_paths = getPaths(coco_dir)
+      # get all paths for places2 images
+      places2_paths = getPaths(places2_dir)
 
       # shuffle all the underwater paths before splitting into test/train
       random.shuffle(u_paths)
 
-      # shuffle coco images because why not
-      random.shuffle(coco_paths)
+      # shuffle places2 images because why not
+      random.shuffle(places2_paths)
 
       # take 90% for train, 10% for test
       train_num = int(0.95*len(u_paths))
@@ -231,37 +232,37 @@ def loadData(batch_size, train=True):
       pf.write(data)
       pf.close()
 
-      # write test coco data
-      pf   = open(pkl_coco_file, 'wb')
-      data = pickle.dumps(coco_paths)
+      # write test places2 data
+      pf   = open(pkl_places2_file, 'wb')
+      data = pickle.dumps(places2_paths)
       pf.write(data)
       pf.close()
 
-   print
-   print len(utrain_paths), 'underwater train images'
-   print len(utest_paths), 'underwater test images'
-   print len(coco_paths), 'coco images'
-   print
+   if train:
+      print
+      print len(utrain_paths), 'underwater train images'
+      print len(utest_paths), 'underwater test images'
+      print len(places2_paths), 'places2 images'
+      print
+
+   if train: upaths = utrain_paths
+   else: upaths = utest_paths
 
    decode = tf.image.decode_image
 
    # load underwater images
    with tf.name_scope('load_underwater'):
-      path_queue = tf.train.string_input_producer(utrain_paths, shuffle=True)
+      path_queue = tf.train.string_input_producer(upaths, shuffle=train)
       reader = tf.WholeFileReader()
       paths, contents = reader.read(path_queue)
       raw_input_ = decode(contents)
       raw_input_ = tf.image.convert_image_dtype(raw_input_, dtype=tf.float32)
 
-      #assertion = tf.assert_equal(tf.shape(raw_input_)[2], 3, message='image does not have 3 channels')
-      #with tf.control_dependencies([assertion]):
-      #   raw_input_ = tf.identity(raw_input_)
-
       raw_input_.set_shape([None, None, 3])
 
-      # randomly flip image
+      # randomly flip image if training
       seed = random.randint(0, 2**31 - 1) 
-      raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
+      if train: raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
       
       # convert to LAB and process gray channel and color channels
       lab = rgb_to_lab(raw_input_)
@@ -273,43 +274,38 @@ def loadData(batch_size, train=True):
       ab_images   = tf.image.resize_images(ab_images, [256, 256], method=tf.image.ResizeMethod.AREA)
 
       u_paths_batch, gray_batch, ab_batch = tf.train.shuffle_batch([paths, gray_images, ab_images], batch_size=batch_size, num_threads=8, min_after_dequeue=int(0.1*100), capacity=int(0.1*100)+8*batch_size)
-      
-   # load the coco images
-   with tf.name_scope('load_coco'):
-      path_queue = tf.train.string_input_producer(coco_paths, shuffle=True)
-      reader = tf.WholeFileReader()
-      paths, contents = reader.read(path_queue)
-      raw_input_ = decode(contents)
-      raw_input_ = tf.image.convert_image_dtype(raw_input_, dtype=tf.float32)
 
-      #assertion = tf.assert_equal(tf.shape(raw_input_)[2], 3, message='image does not have 3 channels')
-      #with tf.control_dependencies([assertion]):
-      #   raw_input_ = tf.identity(raw_input_)
+   if train:
+      # load the places2 images
+      with tf.name_scope('load_places2'):
+         path_queue = tf.train.string_input_producer(places2_paths, shuffle=True)
+         reader = tf.WholeFileReader()
+         paths, contents = reader.read(path_queue)
+         raw_input_ = decode(contents)
+         raw_input_ = tf.image.convert_image_dtype(raw_input_, dtype=tf.float32)
 
-      raw_input_.set_shape([None, None, 3])
+         raw_input_.set_shape([None, None, 3])
 
-      # randomly flip image
-      seed = random.randint(0, 2**31 - 1) 
-      raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
-      
-      # convert to LAB
-      coco_images = rgb_to_lab(raw_input_)
-      L_chan, a_chan, b_chan = preprocess_lab(coco_images)
-      gray_images = tf.expand_dims(L_chan, axis=2)   # shape (?,?,1)
-      ab_images = tf.stack([a_chan, b_chan], axis=2) # shape (?,?,2)
+         # randomly flip image
+         seed = random.randint(0, 2**31 - 1) 
+         raw_input_ = tf.image.random_flip_left_right(raw_input_, seed=seed)
+         
+         # convert to LAB
+         places2_images = rgb_to_lab(raw_input_)
+         L_chan, a_chan, b_chan = preprocess_lab(places2_images)
+         gray_images = tf.expand_dims(L_chan, axis=2)   # shape (?,?,1)
+         ab_images = tf.stack([a_chan, b_chan], axis=2) # shape (?,?,2)
 
-      coco_L  = tf.image.resize_images(gray_images, [256,256], method=tf.image.ResizeMethod.AREA)
-      coco_ab = tf.image.resize_images(ab_images, [256,256], method=tf.image.ResizeMethod.AREA)
+         places2_L  = tf.image.resize_images(gray_images, [256,256], method=tf.image.ResizeMethod.AREA)
+         places2_ab = tf.image.resize_images(ab_images, [256,256], method=tf.image.ResizeMethod.AREA)
 
-      #coco_paths_batch, coco_L_batch, coco_ab_batch = tf.train.batch([paths, coco_L, coco_ab], batch_size=batch_size, num_threads=2)
-      coco_paths_batch, coco_L_batch, coco_ab_batch = tf.train.shuffle_batch([paths, coco_L, coco_ab], batch_size=batch_size, num_threads=8, min_after_dequeue=int(0.1*100), capacity=int(0.1*100)+8*batch_size)
-      
-
-   # need to return underwater L, a, b. coco LAB
+         places2_paths_batch, places2_L_batch, places2_ab_batch = tf.train.shuffle_batch([paths, places2_L, places2_ab], batch_size=batch_size, num_threads=8, min_after_dequeue=int(0.1*100), capacity=int(0.1*100)+8*batch_size)
+         
+   else: places2_L_batch = places2_ab_batch = None
 
    return Data(
       ugray=gray_batch,
       uab=ab_batch,
-      coco_L=coco_L_batch,
-      coco_ab=coco_ab_batch
+      places2_L=places2_L_batch,
+      places2_ab=places2_ab_batch
    )
