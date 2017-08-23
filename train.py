@@ -1,3 +1,14 @@
+'''
+
+   Main training file
+
+   The goal is to correct the colors in underwater images.
+   CycleGAN was used to create images that appear to be underwater.
+   Those will be sent into the generator, which will attempt to correct the
+   colors.
+
+'''
+
 import cPickle as pickle
 import tensorflow as tf
 from scipy import misc
@@ -14,10 +25,12 @@ from tf_ops import *
 
 import data_ops
 
-
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
+   parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
+   parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
+   parser.add_argument('--L1_WEIGHT',     required=False,default=100,type=int,help='Weight term for L1 loss')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
    parser.add_argument('--LOSS_METHOD',   required=False,default='gan',help='Loss function for GAN')
    parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
@@ -26,88 +39,62 @@ if __name__ == '__main__':
    LEARNING_RATE = a.LEARNING_RATE
    LOSS_METHOD   = a.LOSS_METHOD
    BATCH_SIZE    = a.BATCH_SIZE
+   L1_WEIGHT     = a.L1_WEIGHT
+   NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
-   
-   EXPERIMENT_DIR = 'checkpoints/'
+   DATA          = a.DATA
+
+   EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
+                     +'/NETWORK_'+NETWORK\
+                     +'/L1_WEIGHT_'+str(L1_WEIGHT)\
+                     +'/DATA_'+DATA+'/'\
+
    IMAGES_DIR     = EXPERIMENT_DIR+'images/'
 
    print
    print 'Creating',EXPERIMENT_DIR
-   try: os.mkdir('checkpoints/')
-   except: pass
-   try: os.mkdir(EXPERIMENT_DIR)
-   except: pass
-   try: os.mkdir(IMAGES_DIR)
+   try: os.makedirs(IMAGES_DIR)
    except: pass
    
    # write all this info to a pickle file in the experiments directory
    exp_info = dict()
-   exp_info['EPOCHS']        = EPOCHS
-   exp_info['BATCH_SIZE']      = BATCH_SIZE
-   exp_info['LOSS_METHOD']   = LOSS_METHOD
    exp_info['LEARNING_RATE'] = LEARNING_RATE
+   exp_info['LOSS_METHOD']   = LOSS_METHOD
+   exp_info['BATCH_SIZE']    = BATCH_SIZE
+   exp_info['NETWORK']       = NETWORK
+   exp_info['EPOCHS']        = EPOCHS
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
    exp_pkl.close()
    
    print
-   print 'EPOCHS:        ',EPOCHS
-   print 'BATCH_SIZE:    ',BATCH_SIZE
-   print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'LEARNING_RATE: ',LEARNING_RATE
+   print 'LOSS_METHOD:   ',LOSS_METHOD
+   print 'BATCH_SIZE:    ',BATCH_SIZE
+   print 'NETWORK:       ',NETWORK
+   print 'EPOCHS:        ',EPOCHS
    print
 
-   # first load the data
-   #utrain_paths, utest_paths, places2_paths = load()
+   if NETWORK == 'pix2pix': from pix2pix import *
 
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
 
-   # Old data loading stuff that doesn't work because of dumb tensorflow queue messups
-   # load data
-   Data = data_ops.loadData(BATCH_SIZE)
-   # underwater grayscale image
-   ugray = Data.ugray
-   # underwater ab channels
-   uab   = Data.uab
-   # places2 gray
-   places2_L  = Data.places2_L
-   # places2 ab channels
-   places2_ab = Data.places2_ab
-   # want to send underwater LAB to G and have it predict new AB
-   x = tf.concat([ugray, uab], axis=3)
-   '''
-      
-   u_img = tf.placeholder(tf.float32, shape=[256,256,3],name='underwater_L')
-   u_lab = data_ops.rgb_to_lab(u_img)
-   uL_chan, ua_chan, ub_chan = data_ops.preprocess_lab(u_lab)
-   ugray_images = tf.expand_dims(uL_chan, axis=2)   # shape (?,?,1)
-   uab_images = tf.stack([ua_chan, ub_chan], axis=2) # shape (?,?,2)
+   # underwater image
+   image_u = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_u')
 
-   print ugray_images
-   print uab_images
-   exit()
-
-   # underwater images
-   #underwater_L  = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,1],name='underwater_L')
-   #underwater_ab = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,2],name='underwater_ab')
-
-   # above water images
-   #places2_L  = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,1],name='places2_L')
-   #places2_ab = tf.placeholder(tf.float32, shape=[BATCH_SIZE,256,256,2],name='places2_ab')
-   '''
+   # correct image
+   image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   #gen_ab = pix2pix.netG(underwater_L, underwater_ab)
-   gen_ab = pix2pix.netG(ugray, uab)
+   gen_image = netG(image_u)
 
-   # send places2 images to D
-   D_real = pix2pix.netD(places2_L, places2_ab)
+   # send 'above' water images to D
+   D_real = pix2pix.netD(image_r)
 
    # send corrected underwater images to D
-   #D_fake = pix2pix.netD(underwater_L, gen_ab, reuse=True)
-   D_fake = pix2pix.netD(ugray, gen_ab, reuse=True)
+   D_fake = pix2pix.netD(gen_image, reuse=True)
 
    e = 1e-12
    if LOSS_METHOD == 'least_squares':
@@ -122,12 +109,15 @@ if __name__ == '__main__':
       D_fake = tf.nn.sigmoid(D_fake)
       errG = tf.reduce_mean(-tf.log(D_fake + e))
       errD = tf.reduce_mean(-(tf.log(D_real+e)+tf.log(1-D_fake+e)))
-   
+
+   if L1_WEIGHT > 0.0:
+      l1_loss = tf.reduce_mean(tf.abs(gen_image-image_r))
+      errG += L1_WEIGHT*l1_loss
+
    # tensorboard summaries
-   #try: tf.summary.scalar('d_loss', tf.reduce_mean(errD))
-   #except:pass
-   #try: tf.summary.scalar('g_loss', tf.reduce_mean(errG))
-   #except:pass
+   tf.summary.scalar('d_loss', tf.reduce_mean(errD))
+   tf.summary.scalar('g_loss', tf.reduce_mean(errG))
+   tf.summary.scalar('l1_loss', tf.reduce_mean(l1))
 
    # get all trainable variables, and split by network G and network D
    t_vars = tf.trainable_variables()
@@ -159,12 +149,15 @@ if __name__ == '__main__':
          print "Could not restore model"
          pass
    
-   step = sess.run(global_step)
-
-   coord = tf.train.Coordinator()
-   threads = tf.train.start_queue_runners(sess, coord=coord)
+   step = int(sess.run(global_step))
 
    merged_summary_op = tf.summary.merge_all()
+
+
+   # get train/test data
+   print 'here---'
+   exit()
+
 
    while True:
 
@@ -183,5 +176,5 @@ if __name__ == '__main__':
          print 'Model saved\n'
 
 
-   coord.request_stop()
-   coord.join(threads)
+
+
