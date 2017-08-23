@@ -19,6 +19,7 @@ import pix2pix
 import sys
 import os
 import time
+import glob
 
 sys.path.insert(0, 'ops/')
 from tf_ops import *
@@ -117,7 +118,7 @@ if __name__ == '__main__':
    # tensorboard summaries
    tf.summary.scalar('d_loss', tf.reduce_mean(errD))
    tf.summary.scalar('g_loss', tf.reduce_mean(errG))
-   tf.summary.scalar('l1_loss', tf.reduce_mean(l1))
+   tf.summary.scalar('l1_loss', tf.reduce_mean(l1_loss))
 
    # get all trainable variables, and split by network G and network D
    t_vars = tf.trainable_variables()
@@ -153,21 +154,49 @@ if __name__ == '__main__':
 
    merged_summary_op = tf.summary.merge_all()
 
-
    # get train/test data
-   print 'here---'
-   exit()
+
+   # underwater photos
+   trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
+
+   # normal photos (ground truth)
+   trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
+   
+   # testing paths
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
+
+   print len(trainB_paths)
+   print len(trainA_paths)
+
+   num_train = len(trainB_paths)
 
 
    while True:
 
-      sess.run(D_train_op)
-      sess.run(G_train_op)
-      D_loss, G_loss, summary = sess.run([errD, errG, merged_summary_op])
+      idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
+      batchA_paths = trainA_paths[idx]
+      batchB_paths = trainB_paths[idx]
+      
+      batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+      batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+
+      i = 0
+      for a,b in zip(batchA_paths, batchB_paths):
+         a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
+         b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
+         batchA_images[i, ...] = a_img
+         batchB_images[i, ...] = b_img
+         i += 1
+
+      sess.run(D_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
+      sess.run(G_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
+      D_loss, G_loss, summary = sess.run([errD, errG, merged_summary_op], feed_dict={image_u:batchA_images, image_r:batchB_images})
 
       summary_writer.add_summary(summary, step)
       print 'step:',step,'D loss:',D_loss,'G_loss:',G_loss
       step += 1
+      
+      
       
       if step%500 == 0:
          print 'Saving model...'
@@ -175,6 +204,27 @@ if __name__ == '__main__':
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
          print 'Model saved\n'
 
+         idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
+         batchA_paths = trainA_paths[idx]
+         batchB_paths = trainB_paths[idx]
+         
+         batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+         batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+
+         i = 0
+         for a,b in zip(batchA_paths, batchB_paths):
+            a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
+            b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
+            batchA_images[i, ...] = a_img
+            batchB_images[i, ...] = b_img
+            i += 1
+
+         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batchA_images, image_r:batchB_images}))
 
 
+         for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
+            misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
+            misc.imsave(IMAGES_DIR+str(step)+'_real.png', real)
+            misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
+            break
 

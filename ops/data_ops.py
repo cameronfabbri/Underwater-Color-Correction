@@ -24,17 +24,13 @@ import cPickle as pickle
 
 Data = collections.namedtuple('trainData', 'ugray, uab, places2_L, places2_ab')
 
-def preprocess(image):
-    with tf.name_scope('preprocess'):
-        # [0, 1] => [-1, 1]
-        return image * 2 - 1
+# [-1,1] -> [0, 255]
+def deprocess(x):
+   return (x+1.0)*127.5
 
-
-def deprocess(image):
-    with tf.name_scope('deprocess'):
-        # [-1, 1] => [0, 1]
-        return (image + 1) / 2
-
+# [0,255] -> [-1, 1]
+def preprocess(x):
+   return (x/127.5)-1.0
 
 def preprocess_lab(lab):
     with tf.name_scope('preprocess_lab'):
