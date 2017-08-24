@@ -62,8 +62,10 @@ if __name__ == '__main__':
    exp_info['LEARNING_RATE'] = LEARNING_RATE
    exp_info['LOSS_METHOD']   = LOSS_METHOD
    exp_info['BATCH_SIZE']    = BATCH_SIZE
+   exp_info['L1_WEIGHT']     = L1_WEIGHT
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
+   exp_info['DATA']          = DATA
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
@@ -163,13 +165,14 @@ if __name__ == '__main__':
    trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
    
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
+   testA_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
+   testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
 
    print len(trainB_paths)
    print len(trainA_paths)
 
    num_train = len(trainB_paths)
-
+   num_test  = len(testB_paths)
 
    while True:
 
@@ -196,17 +199,15 @@ if __name__ == '__main__':
       print 'step:',step,'D loss:',D_loss,'G_loss:',G_loss
       step += 1
       
-      
-      
       if step%500 == 0:
          print 'Saving model...'
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
          print 'Model saved\n'
 
-         idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
-         batchA_paths = trainA_paths[idx]
-         batchB_paths = trainB_paths[idx]
+         idx = np.random.choice(np.arange(num_test), BATCH_SIZE, replace=False)
+         batchA_paths = testA_paths[idx]
+         batchB_paths = testB_paths[idx]
          
          batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
          batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
@@ -221,10 +222,8 @@ if __name__ == '__main__':
 
          gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batchA_images, image_r:batchB_images}))
 
-
          for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
             misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
             misc.imsave(IMAGES_DIR+str(step)+'_real.png', real)
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
             break
-
