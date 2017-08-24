@@ -15,6 +15,7 @@ from scipy import misc
 from tqdm import tqdm
 import numpy as np
 import argparse
+import random
 import ntpath
 import pix2pix
 import sys

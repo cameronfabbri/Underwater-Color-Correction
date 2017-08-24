@@ -80,6 +80,7 @@ if __name__ == '__main__':
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
+   if NETWORK == 'resnet': from resnet import *
 
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -112,6 +113,20 @@ if __name__ == '__main__':
       D_fake = tf.nn.sigmoid(D_fake)
       errG = tf.reduce_mean(-tf.log(D_fake + e))
       errD = tf.reduce_mean(-(tf.log(D_real+e)+tf.log(1-D_fake+e)))
+
+   if LOSS_METHOD == 'wgan':
+      # cost functions
+      errD = tf.reduce_mean(D_real) - tf.reduce_mean(D_fake)
+      errG = tf.reduce_mean(D_fake)
+
+      # gradient penalty
+      epsilon = tf.random_uniform([], 0.0, 1.0)
+      x_hat = real_images*epsilon + (1-epsilon)*gen_images
+      d_hat = netD(x_hat, BATCH_SIZE, SELU, NORM, reuse=True)
+      gradients = tf.gradients(d_hat, x_hat)[0]
+      slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=[1]))
+      gradient_penalty = 10*tf.reduce_mean((slopes-1.0)**2)
+      errD += gradient_penalty
 
    if L1_WEIGHT > 0.0:
       l1_loss = tf.reduce_mean(tf.abs(gen_image-image_r))
@@ -174,6 +189,9 @@ if __name__ == '__main__':
    num_train = len(trainB_paths)
    num_test  = len(testB_paths)
 
+   n_critic = 1
+   if LOSS_METHOD == 'wgan': n_critic = 5
+
    while True:
 
       idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
@@ -191,7 +209,9 @@ if __name__ == '__main__':
          batchB_images[i, ...] = b_img
          i += 1
 
-      sess.run(D_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
+      for itr in xrange(n_critic):
+         sess.run(D_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
+
       sess.run(G_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
       D_loss, G_loss, summary = sess.run([errD, errG, merged_summary_op], feed_dict={image_u:batchA_images, image_r:batchB_images})
 

@@ -5,85 +5,58 @@ import sys
 sys.path.insert(0, 'ops/')
 from tf_ops import *
 
+def resBlock(x, num):
+   
+   conv1 = tcl.conv2d(x, 64, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_resconv1_'+str(num))
+   print 'res_conv1:',conv1
+
+   conv2 = tcl.conv2d(conv1, 64, 3, 1, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_resconv2_'+str(num))
+   print 'res_conv2:',conv2
+   
+   output = tf.add(x,conv2)
+   print 'res_out:',output
+   return output
+
+
 def netG(x):
       
-   enc_conv1 = tcl.conv2d(x, 64, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv1')
-   enc_conv1 = lrelu(enc_conv1)
-   
-   enc_conv2 = tcl.conv2d(enc_conv1, 128, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv2')
-   enc_conv2 = lrelu(enc_conv2)
-   
-   enc_conv3 = tcl.conv2d(enc_conv2, 256, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv3')
-   enc_conv3 = lrelu(enc_conv3)
 
-   enc_conv4 = tcl.conv2d(enc_conv3, 512, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv4')
-   enc_conv4 = lrelu(enc_conv4)
+   conv1 = tcl.conv2d(x, 64, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv1')
+
+   res1 = resBlock(conv1, 1)
+   res2 = resBlock(res1, 2)
+   res3 = resBlock(res2, 3)
+   res4 = resBlock(res3, 4)
+   res5 = resBlock(res4, 5)
+   res6 = resBlock(res5, 6)
+   res7 = resBlock(res6, 7)
+   res8 = resBlock(res7, 8)
+   res9 = resBlock(res8, 9)
+   res10 = resBlock(res9, 10)
+   res11 = resBlock(res10, 11)
+   res12 = resBlock(res10, 12)
+   res13 = resBlock(res10, 13)
+   res14 = resBlock(res10, 14)
+   res15 = resBlock(res10, 15)
+   res16 = resBlock(res10, 16)
+
+   conv2 = tcl.conv2d(res16, 64, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv2')
+   conv2 = tf.add(conv1, conv2)
+   print 'conv2:',conv2
+
+   conv3 = tcl.conv2d(conv2, 256, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv3')
+   print 'conv3:',conv3
    
-   enc_conv5 = tcl.conv2d(enc_conv4, 512, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv5')
-   enc_conv5 = lrelu(enc_conv5)
+   conv4 = tcl.conv2d(conv3, 256, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv4')
+   print 'conv4:',conv4
 
-   enc_conv6 = tcl.conv2d(enc_conv5, 512, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv6')
-   enc_conv6 = lrelu(enc_conv6)
-   
-   enc_conv7 = tcl.conv2d(enc_conv6, 512, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv7')
-   enc_conv7 = lrelu(enc_conv7)
+   conv5 = tcl.conv2d(conv4, 256, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv5')
+   print 'conv5:',conv5
 
-   enc_conv8 = tcl.conv2d(enc_conv7, 512, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv8')
-   enc_conv8 = lrelu(enc_conv8)
+   conv6 = tcl.conv2d(conv5, 3, 9, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv6')
+   print 'conv6:',conv6
 
-   print 'x:        ',x
-   print 'enc_conv1:',enc_conv1
-   print 'enc_conv2:',enc_conv2
-   print 'enc_conv3:',enc_conv3
-   print 'enc_conv4:',enc_conv4
-   print 'enc_conv5:',enc_conv5
-   print 'enc_conv6:',enc_conv6
-   print 'enc_conv7:',enc_conv7
-   print 'enc_conv8:',enc_conv8
-   print
-
-   SKIP_CONNECTIONS = 1
-
-   dec_conv1 = tcl.convolution2d_transpose(enc_conv8, 512, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv1')
-   dec_conv1 = relu(dec_conv1)
-   if SKIP_CONNECTIONS == 1: dec_conv1 = tf.concat([dec_conv1, enc_conv7], axis=3)
-   print 'dec_conv1:',dec_conv1
-
-   dec_conv2 = tcl.convolution2d_transpose(dec_conv1, 512, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv2')
-   dec_conv2 = relu(dec_conv2)
-   if SKIP_CONNECTIONS == 1: dec_conv2 = tf.concat([dec_conv2, enc_conv6], axis=3)
-   print 'dec_conv2:',dec_conv2
-   
-   dec_conv3 = tcl.convolution2d_transpose(dec_conv2, 512, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv3')
-   dec_conv3 = relu(dec_conv3)
-   if SKIP_CONNECTIONS == 1: dec_conv3 = tf.concat([dec_conv3, enc_conv5], axis=3)
-   print 'dec_conv3:',dec_conv3
-
-   dec_conv4 = tcl.convolution2d_transpose(dec_conv3, 512, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv4')
-   dec_conv4 = relu(dec_conv4)
-   if SKIP_CONNECTIONS == 1: dec_conv4 = tf.concat([dec_conv4, enc_conv4], axis=3)
-   print 'dec_conv4:',dec_conv4
-   
-   dec_conv5 = tcl.convolution2d_transpose(dec_conv4, 256, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv5')
-   dec_conv5 = relu(dec_conv5)
-   if SKIP_CONNECTIONS == 1: dec_conv5 = tf.concat([dec_conv5, enc_conv3], axis=3)
-   print 'dec_conv5:',dec_conv5
-
-   dec_conv6 = tcl.convolution2d_transpose(dec_conv5, 128, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv6')
-   dec_conv6 = relu(dec_conv6)
-   if SKIP_CONNECTIONS == 1: dec_conv5 = tf.concat([dec_conv6, enc_conv2], axis=3)
-   print 'dec_conv6:',dec_conv6
-   
-   dec_conv7 = tcl.convolution2d_transpose(dec_conv6, 64, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv7')
-   dec_conv7 = relu(dec_conv7)
-   if SKIP_CONNECTIONS == 1: dec_conv5 = tf.concat([dec_conv7, enc_conv1], axis=3)
-   print 'dec_conv7:',dec_conv7
-   
-   dec_conv8 = tcl.convolution2d_transpose(dec_conv7, 3, 4, 2, normalizer_fn=tcl.batch_norm, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv8')
-   dec_conv8 = tanh(dec_conv8)
-   print 'dec_conv8', dec_conv8
-   
-   return dec_conv8
+   return conv6
 
 
 def netD(x, reuse=False):
