@@ -1,6 +1,6 @@
 '''
 
-Operations commonly used in tensorflow
+   Operations commonly used in tensorflow
 
 '''
 
@@ -9,35 +9,133 @@ import numpy as np
 import math
 
 '''
+
+  Image Gradient Difference Loss (GDL) as seen in https://arxiv.org/abs/1511.05440
+
 '''
-def batch_norm(x):
-    with tf.variable_scope('batchnorm'):
-      x = tf.identity(x)
+def loss_gradient_difference(true, generated):
+   true_x_shifted_right = true[:,1:,:,:]
+   true_x_shifted_left = true[:,:-1,:,:]
+   true_x_gradient = tf.abs(true_x_shifted_right - true_x_shifted_left)
 
-      channels = x.get_shape()[3]
-      offset = tf.get_variable('offset', [channels], dtype=tf.float32, initializer=tf.zeros_initializer())
-      scale = tf.get_variable('scale', [channels], dtype=tf.float32, initializer=tf.random_normal_initializer(1.0, 0.02))
-      mean, variance = tf.nn.moments(x, axes=[0, 1, 2], keep_dims=False)
-      variance_epsilon = 1e-5
-      normalized = tf.nn.batch_normalization(x, mean, variance, offset, scale, variance_epsilon=variance_epsilon)
-      return normalized
+   generated_x_shifted_right = generated[:,1:,:,:]
+   generated_x_shifted_left = generated[:,:-1,:,:]
+   generated_x_gradient = tf.abs(generated_x_shifted_right - generated_x_shifted_left)
 
-def conv2d(x, out_channels, stride=2,kernel_size=4):
-   with tf.variable_scope('conv2d'):
-      in_channels = x.get_shape()[3]
-      kernel = tf.get_variable('kernel', [kernel_size, kernel_size, in_channels, out_channels], dtype=tf.float32, initializer=tf.random_normal_initializer(0, 0.02))
-      # [batch, in_height, in_width, in_channels], [kernel_width, kernel_height, in_channels, out_channels]
-      #     => [batch, out_height, out_width, out_channels]
-      padded_input = tf.pad(x, [[0, 0], [1, 1], [1, 1], [0, 0]], mode='CONSTANT')
-      conv = tf.nn.conv2d(padded_input, kernel, [1, stride, stride, 1], padding='VALID')
-      return conv
+   loss_x_gradient = tf.nn.l2_loss(true_x_gradient - generated_x_gradient)
 
-def conv2d_transpose(x, out_channels, stride=2, kernel_size=4):
-   with tf.variable_scope('conv2d_transpose'):
-      batch, in_height, in_width, in_channels = [int(d) for d in x.get_shape()]
-      kernel = tf.get_variable('kernel', [kernel_size, kernel_size, out_channels, in_channels], dtype=tf.float32, initializer=tf.random_normal_initializer(0, 0.02))
-      conv = tf.nn.conv2d_transpose(x, kernel, [batch, in_height * 2, in_width * 2, out_channels], [1, stride, stride, 1], padding='SAME')
-      return conv
+   true_y_shifted_right = true[:,:,1:,:]
+   true_y_shifted_left = true[:,:,:-1,:]
+   true_y_gradient = tf.abs(true_y_shifted_right - true_y_shifted_left)
+
+   generated_y_shifted_right = generated[:,:,1:,:]
+   generated_y_shifted_left = generated[:,:,:-1,:]
+   generated_y_gradient = tf.abs(generated_y_shifted_right - generated_y_shifted_left)
+    
+   loss_y_gradient = tf.nn.l2_loss(true_y_gradient - generated_y_gradient)
+
+   loss = loss_x_gradient + loss_y_gradient
+
+   return loss
+
+'''
+   Kullback Leibler divergence
+   https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence
+   https://github.com/fastforwardlabs/vae-tf/blob/master/vae.py#L178
+'''
+def kullbackleibler(mu, log_sigma):
+   return -0.5*tf.reduce_sum(1+2*log_sigma-mu**2-tf.exp(2*log_sigma),1)
+
+
+'''
+   Batch normalization
+   https://arxiv.org/abs/1502.03167
+'''
+def bn(x):
+   return tf.layers.batch_normalization(x)
+
+
+'''
+   Layer normalizes a 2D tensor along its second axis, which corresponds to batch
+'''
+def ln(x, s, b, epsilon = 1e-5):
+   m, v = tf.nn.moments(x, [1], keep_dims=True)
+   normalized_input = (x - m) / tf.sqrt(v + epsilon)
+   return normalised_input * s + b
+
+
+'''
+   Instance normalization
+   https://arxiv.org/abs/1607.08022
+'''
+def instance_norm(x, epsilon=1e-5):
+   mean, var = tf.nn.moments(x, [1, 2], keep_dims=True)
+   return tf.div(tf.subtract(x, mean), tf.sqrt(tf.add(var, epsilon)))
+
+'''
+   2d transpose convolution, but resizing first then performing conv2d
+   with kernel size 1 and stride of 1
+   See http://distill.pub/2016/deconv-checkerboard/
+
+   The new height and width can be anything, but default to the current shape * 2
+'''
+def upconv2d(x, filters, name=None, new_height=None, new_width=None, kernel_size=3):
+
+   print 'x:',x
+   shapes = x.get_shape().as_list()
+   height = shapes[1]
+   width  = shapes[2]
+
+   # resize image using method of nearest neighbor
+   if new_height is None and new_width is None:
+      x_resize = tf.image.resize_nearest_neighbor(x, [height*2, width*2])
+   else:
+      x_resize = tf.image.resize_nearest_neighbor(x, [new_height, new_width])
+
+   # conv with stride 1
+   return tf.layers.conv2d(x_resize, filters, kernel_size, strides=1, name=name)
+
+'''
+   3d transpose convolution, but resizing first then performing conv2d with stride 1
+
+   The 5D tensor needs to be converted to the size resize_images needs, which is 4D
+   help from: https://stackoverflow.com/questions/43851999/resize-3d-image-with-5d-tensor-in-tensorflow
+
+   Assumes input tensor is (BATCH, HEIGHT, WIDTH, DEPTH, CHANNELS)
+   where DEPTH can be time or something. For example, 4 stacked
+   images that have 3 color channels, height and width of 256 with batch size of 1 would
+   be (1, 256, 256, 4, 3)
+   
+'''
+# TODO testing, not sure if this works correctly yet
+def upconv3d(x, filters, name, kernel_size=[1,1,1]):
+   
+   # get original depth, height, and width of the volume
+   shapes = x.get_shape().as_list()
+   depth  = shapes[1]
+   height = shapes[2]
+   width  = shapes[3]
+
+   x = tf.reshape(x, [shapes[0]*shapes[1], shapes[2], shapes[3], shapes[4]])
+
+   new_size = tf.constant([height*2, width*2])
+   resized = tf.image.resize_images(x, new_size)
+
+   # now put back to 5D
+   x = tf.reshape(resized, [shapes[0], shapes[1], height*2, width*2, shapes[4]])
+
+   # now conv with stride 1
+   out = tf.layers.conv3d(x, filters, kernel_size, strides=(1,1,1), name=name)
+   return out
+
+
+
+'''
+   L1 penalty, as seen in https://arxiv.org/pdf/1609.02612.pdf
+'''
+def l1Penalty(x, scale=0.1, name="L1Penalty"):
+    l1P = tf.contrib.layers.l1_regularizer(scale)
+    return l1P(x)
 
 
 ######## activation functions ###########
@@ -47,7 +145,24 @@ def conv2d_transpose(x, out_channels, stride=2, kernel_size=4):
 '''
 def lrelu(x, leak=0.2):
    return tf.maximum(leak*x, x)
-         
+
+
+'''
+   Like concatenated relu, but with elu
+   http://arxiv.org/abs/1603.05201
+'''
+def concat_elu(x):
+   axis = len(x.get_shape())-1
+   return tf.nn.elu(tf.concat(values=[x, -x], axis=axis))
+
+'''
+   Concatenated ReLU
+   http://arxiv.org/abs/1603.05201
+'''
+def concat_relu(x):
+   axis = len(x.get_shape())-1
+   return tf.nn.relu(tf.concat([x, -x], axis))
+
 '''
    Regular relu
 '''
@@ -65,3 +180,26 @@ def tanh(x, name='tanh'):
 '''
 def sig(x, name='sig'):
    return tf.nn.sigmoid(x, name)
+
+'''
+   Self normalizing neural networks paper
+   https://arxiv.org/pdf/1706.02515.pdf
+'''
+def selu(x):
+   alpha = 1.6732632423543772848170429916717
+   scale = 1.0507009873554804934193349852946
+   return scale*tf.where(x>=0.0, x, alpha*tf.nn.elu(x))
+
+'''
+   Like concat relu/elu, but with selu
+'''
+def concat_selu(x):
+   axis = len(x.get_shape())-1
+   return selu(tf.concat([x, -x], axis))
+
+###### end activation functions #########
+
+
+
+
+

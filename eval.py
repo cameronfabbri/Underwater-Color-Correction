@@ -17,7 +17,6 @@ import numpy as np
 import argparse
 import random
 import ntpath
-import pix2pix
 import sys
 import os
 import time
@@ -25,6 +24,7 @@ import glob
 import cPickle as pickle
 
 sys.path.insert(0, 'ops/')
+sys.path.insert(0, 'nets/')
 from tf_ops import *
 
 import data_ops

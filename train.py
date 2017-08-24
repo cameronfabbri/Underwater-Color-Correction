@@ -15,13 +15,13 @@ from scipy import misc
 import numpy as np
 import argparse
 import ntpath
-import pix2pix
 import sys
 import os
 import time
 import glob
 
 sys.path.insert(0, 'ops/')
+sys.path.insert(0, 'nets/')
 from tf_ops import *
 
 import data_ops
@@ -31,7 +31,8 @@ if __name__ == '__main__':
    parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
-   parser.add_argument('--L1_WEIGHT',     required=False,default=100,type=int,help='Weight term for L1 loss')
+   parser.add_argument('--L1_WEIGHT',     required=False,default=100.,type=float,help='Weight for L1 loss')
+   parser.add_argument('--IG_WEIGHT',     required=False,default=1.,type=float,help='Weight for image gradient loss')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
    parser.add_argument('--LOSS_METHOD',   required=False,default='gan',help='Loss function for GAN')
    parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
@@ -41,6 +42,7 @@ if __name__ == '__main__':
    LOSS_METHOD   = a.LOSS_METHOD
    BATCH_SIZE    = a.BATCH_SIZE
    L1_WEIGHT     = a.L1_WEIGHT
+   IG_WEIGHT     = a.IG_WEIGHT
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
@@ -63,6 +65,7 @@ if __name__ == '__main__':
    exp_info['LOSS_METHOD']   = LOSS_METHOD
    exp_info['BATCH_SIZE']    = BATCH_SIZE
    exp_info['L1_WEIGHT']     = L1_WEIGHT
+   exp_info['IG_WEIGHT']     = IG_WEIGHT
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
@@ -75,8 +78,11 @@ if __name__ == '__main__':
    print 'LEARNING_RATE: ',LEARNING_RATE
    print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'BATCH_SIZE:    ',BATCH_SIZE
+   print 'L1_WEIGHT:     ',L1_WEIGHT
+   print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
+   print 'DATA:          ',DATA
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -95,10 +101,10 @@ if __name__ == '__main__':
    gen_image = netG(image_u)
 
    # send 'above' water images to D
-   D_real = pix2pix.netD(image_r)
+   D_real = netD(image_r)
 
    # send corrected underwater images to D
-   D_fake = pix2pix.netD(gen_image, reuse=True)
+   D_fake = netD(gen_image, reuse=True)
 
    e = 1e-12
    if LOSS_METHOD == 'least_squares':
@@ -132,10 +138,17 @@ if __name__ == '__main__':
       l1_loss = tf.reduce_mean(tf.abs(gen_image-image_r))
       errG += L1_WEIGHT*l1_loss
 
+   if IG_WEIGHT > 0.0:
+      ig_loss = loss_gradient_difference(image_r, image_u)
+      errG += IG_WEIGHT*ig_loss
+
    # tensorboard summaries
    tf.summary.scalar('d_loss', tf.reduce_mean(errD))
    tf.summary.scalar('g_loss', tf.reduce_mean(errG))
-   tf.summary.scalar('l1_loss', tf.reduce_mean(l1_loss))
+   try: tf.summary.scalar('l1_loss', tf.reduce_mean(l1_loss))
+   except: pass
+   try: tf.summary.scalar('ig_loss', tf.reduce_mean(ig_loss))
+   except: pass
 
    # get all trainable variables, and split by network G and network D
    t_vars = tf.trainable_variables()
