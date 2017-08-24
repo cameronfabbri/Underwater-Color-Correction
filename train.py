@@ -50,6 +50,7 @@ if __name__ == '__main__':
    EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
+                     +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'images/'
