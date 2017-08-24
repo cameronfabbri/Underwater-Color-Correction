@@ -20,6 +20,7 @@ import sys
 import os
 import time
 import glob
+import cPickle as pickle
 
 sys.path.insert(0, 'ops/')
 from tf_ops import *
@@ -27,47 +28,31 @@ from tf_ops import *
 import data_ops
 
 if __name__ == '__main__':
-   parser = argparse.ArgumentParser()
-   parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
-   parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
-   parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
-   parser.add_argument('--L1_WEIGHT',     required=False,default=100,type=int,help='Weight term for L1 loss')
-   parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
-   parser.add_argument('--LOSS_METHOD',   required=False,default='gan',help='Loss function for GAN')
-   parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
-   a = parser.parse_args()
 
-   LEARNING_RATE = a.LEARNING_RATE
-   LOSS_METHOD   = a.LOSS_METHOD
-   BATCH_SIZE    = a.BATCH_SIZE
-   L1_WEIGHT     = a.L1_WEIGHT
-   NETWORK       = a.NETWORK
-   EPOCHS        = a.EPOCHS
-   DATA          = a.DATA
+   if len(sys.argv) < 2:
+      print 'You must provide an info.pkl file'
+      exit()
+
+   pkl_file = open(sys.argv[1], 'rb')
+   a = pickle.load(pkl_file)
+
+   LEARNING_RATE = a['LEARNING_RATE']
+   LOSS_METHOD   = a['LOSS_METHOD']
+   L1_WEIGHT     = a['L1_WEIGHT']
+   NETWORK       = a['NETWORK']
+   DATA          = a['DATA']
 
    EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   IMAGES_DIR     = EXPERIMENT_DIR+'images/'
+   IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
 
    print
-   print 'Creating',EXPERIMENT_DIR
+   print 'Creating',IMAGES_DIR
    try: os.makedirs(IMAGES_DIR)
    except: pass
-   
-   # write all this info to a pickle file in the experiments directory
-   exp_info = dict()
-   exp_info['LEARNING_RATE'] = LEARNING_RATE
-   exp_info['LOSS_METHOD']   = LOSS_METHOD
-   exp_info['BATCH_SIZE']    = BATCH_SIZE
-   exp_info['NETWORK']       = NETWORK
-   exp_info['EPOCHS']        = EPOCHS
-   exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
-   data = pickle.dumps(exp_info)
-   exp_pkl.write(data)
-   exp_pkl.close()
    
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
@@ -78,6 +63,7 @@ if __name__ == '__main__':
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
+   if NETWORK == 'resnet':  from resnet import *
 
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -91,54 +77,11 @@ if __name__ == '__main__':
    # generated corrected colors
    gen_image = netG(image_u)
 
-   # send 'above' water images to D
-   D_real = pix2pix.netD(image_r)
-
-   # send corrected underwater images to D
-   D_fake = pix2pix.netD(gen_image, reuse=True)
-
-   e = 1e-12
-   if LOSS_METHOD == 'least_squares':
-      print 'Using least squares loss'
-      errD_real = tf.nn.sigmoid(D_real)
-      errD_fake = tf.nn.sigmoid(D_fake)
-      errG = 0.5*(tf.reduce_mean(tf.square(errD_fake - 1)))
-      errD = tf.reduce_mean(0.5*(tf.square(errD_real - 1)) + 0.5*(tf.square(errD_fake)))
-   if LOSS_METHOD == 'gan':
-      print 'Using original GAN loss'
-      D_real = tf.nn.sigmoid(D_real)
-      D_fake = tf.nn.sigmoid(D_fake)
-      errG = tf.reduce_mean(-tf.log(D_fake + e))
-      errD = tf.reduce_mean(-(tf.log(D_real+e)+tf.log(1-D_fake+e)))
-
-   if L1_WEIGHT > 0.0:
-      l1_loss = tf.reduce_mean(tf.abs(gen_image-image_r))
-      errG += L1_WEIGHT*l1_loss
-
-   # tensorboard summaries
-   tf.summary.scalar('d_loss', tf.reduce_mean(errD))
-   tf.summary.scalar('g_loss', tf.reduce_mean(errG))
-   tf.summary.scalar('l1_loss', tf.reduce_mean(l1_loss))
-
-   # get all trainable variables, and split by network G and network D
-   t_vars = tf.trainable_variables()
-   d_vars = [var for var in t_vars if 'd_' in var.name]
-   g_vars = [var for var in t_vars if 'g_' in var.name]
-      
-   G_train_op = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(errG, var_list=g_vars, global_step=global_step)
-   D_train_op = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(errD, var_list=d_vars)
-
    saver = tf.train.Saver(max_to_keep=1)
 
    init = tf.group(tf.local_variables_initializer(), tf.global_variables_initializer())
    sess = tf.Session()
    sess.run(init)
-
-   # write out logs for tensorboard to the checkpointSdir
-   summary_writer = tf.summary.FileWriter(EXPERIMENT_DIR+'/logs/', graph=tf.get_default_graph())
-
-   tf.add_to_collection('vars', G_train_op)
-   tf.add_to_collection('vars', D_train_op)
 
    ckpt = tf.train.get_checkpoint_state(EXPERIMENT_DIR)
    if ckpt and ckpt.model_checkpoint_path:
@@ -151,10 +94,6 @@ if __name__ == '__main__':
          pass
    
    step = int(sess.run(global_step))
-
-   merged_summary_op = tf.summary.merge_all()
-
-   # get train/test data
 
    # underwater photos
    trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
