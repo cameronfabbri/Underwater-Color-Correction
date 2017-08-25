@@ -46,21 +46,18 @@ def netG(x, LOSS_METHOD):
    if LOSS_METHOD is not 'wgan': dec_conv1 = tcl.batch_norm(dec_conv1)
    dec_conv1 = relu(dec_conv1)
    dec_conv1 = tf.concat([dec_conv1, enc_conv7], axis=3)
-   dec_conv1 = tcl.dropout(dec_conv1, keep_prob=0.5)
    print 'dec_conv1:',dec_conv1
 
    dec_conv2 = tcl.convolution2d_transpose(dec_conv1, 512, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv2')
    if LOSS_METHOD is not 'wgan': dec_conv2 = tcl.batch_norm(dec_conv2)
    dec_conv2 = relu(dec_conv2)
    dec_conv2 = tf.concat([dec_conv2, enc_conv6], axis=3)
-   dec_conv2 = tcl.dropout(dec_conv2, keep_prob=0.5)
    print 'dec_conv2:',dec_conv2
    
    dec_conv3 = tcl.convolution2d_transpose(dec_conv2, 512, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv3')
    if LOSS_METHOD is not 'wgan': dec_conv3 = tcl.batch_norm(dec_conv3)
    dec_conv3 = relu(dec_conv3)
    dec_conv3 = tf.concat([dec_conv3, enc_conv5], axis=3)
-   dec_conv3 = tcl.dropout(dec_conv3, keep_prob=0.5)
    print 'dec_conv3:',dec_conv3
 
    dec_conv4 = tcl.convolution2d_transpose(dec_conv3, 512, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_dec_conv4')

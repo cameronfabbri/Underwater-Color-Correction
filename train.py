@@ -11,6 +11,7 @@
 
 import cPickle as pickle
 import tensorflow as tf
+from tqdm import tqdm
 from scipy import misc
 import numpy as np
 import argparse
@@ -28,7 +29,7 @@ import data_ops
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
-   parser.add_argument('--PS',            required=False,default=0,type=int,help='Pixel shuffle')
+   parser.add_argument('--PixS',          required=False,default=0,type=int,help='Pixel shuffle')
    parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
@@ -47,20 +48,23 @@ if __name__ == '__main__':
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
-   PS            = bool(a.PS)
+   PixS          = bool(a.PixS)
    
-   EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
+   EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
-                     +'/PS_'+str(PS)\
+                     +'/PixS_'+str(PixS)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   IMAGES_DIR     = EXPERIMENT_DIR+'images/'
+   IMAGES_DIR      = EXPERIMENT_DIR+'images/'
+   TEST_IMAGES_DIR = EXPERIMENT_DIR+'test_images/'
 
    print
    print 'Creating',EXPERIMENT_DIR
    try: os.makedirs(IMAGES_DIR)
+   except: pass
+   try: os.makedirs(TEST_IMAGES_DIR)
    except: pass
    
    # write all this info to a pickle file in the experiments directory
@@ -73,7 +77,7 @@ if __name__ == '__main__':
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
-   exp_info['PS']            = PS
+   exp_info['PixS']            = PixS
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
@@ -88,7 +92,7 @@ if __name__ == '__main__':
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
    print 'DATA:          ',DATA
-   print 'PS:            ',PS
+   print 'PixS:          ',PixS
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -200,6 +204,8 @@ if __name__ == '__main__':
    testA_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
    testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
 
+   true_test_paths = np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg'))
+
    print len(trainB_paths),'training images'
 
    num_train = len(trainB_paths)
@@ -262,8 +268,35 @@ if __name__ == '__main__':
 
          gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batchA_images, image_r:batchB_images}))
 
+         c = 0
          for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
             misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
             misc.imsave(IMAGES_DIR+str(step)+'_real.png', real)
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
-            break
+            c += 1
+            if c == 5: break
+
+
+         # now test on actual underwater images
+         idx = np.random.choice(np.arange(len(true_test_paths)), BATCH_SIZE, replace=False)
+         batch_paths = true_test_paths[idx]
+         
+         batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+
+         i = 0
+         print 'Loading batch...'
+         for a in tqdm(batch_paths):
+            a_img = misc.imread(a).astype('float32')
+            a_img = misc.imresize(a_img, (256, 256, 3))
+            a_img = data_ops.preprocess(a_img)
+            batch_images[i, ...] = a_img
+            i += 1
+
+         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
+
+         c = 0
+         for gen, real in zip(gen_images, batch_images):
+            misc.imsave(TEST_IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
+            misc.imsave(TEST_IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
+            c += 1
+            if c == 5: break
