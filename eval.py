@@ -46,9 +46,11 @@ if __name__ == '__main__':
    IG_WEIGHT     = a['IG_WEIGHT']
    NETWORK       = a['NETWORK']
    DATA          = a['DATA']
+   PixS          = a['PixS']
 
    EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
+                     +'/PixS_'+str(PixS)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -66,6 +68,7 @@ if __name__ == '__main__':
    print 'BATCH_SIZE:    ',BATCH_SIZE
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
+   print 'PixS:          ',PixS
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -78,7 +81,7 @@ if __name__ == '__main__':
    image_u = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_u')
 
    # generated corrected colors
-   gen_image = netG(image_u)
+   gen_image = netG(image_u, LOSS_METHOD)
 
    saver = tf.train.Saver(max_to_keep=1)
 
