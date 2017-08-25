@@ -37,6 +37,33 @@ def loss_gradient_difference(true, generated):
    loss = loss_x_gradient + loss_y_gradient
    return loss
 
+''' 
+   Phase shift. PS is the phase shift function and _phase_shift is a helper
+   https://github.com/tetrachrome/subpixel 
+'''
+def _phase_shift(I, r):
+  bsize, a, b, c = I.get_shape().as_list()
+  bsize = tf.shape(I)[0] # Handling Dimension(None) type for undefined batch dim
+  X = tf.reshape(I, (bsize, a, b, r, r))
+  X = tf.transpose(X, (0, 1, 2, 4, 3))  # bsize, a, b, 1, 1
+  X = tf.split(X, a, 1)  # a, [bsize, b, r, r]
+  X = tf.concat(2, [tf.squeeze(x) for x in X])  # bsize, b, a*r, r
+  X = tf.split(X, b, 1)  # b, [bsize, a*r, r]
+  X = tf.concat(2, [tf.squeeze(x) for x in X])  # bsize, a*r, b*r
+  return tf.reshape(X, (bsize, a*r, b*r, 1))
+
+def PS(X, r, depth):
+  # X: input tensor of shape [batch, height, width, depth]
+  # r: upsampleing ratio. 2 for doubleing the size 
+  # depth: num channels of output
+  #    Example: 
+  #      X = [batch, 32, 32, 16]
+  #      Y = PS(X, 2, 4)
+  #      Y -> [batch, 64, 64, 4] 
+  Xc = tf.split(3, depth, X)
+  X = tf.concat(3, [_phase_shift(x, r) for x in Xc])
+  return X
+
 
 '''
    Kullback Leibler divergence

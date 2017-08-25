@@ -28,6 +28,7 @@ import data_ops
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
+   parser.add_argument('--PS',            required=False,default=0,type=int,help='Pixel shuffle')
    parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
@@ -46,9 +47,11 @@ if __name__ == '__main__':
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
-
+   PS            = bool(a.PS)
+   
    EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
+                     +'/PS_'+str(PS)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -70,6 +73,7 @@ if __name__ == '__main__':
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
+   exp_info['PS']            = PS
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
@@ -84,6 +88,7 @@ if __name__ == '__main__':
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
    print 'DATA:          ',DATA
+   print 'PS:            ',PS
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -99,7 +104,7 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image = netG(image_u)
+   gen_image = netG(image_u, LOSS_METHOD)
 
    # send 'above' water images to D
    D_real = netD(image_r)
@@ -185,8 +190,6 @@ if __name__ == '__main__':
 
    merged_summary_op = tf.summary.merge_all()
 
-   # get train/test data
-
    # underwater photos
    trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
 
@@ -197,8 +200,7 @@ if __name__ == '__main__':
    testA_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
    testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
 
-   print len(trainB_paths)
-   print len(trainA_paths)
+   print len(trainB_paths),'training images'
 
    num_train = len(trainB_paths)
    num_test  = len(testB_paths)
@@ -206,7 +208,11 @@ if __name__ == '__main__':
    n_critic = 1
    if LOSS_METHOD == 'wgan': n_critic = 5
 
-   while True:
+   epoch_num = step/(num_train/BATCH_SIZE)
+
+   while epoch_num < EPOCHS:
+   
+      epoch_num = step/(num_train/BATCH_SIZE)
 
       idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
       batchA_paths = trainA_paths[idx]
