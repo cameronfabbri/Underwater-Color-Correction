@@ -35,8 +35,8 @@ def loss_gradient_difference(true, generated):
    loss_y_gradient = tf.nn.l2_loss(true_y_gradient - generated_y_gradient)
 
    loss = loss_x_gradient + loss_y_gradient
-
    return loss
+
 
 '''
    Kullback Leibler divergence

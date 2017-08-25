@@ -43,12 +43,14 @@ if __name__ == '__main__':
    BATCH_SIZE    = a['BATCH_SIZE']
    EPOCHS        = a['EPOCHS']
    L1_WEIGHT     = a['L1_WEIGHT']
+   IG_WEIGHT     = a['IG_WEIGHT']
    NETWORK       = a['NETWORK']
    DATA          = a['DATA']
 
    EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
+                     +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
