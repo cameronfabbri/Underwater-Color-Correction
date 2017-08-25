@@ -133,8 +133,8 @@ if __name__ == '__main__':
 
       # gradient penalty
       epsilon = tf.random_uniform([], 0.0, 1.0)
-      x_hat = real_images*epsilon + (1-epsilon)*gen_images
-      d_hat = netD(x_hat, BATCH_SIZE, SELU, NORM, reuse=True)
+      x_hat = image_r*epsilon + (1-epsilon)*gen_image
+      d_hat = netD(x_hat, reuse=True)
       gradients = tf.gradients(d_hat, x_hat)[0]
       slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=[1]))
       gradient_penalty = 10*tf.reduce_mean((slopes-1.0)**2)
@@ -236,7 +236,7 @@ if __name__ == '__main__':
       D_loss, G_loss, summary = sess.run([errD, errG, merged_summary_op], feed_dict={image_u:batchA_images, image_r:batchB_images})
 
       summary_writer.add_summary(summary, step)
-      print 'step:',step,'D loss:',D_loss,'G_loss:',G_loss
+      print 'epoch:',epoch_num,'step:',step,'D loss:',D_loss,'G_loss:',G_loss
       step += 1
       
       if step%500 == 0:
