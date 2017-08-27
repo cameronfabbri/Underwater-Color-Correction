@@ -40,11 +40,11 @@ if __name__ == '__main__':
    parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
    a = parser.parse_args()
 
-   LEARNING_RATE = a.LEARNING_RATE
+   LEARNING_RATE = float(a.LEARNING_RATE)
    LOSS_METHOD   = a.LOSS_METHOD
    BATCH_SIZE    = a.BATCH_SIZE
-   L1_WEIGHT     = a.L1_WEIGHT
-   IG_WEIGHT     = a.IG_WEIGHT
+   L1_WEIGHT     = float(a.L1_WEIGHT)
+   IG_WEIGHT     = float(a.IG_WEIGHT)
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
@@ -111,10 +111,10 @@ if __name__ == '__main__':
    gen_image = netG(image_u, LOSS_METHOD)
 
    # send 'above' water images to D
-   D_real = netD(image_r)
+   D_real = netD(image_r, LOSS_METHOD)
 
    # send corrected underwater images to D
-   D_fake = netD(gen_image, reuse=True)
+   D_fake = netD(gen_image, LOSS_METHOD, reuse=True)
 
    e = 1e-12
    if LOSS_METHOD == 'least_squares':
@@ -125,10 +125,10 @@ if __name__ == '__main__':
       errD = tf.reduce_mean(0.5*(tf.square(errD_real - 1)) + 0.5*(tf.square(errD_fake)))
    if LOSS_METHOD == 'gan':
       print 'Using original GAN loss'
-      D_real = tf.nn.sigmoid(D_real)
-      D_fake = tf.nn.sigmoid(D_fake)
+      errD_real = tf.nn.sigmoid(D_real)
+      errD_fake = tf.nn.sigmoid(D_fake)
       errG = tf.reduce_mean(-tf.log(D_fake + e))
-      errD = tf.reduce_mean(-(tf.log(D_real+e)+tf.log(1-D_fake+e)))
+      errD = tf.reduce_mean(-(tf.log(errD_real+e)+tf.log(1-errD_fake+e)))
 
    if LOSS_METHOD == 'wgan':
       # cost functions
@@ -138,7 +138,7 @@ if __name__ == '__main__':
       # gradient penalty
       epsilon = tf.random_uniform([], 0.0, 1.0)
       x_hat = image_r*epsilon + (1-epsilon)*gen_image
-      d_hat = netD(x_hat, reuse=True)
+      d_hat = netD(x_hat, LOSS_METHOD, reuse=True)
       gradients = tf.gradients(d_hat, x_hat)[0]
       slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=[1]))
       gradient_penalty = 10*tf.reduce_mean((slopes-1.0)**2)
