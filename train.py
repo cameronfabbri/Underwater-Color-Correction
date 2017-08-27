@@ -127,7 +127,7 @@ if __name__ == '__main__':
       print 'Using original GAN loss'
       errD_real = tf.nn.sigmoid(D_real)
       errD_fake = tf.nn.sigmoid(D_fake)
-      errG = tf.reduce_mean(-tf.log(D_fake + e))
+      errG = tf.reduce_mean(-tf.log(errD_fake + e))
       errD = tf.reduce_mean(-(tf.log(errD_real+e)+tf.log(1-errD_fake+e)))
 
    if LOSS_METHOD == 'wgan':
