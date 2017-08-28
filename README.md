@@ -7,11 +7,8 @@ diving1: https://www.youtube.com/watch?v=QmRFmhILd5o
 diving2: https://www.youtube.com/watch?v=OSdrb1XNXZI
 diving3: https://www.youtube.com/watch?v=ALN6y2PLCq0
 
-
-
-
 Trying out two things at the moment. First is using just a dataset
 of rock walls/grass
 
-
+Also add on classification loss, aka classify the generated image as underwater or not.
 
