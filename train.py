@@ -264,6 +264,8 @@ if __name__ == '__main__':
          for a,b in zip(batchA_paths, batchB_paths):
             a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
             b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
+            a_img = misc.imresize(a_img, (256, 256, 3))
+            b_img = misc.imresize(b_img, (256, 256, 3))
             batchA_images[i, ...] = a_img
             batchB_images[i, ...] = b_img
             i += 1
