@@ -231,8 +231,10 @@ if __name__ == '__main__':
       for a,b in zip(batchA_paths, batchB_paths):
          a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
          b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
-         batchA_images[i, ...] = a_img
-         batchB_images[i, ...] = b_img
+         try: batchA_images[i, ...] = a_img
+         except: print a
+         try: batchB_images[i, ...] = b_img
+         except: print b
          i += 1
 
       for itr in xrange(n_critic):
