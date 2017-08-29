@@ -231,10 +231,8 @@ if __name__ == '__main__':
       for a,b in zip(batchA_paths, batchB_paths):
          a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
          b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
-         try: batchA_images[i, ...] = a_img
-         except: print a
-         try: batchB_images[i, ...] = b_img
-         except: print b
+         batchA_images[i, ...] = a_img
+         batchB_images[i, ...] = b_img
          i += 1
 
       for itr in xrange(n_critic):
@@ -254,31 +252,21 @@ if __name__ == '__main__':
          print 'Model saved\n'
 
          idx = np.random.choice(np.arange(num_test), BATCH_SIZE, replace=False)
-         #batchA_paths = testA_paths[idx]
-         #batchB_paths = testB_paths[idx]
          batch_paths = test_paths[idx]
          
-         #batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
-         #batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
          batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
 
          i = 0
-         #for a,b in zip(batchA_paths, batchB_paths):
          for a in batch_paths:
-            a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
-            #b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
-            a_img = misc.imresize(a_img, (256, 256, 3))
-            #b_img = misc.imresize(b_img, (256, 256, 3))
+            a_img = misc.imread(a).astype('float32')
+            a_img = data_ops.preprocess(misc.imresize(a_img, (256, 256, 3)))
             batch_images[i, ...] = a_img
-            #batchB_images[i, ...] = b_img
             i += 1
 
          gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))#, image_r:batchB_images}))
 
          c = 0
-         #for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
          for gen, real in zip(gen_images, batch_images):
-            #misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
             misc.imsave(IMAGES_DIR+str(step)+'_real.png', real)
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
             c += 1
