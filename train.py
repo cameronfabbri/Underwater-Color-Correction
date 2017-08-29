@@ -201,15 +201,15 @@ if __name__ == '__main__':
    trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
    
    # testing paths
-   testA_paths = np.asarray(glob.glob('datasets/'+DATA+'/testA/*.jpg'))
-   testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   #testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
 
-   true_test_paths = np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg'))
+   #true_test_paths = np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg'))
 
    print len(trainB_paths),'training images'
 
    num_train = len(trainB_paths)
-   num_test  = len(testB_paths)
+   num_test  = len(test_paths)
 
    n_critic = 1
    if LOSS_METHOD == 'wgan': n_critic = 5
@@ -247,40 +247,43 @@ if __name__ == '__main__':
       print 'epoch:',epoch_num,'step:',step,'D loss:',D_loss,'G_loss:',G_loss
       step += 1
       
-      if step%500 == 0:
+      if step%100 == 0:
          print 'Saving model...'
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
          print 'Model saved\n'
 
          idx = np.random.choice(np.arange(num_test), BATCH_SIZE, replace=False)
-         batchA_paths = testA_paths[idx]
-         batchB_paths = testB_paths[idx]
+         #batchA_paths = testA_paths[idx]
+         #batchB_paths = testB_paths[idx]
+         batch_paths = test_paths[idx]
          
-         batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
-         batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+         #batchA_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+         #batchB_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+         batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
 
          i = 0
-         for a,b in zip(batchA_paths, batchB_paths):
+         #for a,b in zip(batchA_paths, batchB_paths):
+         for a in batch_paths:
             a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
-            b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
+            #b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
             a_img = misc.imresize(a_img, (256, 256, 3))
-            b_img = misc.imresize(b_img, (256, 256, 3))
-            batchA_images[i, ...] = a_img
-            batchB_images[i, ...] = b_img
+            #b_img = misc.imresize(b_img, (256, 256, 3))
+            batch_images[i, ...] = a_img
+            #batchB_images[i, ...] = b_img
             i += 1
 
-         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batchA_images, image_r:batchB_images}))
+         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))#, image_r:batchB_images}))
 
          c = 0
-         for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
-            misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
+         #for gen, real, cor in zip(gen_images, batchB_images, batchA_images):
+         for gen, real in zip(gen_images, batch_images):
+            #misc.imsave(IMAGES_DIR+str(step)+'_corrupt.png', cor)
             misc.imsave(IMAGES_DIR+str(step)+'_real.png', real)
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
             c += 1
             if c == 5: break
-
-
+         '''
          # now test on actual underwater images
          idx = np.random.choice(np.arange(len(true_test_paths)), BATCH_SIZE, replace=False)
          batch_paths = true_test_paths[idx]
@@ -304,3 +307,4 @@ if __name__ == '__main__':
             misc.imsave(TEST_IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
             c += 1
             if c == 5: break
+         '''
