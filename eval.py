@@ -102,7 +102,7 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   test_paths = np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg'))
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
 
    random.shuffle(test_paths)
 
