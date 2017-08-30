@@ -119,7 +119,7 @@ def netD(x, LOSS_METHOD, reuse=False):
       
       conv5 = tcl.conv2d(conv4, 1, 1, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv5')
       if LOSS_METHOD != 'wgan': conv5 = tcl.batch_norm(conv5)
-      
+
       print conv1
       print conv2
       print conv3
