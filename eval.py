@@ -57,6 +57,7 @@ if __name__ == '__main__':
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
+   #IMAGES_DIR     = EXPERIMENT_DIR+'diving1/'
 
    print
    print 'Creating',IMAGES_DIR
@@ -82,7 +83,7 @@ if __name__ == '__main__':
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
 
    # generated corrected colors
-   gen_image = netG(image_u, LOSS_METHOD)
+   gen_image = netG(image_u, PixS, LOSS_METHOD)
 
    saver = tf.train.Saver(max_to_keep=1)
 
@@ -104,10 +105,40 @@ if __name__ == '__main__':
 
    # testing paths
    test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   #test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg')))
+
+   #random.shuffle(test_paths)
 
    num_test = len(test_paths)
 
    print 'num test:',num_test
+
+   '''
+   while True:
+
+      idx = np.random.choice(np.arange(num_test), BATCH_SIZE, replace=False)
+      batch_paths = test_paths[idx]
+      
+      batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+
+      i = 0
+      print 'Loading batch...'
+      for a in tqdm(batch_paths):
+         a_img = misc.imread(a).astype('float32')
+         a_img = misc.imresize(a_img, (256, 256, 3))
+         a_img = data_ops.preprocess(a_img)
+         batch_images[i, ...] = a_img
+         i += 1
+
+      gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
+
+      c = 0
+      for gen, real in zip(gen_images, batch_images):
+         misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
+         misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
+         c += 1
+      exit()
+   '''
 
    c = 0
    for img_path in tqdm(test_paths):
@@ -126,6 +157,9 @@ if __name__ == '__main__':
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
 
       for gen, real in zip(gen_images, batch_images):
-         misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
-         misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
+         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
+         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
+         misc.imsave(IMAGES_DIR+img_name+'_real.jpg', real)
+         misc.imsave(IMAGES_DIR+img_name+'_gen.jpg', gen)
+
          c += 1

@@ -108,7 +108,7 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image = netG(image_u, LOSS_METHOD)
+   gen_image = netG(image_u, PixS, LOSS_METHOD)
 
    # send 'above' water images to D
    D_real = netD(image_r, LOSS_METHOD)
@@ -202,9 +202,6 @@ if __name__ == '__main__':
    
    # testing paths
    test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
-   #testB_paths = np.asarray(glob.glob('datasets/'+DATA+'/testB/*.jpg'))
-
-   #true_test_paths = np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg'))
 
    print len(trainB_paths),'training images'
 
@@ -271,28 +268,3 @@ if __name__ == '__main__':
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
             c += 1
             if c == 5: break
-         '''
-         # now test on actual underwater images
-         idx = np.random.choice(np.arange(len(true_test_paths)), BATCH_SIZE, replace=False)
-         batch_paths = true_test_paths[idx]
-         
-         batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
-
-         i = 0
-         print 'Loading batch...'
-         for a in tqdm(batch_paths):
-            a_img = misc.imread(a).astype('float32')
-            a_img = misc.imresize(a_img, (256, 256, 3))
-            a_img = data_ops.preprocess(a_img)
-            batch_images[i, ...] = a_img
-            i += 1
-
-         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-
-         c = 0
-         for gen, real in zip(gen_images, batch_images):
-            misc.imsave(TEST_IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
-            misc.imsave(TEST_IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
-            c += 1
-            if c == 5: break
-         '''
