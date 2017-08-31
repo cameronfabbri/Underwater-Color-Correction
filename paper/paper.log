@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  30 AUG 2017 16:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  31 AUG 2017 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**bare_conf.tex
-(./bare_conf.tex
+**paper.tex
+(./paper.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./IEEEtran.cls
@@ -91,9 +91,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtmpitemindent=\dimen116
 \c@IEEEbiography=\count91
 \@IEEEtranrubishbin=\box26
-)
-No file bare_conf.aux.
-\openout1 = `bare_conf.aux'.
+) (./paper.aux)
+\openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 330.
 LaTeX Font Info:    ... okay on input line 330.
@@ -108,13 +107,14 @@ LaTeX Font Info:    ... okay on input line 330.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 330.
 LaTeX Font Info:    ... okay on input line 330.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 418.
+(Font)              <7> on input line 410.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 418.
+(Font)              <5> on input line 410.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 565.
+(Font)              <8> on input line 557.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 565.
+(Font)              <6> on input line 557.
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -130,25 +130,21 @@ Before submitting the final camera ready copy, remember to:
 
 
 
-] (./bare_conf.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 929 strings out of 493029
- 16181 string characters out of 6136234
- 70695 words of memory out of 5000000
+ 931 strings out of 493029
+ 16173 string characters out of 6136234
+ 71694 words of memory out of 5000000
  4529 multiletter control sequences out of 15000+600000
  38728 words of font info for 72 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 26i,8n,19p,230b,242s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.p
-fb>
-Output written on bare_conf.pdf (1 page, 44727 bytes).
+ 26i,8n,19p,226b,242s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on paper.pdf (1 page, 47847 bytes).
 PDF statistics:
  25 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream
