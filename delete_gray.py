@@ -14,6 +14,6 @@ for d, s, fList in os.walk(img_dir):
          img = misc.imread(p)
 
          if len(img.shape) < 3:
-            os.remove(p)
+            #os.remove(p)
             print 'deleted',p
 
