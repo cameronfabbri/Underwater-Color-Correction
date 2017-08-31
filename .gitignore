@@ -4,7 +4,9 @@
 checkpoints/*
 *.*~
 *.*swp
+*.*swo
 *.swp
+*.swo
 *.pyc
 *.pkl
 checkpoint/
