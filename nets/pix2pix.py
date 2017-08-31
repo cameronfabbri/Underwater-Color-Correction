@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, 'ops/')
 from tf_ops import *
 
-def netG(x, LOSS_METHOD):
+def netG(x, PixS, LOSS_METHOD):
       
    enc_conv1 = tcl.conv2d(x, 64, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv1')
    enc_conv1 = lrelu(enc_conv1)
