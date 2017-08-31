@@ -32,12 +32,14 @@ import data_ops
 
 if __name__ == '__main__':
 
-   if len(sys.argv) < 2:
-      print 'You must provide an info.pkl file'
+   if len(sys.argv) < 3:
+      print 'You must provide an info.pkl file and a diving file'
       exit()
 
    pkl_file = open(sys.argv[1], 'rb')
    a = pickle.load(pkl_file)
+
+   num_d = str(sys.argv[2])
 
    LEARNING_RATE = a['LEARNING_RATE']
    LOSS_METHOD   = a['LOSS_METHOD']
@@ -56,7 +58,8 @@ if __name__ == '__main__':
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
+   #IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
+   IMAGES_DIR     = EXPERIMENT_DIR+'diving'+num_d+'/'
 
    print
    print 'Creating',IMAGES_DIR
@@ -103,7 +106,10 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving'+num_d+'/*.jpg')))
+
+   #random.shuffle(test_paths)
 
    num_test = len(test_paths)
 
@@ -113,7 +119,6 @@ if __name__ == '__main__':
    for img_path in tqdm(test_paths):
 
       img_name = ntpath.basename(img_path)
-
       img_name = img_name.split('.')[0]
 
       batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
