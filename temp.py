@@ -3,7 +3,7 @@ from shutil import move
 import os
 import glob
 
-
+exit()
 test = glob.glob('testB/*.jpg')
 
 for t in test:

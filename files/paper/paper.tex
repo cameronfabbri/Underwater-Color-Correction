@@ -332,7 +332,7 @@
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
 % Do not put math or special symbols in the title.
-\title{UGAN: Underwater Image Restoration with Generative Adversarial Networks}
+\title{UGAN: Underwater Image Restoration using Generative Adversarial Networks}
 
 
 % author names and affiliations
@@ -382,114 +382,53 @@ cameron.fabbri@us.af.mil}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Autonomous underwater robots often rely on visual input for decision making. However, due to many factors such as light refraction and
-particles in the water, images are often times very noisy. We propose a method using Generative Adversarial Networks (GANs) to denoise
-underwater images, and show that these images provide both increased accuracy for an underwater tracking algorithm, as well as a more
-visually appealing image.
+Autonomous underwater robots often rely on visual input for decision making due to its non-intrusive and passive nature
+. However, due to many factors such as light refraction, particles in the water, and color distortion, images are often times very noisy. This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these images provide both increased accuracy
+for an underwater tracking algorithm, as well as a more visually appealing image. Furthermore, we show how recently
+proposed methods are able to generate a dataset for the purpose of underwater image reconstruction.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
-
 \section{Introduction}
-Many autonomous underwater robots rely on visual input for decision making due to the nonintrusive, passive, and energy effecient nature of vision.
-Despite these advantages, many underwater environments can be quite noisy due to light refraction, blueish hue, and particles present in the water.
+Vision is a commonly used sensor in autonomous underwater robots due to its non-intrusive, passive, and energy
+effecient nature. Despite these advantages, many underwater environments can be quite noisy due to light
+refraction, blue or green hues, and particles present in the water. Much of this noise comes from color distortion,
+where images have green or blue haze which may cause difficulty in tasks such as segmentation, tracking, or
+classification. Algorithms that have been shown to work well on images not underwater may fail due to their
+indirect or direct use of color. While there have been many very successful recent approaches towards colorization
+\cite{col1,col2,col3,pix2pix}, all are focused on the task of grayscale to color. 
 
 
 \section{Related Work}
 
 
 
-\section{Technical Approach}
+\section{Method}
+
+\subsection{Generative Adversarial Networks}
 
 
 
-\subsection{Subsection Heading Here}
+\subsection{Objective}
 
 
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation Results.}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
+\subsection{Network Architectures}
 
 
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a 
-% line do not exceed the text width or a line break will occur.
-%
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
-%\label{fig_second_case}}
-%\caption{Simulation results.}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
+
+\subsubsection{Generator}
 
 
-% An example of a floating table. Note that, for IEEE style tables, the 
-% \caption command should come BEFORE the table. Table text will default to
-% \footnotesize as IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
+
+\subsubsection{Discriminator}
 
 
 
 \section{Conclusion}
-The conclusion goes here.
+
+
 
 \section*{Acknowledgment}
 
@@ -497,8 +436,15 @@ The conclusion goes here.
 \begin{thebibliography}{1}
 \bibitem{hires}{Johnson‐Roberson, Matthew, et al. "High‐Resolution Underwater Robotic Vision‐Based Mapping and Three‐Dimensional Reconstruction for Archaeology." Journal of Field Robotics 34.4 (2017): 625-643.}
 
+\bibitem{col1}{Zhang, Richard, Phillip Isola, and Alexei A. Efros. "Colorful image colorization." European Conference on Computer Vision. Springer International Publishing, 2016.}
 
+\bibitem{col2}{Cheng, Zezhou, Qingxiong Yang, and Bin Sheng. "Deep colorization." Proceedings of the IEEE International Conference on Computer Vision. 2015.}
 
+\bibitem{col3}{Iizuka, Satoshi, Edgar Simo-Serra, and Hiroshi Ishikawa. "Let there be color!: joint end-to-end learning of global and local image priors for automatic image colorization with simultaneous classification." ACM Transactions on Graphics (TOG) 35.4 (2016): 110.}
+
+\bibitem{pix2pix}{Isola, Phillip, et al. "Image-to-image translation with conditional adversarial networks." arXiv preprint arXiv:1611.07004 (2016).}
+
+\bibitem{watergan}{Li, Jie, et al. "WaterGAN: Unsupervised Generative Network to Enable Real-time Color Correction of Monocular Underwater Images." arXiv preprint arXiv:1702.07392 (2017).}
 
 \end{thebibliography}
 
