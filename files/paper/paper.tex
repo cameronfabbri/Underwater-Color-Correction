@@ -44,35 +44,11 @@
 %%                    bare_jrnl_transmag.tex
 %%*************************************************************************
 
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. IEEE's font choices can trigger bugs that do  ***
-% *** not appear when using other class files.                            ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-
-% Note that the a4paper option is mainly intended so that authors in
-% countries using A4 can easily print to A4 and see how their papers will
-% look in print - the typesetting of the document will not typically be
-% affected with changes in paper size (but the bottom and side margins will).
-% Use the testflow package mentioned above to verify correct handling of
-% both paper sizes by the user's LaTeX system.
-%
-% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
-% should be used if it is desired that the figures are to be displayed in
-% draft mode.
-%
 \documentclass[conference]{IEEEtran}
-% Add the compsoc option for Computer Society conferences.
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[conference]{../sty/IEEEtran}
 
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
 \usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
@@ -133,19 +109,63 @@ proposed methods are able to generate a dataset for the purpose of underwater im
 
 \section{Introduction}
 Vision is a commonly used sensor in autonomous underwater robots due to its non-intrusive, passive, and energy
-effecient nature. Despite these advantages, many underwater environments can be quite noisy due to light
-refraction, blue or green hues, and particles present in the water. Much of this noise comes from color distortion,
-where images have green or blue haze which may cause difficulty in tasks such as segmentation, tracking, or
-classification. Algorithms that have been shown to work well on images not underwater may fail due to their
-indirect or direct use of color. While there have been many very successful recent approaches towards colorization
-\cite{bao2017cvae}, all are focused on the task of grayscale to color. 
+effecient nature. The monitoring of coral reefs \cite{shkurti2012multi}, deep ocean exploration
+\cite{whitcomb2000advances}, and mapping of the seabed are all tasks suitable for autonomous robots because they
+provide safety by taking the risk instead of a human. Despite the advantages vision provides, many underwater
+environments can be quite noisy due to light refraction and particles present in the water. Because red wavelengths are
+quickly absorbed by water, images tend to have a green or blue hue to them. As you go deeper, this worsens as more
+and more red wavelengths are being absorbed. This extremely non-linear distortion has many factors such as the amount
+of light present (overcast vs sunny or depth), particles in the water, time of day, and the camera being used. This may
+cause difficulty in tasks such as segmentation, tracking, or classification due to their indirect or direct use of
+color.
 
+As color and illumination begin to change with the depth, vision based algorithms must be very generalizable in order
+to work within the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a
+variety of underwater data, as well as the high amount of noise introduced, many algorithms may perform poorly in
+these different domains. Figure 1 shows the high variability that may occur in underwater vision. A step towards a
+solution to this
+issue is to be able to restore the images such that they appear to be above water, i.e., with colors corrected and
+particles removed. By performing a many to one mapping of these domains from underwater to not underwater (what the
+image would look like in the air), algorithms that have
+
+\begin{figure}[!htb]
+   \begin{center}$
+      \begin{array}{cccc}
+         \includegraphics[width=3in]{figure1}
+      \end{array}$
+   \end{center}
+   \caption{Underwater images showing the vast divesity of noise that can occur, including
+   different hues of green and blue, as well as particles in the water.}
+\end{figure}
+
+\noindent difficulty performing across multiple forms of noise may be able to focus only one clean domain.
+
+Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of
+vision. Often times, these networks recquire large amounts of data, either labeled or paired with ground truth.
+For the problem of automatically colorizing grayscale images, paired training data is essentially free due to the
+fact that any color image can be converted to black and white. However, underwater images distorted by either color
+or some other visual effect lack ground truth. We use the recently proposed CycleGAN \cite{zhu2017unpaired}, which
+learns to translate an image from domain $X$ to domain $Y$, as a way to generate a paired dataset. By letting $X$ be
+a set of undistorted underwater images, and $Y$ be a set of distorted underwater images, we can generate an image
+that appears to be underwater while retaining ground truth.
 
 \section{Related Work}
+
+While there have been many very successful recent approaches towards colorization
+\cite{zhang2016colorful,iizuka2016let}, all are focused on the task of grayscale to color. Color correction and image
+restoration for the underwater domain has been less explored. The work of \cite{torres2005color} used an energy
+minimization formulation using a Markov Random Field. 
+
 
 
 
 \section{Method}
+Recent work in generative models, specifically Generative Adversarial
+Networks (GANs), have shown great success in areas such as inpainting \cite{pathak2016context}, style transfer
+\cite{Gatys_2016_CVPR}, and image-to-image translation \cite{isola2016image,zhu2017unpaired}. This is highly due to
+their ability to provide a more meaningful loss than simply the Euclidean distance, which has been shown to produce
+blurry results. 
+
 
 \subsection{Generative Adversarial Networks}
 
