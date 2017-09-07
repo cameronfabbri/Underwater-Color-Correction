@@ -99,8 +99,9 @@ cameron.fabbri@us.af.mil}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Autonomous underwater robots often rely on visual input for decision making due to its non-intrusive and passive nature
-. However, due to many factors such as light refraction, particles in the water, and color distortion, images are often times very noisy. This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these images provide both increased accuracy
+Autonomous underwater robots often rely on visual input for decision making due to its non-intrusive and passive nature.
+However, due to many factors such as light refraction, particles in the water, and color distortion, images are often times very noisy.
+This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these images provide both increased accuracy
 for an underwater tracking algorithm, as well as a more visually appealing image. Furthermore, we show how recently
 proposed methods are able to generate a dataset for the purpose of underwater image reconstruction.
 \end{abstract}
@@ -122,7 +123,7 @@ color.
 As color and illumination begin to change with the depth, vision based algorithms must be very generalizable in order
 to work within the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a
 variety of underwater data, as well as the high amount of noise introduced, many algorithms may perform poorly in
-these different domains. Figure 1 shows the high variability that may occur in underwater vision. A step towards a
+these different domains. Figure 1 shows the high variability that may occur in underwater environments. A step towards a
 solution to this
 issue is to be able to restore the images such that they appear to be above water, i.e., with colors corrected and
 particles removed. By performing a many to one mapping of these domains from underwater to not underwater (what the
@@ -151,18 +152,29 @@ that appears to be underwater while retaining ground truth.
 
 \section{Related Work}
 
-While there have been many very successful recent approaches towards colorization
-\cite{zhang2016colorful,iizuka2016let}, all are focused on the task of grayscale to color. Color correction and image
-restoration for the underwater domain has been less explored. The work of \cite{torres2005color} used an energy
-minimization formulation using a Markov Random Field. 
+While there have been many very successful recent approaches towards automatic colorization
+\cite{zhang2016colorful,iizuka2016let}, most are focused on the task of grayscale to color.
+The work of \cite{torres2005color} used an energy minimization formulation using a Markov Random Field. 
+MORE RELATED BLAH. Many use physics based models to directly model the light source and such.
+Most similar to our line of work is the recently proposed WaterGAN \cite{li2017watergan}, which uses
+GANs for color correction of underwater images. As ground truth pairs do not exist for underwater images,
+their first step is to structure a generator to create realistic underwater images. Their generator model
+can be broken down into three stages: 1) Attenuation, which accounts for range-dependent attenuation of light.
+2) Scattering, which models the haze effect caused by photons scattering back towards the image sensor. 3)
+Vingetting, which produces a shading effect on the image corners that can be caused by certain camera lenses.
+Opposed to our work, they use a GAN for generating the underwater images and Euclidean loss for color correction,
+where as we use a GAN for both. Furthermore, they require depth information during the training of WaterGAN,
+whereas we only require two separate image domains.
 
+Recent work in generative models, specifically GANs, have shown great success
+in areas such as inpainting \cite{pathak2016context}, style transfer \cite{Gatys_2016_CVPR}, and image-to-image
+translation \cite{isola2016image,zhu2017unpaired}. This is highly due to their ability to provide a more meaningful
+loss than simply the Euclidean distance, which has been shown to produce blurry results. In our work, we structure
+the problem as paired image-to-image translation, using Generative Adversarial Networks (GANs) as our generative model.
+Much like the work of \cite{isola2016image}, we use image pairs from two domains an input and ground truth.
 
 \section{Method}
-Recent work in generative models, specifically Generative Adversarial
-Networks (GANs), have shown great success in areas such as inpainting \cite{pathak2016context}, style transfer
-\cite{Gatys_2016_CVPR}, and image-to-image translation \cite{isola2016image,zhu2017unpaired}. This is highly due to
-their ability to provide a more meaningful loss than simply the Euclidean distance, which has been shown to produce
-blurry results. 
+
 
 
 \subsection{Generative Adversarial Networks}
@@ -170,16 +182,12 @@ blurry results.
 
 
 \subsection{Objective}
+Normal GAN objective, then go into WGAN-GP. L1 weight as well.
 
-
-
-\subsection{Network Architectures}
-
-
-\subsubsection{Training details}
+\subsection{Network and Training Details}
 
 L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
-
+Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
 
 \subsubsection{Generator}
 

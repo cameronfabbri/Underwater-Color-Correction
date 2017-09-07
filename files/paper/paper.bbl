@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{shkurti2012multi}
 F.~Shkurti, A.~Xu, M.~Meghjani, J.~C.~G. Higuera, Y.~Girdhar, P.~Giguere, B.~B.
@@ -30,6 +30,11 @@ S.~Iizuka, E.~Simo-Serra, and H.~Ishikawa, ``Let there be color!: joint
 \bibitem{torres2005color}
 L.~A. Torres-M{\'e}ndez and G.~Dudek, ``Color correction of underwater images
   for aquatic robot inspection,'' in {\em EMMCVPR}, pp.~60--73, Springer, 2005.
+
+\bibitem{li2017watergan}
+J.~Li, K.~A. Skinner, R.~M. Eustice, and M.~Johnson-Roberson, ``Watergan:
+  Unsupervised generative network to enable real-time color correction of
+  monocular underwater images,'' {\em arXiv preprint arXiv:1702.07392}, 2017.
 
 \bibitem{pathak2016context}
 D.~Pathak, P.~Krahenbuhl, J.~Donahue, T.~Darrell, and A.~A. Efros, ``Context
