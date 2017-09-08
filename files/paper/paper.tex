@@ -196,6 +196,19 @@ Following WGAN-GP, the discriminator is updated $n$ times for every update of th
 \subsubsection{Discriminator}
 
 
+\section{Experiments}
+
+Here I want to show a number of things. First talk about the datasets used, Imagenet and the diving videos.
+Second, show some general results. Explain how our network is able to do three very important things: 1) Restore an
+image to its natural colors with varying amounts of distortion, i.e. blue hue, green hue, aka not just one type of
+color distortion. 2) The network does not just subtract a certain hue from the entire image. Show how in the clownfish
+image, part of the image has good colors, while part of it doesn't. Our network is able to leave correct colors. Third,
+show that even images taken towards the water's surface, either above or below, are able to be restored correctly.
+
+Third mention that since CycleGAN has a cycle consistent nature, compare their results. Then from there go into how
+ours are better by showing results from Canny Edge Detector.
+
+
 
 \section{Conclusion}
 
