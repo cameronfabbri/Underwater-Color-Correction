@@ -1,0 +1,1 @@
+image_name,cgan_dist,ugan_0_dist,ugan_1_dist
