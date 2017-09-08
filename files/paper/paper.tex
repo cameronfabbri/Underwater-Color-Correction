@@ -49,8 +49,7 @@
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
-%\newcommand\animage{\adjustbox{valign=m,vspace=0pt}{\includegraphics[width=.2\linewidth]{n01496331_15872_original}}}
-
+\usepackage{amssymb}
 \usepackage{adjustbox}
 \usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
@@ -194,7 +193,10 @@ training data, CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, wh
 IV we show a comparison with our method.
 
 \subsection{Adversarial Loss}
-We introduce a discriminator $D$ in order to 
+GANs are a class of generative models based on game theory in which a generator network competes against an adversary.
+The goal is to solve the minimax problem:
+
+\[\min\limits_{G}\max\limits_{D} \mathbb{E}_{I^C \sim p_{train}} [logD(I^C)] + \mathbb{E}_{I^D \sim p_{gen}}[log(1 - D(G(I^D)))]\]
 
 
 \begin{figure}
