@@ -19,7 +19,7 @@ if __name__ == '__main__':
    img_size = (256, 256, 3)
 
    canvas = 255*np.ones((m*img_size[0]+(10*m)+10, n*img_size[1]+(10*n)+10, 3), dtype=np.uint8)
-   
+
    start_x = 10
    start_y = 10
 
@@ -52,7 +52,7 @@ if __name__ == '__main__':
          start_y = end_y + 10
          end_y   = start_y+256
 
-   misc.imsave('results.jpg', canvas)
+   misc.imsave('results.png', canvas)
    #cv2.imwrite('results.jpg', canvas)
    #cv2.imshow('canvas', canvas)
    #cv2.waitKey(0)
