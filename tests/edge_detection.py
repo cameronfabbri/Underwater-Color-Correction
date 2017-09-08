@@ -29,7 +29,7 @@ save_images = ['n01496331_11763.png', 'n01496331_22079.png', 'n01496331_2629.png
 largest = 0
 l_img = ''
 
-save = 0
+save = 1
 
 # just open and close quick to wipe it
 results_file = open('result_images/results.txt', 'w')
@@ -42,7 +42,7 @@ for r,c,u0,u1 in tqdm(zip(real_paths, cgan_paths, ugan_0_paths, ugan_1_paths)):
 
    if save == 1 and ntpath.basename(r) not in save_images: continue
    
-   image_name = ntpath.basename(r)
+   image_name = ntpath.basename(r).split('.png')[0]
 
    rimg  = cv2.imread(r)
    cimg  = cv2.imread(c)
@@ -71,9 +71,9 @@ for r,c,u0,u1 in tqdm(zip(real_paths, cgan_paths, ugan_0_paths, ugan_1_paths)):
 
    d = np.linalg.norm(edges-cedges) - np.linalg.norm(edges-u0edges)
 
-   if d > largest:
-      largest = d
-      l_img = image_name
+   #if d > largest:
+   #   largest = d
+   #   l_img = image_name
 
    if save == 1:
 
@@ -91,7 +91,7 @@ for r,c,u0,u1 in tqdm(zip(real_paths, cgan_paths, ugan_0_paths, ugan_1_paths)):
       cv2.imwrite('result_images/'+image_name+'_u1img.png', u1img)
 
       # edges of original image
-      cv2.imwrite('result_images/'+image_name+'_edges.png', 255.0*edges)
+      cv2.imwrite('result_images/'+image_name+'_oedges.png', 255.0*edges)
       
       # edges of cgan
       cv2.imwrite('result_images/'+image_name+'_cedges.png', 255.0*cedges)
