@@ -24,7 +24,7 @@ cgan_dist   = []
 ugan_0_dist = []
 ugan_1_dist = []
 
-save_images = ['n01496331_11763.png', 'n01496331_22079.png', 'n01496331_2629.png', 'n01914609_1607.png', 'n01664065_9210.png', 'n02607072_763.png']
+save_images = ['n02607072_4739.png', 'n01496331_15872.png', 'n01496331_22079.png']
 
 largest = 0
 l_img = ''

@@ -49,6 +49,9 @@
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
+%\newcommand\animage{\adjustbox{valign=m,vspace=0pt}{\includegraphics[width=.2\linewidth]{n01496331_15872_original}}}
+
+\usepackage{adjustbox}
 \usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
@@ -109,6 +112,7 @@ proposed methods are able to generate a dataset for the purpose of underwater im
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
+TODO - talk about having to go back to the same location if you want to get good/bad pairs of the "same" image.
 Vision is a commonly used sensor in autonomous underwater robots due to its non-intrusive, passive, and energy
 effecient nature. The monitoring of coral reefs \cite{shkurti2012multi}, deep ocean exploration
 \cite{whitcomb2000advances}, and mapping of the seabed are all tasks suitable for autonomous robots because they
@@ -174,7 +178,11 @@ the problem as paired image-to-image translation, using Generative Adversarial N
 Much like the work of \cite{isola2016image}, we use image pairs from two domains an input and ground truth.
 
 \section{Method}
-Our approach 
+In this section we propose our method for color restoration of underwater images. Depending on depth, lighting
+conditions, camera, and location, the amount of distortion an image undergoes can vary.  Because ground truth pairs do
+not exist for distorted underwater images, we use the recently proposed CycleGAN \cite{zhu2017unpaired} to generate
+a paired dataset of images. CycleGAN has shown success in translating an image from domain $X$ to domain $Y$,
+\textit{without} a paired sample. By letting $X$ be a set of underwater images 
 
 
 \subsection{Generative Adversarial Networks}
@@ -208,6 +216,55 @@ show that even images taken towards the water's surface, either above or below, 
 Third mention that since CycleGAN has a cycle consistent nature, compare their results. Then from there go into how
 ours are better by showing results from Canny Edge Detector.
 
+
+\begin{figure}
+\centering
+\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.5cm}}
+   % TODO 
+   % I couldn't figure out how to get the text centered above the images
+   % Also, the numbers below the images should be centered too, and more
+   % obviously below the row instead of seemlingly above the next one. Those
+   % numbers are the distances in pixel space (normalized between [0,1]) from
+   % the edge image to the original edge image.
+
+
+   \small{Original} & \small{CycleGAN} & \small{UGAN} & \small{UGAN-P} \\
+
+   \includegraphics[width=0.8in]{n01496331_15872_original} &
+   \includegraphics[width=0.8in]{n01496331_15872_cimg}     &
+   \includegraphics[width=0.8in]{n01496331_15872_u0img}    &
+   \includegraphics[width=0.8in]{n01496331_15872_u1img}    \\ [-1ex]
+   \includegraphics[width=0.8in]{n01496331_15872_oedges}   &
+   \includegraphics[width=0.8in]{n01496331_15872_cedges}   &
+   \includegraphics[width=0.8in]{n01496331_15872_u0edges}  &
+   \includegraphics[width=0.8in]{n01496331_15872_u1edges}  \\
+   0 & \small{125.78} & \small{80.68} & \small{78.49} \\
+
+   \includegraphics[width=0.8in]{n01496331_22079_original} &
+   \includegraphics[width=0.8in]{n01496331_22079_cimg}     & 
+   \includegraphics[width=0.8in]{n01496331_22079_u0img}    &
+   \includegraphics[width=0.8in]{n01496331_22079_u1img}    \\ [-1ex]
+   \includegraphics[width=0.8in]{n01496331_22079_oedges}   &
+   \includegraphics[width=0.8in]{n01496331_22079_cedges}   &
+   \includegraphics[width=0.8in]{n01496331_22079_u0edges}  &
+   \includegraphics[width=0.8in]{n01496331_22079_u1edges}  \\
+   0 & \small{94.57} & \small{38.22} & \small{37.29} \\
+
+   \includegraphics[width=0.8in]{n02607072_4739_original} &
+   \includegraphics[width=0.8in]{n02607072_4739_cimg} &
+   \includegraphics[width=0.8in]{n02607072_4739_u0img} &
+   \includegraphics[width=0.8in]{n02607072_4739_u1img} \\ [-1ex]
+   \includegraphics[width=0.8in]{n02607072_4739_oedges} &
+   \includegraphics[width=0.8in]{n02607072_4739_cedges} &
+   \includegraphics[width=0.8in]{n02607072_4739_u0edges} &
+   \includegraphics[width=0.8in]{n02607072_4739_u1edges} \\
+   0 & \small{100.69} & \small{87.81} & \small{87.95} \\
+   
+\end{tabular}
+\caption{Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN,
+and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row
+the result of the edge detector.}
+\end{figure}
 
 
 \section{Conclusion}

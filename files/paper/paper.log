@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.6)  6 SEP 2017 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  8 SEP 2017 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./IEEEtran.cls
 Document Class: IEEEtran 2012/12/27 V1.8 by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
@@ -123,38 +123,88 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen117
 \Gin@req@width=\dimen118
 )
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks16
+\XKV@tempa@toks=\toks17
+)
+\XKV@depth=\count93
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box27
+)
+\tc@llx=\dimen119
+\tc@lly=\dimen120
+\tc@urx=\dimen121
+\tc@ury=\dimen122
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen123
+\adjbox@Height=\dimen124
+\adjbox@Depth=\dimen125
+\adjbox@Totalheight=\dimen126
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count94
+)
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box28
+\sift@deathcycles=\count95
+\@vwid@loff=\dimen127
+\@vwid@roff=\dimen128
+))
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count93
-\scratchdimen=\dimen119
-\scratchbox=\box27
-\nofMPsegments=\count94
-\nofMParguments=\count95
-\everyMPshowfont=\toks16
-\MPscratchCnt=\count96
-\MPscratchDim=\dimen120
-\MPnumerator=\count97
-\makeMPintoPDFobject=\count98
-\everyMPtoPDFconversion=\toks17
+\scratchcounter=\count96
+\scratchdimen=\dimen129
+\scratchbox=\box29
+\nofMPsegments=\count97
+\nofMParguments=\count98
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count99
+\MPscratchDim=\dimen130
+\MPnumerator=\count100
+\makeMPintoPDFobject=\count101
+\everyMPtoPDFconversion=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -204,21 +254,323 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 133.
+(Font)              <7> on input line 136.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 133.
+(Font)              <5> on input line 136.
 
 <images/figure1.png, id=1, 1339.0025pt x 876.27374pt>
 File: images/figure1.png Graphic file (type png)
  <use images/figure1.png>
-Package pdftex.def Info: images/figure1.png used on input line 135.
+Package pdftex.def Info: images/figure1.png used on input line 138.
 (pdftex.def)             Requested size: 216.81pt x 141.878pt.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
  <./images/figure1.png>]
-(./paper.bbl
+<images/n01496331_15872_original.png, id=11, 256.96pt x 256.96pt>
+File: images/n01496331_15872_original.png Graphic file (type png)
+
+<use images/n01496331_15872_original.png>
+Package pdftex.def Info: images/n01496331_15872_original.png used on input line
+ 231.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 231--231
+[][]| 
+ []
+
+<images/n01496331_15872_cimg.png, id=12, 256.96pt x 256.96pt>
+File: images/n01496331_15872_cimg.png Graphic file (type png)
+
+<use images/n01496331_15872_cimg.png>
+Package pdftex.def Info: images/n01496331_15872_cimg.png used on input line 232
+.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 232--232
+[][]| 
+ []
+
+<images/n01496331_15872_u0img.png, id=13, 256.96pt x 256.96pt>
+File: images/n01496331_15872_u0img.png Graphic file (type png)
+
+<use images/n01496331_15872_u0img.png>
+Package pdftex.def Info: images/n01496331_15872_u0img.png used on input line 23
+3.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 233--233
+[][]| 
+ []
+
+<images/n01496331_15872_u1img.png, id=14, 256.96pt x 256.96pt>
+File: images/n01496331_15872_u1img.png Graphic file (type png)
+
+<use images/n01496331_15872_u1img.png>
+Package pdftex.def Info: images/n01496331_15872_u1img.png used on input line 23
+4.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 234--234
+[][]| 
+ []
+
+<images/n01496331_15872_oedges.png, id=15, 256.96pt x 256.96pt>
+File: images/n01496331_15872_oedges.png Graphic file (type png)
+
+<use images/n01496331_15872_oedges.png>
+Package pdftex.def Info: images/n01496331_15872_oedges.png used on input line 2
+35.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 235--235
+[][]| 
+ []
+
+<images/n01496331_15872_cedges.png, id=16, 256.96pt x 256.96pt>
+File: images/n01496331_15872_cedges.png Graphic file (type png)
+
+<use images/n01496331_15872_cedges.png>
+Package pdftex.def Info: images/n01496331_15872_cedges.png used on input line 2
+36.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 236--236
+[][]| 
+ []
+
+<images/n01496331_15872_u0edges.png, id=17, 256.96pt x 256.96pt>
+File: images/n01496331_15872_u0edges.png Graphic file (type png)
+
+<use images/n01496331_15872_u0edges.png>
+Package pdftex.def Info: images/n01496331_15872_u0edges.png used on input line 
+237.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 237--237
+[][]| 
+ []
+
+<images/n01496331_15872_u1edges.png, id=18, 256.96pt x 256.96pt>
+File: images/n01496331_15872_u1edges.png Graphic file (type png)
+
+<use images/n01496331_15872_u1edges.png>
+Package pdftex.def Info: images/n01496331_15872_u1edges.png used on input line 
+238.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 238--239
+[][]| 
+ []
+
+<images/n01496331_22079_original.png, id=19, 256.96pt x 256.96pt>
+File: images/n01496331_22079_original.png Graphic file (type png)
+
+<use images/n01496331_22079_original.png>
+Package pdftex.def Info: images/n01496331_22079_original.png used on input line
+ 241.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 241--241
+[][]| 
+ []
+
+<images/n01496331_22079_cimg.png, id=20, 256.96pt x 256.96pt>
+File: images/n01496331_22079_cimg.png Graphic file (type png)
+
+<use images/n01496331_22079_cimg.png>
+Package pdftex.def Info: images/n01496331_22079_cimg.png used on input line 242
+.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 242--242
+[][]| 
+ []
+
+<images/n01496331_22079_u0img.png, id=21, 256.96pt x 256.96pt>
+File: images/n01496331_22079_u0img.png Graphic file (type png)
+
+<use images/n01496331_22079_u0img.png>
+Package pdftex.def Info: images/n01496331_22079_u0img.png used on input line 24
+3.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 243--243
+[][]| 
+ []
+
+<images/n01496331_22079_u1img.png, id=22, 256.96pt x 256.96pt>
+File: images/n01496331_22079_u1img.png Graphic file (type png)
+
+<use images/n01496331_22079_u1img.png>
+Package pdftex.def Info: images/n01496331_22079_u1img.png used on input line 24
+4.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 244--244
+[][]| 
+ []
+
+<images/n01496331_22079_oedges.png, id=23, 256.96pt x 256.96pt>
+File: images/n01496331_22079_oedges.png Graphic file (type png)
+
+<use images/n01496331_22079_oedges.png>
+Package pdftex.def Info: images/n01496331_22079_oedges.png used on input line 2
+45.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 245--245
+[][]| 
+ []
+
+<images/n01496331_22079_cedges.png, id=24, 256.96pt x 256.96pt>
+File: images/n01496331_22079_cedges.png Graphic file (type png)
+
+<use images/n01496331_22079_cedges.png>
+Package pdftex.def Info: images/n01496331_22079_cedges.png used on input line 2
+46.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 246--246
+[][]| 
+ []
+
+<images/n01496331_22079_u0edges.png, id=25, 256.96pt x 256.96pt>
+File: images/n01496331_22079_u0edges.png Graphic file (type png)
+
+<use images/n01496331_22079_u0edges.png>
+Package pdftex.def Info: images/n01496331_22079_u0edges.png used on input line 
+247.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 247--247
+[][]| 
+ []
+
+<images/n01496331_22079_u1edges.png, id=26, 256.96pt x 256.96pt>
+File: images/n01496331_22079_u1edges.png Graphic file (type png)
+
+<use images/n01496331_22079_u1edges.png>
+Package pdftex.def Info: images/n01496331_22079_u1edges.png used on input line 
+248.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 248--249
+[][]| 
+ []
+
+<images/n02607072_4739_original.png, id=27, 256.96pt x 256.96pt>
+File: images/n02607072_4739_original.png Graphic file (type png)
+
+<use images/n02607072_4739_original.png>
+Package pdftex.def Info: images/n02607072_4739_original.png used on input line 
+251.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 251--251
+[][]| 
+ []
+
+<images/n02607072_4739_cimg.png, id=28, 256.96pt x 256.96pt>
+File: images/n02607072_4739_cimg.png Graphic file (type png)
+
+<use images/n02607072_4739_cimg.png>
+Package pdftex.def Info: images/n02607072_4739_cimg.png used on input line 252.
+
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 252--252
+[][]| 
+ []
+
+<images/n02607072_4739_u0img.png, id=29, 256.96pt x 256.96pt>
+File: images/n02607072_4739_u0img.png Graphic file (type png)
+
+<use images/n02607072_4739_u0img.png>
+Package pdftex.def Info: images/n02607072_4739_u0img.png used on input line 253
+.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 253--253
+[][]| 
+ []
+
+<images/n02607072_4739_u1img.png, id=30, 256.96pt x 256.96pt>
+File: images/n02607072_4739_u1img.png Graphic file (type png)
+
+<use images/n02607072_4739_u1img.png>
+Package pdftex.def Info: images/n02607072_4739_u1img.png used on input line 254
+.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 254--254
+[][]| 
+ []
+
+<images/n02607072_4739_oedges.png, id=31, 256.96pt x 256.96pt>
+File: images/n02607072_4739_oedges.png Graphic file (type png)
+
+<use images/n02607072_4739_oedges.png>
+Package pdftex.def Info: images/n02607072_4739_oedges.png used on input line 25
+5.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 255--255
+[][]| 
+ []
+
+<images/n02607072_4739_cedges.png, id=32, 256.96pt x 256.96pt>
+File: images/n02607072_4739_cedges.png Graphic file (type png)
+
+<use images/n02607072_4739_cedges.png>
+Package pdftex.def Info: images/n02607072_4739_cedges.png used on input line 25
+6.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 256--256
+[][]| 
+ []
+
+<images/n02607072_4739_u0edges.png, id=33, 256.96pt x 256.96pt>
+File: images/n02607072_4739_u0edges.png Graphic file (type png)
+
+<use images/n02607072_4739_u0edges.png>
+Package pdftex.def Info: images/n02607072_4739_u0edges.png used on input line 2
+57.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 257--257
+[][]| 
+ []
+
+<images/n02607072_4739_u1edges.png, id=34, 256.96pt x 256.96pt>
+File: images/n02607072_4739_u1edges.png Graphic file (type png)
+
+<use images/n02607072_4739_u1edges.png>
+Package pdftex.def Info: images/n02607072_4739_u1edges.png used on input line 2
+58.
+(pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
+
+Overfull \hbox (15.13708pt too wide) in paragraph at lines 258--259
+[][]| 
+ []
+
+(./paper.bbl [2 <./images/n01496331_15872_original.png (PNG copy)> <./images/n0
+1496331_15872_cimg.png (PNG copy)> <./images/n01496331_15872_u0img.png (PNG cop
+y)> <./images/n01496331_15872_u1img.png (PNG copy)> <./images/n01496331_15872_o
+edges.png (PNG copy)> <./images/n01496331_15872_cedges.png (PNG copy)> <./image
+s/n01496331_15872_u0edges.png (PNG copy)> <./images/n01496331_15872_u1edges.png
+ (PNG copy)> <./images/n01496331_22079_original.png (PNG copy)> <./images/n0149
+6331_22079_cimg.png (PNG copy)> <./images/n01496331_22079_u0img.png (PNG copy)>
+ <./images/n01496331_22079_u1img.png (PNG copy)> <./images/n01496331_22079_oedg
+es.png (PNG copy)> <./images/n01496331_22079_cedges.png (PNG copy)> <./images/n
+01496331_22079_u0edges.png (PNG copy)> <./images/n01496331_22079_u1edges.png (P
+NG copy)> <./images/n02607072_4739_original.png (PNG copy)> <./images/n02607072
+_4739_cimg.png (PNG copy)> <./images/n02607072_4739_u0img.png (PNG copy)> <./im
+ages/n02607072_4739_u1img.png (PNG copy)> <./images/n02607072_4739_oedges.png (
+PNG copy)> <./images/n02607072_4739_cedges.png (PNG copy)> <./images/n02607072_
+4739_u0edges.png (PNG copy)> <./images/n02607072_4739_u1edges.png (PNG copy)>]
 Underfull \hbox (badness 2735) in paragraph at lines 35--38
 \OT1/ptm/m/n/8 ``Wa-ter-gan: Un-su-per-vised gen-er-a-tive net-work to en-able 
 real-time
@@ -242,26 +594,28 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2] (./paper.aux) ) 
+[3
+
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2262 strings out of 494953
- 35867 string characters out of 6180978
- 98090 words of memory out of 5000000
- 5543 multiletter control sequences out of 15000+600000
- 34143 words of font info for 63 fonts, out of 8000000 for 9000
- 17 hyphenation exceptions out of 8191
- 37i,11n,23p,287b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}<
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri
-8a.pfb>
-Output written on paper.pdf (2 pages, 2884851 bytes).
+ 3114 strings out of 493029
+ 51921 string characters out of 6136234
+ 118837 words of memory out of 5000000
+ 6586 multiletter control sequences out of 15000+600000
+ 35221 words of font info for 64 fonts, out of 8000000 for 9000
+ 1144 hyphenation exceptions out of 8191
+ 38i,13n,35p,361b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a
+.pfb>
+Output written on paper.pdf (3 pages, 4656288 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 27 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
