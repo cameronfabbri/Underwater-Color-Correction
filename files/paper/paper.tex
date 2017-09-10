@@ -198,32 +198,6 @@ GANs \cite{goodfellow2014generative} are a class of generative models based on g
 Given an image $I^D$, the generator is trained to produce an image to try and fool the discriminator, which is trained to distinguish be between distorted
 and non-distorted underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
 
-\vspace{4pt}
-
-\begin{equation}
-\begin{aligned}
-   \min\limits_{G}\max\limits_{D} \mathbb{E} & _{I^C \sim p_{train}(I^C)} [logD(I^C)] + \\
-   \mathbb{E} & _{I^D \sim p_{gen}(I^D)}[log(1 - D(G(I^D)))]
-\end{aligned}
-\end{equation}
-
-\noindent In this formulation, the discriminator is hypothesized as a classifier with a sigmoid cross entropy loss function,
-which in practice may lead to issues such as the vanish gradient and mode collapse. There have been many recent works which
-hypothesize a different loss function for the discriminator \cite{mao2016least,arjovsky2017wasserstein,gulrajani2017improved,zhao2016energy}.
-
-In our work, we adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of
-clipping network weights like in \cite{arjovsky2017wasserstein}, enforces the Lipschitz constraint by enforcing a soft constraint on the
-gradient norm of the discriminator's output with respect to its input. 
-Following \cite{gulrajani2017improved}, the new objective then becomes
-
-\begin{equation}
-\begin{aligned}
-   L = \mathbb{E}_{I^D \sim p_{gen}(I^D)} [D(I^D)] - \mathbb{E} & _{I^C \sim p_{train}(I^C)} [D(I^C)] + \\
-   \lambda \mathbb{E} & _{\hat{x} \sim \mathbb{P}_{\hat{x}}} [(|| \nabla_{\hat{x}} D(\hat{x}||_2 -1)^2 ]
-\end{aligned}
-\end{equation}
-
-
 \begin{figure}
 \centering
 \begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
@@ -243,10 +217,81 @@ Bottom row: Generated samples.}
 \end{figure}
 
 
+\begin{equation}
+\begin{aligned}
+   \min\limits_{G}\max\limits_{D} \mathbb{E} & _{I^C \sim p_{train}(I^C)} [logD(I^C)] + \\
+   \mathbb{E} & _{I^D \sim p_{gen}(I^D)}[log(1 - D(G(I^D)))]
+\end{aligned}
+\end{equation}
+
+\noindent Note for simplicity in notation, we will further omit $I^C \sim p_{train}$ and $I^D \sim p_{gen}$. In this formulation, the discriminator
+is hypothesized as a classifier with a sigmoid cross entropy loss function,
+which in practice may lead to issues such as the vanish gradient and mode collapse. There have been many recent works which
+hypothesize a different loss function for the discriminator \cite{mao2016least,arjovsky2017wasserstein,gulrajani2017improved,zhao2016energy}.
+We focus on the Wasserstein GAN (WGAN) \cite{arjovsky2017wasserstein} formulation, which proposes to use the Earth-Mover or \textit{Wasserstein-1}
+distance $W$ by constructing a value function using the Kantorovich-Rubinstein duality \cite{villani2008optimal}. In this formulation, $W$ is
+approximated given a set of $k$-Lipschitz functions $f$ modeled as neural networks. To ensure $f$ is $k$-Lipschitz, the weights of the discriminator
+are clipped to some range $[-c, c]$. In our work, we adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of
+clipping network weights like in \cite{arjovsky2017wasserstein}, ensures the Lipschitz constraint by enforcing a soft constraint on the
+gradient norm of the discriminator's output with respect to its input. Following \cite{gulrajani2017improved}, the new objective then becomes
+
+\begin{equation}
+\begin{aligned}
+   \mathcal{L}_{WGAN} = \mathbb{E} [D(I^C)] - \mathbb{E} & [D(G(I^D))] + \\
+   \lambda \mathbb{E} & _{\hat{x} \sim \mathbb{P}_{\hat{x}}} [(|| \nabla_{\hat{x}} D(\hat{x})||_2 -1)^2 ],
+\end{aligned}
+\end{equation}
+
+%\begin{equation}
+%\begin{aligned}
+%   \mathcal{L}_{GAN} = \mathbb{E}_{I^D \sim p_{gen}(I^D)} [D(I^D)] - \mathbb{E} & _{I^C \sim p_{train}(I^C)} [D(I^C)] + \\
+%   \lambda \mathbb{E} & _{\hat{x} \sim \mathbb{P}_{\hat{x}}} [(|| \nabla_{\hat{x}} D(\hat{x})||_2 -1)^2 ].
+%\end{aligned}
+%\end{equation}
+
+\noindent where $\mathbb{P}_{\hat{x}}$ is defined as samples along straight lines between pairs of points coming from the true data distribution
+and the generator distribution, and $\lambda$ is a weighing factor. In order to give $G$ some sense of ground truth, we also consider the $L1$
+loss
+
+\begin{equation}
+   \mathcal{L}_{L1} = \mathbb{E} [ || I^C - G(I^D) ||_1 ].
+\end{equation}
+%\begin{equation}
+%   \mathcal{L}_{L1} = \mathbb{E}_{I^D \sim p_{gen}, I^C \sim p_{train}} [ || I^C - G(I^D) ||_1 ].
+%\end{equation}
+
+\noindent Combining these, we get our final objective function for our network, which we call Underwater GAN (UGAN),
+
+\begin{equation}
+   \begin{aligned}
+      \mathcal{L}_{UGAN} = \mathcal{L}_{WGAN} + \mathcal{L}_{L1}.
+   \end{aligned}
+\end{equation}
+
+
 \subsection{Image Gradient Difference Loss}
+Often times generative models produce blurry images. We explore a strategy to sharpen these predictions by
+directly penalizing the differences of image gradient predictions in the generator, as proposed by \cite{mathieu2015deep}.
+Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \geq 1$, the Gradient Difference Loss (GDL) is given by
 
-\subsection{Network and Training Details}
+\begin{equation}
+   \begin{aligned}
+      \mathcal{L}_{GDL}(I^C, I^P) = \\ \sum\limits_{i,j} || & I^C_{i,j} - I^C_{i-1,j}| - | I^P_{i,j} - I^P_{i-1,j}||^{\alpha} + \\
+      || & I^C_{i,j-1} - I^C_{i,j}| - | I^P_{i,j-1} - I^P_{i,j}||^{\alpha},
+   \end{aligned}
+\end{equation}
 
+\noindent In our experiments, we denote our network as UGAN-D when considering the GDL, which can be expressed as
+
+\begin{equation}
+   \begin{aligned}
+      \mathcal{L}_{UGAN-D} = \mathcal{L}_{WGAN} + \mathcal{L}_{L1} + \mathcal{L}_{GDL}.
+   \end{aligned}
+\end{equation}
+
+
+\subsection{Network Architecture and Training Details}
+We use a similar architecture as \cite{isola2016image}. Due to the Our generator is a U-Net
 L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
 Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
 

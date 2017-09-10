@@ -73,4 +73,12 @@ I.~Gulrajani, F.~Ahmed, M.~Arjovsky, V.~Dumoulin, and A.~Courville, ``Improved
 J.~Zhao, M.~Mathieu, and Y.~LeCun, ``Energy-based generative adversarial
   network,'' {\em arXiv preprint arXiv:1609.03126}, 2016.
 
+\bibitem{villani2008optimal}
+C.~Villani, {\em Optimal transport: old and new}, vol.~338.
+\newblock Springer Science \& Business Media, 2008.
+
+\bibitem{mathieu2015deep}
+M.~Mathieu, C.~Couprie, and Y.~LeCun, ``Deep multi-scale video prediction
+  beyond mean square error,'' {\em arXiv preprint arXiv:1511.05440}, 2015.
+
 \end{thebibliography}
