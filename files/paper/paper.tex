@@ -194,9 +194,10 @@ generator $G$ to learn the function $f: I^D \rightarrow I^C$. It should be noted
 CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is similar to $f$. In section IV we show a comparison with our method.
 
 \subsection{Adversarial Networks}
-GANs \cite{goodfellow2014generative} are a class of generative models based on game theory in which a generator network competes against an adversary.
-Given an image $I^D$, the generator is trained to produce an image to try and fool the discriminator, which is trained to distinguish be between distorted
-and non-distorted underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
+GANs \cite{goodfellow2014generative} are a class of generative models based on game theory in which a generator
+network competes against an adversary. Conditioned on an image $I^D$, the generator is trained to produce an \
+image to try and fool the discriminator, which is trained to distinguish be between distorted and non-distorted
+underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
 
 \begin{figure}
 \centering
@@ -233,11 +234,11 @@ distance $W$ by constructing a value function using the Kantorovich-Rubinstein d
 approximated given a set of $k$-Lipschitz functions $f$ modeled as neural networks. To ensure $f$ is $k$-Lipschitz, the weights of the discriminator
 are clipped to some range $[-c, c]$. In our work, we adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of
 clipping network weights like in \cite{arjovsky2017wasserstein}, ensures the Lipschitz constraint by enforcing a soft constraint on the
-gradient norm of the discriminator's output with respect to its input. Following \cite{gulrajani2017improved}, the new objective then becomes
+gradient norm of the discriminator's output with respect to its input. Following \cite{gulrajani2017improved}, our new objective then becomes
 
 \begin{equation}
 \begin{aligned}
-   \mathcal{L}_{WGAN} = \mathbb{E} [D(I^C)] - \mathbb{E} & [D(G(I^D))] + \\
+   \mathcal{L}_{WGAN}(G,D) = \mathbb{E} [D(I^C)] - \mathbb{E} & [D(G(I^D))] + \\
    \lambda \mathbb{E} & _{\hat{x} \sim \mathbb{P}_{\hat{x}}} [(|| \nabla_{\hat{x}} D(\hat{x})||_2 -1)^2 ],
 \end{aligned}
 \end{equation}
@@ -264,7 +265,7 @@ loss
 
 \begin{equation}
    \begin{aligned}
-      \mathcal{L}_{UGAN} = \mathcal{L}_{WGAN} + \mathcal{L}_{L1}.
+      \mathcal{L}_{UGAN}^* = \min\limits_{G}\max\limits_{D} \mathcal{L}_{WGAN}(G,D) + \mathcal{L}_{L1}(G).
    \end{aligned}
 \end{equation}
 
@@ -285,13 +286,17 @@ Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \g
 
 \begin{equation}
    \begin{aligned}
-      \mathcal{L}_{UGAN-P} = \mathcal{L}_{WGAN} + \mathcal{L}_{L1} + \mathcal{L}_{GDL}.
+      \mathcal{L}_{UGAN}^* = \min\limits_{G}\max\limits_{D} \mathcal{L}_{WGAN}(G,D) + \mathcal{L}_{L1}(G) + \mathcal{L}_{GDL}
    \end{aligned}
 \end{equation}
 
 
 \subsection{Network Architecture and Training Details}
-We use a similar architecture as \cite{isola2016image}. Due to the Our generator is a U-Net
+We use an encoder-decoder network similar to the work of \cite{isola2016image}, in which our generator is
+structured as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
+
+``U-Net''
+
 L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
 Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
 
