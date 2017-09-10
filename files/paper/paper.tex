@@ -294,9 +294,18 @@ Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \g
 \subsection{Network Architecture and Training Details}
 We use an encoder-decoder network similar to the work of \cite{isola2016image}, in which our generator is
 structured as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
+Encoder-decoder networks continuously downsample (encode) the input to a lower dimensional embedding, in which this embedding is then
+upsampled (decode) to reconstruct the image. The advantage of using a ``U-Net'' comes from explicitly preserving spatial
+dependencies produced by the encoder, as opposed to relying on the embedding to contain all of the information. This
+is done by the addition of ``skip connections'', which concatenate the activations produced from a convolution
+layer $i$ in the encoder to the input of a transpose convolution layer $n-i+1$ in the decoder, where $n$ is the
+total number of layers in the network.
 
-``U-Net''
+Our generator network can be viewed as two subnetworks, an encoder and a decoder. Each convolutional layer in the encoder and decoder
+has a kernel size of 4 and stride 2. Following \cite{radford2015unsupervised}, we use Batch Normalization \cite{pmlr-v37-ioffe15}
+except for the last layer of the decoder.
 
+\footnote{Code is available at https://github.com/cameronfabbri/Underwater-Color-Correction}
 L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
 Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
 
