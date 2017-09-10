@@ -194,8 +194,8 @@ generator $G$ to learn the function $f: I^D \rightarrow I^C$. It should be noted
 CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is similar to $f$. In section IV we show a comparison with our method.
 
 \subsection{Adversarial Networks}
-GANs are a class of generative models based on game theory in which a generator network competes against an adversary.
-Given an image $I^C$, the generator is trained to produce an image to try and fool the discriminator, which is trained to distinguish be between distorted
+GANs \cite{goodfellow2014generative} are a class of generative models based on game theory in which a generator network competes against an adversary.
+Given an image $I^D$, the generator is trained to produce an image to try and fool the discriminator, which is trained to distinguish be between distorted
 and non-distorted underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
 
 \vspace{4pt}
@@ -204,6 +204,22 @@ and non-distorted underwater images. In the original GAN formulation, the goal i
 \begin{aligned}
    \min\limits_{G}\max\limits_{D} \mathbb{E} & _{I^C \sim p_{train}(I^C)} [logD(I^C)] + \\
    \mathbb{E} & _{I^D \sim p_{gen}(I^D)}[log(1 - D(G(I^D)))]
+\end{aligned}
+\end{equation}
+
+\noindent In this formulation, the discriminator is hypothesized as a classifier with a sigmoid cross entropy loss function,
+which in practice may lead to issues such as the vanish gradient and mode collapse. There have been many recent works which
+hypothesize a different loss function for the discriminator \cite{mao2016least,arjovsky2017wasserstein,gulrajani2017improved,zhao2016energy}.
+
+In our work, we adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of
+clipping network weights like in \cite{arjovsky2017wasserstein}, enforces the Lipschitz constraint by enforcing a soft constraint on the
+gradient norm of the discriminator's output with respect to its input. 
+Following \cite{gulrajani2017improved}, the new objective then becomes
+
+\begin{equation}
+\begin{aligned}
+   L = \mathbb{E}_{I^D \sim p_{gen}(I^D)} [D(I^D)] - \mathbb{E} & _{I^C \sim p_{train}(I^C)} [D(I^C)] + \\
+   \lambda \mathbb{E} & _{\hat{x} \sim \mathbb{P}_{\hat{x}}} [(|| \nabla_{\hat{x}} D(\hat{x}||_2 -1)^2 ]
 \end{aligned}
 \end{equation}
 
@@ -227,20 +243,12 @@ Bottom row: Generated samples.}
 \end{figure}
 
 
-
-\subsection{Objective}
-Normal GAN objective, then go into WGAN-GP. L1 weight as well.
+\subsection{Image Gradient Difference Loss}
 
 \subsection{Network and Training Details}
 
 L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
 Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
-
-\subsubsection{Generator}
-
-
-
-\subsubsection{Discriminator}
 
 
 \section{Experiments}

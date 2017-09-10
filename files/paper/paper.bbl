@@ -51,4 +51,26 @@ P.~Isola, J.-Y. Zhu, T.~Zhou, and A.~A. Efros, ``Image-to-image translation
   with conditional adversarial networks,'' {\em arXiv preprint
   arXiv:1611.07004}, 2016.
 
+\bibitem{goodfellow2014generative}
+I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
+  A.~Courville, and Y.~Bengio, ``Generative adversarial nets,'' in {\em
+  Advances in neural information processing systems}, pp.~2672--2680, 2014.
+
+\bibitem{mao2016least}
+X.~Mao, Q.~Li, H.~Xie, R.~Y. Lau, Z.~Wang, and S.~P. Smolley, ``Least squares
+  generative adversarial networks,'' {\em arXiv preprint ArXiv:1611.04076},
+  2016.
+
+\bibitem{arjovsky2017wasserstein}
+M.~Arjovsky, S.~Chintala, and L.~Bottou, ``Wasserstein gan,'' {\em arXiv
+  preprint arXiv:1701.07875}, 2017.
+
+\bibitem{gulrajani2017improved}
+I.~Gulrajani, F.~Ahmed, M.~Arjovsky, V.~Dumoulin, and A.~Courville, ``Improved
+  training of wasserstein gans,'' {\em arXiv preprint arXiv:1704.00028}, 2017.
+
+\bibitem{zhao2016energy}
+J.~Zhao, M.~Mathieu, and Y.~LeCun, ``Energy-based generative adversarial
+  network,'' {\em arXiv preprint arXiv:1609.03126}, 2016.
+
 \end{thebibliography}
