@@ -44,12 +44,13 @@
 %%                    bare_jrnl_transmag.tex
 %%*************************************************************************
 
-\documentclass[conference]{IEEEtran}
+\documentclass[conference,reqno]{IEEEtran}
 
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{adjustbox}
 \usepackage{url}
 % url.sty was written by Donald Arseneau. It provides better support for
@@ -103,9 +104,9 @@ cameron.fabbri@us.af.mil}
 \begin{abstract}
 Autonomous underwater robots often rely on visual input for decision making due to its non-intrusive and passive nature.
 However, due to many factors such as light refraction, particles in the water, and color distortion, images are often times very noisy.
-This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these images provide both increased accuracy
-for an underwater tracking algorithm, as well as a more visually appealing image. Furthermore, we show how recently
-proposed methods are able to generate a dataset for the purpose of underwater image reconstruction.
+This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these 
+images provide both increased accuracy for an underwater tracking algorithm, as well as a more visually appealing image.
+Furthermore, we show how recently proposed methods are able to generate a dataset for the purpose of underwater image reconstruction.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
@@ -179,24 +180,32 @@ Much like the work of \cite{isola2016image}, we use image pairs from two domains
 \section{Method}
 
 \subsection{Dataset Generation}
-In this section we propose our method for color restoration of underwater images. Depth, lighting conditions, camera
-type, and location are all factors that affect the amount of distortion an image undergoes. It is possible that
-underwater images with no distortion exist. We let $I^C$ be an underwater image with no distortion, and $I^D$
+Here we describe our dataset generation process. Depth, lighting conditions, camera
+model, and location are all factors that affect the amount of distortion an underwater image undergoes. Under certain
+conditions, it is possible that an underwater image may have very little distortion, or none at all.
+We let $I^C$ be an underwater image with no distortion, and $I^D$
 be the same image with distortion. Our goal is to learn the function $f: I^D \rightarrow I^C$. Becasue of the
-difficulty of collecting underwater data, more often than not only $I^D$ or $I^C$ exist.
+difficulty of collecting underwater data, more often than not only $I^D$ or $I^C$ exist, but never both.
 
 We use the recently proposed CycleGAN \cite{zhu2017unpaired} to generate $I^D$ from $I^C$, which gives us a paired
 dataset of images. Given two datasets $X$ and $Y$, where $I^C \in X$ and $I^D \in Y$, CycleGAN learns a mapping
 $F: X \rightarrow Y$. Figure 2 shows paired samples generated from CycleGAN. From this paired dataset we train a
-generator $G$ to learn the function $f: I^D \rightarrow I^C$. It should be noted that during our generation of
-training data, CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is equivalent to $f$. In section
-IV we show a comparison with our method.
+generator $G$ to learn the function $f: I^D \rightarrow I^C$. It should be noted that during our data generation process,
+CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is similar to $f$. In section IV we show a comparison with our method.
 
-\subsection{Adversarial Loss}
+\subsection{Adversarial Networks}
 GANs are a class of generative models based on game theory in which a generator network competes against an adversary.
-The goal is to solve the minimax problem:
+Given an image $I^C$, the generator is trained to produce an image to try and fool the discriminator, which is trained to distinguish be between distorted
+and non-distorted underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
 
-\[\min\limits_{G}\max\limits_{D} \mathbb{E}_{I^C \sim p_{train}} [logD(I^C)] + \mathbb{E}_{I^D \sim p_{gen}}[log(1 - D(G(I^D)))]\]
+\vspace{4pt}
+
+\begin{equation}
+\begin{aligned}
+   \min\limits_{G}\max\limits_{D} \mathbb{E} & _{I^C \sim p_{train}(I^C)} [logD(I^C)] + \\
+   \mathbb{E} & _{I^D \sim p_{gen}(I^D)}[log(1 - D(G(I^D)))]
+\end{aligned}
+\end{equation}
 
 
 \begin{figure}
