@@ -238,16 +238,19 @@ Bottom row: Generated samples.}
 \end{aligned}
 \end{equation}
 
-\noindent Note for simplicity in notation, we will further omit $I^C \sim p_{train}$ and $I^D \sim p_{gen}$. In this formulation, the discriminator
-is hypothesized as a classifier with a sigmoid cross entropy loss function,
-which in practice may lead to issues such as the vanish gradient and mode collapse. There have been many recent works which
-hypothesize a different loss function for the discriminator \cite{mao2016least,arjovsky2017wasserstein,gulrajani2017improved,zhao2016energy}.
-We focus on the Wasserstein GAN (WGAN) \cite{arjovsky2017wasserstein} formulation, which proposes to use the Earth-Mover or \textit{Wasserstein-1}
-distance $W$ by constructing a value function using the Kantorovich-Rubinstein duality \cite{villani2008optimal}. In this formulation, $W$ is
-approximated given a set of $k$-Lipschitz functions $f$ modeled as neural networks. To ensure $f$ is $k$-Lipschitz, the weights of the discriminator
-are clipped to some range $[-c, c]$. In our work, we adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of
-clipping network weights like in \cite{arjovsky2017wasserstein}, ensures the Lipschitz constraint by enforcing a soft constraint on the
-gradient norm of the discriminator's output with respect to its input. Following \cite{gulrajani2017improved}, our new objective then becomes
+\noindent Note for simplicity in notation, we will further omit $I^C \sim p_{train}$ and $I^D \sim p_{gen}$. In this
+formulation, the discriminator is hypothesized as a classifier with a sigmoid cross entropy loss function, which in
+practice may lead to issues such as the vanish gradient and mode collapse. There have been many recent works which
+hypothesize a different loss function for the discriminator
+\cite{mao2016least,arjovsky2017wasserstein,gulrajani2017improved,zhao2016energy}. We focus on the Wasserstein GAN
+(WGAN) \cite{arjovsky2017wasserstein} formulation, which proposes to use the Earth-Mover or \textit{Wasserstein-1}
+distance $W$ by constructing a value function using the Kantorovich-Rubinstein duality \cite{villani2008optimal}.
+In this formulation, $W$ is approximated given a set of $k$-Lipschitz functions $f$ modeled as neural networks. To
+ensure $f$ is $k$-Lipschitz, the weights of the discriminator are clipped to some range $[-c, c]$. In our work, we
+adopt the Wasserstein GAN with gradient penalty (WGAN-GP) \cite{gulrajani2017improved}, which instead of clipping
+network weights like in \cite{arjovsky2017wasserstein}, ensures the Lipschitz constraint by enforcing a soft
+constraint on the gradient norm of the discriminator's output with respect to its input. Following
+\cite{gulrajani2017improved}, our new objective then becomes
 
 \begin{equation}
 \begin{aligned}
@@ -263,9 +266,9 @@ gradient norm of the discriminator's output with respect to its input. Following
 %\end{aligned}
 %\end{equation}
 
-\noindent where $\mathbb{P}_{\hat{x}}$ is defined as samples along straight lines between pairs of points coming from the true data distribution
-and the generator distribution, and $\lambda$ is a weighing factor. In order to give $G$ some sense of ground truth, as well as capture low level
-frequencies in the image, we also consider the $L1$ loss
+\noindent where $\mathbb{P}_{\hat{x}}$ is defined as samples along straight lines between pairs of points coming from
+the true data distribution and the generator distribution, and $\lambda$ is a weighing factor. In order to give $G$
+some sense of ground truth, as well as capture low level frequencies in the image, we also consider the $L1$ loss
 
 \begin{equation}
    \mathcal{L}_{L1} = \mathbb{E} [ || I^C - G(I^D) ||_1 ].
@@ -285,8 +288,9 @@ frequencies in the image, we also consider the $L1$ loss
 
 \subsection{Image Gradient Difference Loss}
 Often times generative models produce blurry images. We explore a strategy to sharpen these predictions by
-directly penalizing the differences of image gradient predictions in the generator, as proposed by \cite{mathieu2015deep}.
-Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \geq 1$, the Gradient Difference Loss (GDL) is given by
+directly penalizing the differences of image gradient predictions in the generator, as proposed by
+\cite{mathieu2015deep}. Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \geq 1$, the
+Gradient Difference Loss (GDL) is given by
 
 \begin{equation}
    \begin{aligned}
@@ -307,26 +311,43 @@ Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \g
 \subsection{Network Architecture and Training Details}
 Our generator network uses an encoder-decoder structure similar to the work of \cite{isola2016image}, which is
 structured as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
-Encoder-decoder networks downsample (encode) the input via convolutions to a lower dimensional embedding, in which this embedding is then
-upsampled (decode) via transpose convolutions to reconstruct the image. The advantage of using a ``U-Net'' comes from explicitly preserving spatial
-dependencies produced by the encoder, as opposed to relying on the embedding to contain all of the information. This
-is done by the addition of ``skip connections'', which concatenate the activations produced from a convolution
-layer $i$ in the encoder to the input of a transpose convolution layer $n-i+1$ in the decoder, where $n$ is the
-total number of layers in the network. Each convolutional layer in our generator uses kernel size $4 \times 4$ with stride 2.
-Following \cite{radford2015unsupervised}, we use batch normalization \cite{pmlr-v37-ioffe15} throughout except for the last layer of the decoder.
+Encoder-decoder networks downsample (encode) the input via convolutions to a lower dimensional embedding, in which
+this embedding is then upsampled (decode) via transpose convolutions to reconstruct the image. The advantage of using
+a ``U-Net'' comes from explicitly preserving spatial dependencies produced by the encoder, as opposed to relying on the
+embedding to contain all of the information. This is done by the addition of ``skip connections'', which concatenate
+the activations produced from a convolution layer $i$ in the encoder to the input of a transpose convolution layer
+$n-i+1$ in the decoder, where $n$ is the total number of layers in the network. Each convolutional layer in our
+generator uses kernel size $4 \times 4$ with stride 2. Following \cite{radford2015unsupervised}, we use batch
+normalization \cite{pmlr-v37-ioffe15} throughout except for the last layer of the decoder.
 
-Our discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch normalization is used. This is due
-to the fact that we penalize the norm of the discriminator's gradient with respect to each input individually, which batch
-normalization would invalidate. The authors of \cite{gulrajani2017improved} recommend layer normalization \cite{ba2016layer},
-but we found no significant improvements. RESULTS PENDING
-In all of our experiments, we use $\lambda_{L1} = 100$, batch size of 32, Adam Optimizer \cite{kingma2014adam} with learning rate $1e-4$, and train for 100 epochs.
-Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$. Our implementation was done
-using the Tensorflow library \cite{abadi2016tensorflow}.
+Our discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch normalization is used. This
+is due to the fact that we penalize the norm of the discriminator's gradient with respect to each input individually,
+which batch normalization would invalidate. The authors of \cite{gulrajani2017improved} recommend layer normalization
+\cite{ba2016layer}, but we found no significant improvements. In all of our experiments, we use $\lambda_{L1} = 100$,
+batch size of 32, Adam Optimizer \cite{kingma2014adam} with learning rate $1e-4$, and train for 100 epochs.
+Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$. Our
+implementation was done using the Tensorflow library \cite{abadi2016tensorflow}.
 \footnote{Code is available at https://github.com/cameronfabbri/Underwater-Color-Correction}
 
-
 \section{Experiments}
+\subsection{Datasets}
+We used several subsets of Imagenet \cite{deng2009imagenet} for training and evaluation of our methods. We also
+evaluate a tracking algorithm on a diving video taken from Youtube. Subsets of Imagenet containing underwater images
+were selected for the training of CycleGAN, and manually separated into two classes. We let $X$ be the set of
+underwater images with no distortion, and $Y$ be the set of underwater images with distortion. $X$ contained 6143
+images, and $Y$ contained 1817 images. We then trained CycleGAN to learn the mapping $F: X \rightarrow Y$, such that
+images from $X$ appeared to have come from $Y$. Finally, our image pairs for training data were generated by distorting
+all images in $X$ with $F$. Figure 2 shows sample training pairs.
 
+\subsection{Evaluation}
+We trained UGAN and UGAN-P on the image pairs generated by CycleGAN, and evaluated on the images from the test set, $Y$.
+Note that these images do not contain any ground truth, as they are original distorted images from Imagenet. Images for
+training and testing are of size $256 \times 256 \times 3$ and normalized between $[-1, 1]$.
+
+\subsection{Comparison to CycleGAN}
+
+It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a
+mapping $G: Y \rightarrow X$. Here we show that UGAN and UGAN-P provide superior performance.
 Here I want to show a number of things. First talk about the datasets used, Imagenet and the diving videos.
 Second, show some general results. Explain how our network is able to do three very important things: 1) Restore an
 image to its natural colors with varying amounts of distortion, i.e. blue hue, green hue, aka not just one type of
@@ -337,6 +358,7 @@ show that even images taken towards the water's surface, either above or below, 
 Third mention that since CycleGAN has a cycle consistent nature, compare their results. Then from there go into how
 ours are better by showing results from Canny Edge Detector.
 
+\subsection{Diver Tracking}
 
 \begin{figure}
 \centering

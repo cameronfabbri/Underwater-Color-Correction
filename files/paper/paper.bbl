@@ -113,4 +113,10 @@ M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
   learning on heterogeneous distributed systems,'' {\em arXiv preprint
   arXiv:1603.04467}, 2016.
 
+\bibitem{deng2009imagenet}
+J.~Deng, W.~Dong, R.~Socher, L.-J. Li, K.~Li, and L.~Fei-Fei, ``Imagenet: A
+  large-scale hierarchical image database,'' in {\em Computer Vision and
+  Pattern Recognition, 2009. CVPR 2009. IEEE Conference on}, pp.~248--255,
+  IEEE, 2009.
+
 \end{thebibliography}
