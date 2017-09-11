@@ -47,7 +47,9 @@
 \documentclass[conference,reqno]{IEEEtran}
 
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{ {images/}{images/figure1/} }
+%\graphicspath{{images/failures/}}
+%\graphicspath{{images/figure1/}}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -133,15 +135,26 @@ issue is to be able to restore the images such that they appear to be above wate
 particles removed. By performing a many to one mapping of these domains from underwater to not underwater (what the
 image would look like in the air), algorithms that have
 
-\begin{figure}[!htb]
-   \begin{center}$
-      \begin{array}{cccc}
-         \includegraphics[width=3in]{figure1}
-      \end{array}$
-   \end{center}
-   \caption{Underwater images showing the vast divesity of noise that can occur, including
-   different hues of green and blue, as well as particles in the water.}
+
+\begin{figure}
+\centering
+\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
+   
+   \includegraphics[width=0.8in]{n01496331_7428_f1} &
+   \includegraphics[width=0.8in]{n01496331_16340_f1} &
+   \includegraphics[width=0.8in]{n01914609_5148_f1} &
+   \includegraphics[width=0.8in]{robot_f1} \\
+   \includegraphics[width=0.8in]{n01664065_30279_f1} &
+   \includegraphics[width=0.8in]{n01917289_5711_f1} &
+   \includegraphics[width=0.8in]{n01917289_4087_f1} &
+   \includegraphics[width=0.8in]{n02607072_10395_f1} \\
+
+\end{tabular}
+\caption{Sample underwater images displaying the diversity of distortion that can occur. \textbf{Maybe say something about how
+some images lost all color, but some kept some color for close objects.}}
 \end{figure}
+
+
 
 \noindent difficulty performing across multiple forms of noise may be able to focus only one clean domain.
 
