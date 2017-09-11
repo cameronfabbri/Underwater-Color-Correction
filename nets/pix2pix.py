@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, 'ops/')
 from tf_ops import *
 
-def netG(x, PixS, LOSS_METHOD):
+def netG(x, LOSS_METHOD):
       
    enc_conv1 = tcl.conv2d(x, 64, 4, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_enc_conv1')
    enc_conv1 = lrelu(enc_conv1)
@@ -76,33 +76,36 @@ def netG(x, PixS, LOSS_METHOD):
    return dec_conv8
 
 
-def netD(x, LOSS_METHOD, reuse=False):
+def netD(x, LAYER_NORM, LOSS_METHOD, reuse=False):
    print
    print 'netD'
-   
+
    sc = tf.get_variable_scope()
    with tf.variable_scope(sc, reuse=reuse):
 
       conv1 = tcl.conv2d(x, 64, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv1')
-      if LOSS_METHOD != 'wgan':
-         print 'Using batch norm in D'
-         conv1 = tcl.batch_norm(conv1)
+      if LOSS_METHOD != 'wgan': conv1 = tcl.batch_norm(conv1)
+      elif LOSS_METHOD == 'wgan' and LAYER_NORM: conv1 = tcl.layer_norm(conv1)
       conv1 = lrelu(conv1)
       
       conv2 = tcl.conv2d(conv1, 128, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv2')
       if LOSS_METHOD != 'wgan': conv2 = tcl.batch_norm(conv2)
+      elif LOSS_METHOD == 'wgan' and LAYER_NORM: conv2 = tcl.layer_norm(conv2)
       conv2 = lrelu(conv2)
       
       conv3 = tcl.conv2d(conv2, 256, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv3')
       if LOSS_METHOD != 'wgan': conv3 = tcl.batch_norm(conv3)
+      elif LOSS_METHOD == 'wgan' and LAYER_NORM: conv3 = tcl.layer_norm(conv3)
       conv3 = lrelu(conv3)
       
       conv4 = tcl.conv2d(conv3, 512, 4, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv4')
       if LOSS_METHOD != 'wgan': conv4 = tcl.batch_norm(conv4)
+      elif LOSS_METHOD == 'wgan' and LAYER_NORM: conv4 = tcl.layer_norm(conv4)
       conv4 = lrelu(conv4)
       
       conv5 = tcl.conv2d(conv4, 1, 1, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv5')
       if LOSS_METHOD != 'wgan': conv5 = tcl.batch_norm(conv5)
+      elif LOSS_METHOD == 'wgan' and LAYER_NORM: conv5 = tcl.layer_norm(conv5)
 
       print 'x:',x
       print 'conv1:',conv1
@@ -110,6 +113,7 @@ def netD(x, LOSS_METHOD, reuse=False):
       print 'conv3:',conv3
       print 'conv4:',conv4
       print 'conv5:',conv5
+      exit()
       return conv5
 
 

@@ -29,7 +29,7 @@ import data_ops
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
-   parser.add_argument('--PixS',          required=False,default=0,type=int,help='Pixel shuffle')
+   parser.add_argument('--LAYER_NORM',    required=False,default=0,type=int,help='Pixel shuffle')
    parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
    parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
@@ -48,11 +48,11 @@ if __name__ == '__main__':
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
-   PixS          = bool(a.PixS)
+   LAYER_NORM          = bool(a.LAYER_NORM)
    
    EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
-                     +'/PixS_'+str(PixS)\
+                     +'/LAYER_NORM_'+str(LAYER_NORM)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -77,7 +77,7 @@ if __name__ == '__main__':
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
-   exp_info['PixS']            = PixS
+   exp_info['LAYER_NORM']            = LAYER_NORM
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
@@ -92,7 +92,7 @@ if __name__ == '__main__':
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
    print 'DATA:          ',DATA
-   print 'PixS:          ',PixS
+   print 'LAYER_NORM:    ',LAYER_NORM
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -108,13 +108,13 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image = netG(image_u, PixS, LOSS_METHOD)
+   gen_image = netG(image_u, LOSS_METHOD)
 
    # send 'above' water images to D
-   D_real = netD(image_r, LOSS_METHOD)
+   D_real = netD(image_r, LAYER_NORM, LOSS_METHOD)
 
    # send corrected underwater images to D
-   D_fake = netD(gen_image, LOSS_METHOD, reuse=True)
+   D_fake = netD(gen_image, LAYER_NORM, LOSS_METHOD, reuse=True)
 
    e = 1e-12
    if LOSS_METHOD == 'least_squares':
@@ -138,7 +138,7 @@ if __name__ == '__main__':
       # gradient penalty
       epsilon = tf.random_uniform([], 0.0, 1.0)
       x_hat = image_r*epsilon + (1-epsilon)*gen_image
-      d_hat = netD(x_hat, LOSS_METHOD, reuse=True)
+      d_hat = netD(x_hat, LAYER_NORM, LOSS_METHOD, reuse=True)
       gradients = tf.gradients(d_hat, x_hat)[0]
       slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=[1]))
       gradient_penalty = 10*tf.reduce_mean((slopes-1.0)**2)
