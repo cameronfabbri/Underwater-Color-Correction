@@ -87,6 +87,11 @@ O.~Ronneberger, P.~Fischer, and T.~Brox, ``U-net: Convolutional networks for
   Image Computing and Computer-Assisted Intervention}, pp.~234--241, Springer,
   2015.
 
+\bibitem{nair2010rectified}
+V.~Nair and G.~E. Hinton, ``Rectified linear units improve restricted boltzmann
+  machines,'' in {\em Proceedings of the 27th international conference on
+  machine learning (ICML-10)}, pp.~807--814, 2010.
+
 \bibitem{radford2015unsupervised}
 A.~Radford, L.~Metz, and S.~Chintala, ``Unsupervised representation learning
   with deep convolutional generative adversarial networks,'' {\em arXiv

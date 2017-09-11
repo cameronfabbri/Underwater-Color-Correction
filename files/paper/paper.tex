@@ -74,7 +74,7 @@ Air Force Research Laboratory \\
 Rome, NY, USA.\\
 cameron.fabbri@us.af.mil}
 \and
-\IEEEauthorblockN{Md Jahidul Muslim}
+\IEEEauthorblockN{Md Jahidul Islam}
 \IEEEauthorblockA{UMN\\}
 \and
 \IEEEauthorblockN{Junaed Sattar}
@@ -309,16 +309,19 @@ Gradient Difference Loss (GDL) is given by
 
 
 \subsection{Network Architecture and Training Details}
-Our generator network uses an encoder-decoder structure similar to the work of \cite{isola2016image}, which is
-structured as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
+Our generator network is a fully convolutional encoder-decoder, similar to the work of \cite{isola2016image}, which is
+designed as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
 Encoder-decoder networks downsample (encode) the input via convolutions to a lower dimensional embedding, in which
 this embedding is then upsampled (decode) via transpose convolutions to reconstruct the image. The advantage of using
 a ``U-Net'' comes from explicitly preserving spatial dependencies produced by the encoder, as opposed to relying on the
 embedding to contain all of the information. This is done by the addition of ``skip connections'', which concatenate
 the activations produced from a convolution layer $i$ in the encoder to the input of a transpose convolution layer
 $n-i+1$ in the decoder, where $n$ is the total number of layers in the network. Each convolutional layer in our
-generator uses kernel size $4 \times 4$ with stride 2. Following \cite{radford2015unsupervised}, we use batch
-normalization \cite{pmlr-v37-ioffe15} throughout except for the last layer of the decoder.
+generator uses kernel size $4 \times 4$ with stride 2. Convolutions in the encoder portion of the network are followed
+by a leaky ReLU activation with slope $0.02$, while transpose convolutions in the encoder are followed by a ReLU
+activation \cite{nair2010rectified}. Excempt from this is the last layer of the decoder, which uses a TanH nonlinearity
+to match the input distribution of $[-1, 1]$. Following \cite{radford2015unsupervised}, we use batch normalization
+\cite{pmlr-v37-ioffe15} throughout the generator, except for the last layer of the decoder. 
 
 Our discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch normalization is used. This
 is due to the fact that we penalize the norm of the discriminator's gradient with respect to each input individually,
