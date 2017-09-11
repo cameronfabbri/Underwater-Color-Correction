@@ -99,4 +99,18 @@ S.~Ioffe and C.~Szegedy, ``Batch normalization: Accelerating deep network
   eds.), vol.~37 of {\em Proceedings of Machine Learning Research}, (Lille,
   France), pp.~448--456, PMLR, 07--09 Jul 2015.
 
+\bibitem{ba2016layer}
+J.~L. Ba, J.~R. Kiros, and G.~E. Hinton, ``Layer normalization,'' {\em arXiv
+  preprint arXiv:1607.06450}, 2016.
+
+\bibitem{kingma2014adam}
+D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
+  preprint arXiv:1412.6980}, 2014.
+
+\bibitem{abadi2016tensorflow}
+M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
+  A.~Davis, J.~Dean, M.~Devin, {\em et~al.}, ``Tensorflow: Large-scale machine
+  learning on heterogeneous distributed systems,'' {\em arXiv preprint
+  arXiv:1603.04467}, 2016.
+
 \end{thebibliography}

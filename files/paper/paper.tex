@@ -251,8 +251,8 @@ gradient norm of the discriminator's output with respect to its input. Following
 %\end{equation}
 
 \noindent where $\mathbb{P}_{\hat{x}}$ is defined as samples along straight lines between pairs of points coming from the true data distribution
-and the generator distribution, and $\lambda$ is a weighing factor. In order to give $G$ some sense of ground truth, we also consider the $L1$
-loss
+and the generator distribution, and $\lambda$ is a weighing factor. In order to give $G$ some sense of ground truth, as well as capture low level
+frequencies in the image, we also consider the $L1$ loss
 
 \begin{equation}
    \mathcal{L}_{L1} = \mathbb{E} [ || I^C - G(I^D) ||_1 ].
@@ -292,22 +292,24 @@ Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \g
 
 
 \subsection{Network Architecture and Training Details}
-We use an encoder-decoder network similar to the work of \cite{isola2016image}, in which our generator is
+Our generator network uses an encoder-decoder structure similar to the work of \cite{isola2016image}, which is
 structured as a ``U-Net'' \cite{ronneberger2015u} due to the structural similarity between input and output.
-Encoder-decoder networks continuously downsample (encode) the input to a lower dimensional embedding, in which this embedding is then
-upsampled (decode) to reconstruct the image. The advantage of using a ``U-Net'' comes from explicitly preserving spatial
+Encoder-decoder networks downsample (encode) the input via convolutions to a lower dimensional embedding, in which this embedding is then
+upsampled (decode) via transpose convolutions to reconstruct the image. The advantage of using a ``U-Net'' comes from explicitly preserving spatial
 dependencies produced by the encoder, as opposed to relying on the embedding to contain all of the information. This
 is done by the addition of ``skip connections'', which concatenate the activations produced from a convolution
 layer $i$ in the encoder to the input of a transpose convolution layer $n-i+1$ in the decoder, where $n$ is the
-total number of layers in the network.
+total number of layers in the network. Each convolutional layer in our generator uses kernel size $4 \times 4$ with stride 2.
+Following \cite{radford2015unsupervised}, we use batch normalization \cite{pmlr-v37-ioffe15} throughout except for the last layer of the decoder.
 
-Our generator network can be viewed as two subnetworks, an encoder and a decoder. Each convolutional layer in the encoder and decoder
-has a kernel size of 4 and stride 2. Following \cite{radford2015unsupervised}, we use Batch Normalization \cite{pmlr-v37-ioffe15}
-except for the last layer of the decoder.
-
+Our discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch normalization is used. This is due
+to the fact that we penalize the norm of the discriminator's gradient with respect to each input individually, which batch
+normalization would invalidate. The authors of \cite{gulrajani2017improved} recommend layer normalization \cite{ba2016layer},
+but we found no significant improvements. RESULTS PENDING
+In all of our experiments, we use $\lambda_{L1} = 100$, batch size of 32, Adam Optimizer \cite{kingma2014adam} with learning rate $1e-4$, and train for 100 epochs.
+Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$. Our implementation was done
+using the Tensorflow library \cite{abadi2016tensorflow}.
 \footnote{Code is available at https://github.com/cameronfabbri/Underwater-Color-Correction}
-L1 weight 100, batch size 32, wgan loss, learning rate 1e-4, IG weight 1.0 and 0.0, 100 epochs
-Following WGAN-GP, the discriminator is updated $n$ times for every update of the generator, where $n = 5$.
 
 
 \section{Experiments}
