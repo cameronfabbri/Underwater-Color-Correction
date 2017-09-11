@@ -97,20 +97,19 @@ def netD(x, LOSS_METHOD, reuse=False):
       if LOSS_METHOD != 'wgan': conv3 = tcl.batch_norm(conv3)
       conv3 = lrelu(conv3)
       
-      conv4 = tcl.conv2d(conv3, 512, 4, 2, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv4')
+      conv4 = tcl.conv2d(conv3, 512, 4, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv4')
       if LOSS_METHOD != 'wgan': conv4 = tcl.batch_norm(conv4)
       conv4 = lrelu(conv4)
       
       conv5 = tcl.conv2d(conv4, 1, 1, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='d_conv5')
       if LOSS_METHOD != 'wgan': conv5 = tcl.batch_norm(conv5)
 
-      print x
-      print conv1
-      print conv2
-      print conv3
-      print conv4
-      print conv5
-      exit()
+      print 'x:',x
+      print 'conv1:',conv1
+      print 'conv2:',conv2
+      print 'conv3:',conv3
+      print 'conv4:',conv4
+      print 'conv5:',conv5
       return conv5
 
 
