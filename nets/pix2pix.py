@@ -113,7 +113,6 @@ def netD(x, LAYER_NORM, LOSS_METHOD, reuse=False):
       print 'conv3:',conv3
       print 'conv4:',conv4
       print 'conv5:',conv5
-      exit()
       return conv5
 
 
