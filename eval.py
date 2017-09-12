@@ -20,6 +20,7 @@ import ntpath
 import sys
 import os
 import time
+import time
 import glob
 import cPickle as pickle
 from tqdm import tqdm
@@ -154,8 +155,10 @@ if __name__ == '__main__':
       a_img = data_ops.preprocess(a_img)
       batch_images[0, ...] = a_img
 
+      #s = time.time()
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-
+      #print time.time()-s
+      #exit()
       for gen, real in zip(gen_images, batch_images):
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
