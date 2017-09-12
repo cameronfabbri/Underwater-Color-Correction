@@ -24,7 +24,7 @@ softmax = None
 
 # Call this function with list of images. Each of elements should be a 
 # numpy array with values ranging from 0 to 255.
-def get_inception_score(images, splits=7):
+def get_inception_score(images, splits=10):
    assert(type(images) == list)
    assert(type(images[0]) == np.ndarray)
    assert(len(images[0].shape) == 3)
@@ -102,17 +102,20 @@ if softmax is None:
   
    # get images
    import glob
-   real_paths  = glob.glob('/home/fabbric/Research/colorCorrection/datasets/underwater_imagenet/test/*.jpg')[:1800]
-   ugan_paths  = glob.glob('/home/fabbric/Research/colorCorrection/checkpoints/LOSS_METHOD_wgan/NETWORK_pix2pix/PixS_False/L1_WEIGHT_100.0/IG_WEIGHT_0.0/DATA_underwater_imagenet/test_images/*gen.png')[:1800]
+   real_paths  = glob.glob('/home/fabbric/Research/ugan/datasets/underwater_imagenet/test/*.jpg')[:1800]
+   ugan0_paths = glob.glob('/home/fabbric/Research/ugan/tests/test_images/ugan_0.0/*.png')[:1800]
+   ugan1_paths = glob.glob('/home/fabbric/Research/ugan/tests/test_images/ugan_1.0/*.png')[:1800]
    cycle_paths = glob.glob('/home/fabbric/Research/CycleGAN-tensorflow/testA/*.png')[:1800]
 
    print(len(real_paths))
-   print(len(ugan_paths))
+   print(len(ugan0_paths))
+   print(len(ugan1_paths))
    print(len(cycle_paths))
    
    cycle_images = []
-   ugan_images = []
-   real_images = []
+   ugan0_images = []
+   ugan1_images = []
+   real_images  = []
 
    for i in real_paths:
       i = misc.imread(i)
@@ -122,15 +125,30 @@ if softmax is None:
    for i in cycle_paths:
       cycle_images.append(misc.imread(i))
    
-   for i in ugan_paths:
-      ugan_images.append(misc.imread(i))
+   for i in ugan0_paths:
+      ugan0_images.append(misc.imread(i))
+   
+   for i in ugan1_paths:
+      ugan1_images.append(misc.imread(i))
 
    _init_inception()
    
-   ugan_mean_scores, ugan_std_scores = get_inception_score(ugan_images)
-   print('Got ugan mean scores')
-   print(ugan_mean_scores)
-   print(ugan_std_scores)
+   real_mean_scores, real_std_scores = get_inception_score(real_images)
+   print('Got real mean scores')
+   print(real_mean_scores)
+   print(real_std_scores)
+
+   
+   ugan0_mean_scores, ugan0_std_scores = get_inception_score(ugan0_images)
+   print('Got ugan0 mean scores')
+   print(ugan0_mean_scores)
+   print(ugan0_std_scores)
+   print('\n')
+   
+   ugan1_mean_scores, ugan1_std_scores = get_inception_score(ugan1_images)
+   print('Got ugan1 mean scores')
+   print(ugan1_mean_scores)
+   print(ugan1_std_scores)
    print('\n')
    
    cycle_mean_scores, cycle_std_scores = get_inception_score(cycle_images)
@@ -139,8 +157,3 @@ if softmax is None:
    print(cycle_std_scores)
    print('\n')
    
-   real_mean_scores, real_std_scores = get_inception_score(real_images)
-   print('Got real mean scores')
-   print(real_mean_scores)
-   print(real_std_scores)
-
