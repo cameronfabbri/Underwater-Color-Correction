@@ -1,11 +1,6 @@
 '''
 
-   Main training file
-
-   The goal is to correct the colors in underwater images.
-   CycleGAN was used to create images that appear to be underwater.
-   Those will be sent into the generator, which will attempt to correct the
-   colors.
+   Evaluation File
 
 '''
 
@@ -58,7 +53,6 @@ if __name__ == '__main__':
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
-   #IMAGES_DIR     = EXPERIMENT_DIR+'diving1/'
 
    print
    print 'Creating',IMAGES_DIR
@@ -114,34 +108,8 @@ if __name__ == '__main__':
 
    print 'num test:',num_test
 
-   '''
-   while True:
-
-      idx = np.random.choice(np.arange(num_test), BATCH_SIZE, replace=False)
-      batch_paths = test_paths[idx]
-      
-      batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
-
-      i = 0
-      print 'Loading batch...'
-      for a in tqdm(batch_paths):
-         a_img = misc.imread(a).astype('float32')
-         a_img = misc.imresize(a_img, (256, 256, 3))
-         a_img = data_ops.preprocess(a_img)
-         batch_images[i, ...] = a_img
-         i += 1
-
-      gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-
-      c = 0
-      for gen, real in zip(gen_images, batch_images):
-         misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
-         misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
-         c += 1
-      exit()
-   '''
-
    c = 0
+   times = []
    for img_path in tqdm(test_paths):
 
       img_name = ntpath.basename(img_path)
@@ -155,10 +123,12 @@ if __name__ == '__main__':
       a_img = data_ops.preprocess(a_img)
       batch_images[0, ...] = a_img
 
-      #s = time.time()
+      s = time.time()
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-      #print time.time()-s
-      #exit()
+      tot = time.time()-s
+      
+      times.append(tot)
+
       for gen, real in zip(gen_images, batch_images):
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
@@ -166,3 +136,7 @@ if __name__ == '__main__':
          misc.imsave(IMAGES_DIR+img_name+'_gen.jpg', gen)
 
          c += 1
+
+   print
+   print 'average time:',np.mean(np.asarray(times))
+   print
