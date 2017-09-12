@@ -9,20 +9,19 @@ import numpy as np
 import sys
 
 
-img = 'n01496331_15872.png'
-
+img  = 'n01496331_15872.png'
+name = img.split('.')[0]
 root = 'test_images/'
-
 dirs = ['cgan/', 'original/', 'ugan_0.0/', 'ugan_1.0/']
 
 for d in dirs:
+
    img = misc.imread(root+d+img)
 
    y1 = 160
    y2 = 200
    x1 = 210
    x2 = 250
-
 
    # row, column (y, x), (0,0) at top left
    crop = img[y1:y2, x1:x2, :]
