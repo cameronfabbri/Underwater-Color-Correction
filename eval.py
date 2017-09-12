@@ -132,8 +132,8 @@ if __name__ == '__main__':
       for gen, real in zip(gen_images, batch_images):
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
          #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
-         misc.imsave(IMAGES_DIR+img_name+'_real.jpg', real)
-         misc.imsave(IMAGES_DIR+img_name+'_gen.jpg', gen)
+         misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
+         misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
 
          c += 1
 
