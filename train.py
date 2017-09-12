@@ -168,7 +168,7 @@ if __name__ == '__main__':
    G_train_op = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(errG, var_list=g_vars, global_step=global_step)
    D_train_op = tf.train.AdamOptimizer(learning_rate=LEARNING_RATE).minimize(errD, var_list=d_vars)
 
-   saver = tf.train.Saver(max_to_keep=1)
+   saver = tf.train.Saver(max_to_keep=2)
 
    init = tf.group(tf.local_variables_initializer(), tf.global_variables_initializer())
    sess = tf.Session()
