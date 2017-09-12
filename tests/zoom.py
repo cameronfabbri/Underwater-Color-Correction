@@ -26,16 +26,12 @@ for d in dirs:
    # row, column (y, x), (0,0) at top left
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave(name+'_'+d.split('/')[0]+'_crop_1.png', crop)
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_1.png', crop)
    # draw box around cropped area
-   # left
-   image[y1:y2, x1, :] = [255, 0, 0]
-   # top
-   image[y1, x1:x2, :] = [255, 0, 0]
-   # bottom
-   image[y2, x1:x2, :] = [255, 0, 0]
-   # right
-   image[y1:y2, x2, :] = [255, 0, 0]
+   image[y1:y2, x1, :]   = [255, 0, 0] # left
+   image[y1, x1:x2, :]   = [255, 0, 0] # top
+   image[y1:y2, x2, :]   = [255, 0, 0] # right
+   image[y2, x1:x2+1, :] = [255, 0, 0] # bottom
 
 
    #########################################################
@@ -45,25 +41,39 @@ for d in dirs:
    x2 = 100
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave(name+'_'+d.split('/')[0]+'_crop_2.png', crop)
-   image[y1:y2, x1, :] = [0, 0, 255]
-   image[y1, x1:x2, :] = [0, 0, 255]
-   image[y2, x1:x2, :] = [0, 0, 255]
-   image[y1:y2, x2, :] = [0, 0, 255]
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_2.png', crop)
+   image[y1:y2, x1, :]   = [0, 0, 255]
+   image[y1, x1:x2, :]   = [0, 0, 255]
+   image[y1:y2, x2, :]   = [0, 0, 255]
+   image[y2, x1:x2+1, :] = [0, 0, 255]
    
    
    #########################################################
-   y1 = 118
-   y2 = 128
-   x1 = 40
-   x2 = 50
+   y1 = 118+30-3
+   y2 = 128+30-3
+   x1 = 40-2
+   x2 = 50-2
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave(name+'_'+d.split('/')[0]+'_crop_3.png', crop)
-   image[y1:y2, x1, :] = [0, 255, 0]
-   image[y1, x1:x2, :] = [0, 255, 0]
-   image[y2, x1:x2, :] = [0, 255, 0]
-   image[y1:y2, x2, :] = [0, 255, 0]
-   misc.imsave(name+'_'+d.split('/')[0]+'.png', image)
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_3.png', crop)
+   image[y1:y2, x1, :]   = [0, 255, 0]
+   image[y1, x1:x2, :]   = [0, 255, 0]
+   image[y1:y2, x2, :]   = [0, 255, 0]
+   image[y2, x1:x2+1, :] = [0, 255, 0]
+
+   #########################################################
+   y1 = 110
+   y2 = 140
+   x1 = 125
+   x2 = 155
+   crop = image[y1:y2, x1:x2, :]
+   crop = misc.imresize(crop, (64, 64))
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_4.png', crop)
+   image[y1:y2, x1, :]   = [255, 255, 0]
+   image[y1, x1:x2, :]   = [255, 255, 0]
+   image[y1:y2, x2, :]   = [255, 255, 0]
+   image[y2, x1:x2+1, :] = [255, 255, 0]
+   
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'.png', image)
 
 
