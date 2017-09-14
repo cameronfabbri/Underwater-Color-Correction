@@ -40,11 +40,13 @@ results_file = open('edge_results/results.txt', 'a')
 results_file.write('image_name,cgan_dist,ugan_0_dist,ugan_1_dist\n')
 
 # loop through all paths and open images
+i = 1
 for r,c,u0,u1 in tqdm(zip(real_paths, cgan_paths, ugan_0_paths, ugan_1_paths)):
 
    if save == 1 and ntpath.basename(r) not in save_images: continue
    
-   image_name = ntpath.basename(r).split('.png')[0]
+   #image_name = ntpath.basename(r).split('.png')[0]
+   image_name = str(i)
 
    rimg  = cv2.imread(r)
    cimg  = cv2.imread(c)
@@ -101,6 +103,8 @@ for r,c,u0,u1 in tqdm(zip(real_paths, cgan_paths, ugan_0_paths, ugan_1_paths)):
       cv2.imwrite('edge_results/'+image_name+'_u1edges.png', 255.0*u1edges)
 
       results_file.write(image_name+','+str(cgan_dist_)+','+str(ugan_0_dist_)+','+str(ugan_1_dist_)+'\n')
+
+      i += 1
 
 results_file.close()
 print 'done'
