@@ -47,7 +47,7 @@
 \documentclass[conference,reqno]{IEEEtran}
 
 \usepackage{graphicx}
-\graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3} }
+\graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3/} }
 %\graphicspath{{images/failures/}}
 %\graphicspath{{images/figure1/}}
 
@@ -384,18 +384,46 @@ Third mention that since CycleGAN has a cycle consistent nature, compare their r
 ours are better by showing results from Canny Edge Detector.
 
 
-\begin{figure}
+% TODO definitely need help with formatting, but content is there
+\begin{figure*}
 \centering
-\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
+\begin{tabular}{p{4.0cm} p{4.0cm} p{4.0cm} p{4.0cm}}
    
-   \includegraphics[width=0.8in]{ogcmp} &
-   \includegraphics[width=0.8in]{cgan_cmp} &
-   \includegraphics[width=0.8in]{ugan_cmp} &
-   \includegraphics[width=0.8in]{uganp_cmp} \\
+   \includegraphics[width=1.7in]{flickr_cmp} &
+   \includegraphics[width=1.7in]{cgan_cmp} &
+   \includegraphics[width=1.7in]{ugan_cmp} &
+   \includegraphics[width=1.7in]{uganp_cmp} \\
+
+\end{tabular}
+\end{figure*}
+\begin{figure*}
+\begin{tabular}{p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} }
+   
+   \includegraphics[width=0.8in]{flickr_crop1} &
+   \includegraphics[width=0.8in]{flickr_crop2} &
+   \includegraphics[width=0.8in]{cgan_crop1} &
+   \includegraphics[width=0.8in]{cgan_crop2} &
+   \includegraphics[width=0.8in]{ugan_crop1} &
+   \includegraphics[width=0.8in]{ugan_crop2} &
+   \includegraphics[width=0.8in]{ugan_crop1} &
+   \includegraphics[width=0.8in]{ugan_crop2} \\
+
+   \includegraphics[width=0.8in]{flickr_crop3} &
+   \includegraphics[width=0.8in]{flickr_crop4} &
+   \includegraphics[width=0.8in]{cgan_crop3} &
+   \includegraphics[width=0.8in]{cgan_crop4} &
+   \includegraphics[width=0.8in]{ugan_crop3} &
+   \includegraphics[width=0.8in]{ugan_crop4} &
+   \includegraphics[width=0.8in]{ugan_crop3} &
+   \includegraphics[width=0.8in]{ugan_crop4} \\
 
 \end{tabular}
 \caption{Zooming in on comparisons.}
-\end{figure}
+\end{figure*}
+
+
+
+
 
 
 \subsection{Diver Tracking}
@@ -411,7 +439,7 @@ ours are better by showing results from Canny Edge Detector.
    % the edge image to the original edge image.
 
 
-   \small{Original} & \small{CycleGAN} & \small{UGAN} & \small{UGAN-P} \\
+   5 \small{Original} & \small{CycleGAN} & \small{UGAN} & \small{UGAN-P} \\
 
 %   \includegraphics[width=0.8in]{n01496331_15872_original} &
 %   \includegraphics[width=0.8in]{n01496331_15872_cimg}     &

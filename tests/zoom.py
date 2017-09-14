@@ -53,6 +53,8 @@ for d in dirs:
    # row, column (y, x), (0,0) at top left
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
+   # save out before coloring edges
+   misc.imsave('result_images/'+name+'_crop1_og.png', crop)
    # coloring the crops to match the boxes
    crop[0:,0,:]  = [255,0,0] # left
    crop[0:,63,:] = [255,0,0] # right
@@ -73,6 +75,7 @@ for d in dirs:
    x2 = 90
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
+   misc.imsave('result_images/'+name+'_crop2_og.png', crop)
    crop[0:,0,:]  = [0,0,255] # left
    crop[0:,63,:] = [0,0,255] # right
    crop[0,0:,:]  = [0,0,255] # top
@@ -91,6 +94,7 @@ for d in dirs:
    x2 = 105
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
+   misc.imsave('result_images/'+name+'_crop3_og.png', crop)
    crop[0:,0,:]  = [0,255,0] # left
    crop[0:,63,:] = [0,255,0] # right
    crop[0,0:,:]  = [0,255,0] # top
@@ -108,6 +112,7 @@ for d in dirs:
    x2 = 205
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
+   misc.imsave('result_images/'+name+'_crop4_og.png', crop)
    crop[0:,0,:]  = [255,140,0] # left
    crop[0:,63,:] = [255,140,0] # right
    crop[0,0:,:]  = [255,140,0] # top
