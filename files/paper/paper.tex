@@ -75,10 +75,14 @@ Rome, NY, USA.\\
 cameron.fabbri@us.af.mil}
 \and
 \IEEEauthorblockN{Md Jahidul Islam}
-\IEEEauthorblockA{UMN\\}
+\IEEEauthorblockA{University of Minnesota- Twin Cities\\
+MN, USA.\\
+islam034@umn.edu }
 \and
 \IEEEauthorblockN{Junaed Sattar}
-\IEEEauthorblockA{UMN\\
+\IEEEauthorblockA{University of Minnesota- Twin Cities\\
+MN, USA.\\
+junaed@umn.edu
 }}
 
 % for over three affiliations, or if they all won't fit within the width
@@ -424,9 +428,43 @@ ours are better by showing results from Canny Edge Detector.
 
 
 
+\subsection{Diver Tracking using Frequency-Domain Detection}
+We investigate the frequency-domain characteristics of the restored images through a case-study of periodic motion tracking in sequence of images. Particularly, we compared the performance of Mixed Domain Periodic Motion (MDPM)- tracker \cite{islam2017mixed} on a sequence of images of a diver swimming in  arbitrary directions. MDPM tracker is designed for underwater robots to follow scuba divers by   tracking distinct frequency-domain signatures (high-amplitude spectra at $1$-$2$Hz) pertaining to human swimming. Amplitude spectra in frequency-domain correspond to the periodic intensity variations in image-space over time, which is often eroded in noisy underwater images \cite{shkurti2017underwater}.
+
+Fig. \ref{mdpmStuff} illustrates the improved performance of MDPM tracker on generated images compared to the real ones. Underwater images often fail to capture the true contrast in intensity values between foreground and background due to low visibility. The generated images seem to restore these eroded intensity variations to some extent, causing much improved positive detection for MDPM tracker.
+
+\begin{figure*}
+\centering
+\begin{tabular}{p{4.0cm} p{4.0cm} p{4.0cm} p{4.0cm}}
+   \includegraphics[width=1.7in]{mdpm/real1} &
+   \includegraphics[width=1.7in]{mdpm/real2} &
+   \includegraphics[width=1.7in]{mdpm/real3} &
+   \includegraphics[width=1.7in]{mdpm/real4} \\
+   \includegraphics[width=1.7in]{mdpm/gen1} &
+   \includegraphics[width=1.7in]{mdpm/gen2} &
+   \includegraphics[width=1.7in]{mdpm/gen3} &
+   \includegraphics[width=1.7in]{mdpm/gen4} \\
+\end{tabular}
+\vspace{4mm}
+
+\begin{tabular}{l|c|c|c|r}
+ \cline{2-5}
+ &  Correct detection & Wrong detection & Missed detection & Total \# of frames\\ \hline  \cline{2-4}
+On real images  &  42 & 14 & 444 & 500  \\ \hline
+On generated images  &  147 & 24 & 329 & 500  \\ \hline
+\end{tabular}
+
+\caption{Performance of MDPM tracker \cite{islam2017mixed} on both real (top row) and generated (second row) images; the Table compares the detection performance for both sets of images over a sequence of $500$ frames.   }
+\label{mdpmStuff}
+\end{figure*}
 
 
-\subsection{Diver Tracking}
+%Flippers of a human diver typically oscillate at frequencies between $1$ and $2$ Hz, which produces periodic intensity variations in the image-space over time. These variations correspond to distinct signatures in the frequency-domain (high-amplitude spectra at $1$-$2$Hz), which can be used for reliable detection.
+
+
+
+
+
 
 \begin{figure}
 \centering
