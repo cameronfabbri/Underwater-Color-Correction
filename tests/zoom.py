@@ -39,6 +39,9 @@ for d in dirs:
 
    image = misc.imread(root+d+img)
 
+   name = d.split('/')[0]   
+
+   # TODO when I am comparing metrics, need to save out crops without the borders
    ######################################################### red box
    y1 = 125
    y2 = 155
@@ -47,7 +50,12 @@ for d in dirs:
    # row, column (y, x), (0,0) at top left
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_1.png', crop)
+   # coloring the crops to match the boxes
+   crop[0:,0,:]  = [255,0,0] # left
+   crop[0:,63,:] = [255,0,0] # right
+   crop[0,0:,:]  = [255,0,0] # top
+   crop[63,0:,:] = [255,0,0] # bot
+   misc.imsave('result_images/'+name+'_crop1.png', crop)
    # draw box around cropped area
    image[y1:y2, x1, :]   = [255, 0, 0] # left
    image[y1, x1:x2, :]   = [255, 0, 0] # top
@@ -62,7 +70,11 @@ for d in dirs:
    x2 = 90
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_2.png', crop)
+   crop[0:,0,:]  = [0,0,255] # left
+   crop[0:,63,:] = [0,0,255] # right
+   crop[0,0:,:]  = [0,0,255] # top
+   crop[63,0:,:] = [0,0,255] # bot
+   misc.imsave('result_images/'+name+'_crop_2.png', crop)
    image[y1:y2, x1, :]   = [0, 0, 255]
    image[y1, x1:x2, :]   = [0, 0, 255]
    image[y1:y2, x2, :]   = [0, 0, 255]
@@ -76,7 +88,11 @@ for d in dirs:
    x2 = 105
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_3.png', crop)
+   crop[0:,0,:]  = [0,255,0] # left
+   crop[0:,63,:] = [0,255,0] # right
+   crop[0,0:,:]  = [0,255,0] # top
+   crop[63,0:,:] = [0,255,0] # bot
+   misc.imsave('result_images/'+name+'_crop_3.png', crop)
    image[y1:y2, x1, :]   = [0, 255, 0]
    image[y1, x1:x2, :]   = [0, 255, 0]
    image[y1:y2, x2, :]   = [0, 255, 0]
@@ -89,7 +105,11 @@ for d in dirs:
    x2 = 205
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_4.png', crop)
+   crop[0:,0,:]  = [255,255,0] # left
+   crop[0:,63,:] = [255,255,0] # right
+   crop[0,0:,:]  = [255,255,0] # top
+   crop[63,0:,:] = [255,255,0] # bot
+   misc.imsave('result_images/'+name+'_crop_4.png', crop)
    image[y1:y2, x1, :]   = [255, 255, 0]
    image[y1, x1:x2, :]   = [255, 255, 0]
    image[y1:y2, x2, :]   = [255, 255, 0]
@@ -103,6 +123,10 @@ for d in dirs:
    x2 = 175
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
+   crop[0:,0,:]  = [255,140,0] # left
+   crop[0:,63,:] = [255,140,0] # right
+   crop[0,0:,:]  = [255,140,0] # top
+   crop[63,0:,:] = [255,140,0] # bot
    misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_5.png', crop)
    image[y1:y2, x1, :]   = [255, 140, 0]
    image[y1, x1:x2, :]   = [255, 140, 0]
