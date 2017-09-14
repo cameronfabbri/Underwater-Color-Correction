@@ -41,6 +41,9 @@ for d in dirs:
 
    name = d.split('/')[0]   
 
+   name = name.replace('ugan_fl_0.0','ugan')
+   name = name.replace('ugan_fl_1.0','uganp')
+
    # TODO when I am comparing metrics, need to save out crops without the borders
    ######################################################### red box
    y1 = 125
@@ -74,7 +77,7 @@ for d in dirs:
    crop[0:,63,:] = [0,0,255] # right
    crop[0,0:,:]  = [0,0,255] # top
    crop[63,0:,:] = [0,0,255] # bot
-   misc.imsave('result_images/'+name+'_crop_2.png', crop)
+   misc.imsave('result_images/'+name+'_crop2.png', crop)
    image[y1:y2, x1, :]   = [0, 0, 255]
    image[y1, x1:x2, :]   = [0, 0, 255]
    image[y1:y2, x2, :]   = [0, 0, 255]
@@ -92,31 +95,34 @@ for d in dirs:
    crop[0:,63,:] = [0,255,0] # right
    crop[0,0:,:]  = [0,255,0] # top
    crop[63,0:,:] = [0,255,0] # bot
-   misc.imsave('result_images/'+name+'_crop_3.png', crop)
+   misc.imsave('result_images/'+name+'_crop3.png', crop)
    image[y1:y2, x1, :]   = [0, 255, 0]
    image[y1, x1:x2, :]   = [0, 255, 0]
    image[y1:y2, x2, :]   = [0, 255, 0]
    image[y2, x1:x2+1, :] = [0, 255, 0]
 
-   ######################################################### yellow box
+   ######################################################### orange box
    y1 = 180
    y2 = 210
    x1 = 175
    x2 = 205
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
-   crop[0:,0,:]  = [255,255,0] # left
-   crop[0:,63,:] = [255,255,0] # right
-   crop[0,0:,:]  = [255,255,0] # top
-   crop[63,0:,:] = [255,255,0] # bot
-   misc.imsave('result_images/'+name+'_crop_4.png', crop)
-   image[y1:y2, x1, :]   = [255, 255, 0]
-   image[y1, x1:x2, :]   = [255, 255, 0]
-   image[y1:y2, x2, :]   = [255, 255, 0]
-   image[y2, x1:x2+1, :] = [255, 255, 0]
+   crop[0:,0,:]  = [255,140,0] # left
+   crop[0:,63,:] = [255,140,0] # right
+   crop[0,0:,:]  = [255,140,0] # top
+   crop[63,0:,:] = [255,140,0] # bot
+   misc.imsave('result_images/'+name+'_crop4.png', crop)
+   image[y1:y2, x1, :]   = [255, 140, 0]
+   image[y1, x1:x2, :]   = [255, 140, 0]
+   image[y1:y2, x2, :]   = [255, 140, 0]
+   image[y2, x1:x2+1, :] = [255, 140, 0]
+   
+   misc.imsave('result_images/'+name+'_cmp.png', image)
 
    
    ######################################################### orange box
+   '''
    y1 = 50
    y2 = 80
    x1 = 145
@@ -127,13 +133,13 @@ for d in dirs:
    crop[0:,63,:] = [255,140,0] # right
    crop[0,0:,:]  = [255,140,0] # top
    crop[63,0:,:] = [255,140,0] # bot
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_5.png', crop)
+   misc.imsave('result_images/'+name+'_crop5.png', crop)
    image[y1:y2, x1, :]   = [255, 140, 0]
    image[y1, x1:x2, :]   = [255, 140, 0]
    image[y1:y2, x2, :]   = [255, 140, 0]
    image[y2, x1:x2+1, :] = [255, 140, 0]
 
 
-   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'.png', image)
-
+   misc.imsave('result_images/'+name+'.png', image)
+   '''
 
