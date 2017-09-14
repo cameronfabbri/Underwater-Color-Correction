@@ -24,14 +24,9 @@ cgan_dist   = []
 ugan_0_dist = []
 ugan_1_dist = []
 
-#save_images = ['n02607072_4739.png', 'n01496331_15872.png', 'n01496331_22079.png']
-
-# orange corral
-#save_images = ['5538756669_6a5627ea9c_o.png']
-
 save_images = ['525931976_dffc710a58_o.png', '8032289_2af635da3c_o.png', '1056733511_8a8c0d9410_o.png', '2508954302_63b17667ce_o.png']
 
-save = 0
+save = 1
 
 # just open and close quick to wipe it
 results_file = open('edge_results/results.txt', 'w')
