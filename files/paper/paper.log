@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  13 SEP 2017 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  13 SEP 2017 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -445,102 +445,151 @@ Underfull \hbox (badness 10000) in paragraph at lines 210--214
 
  []
 
-<images/n01496331_873_X.jpg, id=18, 256.96pt x 256.96pt>
-File: images/n01496331_873_X.jpg Graphic file (type jpg)
+<images/figure2/n01496331_873_X.jpg, id=18, 256.96pt x 256.96pt>
+File: images/figure2/n01496331_873_X.jpg Graphic file (type jpg)
 
-<use images/n01496331_873_X.jpg>
-Package pdftex.def Info: images/n01496331_873_X.jpg used on input line 219.
+<use images/figure2/n01496331_873_X.jpg>
+Package pdftex.def Info: images/figure2/n01496331_873_X.jpg used on input line 
+219.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 219--219
 [][]| 
  []
 
-<images/n01664065_4022_X.jpg, id=19, 256.96pt x 256.96pt>
-File: images/n01664065_4022_X.jpg Graphic file (type jpg)
+<images/figure2/n01664065_4022_X.jpg, id=19, 256.96pt x 256.96pt>
+File: images/figure2/n01664065_4022_X.jpg Graphic file (type jpg)
 
-<use images/n01664065_4022_X.jpg>
-Package pdftex.def Info: images/n01664065_4022_X.jpg used on input line 220.
+<use images/figure2/n01664065_4022_X.jpg>
+Package pdftex.def Info: images/figure2/n01664065_4022_X.jpg used on input line
+ 220.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 220--220
 [][]| 
  []
 
-<images/n01917289_889_X.jpg, id=20, 256.96pt x 256.96pt>
-File: images/n01917289_889_X.jpg Graphic file (type jpg)
+<images/figure2/n01917289_889_X.jpg, id=20, 256.96pt x 256.96pt>
+File: images/figure2/n01917289_889_X.jpg Graphic file (type jpg)
 
-<use images/n01917289_889_X.jpg>
-Package pdftex.def Info: images/n01917289_889_X.jpg used on input line 221.
+<use images/figure2/n01917289_889_X.jpg>
+Package pdftex.def Info: images/figure2/n01917289_889_X.jpg used on input line 
+221.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 221--221
 [][]| 
  []
 
-<images/n01914609_116_X.jpg, id=21, 256.96pt x 256.96pt>
-File: images/n01914609_116_X.jpg Graphic file (type jpg)
+<images/figure2/n01914609_116_X.jpg, id=21, 256.96pt x 256.96pt>
+File: images/figure2/n01914609_116_X.jpg Graphic file (type jpg)
 
-<use images/n01914609_116_X.jpg>
-Package pdftex.def Info: images/n01914609_116_X.jpg used on input line 222.
+<use images/figure2/n01914609_116_X.jpg>
+Package pdftex.def Info: images/figure2/n01914609_116_X.jpg used on input line 
+222.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 222--223
 [][]| 
  []
 
-<images/n01496331_873_Y.jpg, id=22, 256.96pt x 256.96pt>
-File: images/n01496331_873_Y.jpg Graphic file (type jpg)
+<images/figure2/n01496331_873_Y.jpg, id=22, 256.96pt x 256.96pt>
+File: images/figure2/n01496331_873_Y.jpg Graphic file (type jpg)
 
-<use images/n01496331_873_Y.jpg>
-Package pdftex.def Info: images/n01496331_873_Y.jpg used on input line 223.
+<use images/figure2/n01496331_873_Y.jpg>
+Package pdftex.def Info: images/figure2/n01496331_873_Y.jpg used on input line 
+223.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 223--223
 [][]| 
  []
 
-<images/n01664065_4022_Y.jpg, id=23, 256.96pt x 256.96pt>
-File: images/n01664065_4022_Y.jpg Graphic file (type jpg)
+<images/figure2/n01664065_4022_Y.jpg, id=23, 256.96pt x 256.96pt>
+File: images/figure2/n01664065_4022_Y.jpg Graphic file (type jpg)
 
-<use images/n01664065_4022_Y.jpg>
-Package pdftex.def Info: images/n01664065_4022_Y.jpg used on input line 224.
+<use images/figure2/n01664065_4022_Y.jpg>
+Package pdftex.def Info: images/figure2/n01664065_4022_Y.jpg used on input line
+ 224.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 224--224
 [][]| 
  []
 
-<images/n01917289_889_Y.jpg, id=24, 256.96pt x 256.96pt>
-File: images/n01917289_889_Y.jpg Graphic file (type jpg)
+<images/figure2/n01917289_889_Y.jpg, id=24, 256.96pt x 256.96pt>
+File: images/figure2/n01917289_889_Y.jpg Graphic file (type jpg)
 
-<use images/n01917289_889_Y.jpg>
-Package pdftex.def Info: images/n01917289_889_Y.jpg used on input line 225.
+<use images/figure2/n01917289_889_Y.jpg>
+Package pdftex.def Info: images/figure2/n01917289_889_Y.jpg used on input line 
+225.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 225--225
 [][]| 
  []
 
-<images/n01914609_116_Y.jpg, id=25, 256.96pt x 256.96pt>
-File: images/n01914609_116_Y.jpg Graphic file (type jpg)
+<images/figure2/n01914609_116_Y.jpg, id=25, 256.96pt x 256.96pt>
+File: images/figure2/n01914609_116_Y.jpg Graphic file (type jpg)
 
-<use images/n01914609_116_Y.jpg>
-Package pdftex.def Info: images/n01914609_116_Y.jpg used on input line 226.
+<use images/figure2/n01914609_116_Y.jpg>
+Package pdftex.def Info: images/figure2/n01914609_116_Y.jpg used on input line 
+226.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
 Overfull \hbox (9.44662pt too wide) in paragraph at lines 226--227
 [][]| 
  []
 
-[2 <./images/n01496331_873_X.jpg> <./images/n01664065_4022_X.jpg> <./images/n01
-917289_889_X.jpg> <./images/n01914609_116_X.jpg> <./images/n01496331_873_Y.jpg>
- <./images/n01664065_4022_Y.jpg> <./images/n01917289_889_Y.jpg> <./images/n0191
-4609_116_Y.jpg>]
+[2 <./images/figure2/n01496331_873_X.jpg> <./images/figure2/n01664065_4022_X.jp
+g> <./images/figure2/n01917289_889_X.jpg> <./images/figure2/n01914609_116_X.jpg
+> <./images/figure2/n01496331_873_Y.jpg> <./images/figure2/n01664065_4022_Y.jpg
+> <./images/figure2/n01917289_889_Y.jpg> <./images/figure2/n01914609_116_Y.jpg>
+]
 Overfull \hbox (1.94804pt too wide) detected at line 308
 [] []
  []
 
+
+! LaTeX Error: File `ogcmp' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.391    \includegraphics[width=0.8in]{ogcmp}
+                                              &
+? 
+
+! LaTeX Error: File `cgan_cmp' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.392    \includegraphics[width=0.8in]{cgan_cmp}
+                                                 &
+? 
+
+! LaTeX Error: File `ugan_cmp' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.393    \includegraphics[width=0.8in]{ugan_cmp}
+                                                 &
+? 
+
+! LaTeX Error: File `uganp_cmp' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394    \includegraphics[width=0.8in]{uganp_cmp}
+                                                  \\
+? 
 [3] (./paper.bbl
 Underfull \hbox (badness 2735) in paragraph at lines 35--38
 \OT1/ptm/m/n/8 ``Wa-ter-gan: Un-su-per-vised gen-er-a-tive net-work to en-able 
@@ -572,9 +621,9 @@ Before submitting the final camera ready copy, remember to:
 
 [4] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4000 strings out of 493029
- 60650 string characters out of 6136234
- 133039 words of memory out of 5000000
+ 4028 strings out of 493029
+ 61237 string characters out of 6136234
+ 133072 words of memory out of 5000000
  7432 multiletter control sequences out of 15000+600000
  44897 words of font info for 89 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -594,7 +643,7 @@ ls/msbm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 1327434 bytes).
+Output written on paper.pdf (4 pages, 1327459 bytes).
 PDF statistics:
  94 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream

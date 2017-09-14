@@ -5,7 +5,12 @@
 rm test_images/ugan_0.0/*real*
 rm test_images/ugan_1.0/*real*
 
+rm test_images/ugan_fl_0.0/*real*
+rm test_images/ugan_fl_1.0/*real*
+
 rename 's/_gen//' test_images/ugan_0.0/*
 rename 's/_gen//' test_images/ugan_1.0/*
 
+rename 's/_gen//' test_images/ugan_fl_0.0/*
+rename 's/_gen//' test_images/ugan_fl_1.0/*
 

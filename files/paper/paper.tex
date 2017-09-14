@@ -47,7 +47,7 @@
 \documentclass[conference,reqno]{IEEEtran}
 
 \usepackage{graphicx}
-\graphicspath{ {images/}{images/figure1/} }
+\graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3} }
 %\graphicspath{{images/failures/}}
 %\graphicspath{{images/figure1/}}
 
@@ -382,6 +382,20 @@ show that even images taken towards the water's surface, either above or below, 
 
 Third mention that since CycleGAN has a cycle consistent nature, compare their results. Then from there go into how
 ours are better by showing results from Canny Edge Detector.
+
+
+\begin{figure}
+\centering
+\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
+   
+   \includegraphics[width=0.8in]{ogcmp} &
+   \includegraphics[width=0.8in]{cgan_cmp} &
+   \includegraphics[width=0.8in]{ugan_cmp} &
+   \includegraphics[width=0.8in]{uganp_cmp} \\
+
+\end{tabular}
+\caption{Zooming in on comparisons.}
+\end{figure}
 
 
 \subsection{Diver Tracking}

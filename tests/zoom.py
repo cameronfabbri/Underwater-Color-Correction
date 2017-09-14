@@ -2,6 +2,10 @@
 
    Script to zoom in on parts of an image and save out
 
+   This will be used for comparing to CycleGAN images
+
+   Might also be used for comparing local image stats
+
 '''
 
 import scipy.misc as misc
@@ -10,20 +14,36 @@ import sys
 
 
 #img  = 'n01496331_15872.png'
-img  = 'n01496331_2629.png'
+#img  = 'n01496331_2629.png'
+
+# possible one to use - stingray
+#img = '2425754085_bcfa73d160_o.png'
+
+# lots of stuff
+#img = '6959211760_295f0e300e_o.png'
+
+# pretty good fish and corral
+img = '8563897707_0a8be6d5f1_o.png'
+
+# orange coral
+#img = '5538756669_6a5627ea9c_o.png'
+
+#img = '8564948684_dbcf221d1e_o.png'
+
 name = img.split('.')[0]
 root = 'test_images/'
-dirs = ['cgan/', 'original/', 'ugan_0.0/', 'ugan_1.0/']
+#dirs = ['cgan/', 'original/', 'ugan_fl_0.0/', 'ugan__fl_1.0/']
+dirs = ['cgan/', 'flickr/', 'ugan_fl_0.0/', 'ugan_fl_1.0/']
 
 for d in dirs:
 
    image = misc.imread(root+d+img)
 
-   #########################################################
-   y1 = 160
-   y2 = 200
-   x1 = 210
-   x2 = 250
+   ######################################################### red box
+   y1 = 125
+   y2 = 155
+   x1 = 120
+   x2 = 150
    # row, column (y, x), (0,0) at top left
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
@@ -35,11 +55,11 @@ for d in dirs:
    image[y2, x1:x2+1, :] = [255, 0, 0] # bottom
 
 
-   #########################################################
-   y1 = 225
-   y2 = 245
-   x1 = 80
-   x2 = 100
+   ######################################################### blue box
+   y1 = 170
+   y2 = 200
+   x1 = 60
+   x2 = 90
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
    misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_2.png', crop)
@@ -49,11 +69,11 @@ for d in dirs:
    image[y2, x1:x2+1, :] = [0, 0, 255]
    
    
-   #########################################################
-   y1 = 118+30-3
-   y2 = 128+30-3
-   x1 = 40-2
-   x2 = 50-2
+   ######################################################### green box
+   y1 = 75
+   y2 = 90
+   x1 = 90
+   x2 = 105
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
    misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_3.png', crop)
@@ -62,11 +82,11 @@ for d in dirs:
    image[y1:y2, x2, :]   = [0, 255, 0]
    image[y2, x1:x2+1, :] = [0, 255, 0]
 
-   #########################################################
-   y1 = 110
-   y2 = 140
-   x1 = 125
-   x2 = 155
+   ######################################################### yellow box
+   y1 = 180
+   y2 = 210
+   x1 = 175
+   x2 = 205
    crop = image[y1:y2, x1:x2, :]
    crop = misc.imresize(crop, (64, 64))
    misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_4.png', crop)
@@ -74,7 +94,22 @@ for d in dirs:
    image[y1, x1:x2, :]   = [255, 255, 0]
    image[y1:y2, x2, :]   = [255, 255, 0]
    image[y2, x1:x2+1, :] = [255, 255, 0]
+
    
+   ######################################################### orange box
+   y1 = 50
+   y2 = 80
+   x1 = 145
+   x2 = 175
+   crop = image[y1:y2, x1:x2, :]
+   crop = misc.imresize(crop, (64, 64))
+   misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'_crop_5.png', crop)
+   image[y1:y2, x1, :]   = [255, 140, 0]
+   image[y1, x1:x2, :]   = [255, 140, 0]
+   image[y1:y2, x2, :]   = [255, 140, 0]
+   image[y2, x1:x2+1, :] = [255, 140, 0]
+
+
    misc.imsave('result_images/'+name+'_'+d.split('/')[0]+'.png', image)
 
 

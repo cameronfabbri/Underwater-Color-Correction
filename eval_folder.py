@@ -52,7 +52,7 @@ if __name__ == '__main__':
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   IMAGES_DIR     = 'tests/test_images/ugan_fl_0.0/'
+   IMAGES_DIR     = 'tests/test_images/ugan_fl_1.0/'
 
    print
    print 'Creating',IMAGES_DIR
