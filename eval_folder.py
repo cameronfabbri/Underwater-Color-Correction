@@ -1,11 +1,6 @@
 '''
 
-   Main training file
-
-   The goal is to correct the colors in underwater images.
-   CycleGAN was used to create images that appear to be underwater.
-   Those will be sent into the generator, which will attempt to correct the
-   colors.
+   Evaluation File
 
 '''
 
@@ -20,6 +15,7 @@ import ntpath
 import sys
 import os
 import time
+import time
 import glob
 import cPickle as pickle
 from tqdm import tqdm
@@ -32,14 +28,12 @@ import data_ops
 
 if __name__ == '__main__':
 
-   if len(sys.argv) < 3:
-      print 'You must provide an info.pkl file and a diving file'
+   if len(sys.argv) < 2:
+      print 'You must provide an info.pkl file'
       exit()
 
    pkl_file = open(sys.argv[1], 'rb')
    a = pickle.load(pkl_file)
-
-   num_d = str(sys.argv[2])
 
    LEARNING_RATE = a['LEARNING_RATE']
    LOSS_METHOD   = a['LOSS_METHOD']
@@ -58,8 +52,7 @@ if __name__ == '__main__':
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   #IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
-   IMAGES_DIR     = EXPERIMENT_DIR+'diving'+num_d+'/'
+   IMAGES_DIR     = 'tests/test_images/ugan_fl_0.0/'
 
    print
    print 'Creating',IMAGES_DIR
@@ -72,6 +65,7 @@ if __name__ == '__main__':
    print 'BATCH_SIZE:    ',BATCH_SIZE
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
+   print 'LAYER_NORM:    ',LAYER_NORM
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -105,8 +99,7 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
-   test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving'+num_d+'/*.jpg')))
+   test_paths = np.asarray(glob.glob('tests/test_images/flickr/*.*'))
 
    #random.shuffle(test_paths)
 
@@ -115,9 +108,11 @@ if __name__ == '__main__':
    print 'num test:',num_test
 
    c = 0
+   times = []
    for img_path in tqdm(test_paths):
 
       img_name = ntpath.basename(img_path)
+
       img_name = img_name.split('.')[0]
 
       batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
@@ -127,9 +122,20 @@ if __name__ == '__main__':
       a_img = data_ops.preprocess(a_img)
       batch_images[0, ...] = a_img
 
+      s = time.time()
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
+      tot = time.time()-s
+      
+      times.append(tot)
 
       for gen, real in zip(gen_images, batch_images):
+         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
+         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
          misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
          misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
+
          c += 1
+
+   print
+   print 'average time:',np.mean(np.asarray(times))
+   print

@@ -1,11 +1,6 @@
 '''
 
-   Main training file
-
-   The goal is to correct the colors in underwater images.
-   CycleGAN was used to create images that appear to be underwater.
-   Those will be sent into the generator, which will attempt to correct the
-   colors.
+   Evaluation File
 
 '''
 
@@ -20,6 +15,7 @@ import ntpath
 import sys
 import os
 import time
+import time
 import glob
 import cPickle as pickle
 from tqdm import tqdm
@@ -33,13 +29,11 @@ import data_ops
 if __name__ == '__main__':
 
    if len(sys.argv) < 3:
-      print 'You must provide an info.pkl file and a diving file'
+      print 'You must provide an info.pkl file and an image'
       exit()
 
    pkl_file = open(sys.argv[1], 'rb')
    a = pickle.load(pkl_file)
-
-   num_d = str(sys.argv[2])
 
    LEARNING_RATE = a['LEARNING_RATE']
    LOSS_METHOD   = a['LOSS_METHOD']
@@ -58,13 +52,7 @@ if __name__ == '__main__':
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   #IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
-   IMAGES_DIR     = EXPERIMENT_DIR+'diving'+num_d+'/'
-
-   print
-   print 'Creating',IMAGES_DIR
-   try: os.makedirs(IMAGES_DIR)
-   except: pass
+   test_image = sys.argv[2]
 
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
@@ -72,6 +60,7 @@ if __name__ == '__main__':
    print 'BATCH_SIZE:    ',BATCH_SIZE
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
+   print 'LAYER_NORM:    ',LAYER_NORM
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -104,32 +93,19 @@ if __name__ == '__main__':
    
    step = int(sess.run(global_step))
 
-   # testing paths
-   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
-   test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving'+num_d+'/*.jpg')))
+   img_name = ntpath.basename(test_image)
 
-   #random.shuffle(test_paths)
+   img_name = img_name.split('.')[0]
 
-   num_test = len(test_paths)
+   batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
 
-   print 'num test:',num_test
+   a_img = misc.imread(test_image).astype('float32')
+   a_img = misc.imresize(a_img, (256, 256, 3))
+   a_img = data_ops.preprocess(a_img)
+   batch_images[0, ...] = a_img
 
-   c = 0
-   for img_path in tqdm(test_paths):
+   gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
 
-      img_name = ntpath.basename(img_path)
-      img_name = img_name.split('.')[0]
+   misc.imsave('./'+img_name+'_real.png', batch_images[0])
+   misc.imsave('./'+img_name+'_gen.png', gen_images[0])
 
-      batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
-
-      a_img = misc.imread(img_path).astype('float32')
-      a_img = misc.imresize(a_img, (256, 256, 3))
-      a_img = data_ops.preprocess(a_img)
-      batch_images[0, ...] = a_img
-
-      gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-
-      for gen, real in zip(gen_images, batch_images):
-         misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
-         misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
-         c += 1

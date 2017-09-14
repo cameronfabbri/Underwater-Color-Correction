@@ -9,7 +9,8 @@ import numpy as np
 import sys
 
 
-img  = 'n01496331_15872.png'
+#img  = 'n01496331_15872.png'
+img  = 'n01496331_2629.png'
 name = img.split('.')[0]
 root = 'test_images/'
 dirs = ['cgan/', 'original/', 'ugan_0.0/', 'ugan_1.0/']
