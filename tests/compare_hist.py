@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from scipy.stats import signaltonoise
 
 for i in range(1,5):
 
@@ -37,6 +38,16 @@ for i in range(1,5):
    print 'flickr_cgan:',a
    print 'flickr_ugan:',b
    print 'flickr_uganp:',c
+   print
+   print signaltonoise(flickr, axis=None)
+   print signaltonoise(cgan, axis=None)
+   print signaltonoise(ugan, axis=None)
+   print signaltonoise(uganp, axis=None)
+   print
+   print cv2.Laplacian(flickr, cv2.CV_64F).var()
+   print cv2.Laplacian(cgan, cv2.CV_64F).var()
+   print cv2.Laplacian(ugan, cv2.CV_64F).var()
+   print cv2.Laplacian(uganp, cv2.CV_64F).var()
    print 
    print '---'
    print
