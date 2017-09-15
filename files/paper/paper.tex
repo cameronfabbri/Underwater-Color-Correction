@@ -290,14 +290,14 @@ Our fully convolutional discriminator is modeled after that of \cite{radford2015
 normalization is used. This is due to the fact that WGAN-GP penalizes the norm of the discriminator's gradient with
 respect to each input individually, which batch normalization would invalidate. The authors of
 \cite{gulrajani2017improved} recommend layer normalization \cite{ba2016layer}, but we found no significant improvements.
-Our discriminator is modeled as a PatchGAN \cite{isola2016image,li2016precomputed,}, which discriminates at the level of
+Our discriminator is modeled as a PatchGAN \cite{isola2016image,li2016precomputed}, which discriminates at the level of
 image patches. As opposed to a regular discriminator, which outputs a scalar value corresponding to real or fake, our
-PatchGAN discriminator outputs a $32 \times 32 \times 1$ feature. This provides a metric for high level frequencies,
-which is combinied with the low level frequencies from the $L1$ loss.
+PatchGAN discriminator outputs a $32 \times 32 \times 1$ feature matrix, which provides a metric for high level
+frequencies. %which is combinied with the low level frequencies from the $L1$ loss.
 
 In all of our experiments, we use $\lambda_{1} = 100$, $\lambda_{GP} = 10$, batch size of 32, and the Adam Optimizer
-\cite{kingma2014adam} with learning rate $1e-4$. When considering the GDL, we use $\alpha = 1$. Following WGAN-GP, the discriminator is updated $n$ times for every
-update of the generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$. Our implementation was done using the
+\cite{kingma2014adam} with learning rate $1e-4$. Following WGAN-GP, the discriminator is updated $n$ times for every
+update of the generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$ and $\alpha = 1$. Our implementation was done using the
 Tensorflow library \cite{abadi2016tensorflow}.
 \footnote{Code is available at \url{https://github.com/cameronfabbri/Underwater-Color-Correction}}
 All networks were trained from scratch on a GTX 1080 for 100 epochs. Inference on the GPU takes on average $ 0.0138s$,

@@ -109,6 +109,11 @@ V.~Nair and G.~E. Hinton, ``Rectified linear units improve restricted boltzmann
   machines,'' in {\em Proceedings of the 27th international conference on
   machine learning (ICML-10)}, pp.~807--814, 2010.
 
+\bibitem{ulyanov2016instance}
+D.~Ulyanov, A.~Vedaldi, and V.~Lempitsky, ``Instance normalization: The missing
+  ingredient for fast stylization,'' {\em arXiv preprint arXiv:1607.08022},
+  2016.
+
 \bibitem{radford2015unsupervised}
 A.~Radford, L.~Metz, and S.~Chintala, ``Unsupervised representation learning
   with deep convolutional generative adversarial networks,'' {\em arXiv
@@ -118,10 +123,10 @@ A.~Radford, L.~Metz, and S.~Chintala, ``Unsupervised representation learning
 J.~L. Ba, J.~R. Kiros, and G.~E. Hinton, ``Layer normalization,'' {\em arXiv
   preprint arXiv:1607.06450}, 2016.
 
-\bibitem{ulyanov2016instance}
-D.~Ulyanov, A.~Vedaldi, and V.~Lempitsky, ``Instance normalization: The missing
-  ingredient for fast stylization,'' {\em arXiv preprint arXiv:1607.08022},
-  2016.
+\bibitem{li2016precomputed}
+C.~Li and M.~Wand, ``Precomputed real-time texture synthesis with markovian
+  generative adversarial networks,'' in {\em European Conference on Computer
+  Vision}, pp.~702--716, Springer, 2016.
 
 \bibitem{kingma2014adam}
 D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
