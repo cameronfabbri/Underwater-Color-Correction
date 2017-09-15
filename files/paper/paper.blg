@@ -7,45 +7,45 @@ Repeated entry---line 169 of file cambibs.bib
  : @inproceedings{torres2005color
  :                               ,
 I'm skipping whatever remains of this entry
-You've used 30 entries,
+You've used 31 entries,
             1876 wiz_defined-function locations,
-            635 strings with 9687 characters,
-and the built_in function-call counts, 8251 in all, are:
-= -- 719
-> -- 435
+            639 strings with 9860 characters,
+and the built_in function-call counts, 8397 in all, are:
+= -- 733
+> -- 439
 < -- 0
-+ -- 155
-- -- 125
-* -- 608
-:= -- 1203
-add.period$ -- 31
-call.type$ -- 30
++ -- 157
+- -- 126
+* -- 613
+:= -- 1224
+add.period$ -- 33
+call.type$ -- 31
 change.case$ -- 29
 chr.to.int$ -- 0
-cite$ -- 30
-duplicate$ -- 442
-empty$ -- 801
-format.name$ -- 125
-if$ -- 1964
+cite$ -- 31
+duplicate$ -- 451
+empty$ -- 821
+format.name$ -- 126
+if$ -- 2002
 int.to.chr$ -- 0
-int.to.str$ -- 30
-missing$ -- 31
-newline$ -- 94
-num.names$ -- 32
-pop$ -- 149
+int.to.str$ -- 31
+missing$ -- 33
+newline$ -- 98
+num.names$ -- 33
+pop$ -- 155
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 239
+skip$ -- 240
 stack$ -- 0
 substring$ -- 454
-swap$ -- 149
+swap$ -- 150
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 71
-width$ -- 32
-write$ -- 272
+while$ -- 72
+width$ -- 33
+write$ -- 281
 (There was 1 error message)

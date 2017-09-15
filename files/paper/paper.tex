@@ -1,56 +1,7 @@
-
-%% bare_conf.tex
-%% V1.4
-%% 2012/12/27
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8 or later) with an IEEE conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
-%% User assumes all risk.
-%% In no event shall IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%
-%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
-%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex,
-%%                    bare_jrnl_transmag.tex
-%%*************************************************************************
-
 \documentclass[letterpaper, 10pt, conference]{ieeeconf}
-
 
 \usepackage{graphicx}
 \graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3/} {images/edges/}}
-%\graphicspath{{images/failures/}}
-%\graphicspath{{images/figure1/}}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -70,12 +21,6 @@
 \IEEEoverridecommandlockouts
 \overrideIEEEmargins
 
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
-% Basically, \url{my_url_here}.
-
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -83,7 +28,7 @@
 \author{Cameron Fabbri$^{1}$, Md Jahidul Islam$^{2}$, and Junaed Sattar$^{3}$
 \thanks{				
   The authors are with the Department of Computer Science and Engineering, University of Minnesota-Twin  Cities, MN 55455, USA. \newline
- {\tt\small\{$^{1}$fabbr013, $^{2}$islam034, $^{3}$junaed\}@umn.edu} 
+ {\tt\small\{$^{1}$fabbr013, $^{2}$islam034, $^{3}$junaed\}@umn.edu}
 }
 }
 
@@ -102,30 +47,10 @@
 % junaed@umn.edu
 %}
 
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-% 
-%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
-%Montgomery Scott\IEEEauthorrefmark{3} and
-%Eldon Tyrell\IEEEauthorrefmark{4}}
-%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
 \begin{document}
 
-% make the title area
 \maketitle
 
-% As a general rule, do not put math, special symbols or citations
-% in the abstract
 \begin{abstract}
 Autonomous underwater vehicles (AUVs) rely on a variety of sensors -- acoustic, inertial and visual -- for intelligent decision making. Due
 to its non-intrusive, passive nature, and high information content, vision is an attractive sensing modality, particularly at shallower
@@ -144,8 +69,9 @@ algorithm.
 %\IEEEpeerreviewmaketitle
 
 \section{Introduction}
-TODO - talk about having to go back to the same location if you want to get good/bad pairs of the ``same'' image.\starnote{I assume Cam will
-do this?}  Underwater robotics has been a steadily growing subfield of autonomous field robotics, assisted by the advent of novel platforms,
+%TODO - talk about having to go back to the same location if you want to get good/bad pairs of the ``same'' image.\starnote{I assume Cam will
+%do this?}
+Underwater robotics has been a steadily growing subfield of autonomous field robotics, assisted by the advent of novel platforms,
 sensors and propulsion mechanisms. While autonomous underwater vehicles are often equipped with a variety of sensors, visual sensing is an
 attractive option because of its non-intrusive, passive, and energy efficient nature. The monitoring of coral reefs \cite{shkurti2012multi},
 deep ocean exploration \cite{whitcomb2000advances}, and mapping of the seabed\starnote{Citation?} are a number of tasks where
@@ -161,8 +87,7 @@ used. This may cause difficulty in tasks such as segmentation, tracking, or clas
 As color and illumination begin to change with the depth, vision-based algorithms must need to be very generalizable in order to work within
 the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a variety of underwater data to train a visual
 system on, as well as the high amount of noise introduced, algorithms may (and do) perform poorly in these different
-domains. Figure~\ref{fig:samples}\starnote{DO NOT USE HARDCODED FIGURE NUMBERS!!! Use a label\{\} right before the caption, and then refer
-to it using the ref\{\} command as I have done here -- see the \LaTeX source.} shows the high variability in visual scenes that may occur in
+domains. Figure~\ref{fig:samples} shows the high variability in visual scenes that may occur in
 underwater environments. A step towards a solution to this issue is to be able to restore the images such that they appear to be above
 water, \emph{i.e.}, with colors corrected and suspended particles removed from the scene. By performing a many-to-one mapping of these
 domains from underwater to not underwater (what the image would look like above water), algorithms that have difficulty performing across
@@ -184,31 +109,35 @@ multiple forms of noise may be able to focus only one clean domain.
 
 \end{tabular}
 \label{fig:samples}
-\caption{Sample underwater images displaying the diversity of distortion that can occur. \textbf{Maybe say something about how
-some images lost all color, but some kept some color for close objects.}}
+\caption{Sample underwater images displaying the diversity of distortion that can occur. Due to the variety of distances
+of objects in the image, there is a varying amount of color loss and distortion.}
 \end{figure}
 
-Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision\starnote{Cite the
-  canonical Deep Learning paper here please} \cite{krizhevsky2012imagenet}. Often times, these networks require large amounts of data, either labeled or paired with
-ground truth. For the problem of automatically colorizing grayscale images \cite{zhang2016colorful}\starnote{CITE something on this?}, paired training data is
+Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision \cite{krizhevsky2012imagenet}. Often times, these networks require large amounts of data, either labeled or paired with
+ground truth. For the problem of automatically colorizing grayscale images \cite{zhang2016colorful}, paired training
+data is
 readily available due to the fact that any color image can be converted to black and white. However, underwater images distorted by either
-color or some other phenomenon lack ground truth, which is a major hindrance towards adopting a similar approach for correction. This paper proposes a technique based on Generative Adversarial Networks (GANs) to improve the quality of visual underwater scenes with the goal of improving the performance of vision-driven behaviors for autonomous underwater robots\starnote{Summarize the approach here. Then talk about datasets as you have done already.} We use the recently proposed CycleGAN~\cite{zhu2017unpaired} approach, which learns to translate an image from any arbitrary domain $X$ to another arbitrary domain $Y$, as a way to generate a paired dataset. By letting $X$ be a set of undistorted underwater images\starnote{need to say where we find the undistorted ones}, and $Y$ be a set of distorted underwater images, we can generate an image that appears to be underwater while retaining ground truth.
+color or some other phenomenon lack ground truth, which is a major hindrance towards adopting a similar approach for correction. This paper proposes a technique based on Generative Adversarial Networks (GANs) to improve the quality of visual underwater scenes with the goal of improving the performance of vision-driven behaviors for autonomous underwater robots
+%\starnote{Summarize the approach here. Then talk about datasets as you have done already.}
+We use the recently proposed CycleGAN~\cite{zhu2017unpaired} approach, which learns to translate an image from any arbitrary domain $X$ to another arbitrary domain $Y$ \textit{without} image pairs, as a way to generate a paired dataset.
+By letting $X$ be a set of undistorted underwater images\starnote{need to say where we find the undistorted ones}, and
+$Y$ be a set of distorted underwater images, we can generate an image that appears to be underwater while retaining
+ground truth.
 
 \section{Related Work}
 
 While there have been many very successful recent approaches towards automatic colorization
 \cite{zhang2016colorful,iizuka2016let}, most are focused on the task of grayscale to color.
-The work of \cite{torres2005color} used an energy minimization formulation using a Markov Random Field. 
-MORE RELATED BLAH. Many use physics based models to directly model the light source and such.
-Most similar to our line of work is the recently proposed WaterGAN \cite{li2017watergan}, which uses
-GANs for color correction of underwater images. As ground truth pairs do not exist for underwater images,
-their first step is to structure a generator to create realistic underwater images. Their generator model
-can be broken down into three stages: 1) Attenuation, which accounts for range-dependent attenuation of light.
+The work of \cite{torres2005color} uses an energy minimization formulation using a Markov Random Field. 
+Many employ the use of a physics based model to directly model light refraction \cite{jordt2014underwater}.
+Most similar to our line of work is the recently proposed WaterGAN \cite{li2017watergan}, which uses an adversarial
+approach towards generating realistic underwater images. Their generator model can be broken down into three stages:
+1) Attenuation, which accounts for range-dependent attenuation of light.
 2) Scattering, which models the haze effect caused by photons scattering back towards the image sensor. 3)
 Vingetting, which produces a shading effect on the image corners that can be caused by certain camera lenses.
-Opposed to our work, they use a GAN for generating the underwater images and Euclidean loss for color correction,
-where as we use a GAN for both. Furthermore, they require depth information during the training of WaterGAN,
-whereas we only require two separate image domains.
+Opposed to our work, they use a GAN for generating the underwater images and strictly Euclidean loss for color
+correction, where as we use a GAN for both. Furthermore, they require depth information during the training of WaterGAN,
+whereas we only require two separate image domains throughout.
 
 Recent work in generative models, specifically GANs, have shown great success
 in areas such as inpainting \cite{pathak2016context}, style transfer \cite{Gatys_2016_CVPR}, and image-to-image
@@ -216,6 +145,8 @@ translation \cite{isola2016image,zhu2017unpaired}. This is highly due to their a
 loss than simply the Euclidean distance, which has been shown to produce blurry results. In our work, we structure
 the problem as paired image-to-image translation, using Generative Adversarial Networks (GANs) as our generative model.
 Much like the work of \cite{isola2016image}, we use image pairs from two domains an input and ground truth.
+\starnote{Somewhere I think we should mention that unpaired image to image translation is more difficult, and
+that cyclegan is a good way to generate a dataset in such a way to do this with image pairs.}
 
 \section{Method}
 
@@ -229,7 +160,7 @@ difficulty of collecting underwater data, more often than not only $I^D$ or $I^C
 
 We use the recently proposed CycleGAN \cite{zhu2017unpaired} to generate $I^D$ from $I^C$, which gives us a paired
 dataset of images. Given two datasets $X$ and $Y$, where $I^C \in X$ and $I^D \in Y$, CycleGAN learns a mapping
-$F: X \rightarrow Y$. Figure 2 shows paired samples generated from CycleGAN. From this paired dataset we train a
+$F: X \rightarrow Y$. Figure ~\ref{fig:cgan_samples} shows paired samples generated from CycleGAN. From this paired dataset we train a
 generator $G$ to learn the function $f: I^D \rightarrow I^C$. It should be noted that during our data generation process,
 CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is similar to $f$. In section IV we show a comparison with our method.
 
@@ -237,7 +168,7 @@ CycleGAN simultaneously learns a mapping $G: Y \rightarrow X$, which is similar 
 GANs \cite{goodfellow2014generative} are a class of generative models based on game theory in which a generator
 network competes against an adversary. Conditioned on an image $I^D$, the generator is trained to produce an \
 image to try and fool the discriminator, which is trained to distinguish be between distorted and non-distorted
-underwater images. In the original GAN formulation, the goal is to solve the minimax problem: \newline
+underwater images. In the original GAN formulation, our goal is to solve the minimax problem:
 
 \begin{figure}
 \centering
@@ -253,6 +184,7 @@ underwater images. In the original GAN formulation, the goal is to solve the min
    \includegraphics[width=0.8in]{n01914609_116_Y} \\
 
 \end{tabular}
+\label{fig:cgan_samples}
 \caption{Paired samples of ground truth and distorted images generated by CycleGAN. Top row: Ground truth.
 Bottom row: Generated samples.}
 \end{figure}
@@ -316,17 +248,19 @@ some sense of ground truth, as well as capture low level frequencies in the imag
 \subsection{Image Gradient Difference Loss}
 Often times generative models produce blurry images. We explore a strategy to sharpen these predictions by
 directly penalizing the differences of image gradient predictions in the generator, as proposed by
-\cite{mathieu2015deep}. Given a ground truth image $I^C$, predicted image $I^P = G(I^C)$, and $\alpha \geq 1$, the
+\cite{mathieu2015deep}. Given a ground truth image $I^C$, predicted image $I^P = G(I^D)$, and $\alpha \geq 1$, the
 Gradient Difference Loss (GDL) is given by
 
 \begin{equation}
    \begin{aligned}
       \mathcal{L}_{GDL}(I^C, I^P) = \\ \sum\limits_{i,j} || & I^C_{i,j} - I^C_{i-1,j}| - | I^P_{i,j} - I^P_{i-1,j}||^{\alpha} + \\
-      || & I^C_{i,j-1} - I^C_{i,j}| - | I^P_{i,j-1} - I^P_{i,j}||^{\alpha},
+      || & I^C_{i,j-1} - I^C_{i,j}| - | I^P_{i,j-1} - I^P_{i,j}||^{\alpha}.
    \end{aligned}
+   \label{gdl_eq}
 \end{equation}
 
 \noindent In our experiments, we denote our network as UGAN-P when considering the GDL, which can be expressed as
+\starnote{I don't like the - in this equation, but don't know how to change it to be shorter}
 
 \begin{equation}
    \begin{aligned}
@@ -346,21 +280,26 @@ embedding to contain all of the information. This is done by the addition of ``s
 the activations produced from a convolution layer $i$ in the encoder to the input of a transpose convolution layer
 $n-i+1$ in the decoder, where $n$ is the total number of layers in the network. Each convolutional layer in our
 generator uses kernel size $4 \times 4$ with stride 2. Convolutions in the encoder portion of the network are followed
-by batch normalization \cite{pmlr-v37-ioffe15} and a leaky ReLU activation with slope $0.02$, while transpose
+by batch normalization \cite{pmlr-v37-ioffe15} and a leaky ReLU activation with slope $0.2$, while transpose
 convolutions in the decoder are followed by a ReLU activation \cite{nair2010rectified} (no batch norm in the decoder).
 Exempt from this is the last layer of the decoder, which uses a TanH nonlinearity to match the input distribution of
-$[-1, 1]$. 
+$[-1, 1]$. Recent work has proposed Instance Normalization \cite{ulyanov2016instance} to improve quality
+in image-to-image translation tasks, however we observed no added benefit.
 
-Our discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch normalization is used. This
-is due to the fact that we penalize the norm of the discriminator's gradient with respect to each input individually,
-which batch normalization would invalidate. The authors of \cite{gulrajani2017improved} recommend layer normalization
-\cite{ba2016layer}, but we found no significant improvements. In particular, the use of instance normalization
-\cite{ulyanov2016instance} in the generator has been shown to improve quality, but we leave that for future work.
+Our fully convolutional discriminator is modeled after that of \cite{radford2015unsupervised}, except no batch
+normalization is used. This is due to the fact that WGAN-GP penalizes the norm of the discriminator's gradient with
+respect to each input individually, which batch normalization would invalidate. The authors of
+\cite{gulrajani2017improved} recommend layer normalization \cite{ba2016layer}, but we found no significant improvements.
+Our discriminator is modeled as a PatchGAN \cite{isola2016image,li2016precomputed,}, which discriminates at the level of
+image patches. As opposed to a regular discriminator, which outputs a scalar value corresponding to real or fake, our
+PatchGAN discriminator outputs a $32 \times 32 \times 1$ feature. This provides a metric for high level frequencies,
+which is combinied with the low level frequencies from the $L1$ loss.
+
 In all of our experiments, we use $\lambda_{1} = 100$, $\lambda_{GP} = 10$, batch size of 32, and the Adam Optimizer
-\cite{kingma2014adam} with learning rate $1e-4$. Following WGAN-GP, the discriminator is updated $n$ times for every
+\cite{kingma2014adam} with learning rate $1e-4$. When considering the GDL, we use $\alpha = 1$. Following WGAN-GP, the discriminator is updated $n$ times for every
 update of the generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$. Our implementation was done using the
 Tensorflow library \cite{abadi2016tensorflow}.
-\footnote{Code is available at https://github.com/cameronfabbri/Underwater-Color-Correction}
+\footnote{Code is available at \url{https://github.com/cameronfabbri/Underwater-Color-Correction}}
 All networks were trained from scratch on a GTX 1080 for 100 epochs. Inference on the GPU takes on average $ 0.0138s$,
 which is about 72 Frames Per Second (FPS). On a CPU (Intel Core i7-5930K), inference takes on average $ 0.1244s$, which
 is about 8 FPS. We find both of these measures acceptable for underwater tasks.
@@ -370,30 +309,31 @@ is about 8 FPS. We find both of these measures acceptable for underwater tasks.
 We used several subsets of Imagenet \cite{deng2009imagenet} for training and evaluation of our methods. We also
 evaluate a tracking algorithm on a diving video taken from Youtube
 \footnote{https://www.youtube.com/watch?v=QmRFmhILd5o}. Subsets of Imagenet containing underwater images
-were selected for the training of CycleGAN, and manually separated into two classes. We let $X$ be the set of
+were selected for the training of CycleGAN, and manually separated into two classes based on visual inspection. We let
+$X$ be the set of
 underwater images with no distortion, and $Y$ be the set of underwater images with distortion. $X$ contained 6143
 images, and $Y$ contained 1817 images. We then trained CycleGAN to learn the mapping $F: X \rightarrow Y$, such that
 images from $X$ appeared to have come from $Y$. Finally, our image pairs for training data were generated by distorting
-all images in $X$ with $F$. Figure 2 shows sample training pairs. When comparing with CycleGAN, we used a test set
-of 56 images acquired from Flickr \footnote{How do I cite Flickr}.
+all images in $X$ with $F$. Figure ~\ref{cgan_samples} shows sample training pairs. When comparing with CycleGAN, we used a test set
+of 56 images acquired from Flickr \textsuperscript{TM}.
 
 \subsection{Evaluation}
 We train UGAN and UGAN-P on the image pairs generated by CycleGAN, and evaluate on the images from the
 test set, $Y$. Note that these images do not contain any ground truth, as they are original distorted images from
 Imagenet. Images for training and testing are of size $256 \times 256 \times 3$ and normalized between $[-1, 1]$.
-Figure 3 shows samples from the test set. Notably, these images contain varying amounts of noise. Both UGAN and UGAN-P
+Figure ~\ref{test_samples} shows samples from the test set. Notably, these images contain varying amounts of noise. Both UGAN and UGAN-P
 are able to recover lost color information, as well as correct any color information this is present. 
 
 While many of the distorted images contain a blue or green hue over the entire image space, that is not always the case.
 In certain environments,
 it is possible that objects close to the camera are undistorted with correct colors, while the background
 of the image contains distortion. In these cases, we would like the network to only correct parts of the image that
-appear distorted. The last row in Figure 3 shows a sample of such an image. The orange of the clownfish is left
+appear distorted. The last row in Figure ~\ref{test_samples} shows a sample of such an image. The orange of the clownfish is left
 unchanged while the distorted sea anemone in the background has its color corrected.
 
 We use three metrics for a quantitative evaluation. First, we compare to CycleGAN, as it inherently learns an inverse
 mapping during the training of $F: X \rightarrow Y$, using the Canny edge detector
-\cite{canny1986computational} as it provides a color agnostic evaluation of the images in comparison to ground truth.
+\cite{canny1986computational}. This provides a color agnostic evaluation of the images in comparison to ground truth.
 Second, we compare local image patches to provide sharpness metrics on our images. Lastly, we show how an existing
 tracking algorithm for an underwater robot improves performance with generated images.
 
@@ -437,6 +377,7 @@ tracking algorithm for an underwater robot improves performance with generated i
 
 \end{tabular}
 \caption{Samples from our Imagenet testing set. The network can both recover color and also correct color if a small amount is present.}
+\label{fig:test_samples}
 \end{figure}
 
 % Directly from the first paper on the inception score: We find that it’s important to evaluate the metric on a large
@@ -453,13 +394,17 @@ tracking algorithm for an underwater robot improves performance with generated i
 
 \subsection{Comparison to CycleGAN}
 It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a
-mapping $G: Y \rightarrow X$. Here we show that UGAN and UGAN-P provide superior performance. We use a Canny edge
-detector \cite{canny1986computational} to provide a color agnostic evaluation of the images, as the original image
-contains distorted colors. Figure 4 shows the resulting images. We noticed that CycleGAN was mostly able to restore
-color, however the images contained various amounts noise. Because restoring color information should not alter the
-overall structure of the image, we measure the distance in the image space between the edges found in the original 
-and the generated images. Table 1 provides the measurements from Figure 4, as well as the average over the entire
-dataset.
+mapping $G: Y \rightarrow X$. Here we show that UGAN and UGAN-P provide superior performance. We use the Canny edge
+detector \cite{canny1986computational} to provide a color agnostic evaluation of the images, as the original contain
+distorted colors and cannot be compared back to as ground truth. Due to the fact that restoring color information
+should not alter the overall structure of the image, we measure the distance in the image space between the edges
+found in the original and generated images. Figure ~\ref{canny_samples} shows the original images and results from
+edge detection. Table 1 provides the measurements from Figure ~\ref{canny_samples}, as well as the average over the
+entire dataset.
+
+We explore the artifacts of content loss, as seen in Figure ~\ref{zoom}. In particular, we compare local statistics
+of the highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL
+\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. 
 
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
@@ -525,25 +470,26 @@ dataset.
 \caption{Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN,
 and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row
 the result of the edge detector.}
+\label{fig:canny_samples}
 \end{figure}
-
-
-
 
 % TODO definitely need help with formatting, but content is there
 \begin{figure*}
 \centering
 \begin{tabular}{p{4.0cm} p{4.0cm} p{4.0cm} p{4.0cm}}
-   
+  
+   \qquad \qquad ~ Original & \qquad \qquad CycleGAN & \qquad \qquad ~ \textbf{UGAN} & \qquad \qquad \textbf{UGAN-P} \\
+
    \includegraphics[width=1.7in]{flickr_cmp} &
    \includegraphics[width=1.7in]{cgan_cmp} &
    \includegraphics[width=1.7in]{ugan_cmp} &
-   \includegraphics[width=1.7in]{uganp_cmp} \\
-
+   \includegraphics[width=1.7in]{uganp_cmp} \\ [-11ex]
+   
 \end{tabular}
 \end{figure*}
+
 \begin{figure*}
-\begin{tabular}{p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} }
+\begin{tabular}{p{1.8cm} p{1.85cm} p{1.8cm} p{1.8cm} p{1.8cm} p{1.8cm} p{1.8cm} p{1.9cm} }
    
    \includegraphics[width=0.8in]{flickr_crop1} &
    \includegraphics[width=0.8in]{flickr_crop2} &
@@ -563,8 +509,10 @@ the result of the edge detector.}
    \includegraphics[width=0.8in]{ugan_crop3} &
    \includegraphics[width=0.8in]{ugan_crop4} \\
 
+
 \end{tabular}
-\caption{Zooming in on comparisons.}
+\caption{Comparison of local image patches. Each patch was resized to $64 \times 64$.}
+\label{fig:zoom}
 \end{figure*}
 
 
@@ -585,6 +533,7 @@ Fig. \ref{mdpmStuff} illustrates the improved performance of MDPM tracker on gen
    \includegraphics[width=1.7in]{mdpm/gen3} &
    \includegraphics[width=1.7in]{mdpm/gen4} \\
 \end{tabular}
+\label{fig:mdpm}
 \vspace{4mm}
 
 \begin{tabular}{l|c|c|c|r|}
