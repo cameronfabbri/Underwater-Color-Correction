@@ -44,7 +44,8 @@
 %%                    bare_jrnl_transmag.tex
 %%*************************************************************************
 
-\documentclass[conference,reqno]{IEEEtran}
+\documentclass[letterpaper, 10pt, conference]{ieeeconf}
+
 
 \usepackage{graphicx}
 \graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3/} {images/edges/}}
@@ -55,6 +56,20 @@
 \usepackage{amsmath}
 \usepackage{adjustbox}
 \usepackage{url}
+\usepackage{hyperref} % JS: Remove this if you cannot compile.
+
+\pdfminorversion=4
+% Junaed's definition of a sidenote to look into
+\newcommand{\marginlabel}[1]{\mbox{}\marginpar[\raggedleft\hspace{0pt}{#1}]{
+\raggedright\hspace{0pt}{#1}}}
+\newcommand{\starnote}[1]{\marginlabel{$\bigstar$}\textbf{[#1]}}
+\newcommand{\nostarnote}[1]{}
+\newcommand{\baad}[1]{} 
+% End Junaed's definition
+
+\IEEEoverridecommandlockouts
+\overrideIEEEmargins
+
 % url.sty was written by Donald Arseneau. It provides better support for
 % handling and breaking URLs. url.sty is already installed on most LaTeX
 % systems. The latest version and documentation can be obtained at:
@@ -64,26 +79,28 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-\begin{document}
-
 \title{UGAN: Underwater Image Restoration using Generative Adversarial Networks}
+\author{Cameron Fabbri$^{1}$, Md Jahidul Islam$^{2}$, and Junaed Sattar$^{3}$
+\thanks{				
+  The authors are with the Department of Computer Science and Engineering, University of Minnesota-Twin  Cities, MN 55455, USA. \newline
+ {\tt\small\{$^{1}$fabbr013, $^{2}$islam034, $^{3}$junaed\}@umn.edu} 
+}
+}
 
-\author{\IEEEauthorblockN{Cameron Fabbri}
-\IEEEauthorblockA{Information Directorate\\
-Air Force Research Laboratory \\
-Rome, NY, USA.\\
-cameron.fabbri@us.af.mil}
-\and
-\IEEEauthorblockN{Md Jahidul Islam}
-\IEEEauthorblockA{University of Minnesota- Twin Cities\\
-MN, USA.\\
-islam034@umn.edu }
-\and
-\IEEEauthorblockN{Junaed Sattar}
-\IEEEauthorblockA{University of Minnesota- Twin Cities\\
-MN, USA.\\
-junaed@umn.edu
-}}
+% \author{\IEEEauthorblockN{Cameron Fabbri$^{1}$}
+% \IEEEauthorblockA{Information Directorate\\
+% Air Force Research Laboratory \\
+% Rome, NY, USA.\\
+% cameron.fabbri@us.af.mil}
+% \and
+% \IEEEauthorblockN{Md Jahidul Islam \& Junaed Sattar}
+% \IEEEauthorblockA{Department of Computer Science and Engineering\\University of Minnesota- Twin Cities, MN, USA.\\
+% \{islam034, junaed\}@umn.edu }
+% \and
+% \IEEEauthorblockN{Junaed Sattar}
+% \IEEEauthorblockA{Department of Computer Science and Engineering\\University of Minnesota- Twin Cities,MN, USA.\\
+% junaed@umn.edu
+%}
 
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
@@ -102,42 +119,54 @@ junaed@umn.edu
 %Telephone: (800) 555--1212, Fax: (888) 555--1212}
 %\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
+\begin{document}
+
 % make the title area
 \maketitle
 
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-Autonomous underwater robots often rely on visual input for decision making due to its non-intrusive and passive nature.
-However, due to many factors such as light refraction, particles in the water, and color distortion, images are often times very noisy.
-This paper propose a method using Generative Adversarial Networks (GANs) to denoise underwater images, and show that these 
-images provide both increased accuracy for an underwater tracking algorithm, as well as a more visually appealing image.
-Furthermore, we show how recently proposed methods are able to generate a dataset for the purpose of underwater image reconstruction.
+Autonomous underwater vehicles (AUVs) rely on a variety of sensors -- acoustic, inertial and visual -- for intelligent decision making. Due
+to its non-intrusive, passive nature, and high information content, vision is an attractive sensing modality, particularly at shallower
+depths. However, factors such as light refraction and absorption, suspended particles in the water, and color distortion affect the quality
+of visual data, resulting in noisy and distorted images. AUVs that rely on visual sensing thus face difficult challenges, and consequently
+exhibit poor performance on vision-driven tasks. This paper proposes a method to improve the quality of visual underwater scenes using
+Generative Adversarial Networks (GANs), with the goal of improving input to vision-driven behaviors further down the autonomy
+pipeline. Furthermore, we show how recently proposed methods are able to generate a dataset for the purpose of such underwater image
+reconstruction\starnote{Reconstruction meaning what we are doing here, right? So this is a contribution too, to show how CycleGAN is used to
+generate the dataset, correct?}. For any visually-guided underwater robots, this improvement can result in increased safety and reliability
+through robust visual perception. To that effect, we present quantitative and qualitative data which demonstrates that images corrected
+through the proposed approach generate more visually appealing images, and also provide increased accuracy for an underwater diver tracking
+algorithm.
 \end{abstract}
 
-\IEEEpeerreviewmaketitle
+%\IEEEpeerreviewmaketitle
 
 \section{Introduction}
-TODO - talk about having to go back to the same location if you want to get good/bad pairs of the ``same'' image.
-Vision is a commonly used sensor in autonomous underwater robots due to its non-intrusive, passive, and energy
-effecient nature. The monitoring of coral reefs \cite{shkurti2012multi}, deep ocean exploration
-\cite{whitcomb2000advances}, and mapping of the seabed are all tasks suitable for autonomous robots because they
-provide safety by taking the risk instead of a human. Despite the advantages vision provides, many underwater
-environments can be quite noisy due to light refraction and particles present in the water. Because red wavelengths are
-quickly absorbed by water, images tend to have a green or blue hue to them. As you go deeper, this worsens as more
-and more red wavelengths are being absorbed. This extremely non-linear distortion has many factors such as the amount
-of light present (overcast vs sunny or depth), particles in the water, time of day, and the camera being used. This may
-cause difficulty in tasks such as segmentation, tracking, or classification due to their indirect or direct use of
-color.
+TODO - talk about having to go back to the same location if you want to get good/bad pairs of the ``same'' image.\starnote{I assume Cam will
+do this?}  Underwater robotics has been a steadily growing subfield of autonomous field robotics, assisted by the advent of novel platforms,
+sensors and propulsion mechanisms. While autonomous underwater vehicles are often equipped with a variety of sensors, visual sensing is an
+attractive option because of its non-intrusive, passive, and energy efficient nature. The monitoring of coral reefs \cite{shkurti2012multi},
+deep ocean exploration \cite{whitcomb2000advances}, and mapping of the seabed\starnote{Citation?} are a number of tasks where
+visually-guided AUVs and ROVs (Remotely Operated Vehicles) have seen widespread use. Use of these robots ensures humans are not exposed to
+the hazards of underwater exploration, as they no longer need to venture to the depths (which was how such tasks were carried out in the
+past). Despite the advantages of using vision, underwater environments pose unique challenges to visual sensing, as phenomena such as light
+refraction, absorption and scattering from suspended particles can greatly affect the optics of light. As an example, because red
+wavelengths are quickly absorbed by water, images tend to have a green or blue hue to them. As one goes deeper, this effect worsens, as more
+and more red hue is absorbed. This distortion is extremely non-linear in nature, and is affected by a large number of factors, such as the
+amount of light present (overcast versus sunny, operational depth), amount of particles in the water, time of day, and the camera being
+used. This may cause difficulty in tasks such as segmentation, tracking, or classification due to their indirect or direct use of color.
 
-As color and illumination begin to change with the depth, vision based algorithms must be very generalizable in order
-to work within the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a
-variety of underwater data, as well as the high amount of noise introduced, many algorithms may perform poorly in
-these different domains. Figure 1 shows the high variability that may occur in underwater environments. A step towards a
-solution to this
-issue is to be able to restore the images such that they appear to be above water, i.e., with colors corrected and
-particles removed. By performing a many to one mapping of these domains from underwater to not underwater (what the
-image would look like in the air), algorithms that have
+As color and illumination begin to change with the depth, vision-based algorithms must need to be very generalizable in order to work within
+the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a variety of underwater data to train a visual
+system on, as well as the high amount of noise introduced, algorithms may (and do) perform poorly in these different
+domains. Figure~\ref{fig:samples}\starnote{DO NOT USE HARDCODED FIGURE NUMBERS!!! Use a label\{\} right before the caption, and then refer
+to it using the ref\{\} command as I have done here -- see the \LaTeX source.} shows the high variability in visual scenes that may occur in
+underwater environments. A step towards a solution to this issue is to be able to restore the images such that they appear to be above
+water, \emph{i.e.}, with colors corrected and suspended particles removed from the scene. By performing a many-to-one mapping of these
+domains from underwater to not underwater (what the image would look like above water), algorithms that have difficulty performing across
+multiple forms of noise may be able to focus only one clean domain.
 
 
 \begin{figure}
@@ -154,22 +183,16 @@ image would look like in the air), algorithms that have
    \includegraphics[width=0.8in]{n02607072_10395_f1} \\
 
 \end{tabular}
+\label{fig:samples}
 \caption{Sample underwater images displaying the diversity of distortion that can occur. \textbf{Maybe say something about how
 some images lost all color, but some kept some color for close objects.}}
 \end{figure}
 
-
-
-\noindent difficulty performing across multiple forms of noise may be able to focus only one clean domain.
-
-Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of
-vision. Often times, these networks recquire large amounts of data, either labeled or paired with ground truth.
-For the problem of automatically colorizing grayscale images, paired training data is essentially free due to the
-fact that any color image can be converted to black and white. However, underwater images distorted by either color
-or some other visual effect lack ground truth. We use the recently proposed CycleGAN \cite{zhu2017unpaired}, which
-learns to translate an image from domain $X$ to domain $Y$, as a way to generate a paired dataset. By letting $X$ be
-a set of undistorted underwater images, and $Y$ be a set of distorted underwater images, we can generate an image
-that appears to be underwater while retaining ground truth.
+Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision\starnote{Cite the
+  canonical Deep Learning paper here please}. Often times, these networks require large amounts of data, either labeled or paired with
+ground truth. For the problem of automatically colorizing grayscale images\starnote{CITE something on this?}, paired training data is
+readily available due to the fact that any color image can be converted to black and white. However, underwater images distorted by either
+color or some other phenomenon lack ground truth, which is a major hindrance towards adopting a similar approach for correction. This paper proposes a technique based on Generative Adversarial Networks (GANs) to improve the quality of visual underwater scenes with the goal of improving the performance of vision-driven behaviors for autonomous underwater robots\starnote{Summarize the approach here. Then talk about datasets as you have done already.} We use the recently proposed CycleGAN~\cite{zhu2017unpaired} approach, which learns to translate an image from any arbitrary domain $X$ to another arbitrary domain $Y$, as a way to generate a paired dataset. By letting $X$ be a set of undistorted underwater images\starnote{need to say where we find the undistorted ones}, and $Y$ be a set of distorted underwater images, we can generate an image that appears to be underwater while retaining ground truth.
 
 \section{Related Work}
 
@@ -593,3 +616,8 @@ after CycleGAN, such as gaussian blurring, noise, particle effect, more lighting
 \end{document}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
