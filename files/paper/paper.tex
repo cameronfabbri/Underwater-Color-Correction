@@ -189,8 +189,8 @@ some images lost all color, but some kept some color for close objects.}}
 \end{figure}
 
 Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision\starnote{Cite the
-  canonical Deep Learning paper here please}. Often times, these networks require large amounts of data, either labeled or paired with
-ground truth. For the problem of automatically colorizing grayscale images\starnote{CITE something on this?}, paired training data is
+  canonical Deep Learning paper here please} \cite{krizhevsky2012imagenet}. Often times, these networks require large amounts of data, either labeled or paired with
+ground truth. For the problem of automatically colorizing grayscale images \cite{zhang2016colorful}\starnote{CITE something on this?}, paired training data is
 readily available due to the fact that any color image can be converted to black and white. However, underwater images distorted by either
 color or some other phenomenon lack ground truth, which is a major hindrance towards adopting a similar approach for correction. This paper proposes a technique based on Generative Adversarial Networks (GANs) to improve the quality of visual underwater scenes with the goal of improving the performance of vision-driven behaviors for autonomous underwater robots\starnote{Summarize the approach here. Then talk about datasets as you have done already.} We use the recently proposed CycleGAN~\cite{zhu2017unpaired} approach, which learns to translate an image from any arbitrary domain $X$ to another arbitrary domain $Y$, as a way to generate a paired dataset. By letting $X$ be a set of undistorted underwater images\starnote{need to say where we find the undistorted ones}, and $Y$ be a set of distorted underwater images, we can generate an image that appears to be underwater while retaining ground truth.
 
