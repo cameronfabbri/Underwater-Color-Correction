@@ -1,0 +1,26 @@
+\section{Related Work}
+\label{sec:related}
+
+While there have been a number of successful recent approaches towards automatic colorization 
+\cite{zhang2016colorful,iizuka2016let}, most are focused on the task of converting grayscale images to color. Quite a few 
+approaches use a physics-based technique to directly model light refraction~\cite{jordt2014underwater}. Specifically for
+restoring color in underwater images, the work of~\cite{torres2005color} uses an energy minimization formulation using a Markov 
+Random Field. Most similar to the work proposed in this paper is the recently proposed WaterGAN~\cite{li2017watergan}, 
+which uses an adversarial approach towards generating realistic underwater images. Their generator model can be broken down into 
+three stages: 1) Attenuation, which accounts for range-dependent attenuation of light. 2) Scattering, which models the haze 
+effect caused by photons scattering back towards the image sensor and 3) Vignetting, which produces a shading effect on the 
+image corners that can be caused by certain camera lenses. Differentiating from our work, they use a GAN for generating the 
+underwater images and use strictly Euclidean loss for color correction, whereas we use a GAN for both. Furthermore, they require 
+depth information during the training of WaterGAN, which can be often difficult to attain particularly for underwater 
+autonomous robotic applications. Our work only requires images of objects in two separate domains (\emph{e.g.}, underwater 
+and terrestrial) throughout the entire process.
+
+Recent work in generative models, specifically GANs, have shown great success in areas such as inpainting 
+\cite{pathak2016context}, style transfer \cite{Gatys_2016_CVPR}, and image-to-image translation 
+\cite{isola2016image,zhu2017unpaired}. This is primarily due to their ability to provide a more meaningful loss than simply the 
+Euclidean distance, which has been shown to produce blurry results. In our work, we structure the problem of estimating 
+the true appearance of underwater imagery as a paired image-to-image translation problem, using Generative Adversarial Networks 
+(GANs) as our generative model\starnote{this needs a little bit more expansion}. Much like the work of \cite{isola2016image}, we 
+use image pairs from two domains as input and ground truth. \starnote{Somewhere I think we should mention that unpaired image to 
+image translation is more difficult, and that cyclegan is a good way to generate a dataset in such a way to do this with image 
+pairs.}
