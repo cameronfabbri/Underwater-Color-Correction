@@ -2,6 +2,33 @@ import cv2
 import numpy as np
 from scipy.stats import signaltonoise
 
+def gdl(generated, true):
+
+   true_x_shifted_right = true[1:,:,:]
+   true_x_shifted_left = true[:-1,:,:]
+   true_x_gradient = np.abs(true_x_shifted_right - true_x_shifted_left)
+
+   generated_x_shifted_right = generated[1:,:,:]
+   generated_x_shifted_left = generated[:-1,:,:]
+   generated_x_gradient = np.abs(generated_x_shifted_right - generated_x_shifted_left)
+   
+   loss_x_gradient = np.linalg.norm(true_x_gradient - generated_x_gradient)
+
+   true_y_shifted_right = true[:,1:,:]
+   true_y_shifted_left = true[:,:-1,:]
+   true_y_gradient = np.abs(true_y_shifted_right - true_y_shifted_left)
+
+   generated_y_shifted_right = generated[:,1:,:]
+   generated_y_shifted_left = generated[:,:-1,:]
+   generated_y_gradient = np.abs(generated_y_shifted_right - generated_y_shifted_left)
+    
+   loss_y_gradient = np.linalg.norm(true_y_gradient - generated_y_gradient)
+
+   loss = loss_x_gradient + loss_y_gradient
+
+   return loss
+
+
 for i in range(1,5):
 
    flickr = cv2.imread('result_images/flickr_crop'+str(i)+'_og.png')
@@ -23,32 +50,38 @@ for i in range(1,5):
    ugan   = ugan/255.0
    uganp  = uganp/255.0
 
-   print 'crop',i
-   print
-   print 'flickr_mean :',np.mean(flickr)
-   print 'cgan_mean   :',np.mean(cgan)
-   print 'ugan_mean   :',np.mean(ugan)
-   print 'uganp_mean  :',np.mean(uganp)
-   print
-   print 'flickr_var  :',np.var(flickr)
-   print 'cgan_var    :',np.var(cgan)
-   print 'ugan_var    :',np.var(ugan)
-   print 'uganp_var   :',np.var(uganp)
-   print
-   print 'flickr_cgan:',a
-   print 'flickr_ugan:',b
-   print 'flickr_uganp:',c
-   print
-   print signaltonoise(flickr, axis=None)
-   print signaltonoise(cgan, axis=None)
-   print signaltonoise(ugan, axis=None)
-   print signaltonoise(uganp, axis=None)
-   print
-   print cv2.Laplacian(flickr, cv2.CV_64F).var()
-   print cv2.Laplacian(cgan, cv2.CV_64F).var()
-   print cv2.Laplacian(ugan, cv2.CV_64F).var()
-   print cv2.Laplacian(uganp, cv2.CV_64F).var()
+   print '+--------+'
+   print '|  crop'+str(i)+' |'
+   print '+--------+'
    print 
-   print '---'
+   print 'gdl flickr-cgan   :',gdl(flickr, cgan)
+   print 'gdl flickr-ugan   :',gdl(flickr, ugan)
+   print 'gdl flickr-uganp  :',gdl(flickr, uganp)
+   print
+   print 'flickr_mean       :',np.mean(flickr)
+   print 'cgan_mean         :',np.mean(cgan)
+   print 'ugan_mean         :',np.mean(ugan)
+   print 'uganp_mean        :',np.mean(uganp)
+   print
+   print 'flickr_var        :',np.var(flickr)
+   print 'cgan_var          :',np.var(cgan)
+   print 'ugan_var          :',np.var(ugan)
+   print 'uganp_var         :',np.var(uganp)
+   print
+   print 'flickr_cgan bhatt :',a
+   print 'flickr_ugan bhatt :',b
+   print 'flickr_uganp bhatt:',c
+   print
+   print 'snr flickr        :', signaltonoise(flickr, axis=None)
+   print 'snr cgan          :',signaltonoise(cgan, axis=None)
+   print 'snr ugan          :',signaltonoise(ugan, axis=None)
+   print 'snr uganp         :',signaltonoise(uganp, axis=None)
+   print
+   print 'laplac flickr     :',cv2.Laplacian(flickr, cv2.CV_64F).var()
+   print 'laplac cgan       :',cv2.Laplacian(cgan, cv2.CV_64F).var()
+   print 'laplac ugan       :',cv2.Laplacian(ugan, cv2.CV_64F).var()
+   print 'laplac uganp      :',cv2.Laplacian(uganp, cv2.CV_64F).var()
+   print 
+   print '----------------------------------------------'
    print
 
