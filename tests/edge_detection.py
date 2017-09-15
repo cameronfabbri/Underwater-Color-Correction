@@ -26,7 +26,7 @@ ugan_1_dist = []
 
 save_images = ['525931976_dffc710a58_o.png', '8032289_2af635da3c_o.png', '1056733511_8a8c0d9410_o.png', '2508954302_63b17667ce_o.png']
 
-save = 1
+save = 0
 
 # just open and close quick to wipe it
 results_file = open('edge_results/results.txt', 'w')

@@ -108,6 +108,11 @@ A.~Radford, L.~Metz, and S.~Chintala, ``Unsupervised representation learning
 J.~L. Ba, J.~R. Kiros, and G.~E. Hinton, ``Layer normalization,'' {\em arXiv
   preprint arXiv:1607.06450}, 2016.
 
+\bibitem{ulyanov2016instance}
+D.~Ulyanov, A.~Vedaldi, and V.~Lempitsky, ``Instance normalization: The missing
+  ingredient for fast stylization,'' {\em arXiv preprint arXiv:1607.08022},
+  2016.
+
 \bibitem{kingma2014adam}
 D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
   preprint arXiv:1412.6980}, 2014.
@@ -123,6 +128,11 @@ J.~Deng, W.~Dong, R.~Socher, L.-J. Li, K.~Li, and L.~Fei-Fei, ``Imagenet: A
   large-scale hierarchical image database,'' in {\em Computer Vision and
   Pattern Recognition, 2009. CVPR 2009. IEEE Conference on}, pp.~248--255,
   IEEE, 2009.
+
+\bibitem{canny1986computational}
+J.~Canny, ``A computational approach to edge detection,'' {\em IEEE
+  Transactions on pattern analysis and machine intelligence}, no.~6,
+  pp.~679--698, 1986.
 
 \bibitem{islam2017mixed}
 M.~J. Islam and J.~Sattar, ``Mixed-domain biological motion tracking for

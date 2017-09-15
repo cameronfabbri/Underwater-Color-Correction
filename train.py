@@ -18,8 +18,8 @@ import argparse
 import ntpath
 import sys
 import os
-import time
 import glob
+import time
 
 sys.path.insert(0, 'ops/')
 sys.path.insert(0, 'nets/')
@@ -214,7 +214,6 @@ if __name__ == '__main__':
    epoch_num = step/(num_train/BATCH_SIZE)
 
    while epoch_num < EPOCHS:
-   
       epoch_num = step/(num_train/BATCH_SIZE)
 
       idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
