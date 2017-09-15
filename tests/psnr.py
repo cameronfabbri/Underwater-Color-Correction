@@ -14,10 +14,10 @@ for i in range(1,5):
    uganp  = cv2.imread('result_images/uganp_crop' +str(i)+'_og.png')
 
 
-   print 'crop',i
-   print psnr(flickr,cgan)
-   print psnr(flickr,ugan)
-   print psnr(flickr,uganp)
+   print 'crop  ',i
+   print 'cgan: ',psnr(flickr,cgan)
+   print 'ugan: ',psnr(flickr,ugan)
+   print 'uganp:',psnr(flickr,uganp)
    print
 
 

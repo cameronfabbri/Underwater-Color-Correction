@@ -3,7 +3,6 @@ import numpy as np
 
 for i in range(1,5):
 
-   # 
    flickr = cv2.imread('result_images/flickr_crop'+str(i)+'_og.png')
    cgan   = cv2.imread('result_images/cgan_crop'  +str(i)+'_og.png')
    ugan   = cv2.imread('result_images/ugan_crop'  +str(i)+'_og.png')
