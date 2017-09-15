@@ -135,16 +135,6 @@ C.~Li and M.~Wand, ``Precomputed real-time texture synthesis with markovian
   generative adversarial networks,'' in {\em European Conference on Computer
   Vision}, pp.~702--716, Springer, 2016.
 
-\bibitem{kingma2014adam}
-D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
-  preprint arXiv:1412.6980}, 2014.
-
-\bibitem{abadi2016tensorflow}
-M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
-  A.~Davis, J.~Dean, M.~Devin, {\em et~al.}, ``Tensorflow: Large-scale machine
-  learning on heterogeneous distributed systems,'' {\em arXiv preprint
-  arXiv:1603.04467}, 2016.
-
 \bibitem{deng2009imagenet}
 J.~Deng, W.~Dong, R.~Socher, L.-J. Li, K.~Li, and L.~Fei-Fei, ``Imagenet: A
   large-scale hierarchical image database,'' in {\em Computer Vision and
@@ -155,6 +145,16 @@ J.~Deng, W.~Dong, R.~Socher, L.-J. Li, K.~Li, and L.~Fei-Fei, ``Imagenet: A
 J.~Canny, ``A computational approach to edge detection,'' {\em IEEE
   Transactions on pattern analysis and machine intelligence}, no.~6,
   pp.~679--698, 1986.
+
+\bibitem{kingma2014adam}
+D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
+  preprint arXiv:1412.6980}, 2014.
+
+\bibitem{abadi2016tensorflow}
+M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
+  A.~Davis, J.~Dean, M.~Devin, {\em et~al.}, ``Tensorflow: Large-scale machine
+  learning on heterogeneous distributed systems,'' {\em arXiv preprint
+  arXiv:1603.04467}, 2016.
 
 \bibitem{islam2017mixed}
 M.~J. Islam and J.~Sattar, ``Mixed-domain biological motion tracking for

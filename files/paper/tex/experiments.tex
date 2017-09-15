@@ -1,4 +1,6 @@
 \section{Experiments}
+\label{sec:experiments}
+
 \subsection{Datasets}
 We used several subsets of Imagenet~\cite{deng2009imagenet} for training and evaluation of our methods. We also evaluate a 
 tracking
@@ -92,6 +94,17 @@ present.}
 %Score $\pm$ std. & $5.69 \pm 0.23$ & $6.18 \pm 0.35$ & $6.30 \pm 0.32$ & $6.37 \pm 0.43$ \\ \hline
 %\end{tabular}
 %\end{center}
+
+
+\subsection{Training and Inference Performance}
+In all of our experiments, we use $\lambda_{1} = 100$, $\lambda_{GP} = 10$, batch size of 32, and the Adam Optimizer 
+\cite{kingma2014adam} with learning rate $1e-4$. Following WGAN-GP, the discriminator is updated $n$ times for every update of the 
+generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$ and $\alpha = 1$. Our implementation was done using the 
+Tensorflow library \cite{abadi2016tensorflow}. \footnote{Code is available at 
+\url{https://github.com/cameronfabbri/Underwater-Color-Correction}} All networks were trained from scratch on a GTX 1080 for 100 
+epochs. Inference on the GPU takes on average $ 0.0138s$, which is about 72 Frames Per Second (FPS). On a CPU (Intel Core 
+i7-5930K), inference takes on average $ 0.1244s$, which is about 8 FPS. We find both of these measures acceptable for underwater 
+tasks.
 
 \subsection{Comparison to CycleGAN}
 It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a
