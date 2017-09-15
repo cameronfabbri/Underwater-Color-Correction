@@ -12,6 +12,13 @@ L.~Whitcomb, D.~R. Yoerger, H.~Singh, and J.~Howland, ``Advances in underwater
   robot vehicles for deep ocean exploration: Navigation, control, and survey
   operations,'' in {\em Robotics Research}, pp.~439--448, Springer, 2000.
 
+\bibitem{bingham2010robotic}
+B.~Bingham, B.~Foley, H.~Singh, R.~Camilli, K.~Delaporta, R.~Eustice,
+  A.~Mallios, D.~Mindell, C.~Roman, and D.~Sakellariou, ``Robotic tools for
+  deep water archaeology: Surveying an ancient shipwreck with an autonomous
+  underwater vehicle,'' {\em Journal of Field Robotics}, vol.~27, no.~6,
+  pp.~702--717, 2010.
+
 \bibitem{krizhevsky2012imagenet}
 A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton, ``Imagenet classification with
   deep convolutional neural networks,'' in {\em Advances in neural information
@@ -32,14 +39,14 @@ S.~Iizuka, E.~Simo-Serra, and H.~Ishikawa, ``Let there be color!: joint
   colorization with simultaneous classification,'' {\em ACM Transactions on
   Graphics (TOG)}, vol.~35, no.~4, p.~110, 2016.
 
-\bibitem{torres2005color}
-L.~A. Torres-M{\'e}ndez and G.~Dudek, ``Color correction of underwater images
-  for aquatic robot inspection,'' in {\em EMMCVPR}, pp.~60--73, Springer, 2005.
-
 \bibitem{jordt2014underwater}
 A.~Jordt, {\em Underwater 3D reconstruction based on physical models for
   refraction and underwater light propagation}.
 \newblock Department of Computer Science, Univ. Kiel, 2014.
+
+\bibitem{torres2005color}
+L.~A. Torres-M{\'e}ndez and G.~Dudek, ``Color correction of underwater images
+  for aquatic robot inspection,'' in {\em EMMCVPR}, pp.~60--73, Springer, 2005.
 
 \bibitem{li2017watergan}
 J.~Li, K.~A. Skinner, R.~M. Eustice, and M.~Johnson-Roberson, ``Watergan:

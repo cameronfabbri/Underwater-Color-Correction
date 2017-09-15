@@ -1,4 +1,5 @@
-rm paper.aux paper.b* paper.log
-pdflatex paper.tex
-bibtex paper.aux
-pdflatex paper.tex
+rm paper.aux paper.b* paper.log paper.pdf
+pdflatex paper
+bibtex paper
+bibtex paper
+pdflatex paper

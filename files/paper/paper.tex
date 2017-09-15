@@ -24,7 +24,7 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-\title{UGAN: Underwater Image Restoration using Generative Adversarial Networks}
+\title{UGAN: Improving Underwater Image Quality using Generative Adversarial Networks}
 \author{Cameron Fabbri$^{1}$, Md Jahidul Islam$^{2}$, and Junaed Sattar$^{3}$
 \thanks{				
   The authors are with the Department of Computer Science and Engineering, University of Minnesota-Twin  Cities, MN 55455, USA. \newline
@@ -74,7 +74,7 @@ algorithm.
 Underwater robotics has been a steadily growing subfield of autonomous field robotics, assisted by the advent of novel platforms,
 sensors and propulsion mechanisms. While autonomous underwater vehicles are often equipped with a variety of sensors, visual sensing is an
 attractive option because of its non-intrusive, passive, and energy efficient nature. The monitoring of coral reefs \cite{shkurti2012multi},
-deep ocean exploration \cite{whitcomb2000advances}, and mapping of the seabed\starnote{Citation?} are a number of tasks where
+deep ocean exploration \cite{whitcomb2000advances}, and mapping of the seabed~\cite{bingham2010robotic} are a number of tasks where
 visually-guided AUVs and ROVs (Remotely Operated Vehicles) have seen widespread use. Use of these robots ensures humans are not exposed to
 the hazards of underwater exploration, as they no longer need to venture to the depths (which was how such tasks were carried out in the
 past). Despite the advantages of using vision, underwater environments pose unique challenges to visual sensing, as phenomena such as light
@@ -109,8 +109,9 @@ multiple forms of noise may be able to focus only one clean domain.
 
 \end{tabular}
 \label{fig:samples}
-\caption{Sample underwater images displaying the diversity of distortion that can occur. Due to the variety of distances
-of objects in the image, there is a varying amount of color loss and distortion.}
+\caption{Sample underwater images with natural and man-made artifacts (which in this case is our underwater robot) displaying the 
+diversity of distortion that can occur. With the varying camera-to-object distances in the images, the distortion and loss of 
+color varies between the different images.}
 \end{figure}
 
 Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision \cite{krizhevsky2012imagenet}. Often times, these networks require large amounts of data, either labeled or paired with
@@ -126,27 +127,29 @@ ground truth.
 
 \section{Related Work}
 
-While there have been many very successful recent approaches towards automatic colorization
-\cite{zhang2016colorful,iizuka2016let}, most are focused on the task of grayscale to color.
-The work of \cite{torres2005color} uses an energy minimization formulation using a Markov Random Field. 
-Many employ the use of a physics based model to directly model light refraction \cite{jordt2014underwater}.
-Most similar to our line of work is the recently proposed WaterGAN \cite{li2017watergan}, which uses an adversarial
-approach towards generating realistic underwater images. Their generator model can be broken down into three stages:
-1) Attenuation, which accounts for range-dependent attenuation of light.
-2) Scattering, which models the haze effect caused by photons scattering back towards the image sensor. 3)
-Vingetting, which produces a shading effect on the image corners that can be caused by certain camera lenses.
-Opposed to our work, they use a GAN for generating the underwater images and strictly Euclidean loss for color
-correction, where as we use a GAN for both. Furthermore, they require depth information during the training of WaterGAN,
-whereas we only require two separate image domains throughout.
+While there have been a number of successful recent approaches towards automatic colorization 
+\cite{zhang2016colorful,iizuka2016let}, most are focused on the task of converting grayscale images to color. Quite a few 
+approaches use a physics-based technique to directly model light refraction~\cite{jordt2014underwater}. Specifically for
+restoring color in underwater images, the work of~\cite{torres2005color} uses an energy minimization formulation using a Markov 
+Random Field. Most similar to the work proposed in this paper is the recently proposed WaterGAN~\cite{li2017watergan}, 
+which uses an adversarial approach towards generating realistic underwater images. Their generator model can be broken down into 
+three stages: 1) Attenuation, which accounts for range-dependent attenuation of light. 2) Scattering, which models the haze 
+effect caused by photons scattering back towards the image sensor and 3) Vignetting, which produces a shading effect on the 
+image corners that can be caused by certain camera lenses. Differentiating from our work, they use a GAN for generating the 
+underwater images and use strictly Euclidean loss for color correction, whereas we use a GAN for both. Furthermore, they require 
+depth information during the training of WaterGAN, which can be often difficult to attain particularly for underwater 
+autonomous robotic applications. Our work only requires images of objects in two separate domains (\emph{e.g.}, underwater 
+and terrestrial) throughout the entire process.
 
-Recent work in generative models, specifically GANs, have shown great success
-in areas such as inpainting \cite{pathak2016context}, style transfer \cite{Gatys_2016_CVPR}, and image-to-image
-translation \cite{isola2016image,zhu2017unpaired}. This is highly due to their ability to provide a more meaningful
-loss than simply the Euclidean distance, which has been shown to produce blurry results. In our work, we structure
-the problem as paired image-to-image translation, using Generative Adversarial Networks (GANs) as our generative model.
-Much like the work of \cite{isola2016image}, we use image pairs from two domains an input and ground truth.
-\starnote{Somewhere I think we should mention that unpaired image to image translation is more difficult, and
-that cyclegan is a good way to generate a dataset in such a way to do this with image pairs.}
+Recent work in generative models, specifically GANs, have shown great success in areas such as inpainting 
+\cite{pathak2016context}, style transfer \cite{Gatys_2016_CVPR}, and image-to-image translation 
+\cite{isola2016image,zhu2017unpaired}. This is primarily due to their ability to provide a more meaningful loss than simply the 
+Euclidean distance, which has been shown to produce blurry results. In our work, we structure the problem of estimating 
+the true appearance of underwater imagery as a paired image-to-image translation problem, using Generative Adversarial Networks 
+(GANs) as our generative model\starnote{this needs a little bit more expansion}. Much like the work of \cite{isola2016image}, we 
+use image pairs from two domains as input and ground truth. \starnote{Somewhere I think we should mention that unpaired image to 
+image translation is more difficult, and that cyclegan is a good way to generate a dataset in such a way to do this with image 
+pairs.}
 
 \section{Method}
 
@@ -260,11 +263,12 @@ Gradient Difference Loss (GDL) is given by
 \end{equation}
 
 \noindent In our experiments, we denote our network as UGAN-P when considering the GDL, which can be expressed as
-\starnote{I don't like the - in this equation, but don't know how to change it to be shorter}
+\starnote{JS: DONE. I don't like the - in this equation, but don't know how to change it to be shorter}
 
 \begin{equation}
    \begin{aligned}
-      \mathcal{L}_{UGAN-P}^* = \min\limits_{G}\max\limits_{D} \mathcal{L}_{WGAN}(G,D) + & \\
+      \mathcal{L}_{UGAN\scalebox{0.4}[1.0]{\( - \)}P}^* = \min\limits_{G}\max\limits_{D} \mathcal{L}_{WGAN}(G,D) + & \\
+      % \mathcal{L}_{UGAN-P}^* = \min\limits_{G}\max\limits_{D} \mathcal{L}_{WGAN}(G,D) + & \\
       \lambda_{1} \mathcal{L}_{L1}(G) + & \lambda_{2} \mathcal{L}_{GDL}
    \end{aligned}
 \end{equation}
@@ -306,29 +310,30 @@ is about 8 FPS. We find both of these measures acceptable for underwater tasks.
 
 \section{Experiments}
 \subsection{Datasets}
-We used several subsets of Imagenet \cite{deng2009imagenet} for training and evaluation of our methods. We also
-evaluate a tracking algorithm on a diving video taken from Youtube
-\footnote{https://www.youtube.com/watch?v=QmRFmhILd5o}. Subsets of Imagenet containing underwater images
-were selected for the training of CycleGAN, and manually separated into two classes based on visual inspection. We let
-$X$ be the set of
-underwater images with no distortion, and $Y$ be the set of underwater images with distortion. $X$ contained 6143
-images, and $Y$ contained 1817 images. We then trained CycleGAN to learn the mapping $F: X \rightarrow Y$, such that
-images from $X$ appeared to have come from $Y$. Finally, our image pairs for training data were generated by distorting
-all images in $X$ with $F$. Figure ~\ref{cgan_samples} shows sample training pairs. When comparing with CycleGAN, we used a test set
-of 56 images acquired from Flickr \textsuperscript{TM}.
+We used several subsets of Imagenet~\cite{deng2009imagenet} for training and evaluation of our methods. We also evaluate a tracking
+algorithm on a video of scuba divers taken from Youtube \footnote{https://www.youtube.com/watch?v=QmRFmhILd5o}. Subsets of Imagenet
+containing underwater images were selected for the training of CycleGAN, and manually separated into two classes based on visual
+inspection. We let $X$ be the set of underwater images with no distortion, and $Y$ be the set of underwater images with distortion. $X$
+contained 6143 images, and $Y$ contained 1817 images. We then trained CycleGAN to learn the mapping $F: X \rightarrow Y$, such that images
+from $X$ appeared to have come from $Y$. Finally, our image pairs for training data were generated by distorting all images in $X$ with
+$F$. Figure~\ref{fig:cgan_samples} shows sample training pairs. When comparing with CycleGAN, we used a test set of 56 images 
+acquired from
+Flickr\texttrademark .
 
 \subsection{Evaluation}
 We train UGAN and UGAN-P on the image pairs generated by CycleGAN, and evaluate on the images from the
 test set, $Y$. Note that these images do not contain any ground truth, as they are original distorted images from
 Imagenet. Images for training and testing are of size $256 \times 256 \times 3$ and normalized between $[-1, 1]$.
-Figure ~\ref{test_samples} shows samples from the test set. Notably, these images contain varying amounts of noise. Both UGAN and UGAN-P
+Figure ~\ref{fig:test_samples} shows samples from the test set. Notably, these images contain varying amounts of noise. Both UGAN 
+and UGAN-P
 are able to recover lost color information, as well as correct any color information this is present. 
 
 While many of the distorted images contain a blue or green hue over the entire image space, that is not always the case.
 In certain environments,
 it is possible that objects close to the camera are undistorted with correct colors, while the background
 of the image contains distortion. In these cases, we would like the network to only correct parts of the image that
-appear distorted. The last row in Figure ~\ref{test_samples} shows a sample of such an image. The orange of the clownfish is left
+appear distorted. The last row in Figure ~\ref{fig:test_samples} shows a sample of such an image. The orange of the clownfish is 
+left
 unchanged while the distorted sea anemone in the background has its color corrected.
 
 We use three metrics for a quantitative evaluation. First, we compare to CycleGAN, as it inherently learns an inverse
@@ -398,11 +403,11 @@ mapping $G: Y \rightarrow X$. Here we show that UGAN and UGAN-P provide superior
 detector \cite{canny1986computational} to provide a color agnostic evaluation of the images, as the original contain
 distorted colors and cannot be compared back to as ground truth. Due to the fact that restoring color information
 should not alter the overall structure of the image, we measure the distance in the image space between the edges
-found in the original and generated images. Figure ~\ref{canny_samples} shows the original images and results from
-edge detection. Table 1 provides the measurements from Figure ~\ref{canny_samples}, as well as the average over the
+found in the original and generated images. Figure ~\ref{fig:canny_samples} shows the original images and results from
+edge detection. Table 1 provides the measurements from Figure ~\ref{fig:canny_samples}, as well as the average over the
 entire dataset.
 
-We explore the artifacts of content loss, as seen in Figure ~\ref{zoom}. In particular, we compare local statistics
+We explore the artifacts of content loss, as seen in Figure ~\ref{fig:zoom}. In particular, we compare local statistics
 of the highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL
 \cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. 
 

@@ -3,50 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: ieeetr.bst
 Database file #1: cambibs.bib
-Repeated entry---line 169 of file cambibs.bib
- : @inproceedings{torres2005color
- :                               ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for ""
-You've used 32 entries,
+You've used 33 entries,
             1876 wiz_defined-function locations,
-            643 strings with 9998 characters,
-and the built_in function-call counts, 8747 in all, are:
-= -- 770
-> -- 447
+            650 strings with 10386 characters,
+and the built_in function-call counts, 9183 in all, are:
+= -- 808
+> -- 479
 < -- 0
-+ -- 160
-- -- 128
-* -- 634
-:= -- 1266
-add.period$ -- 34
-call.type$ -- 32
-change.case$ -- 30
++ -- 171
+- -- 138
+* -- 674
+:= -- 1333
+add.period$ -- 35
+call.type$ -- 33
+change.case$ -- 31
 chr.to.int$ -- 0
-cite$ -- 32
-duplicate$ -- 472
-empty$ -- 858
-format.name$ -- 128
-if$ -- 2091
+cite$ -- 33
+duplicate$ -- 489
+empty$ -- 888
+format.name$ -- 138
+if$ -- 2190
 int.to.chr$ -- 0
-int.to.str$ -- 32
-missing$ -- 34
-newline$ -- 101
-num.names$ -- 34
-pop$ -- 161
+int.to.str$ -- 33
+missing$ -- 35
+newline$ -- 104
+num.names$ -- 35
+pop$ -- 162
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 256
+skip$ -- 270
 stack$ -- 0
-substring$ -- 486
-swap$ -- 159
+substring$ -- 518
+swap$ -- 168
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 76
-width$ -- 34
-write$ -- 291
-(There was 1 error message)
+while$ -- 80
+width$ -- 35
+write$ -- 302
