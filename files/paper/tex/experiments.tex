@@ -108,17 +108,22 @@ tasks.
 
 \subsection{Comparison to CycleGAN}
 It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a
-mapping $G: Y \rightarrow X$. Here we show that UGAN and UGAN-P provide superior performance. We use the Canny edge
+mapping $G: Y \rightarrow X$. Here we give a comparison to our methods. We use the Canny edge
 detector \cite{canny1986computational} to provide a color agnostic evaluation of the images, as the original contain
 distorted colors and cannot be compared back to as ground truth. Due to the fact that restoring color information
 should not alter the overall structure of the image, we measure the distance in the image space between the edges
 found in the original and generated images. Figure ~\ref{fig:canny_samples} shows the original images and results from
-edge detection. Table 1 provides the measurements from Figure ~\ref{fig:canny_samples}, as well as the average over the
-entire dataset.
+edge detection. Table 1 provides the measurements from Figure ~\ref{fig:canny_samples}, as well as the average over our
+entire Flickr\texttrademark ~dataset. Both UGAN and UGAN-P are consistently closer in the image space to the original
+than that of CycleGAN, suggesting noise due to blur. Next, we evaluate this noise explicitly.
 
 We explore the artifacts of content loss, as seen in Figure ~\ref{fig:zoom}. In particular, we compare local statistics
 of the highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL
-\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. Laplacian stuff \cite{pertuz2013analysis}
+\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. A lower GDL measure implies a smoother transition
+between pixels, as a noisy image would have large jumps in the image's gradient, leading to a higher score. \starnote{I THINK. I would double check, bottom of page 4: https://arxiv.org/pdf/1511.05440.pdf}.
+As seen in Table \ref{fig:gdl_tbl}, the GDL is lower for both UGAN and UGAN-P. Interestingly, UGAN consistently has a
+lower score than UGAN-P, despite UGAN-P explicitly accounting for this metric in the objective function. Reasoning for
+this is left for our future work.
 
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
@@ -240,6 +245,7 @@ the result of the edge detector.}
    Green  & 4.15  & 3.18 & 3.25 \\ \hline
    Orange & 6.72  & 5.65 & 5.79 \\ \hline
 \end{tabular}
+\label{fig:gdl_tbl}
 \end{table}
 
 \begin{table}[ht]
