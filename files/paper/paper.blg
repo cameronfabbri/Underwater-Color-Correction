@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: ieeetr.bst
 Database file #1: cambibs.bib
-You've used 35 entries,
+You've used 34 entries,
             1876 wiz_defined-function locations,
-            662 strings with 10716 characters,
-and the built_in function-call counts, 9715 in all, are:
-= -- 863
-> -- 498
+            654 strings with 10544 characters,
+and the built_in function-call counts, 9332 in all, are:
+= -- 820
+> -- 487
 < -- 0
-+ -- 178
-- -- 143
-* -- 711
-:= -- 1407
-add.period$ -- 37
-call.type$ -- 35
-change.case$ -- 33
++ -- 174
+- -- 140
+* -- 683
+:= -- 1358
+add.period$ -- 36
+call.type$ -- 34
+change.case$ -- 32
 chr.to.int$ -- 0
-cite$ -- 35
-duplicate$ -- 517
-empty$ -- 938
-format.name$ -- 143
-if$ -- 2320
+cite$ -- 34
+duplicate$ -- 498
+empty$ -- 905
+format.name$ -- 140
+if$ -- 2225
 int.to.chr$ -- 0
-int.to.str$ -- 35
-missing$ -- 37
-newline$ -- 110
-num.names$ -- 37
-pop$ -- 167
+int.to.str$ -- 34
+missing$ -- 36
+newline$ -- 107
+num.names$ -- 36
+pop$ -- 166
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 289
+skip$ -- 272
 stack$ -- 0
-substring$ -- 558
-swap$ -- 180
+substring$ -- 518
+swap$ -- 169
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 85
-width$ -- 37
-write$ -- 321
+while$ -- 81
+width$ -- 36
+write$ -- 310
