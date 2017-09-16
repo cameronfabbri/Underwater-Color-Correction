@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from scipy.stats import signaltonoise
+import math
 
 def gdl(generated, true):
 
@@ -28,6 +29,9 @@ def gdl(generated, true):
 
    return loss
 
+def psnr(img1, img2):
+   mse = np.mean( (img1 - img2) ** 2 )
+   return 10 * math.log10(255.0**2/mse)
 
 for i in range(1,5):
 
@@ -72,10 +76,14 @@ for i in range(1,5):
    print 'flickr_ugan bhatt :',b
    print 'flickr_uganp bhatt:',c
    print
-   print 'snr flickr        :', signaltonoise(flickr, axis=None)
+   print 'snr flickr        :',signaltonoise(flickr, axis=None)
    print 'snr cgan          :',signaltonoise(cgan, axis=None)
    print 'snr ugan          :',signaltonoise(ugan, axis=None)
    print 'snr uganp         :',signaltonoise(uganp, axis=None)
+   print
+   print 'cgan:             ',psnr(flickr,cgan)
+   print 'ugan:             ',psnr(flickr,ugan)
+   print 'uganp:            ',psnr(flickr,uganp)
    print
    print 'laplac flickr     :',cv2.Laplacian(flickr, cv2.CV_64F).var()
    print 'laplac cgan       :',cv2.Laplacian(cgan, cv2.CV_64F).var()
