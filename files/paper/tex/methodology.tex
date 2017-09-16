@@ -1,6 +1,12 @@
 \section{Methodology}
 \label{sec:methodology}
-\starnote{A short summary of the method needs to go here, like an overview, so the reader can `stay in the loop' so to speak.}
+Underwater images distorted by color or circumstance lack ground truth, which is a necessity for previous colorization
+approaches. Furthermore, the distortion present in an underwater image is highly nonlinear; simple methods such as
+adding a hue to an image do not capture all of the dependencies. We propose to use CycleGAN as a distortion model in
+order to generate paired images for training. Given a domain of underwater images with no distortion, and a domain of
+underwater images with distortion, CycleGAN is able to perform style transfer. Given an undistorted image, CycleGAN
+distorts it such that it appears to have come from the domain of distorted images. These pairs are then used in our
+algorithm for image reconstruction.
 
 \subsection{Dataset Generation}
 Depth, lighting conditions, camera model, and physical location in the underwater environment are all factors that affect the 
