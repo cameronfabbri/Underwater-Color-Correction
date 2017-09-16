@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 19:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 20:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
 (./ieeeconf.cls
 
 LaTeX Warning: You have requested document class `ieeeconf',
@@ -462,10 +462,10 @@ File: images/figure1/n01496331_7428_f1.png Graphic file (type png)
 
 <use images/figure1/n01496331_7428_f1.png>
 Package pdftex.def Info: images/figure1/n01496331_7428_f1.png used on input lin
-e 47.
+e 46.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 47--47
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 46--46
 [][]| 
  []
 
@@ -474,10 +474,10 @@ File: images/figure1/n01496331_16340_f1.png Graphic file (type png)
 
 <use images/figure1/n01496331_16340_f1.png>
 Package pdftex.def Info: images/figure1/n01496331_16340_f1.png used on input li
-ne 48.
+ne 47.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 48--48
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 47--47
 [][]| 
  []
 
@@ -486,10 +486,10 @@ File: images/figure1/n01914609_5148_f1.png Graphic file (type png)
 
 <use images/figure1/n01914609_5148_f1.png>
 Package pdftex.def Info: images/figure1/n01914609_5148_f1.png used on input lin
-e 49.
+e 48.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 49--49
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 48--48
 [][]| 
  []
 
@@ -497,10 +497,10 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 49--49
 File: images/figure1/robot_f1.png Graphic file (type png)
 
 <use images/figure1/robot_f1.png>
-Package pdftex.def Info: images/figure1/robot_f1.png used on input line 50.
+Package pdftex.def Info: images/figure1/robot_f1.png used on input line 49.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 50--51
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 49--50
 [][]| 
  []
 
@@ -509,10 +509,10 @@ File: images/figure1/n01664065_30279_f1.png Graphic file (type png)
 
 <use images/figure1/n01664065_30279_f1.png>
 Package pdftex.def Info: images/figure1/n01664065_30279_f1.png used on input li
-ne 51.
+ne 50.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 51--51
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 50--50
 [][]| 
  []
 
@@ -521,10 +521,10 @@ File: images/figure1/n01917289_5711_f1.png Graphic file (type png)
 
 <use images/figure1/n01917289_5711_f1.png>
 Package pdftex.def Info: images/figure1/n01917289_5711_f1.png used on input lin
-e 52.
+e 51.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 52--52
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 51--51
 [][]| 
  []
 
@@ -533,10 +533,10 @@ File: images/figure1/n01917289_4087_f1.png Graphic file (type png)
 
 <use images/figure1/n01917289_4087_f1.png>
 Package pdftex.def Info: images/figure1/n01917289_4087_f1.png used on input lin
-e 53.
+e 52.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 53--53
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 52--52
 [][]| 
  []
 
@@ -545,10 +545,10 @@ File: images/figure1/n02607072_10395_f1.png Graphic file (type png)
 
 <use images/figure1/n02607072_10395_f1.png>
 Package pdftex.def Info: images/figure1/n02607072_10395_f1.png used on input li
-ne 54.
+ne 53.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 54--55
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 53--54
 [][]| 
  []
 
@@ -1546,24 +1546,7 @@ Overfull \hbox (4.09808pt too wide) in paragraph at lines 206--228
 [][] 
  []
 
-[5 <./images/edges/1_original.png (PNG copy)> <./images/edges/1_cimg.png (PNG c
-opy)> <./images/edges/1_u0img.png (PNG copy)> <./images/edges/1_u1img.png (PNG 
-copy)> <./images/edges/1_oedges.png (PNG copy)> <./images/edges/1_cedges.png (P
-NG copy)> <./images/edges/1_u0edges.png (PNG copy)> <./images/edges/1_u1edges.p
-ng (PNG copy)> <./images/edges/2_original.png (PNG copy)> <./images/edges/2_cim
-g.png (PNG copy)> <./images/edges/2_u0img.png (PNG copy)> <./images/edges/2_u1i
-mg.png (PNG copy)> <./images/edges/2_oedges.png (PNG copy)> <./images/edges/2_c
-edges.png (PNG copy)> <./images/edges/2_u0edges.png (PNG copy)> <./images/edges
-/2_u1edges.png (PNG copy)> <./images/edges/3_original.png (PNG copy)> <./images
-/edges/3_cimg.png (PNG copy)> <./images/edges/3_u0img.png (PNG copy)> <./images
-/edges/3_u1img.png (PNG copy)> <./images/edges/3_oedges.png (PNG copy)> <./imag
-es/edges/3_cedges.png (PNG copy)> <./images/edges/3_u0edges.png (PNG copy)> <./
-images/edges/3_u1edges.png (PNG copy)> <./images/edges/4_original.png (PNG copy
-)> <./images/edges/4_cimg.png (PNG copy)> <./images/edges/4_u0img.png (PNG copy
-)> <./images/edges/4_u1img.png (PNG copy)> <./images/edges/4_oedges.png (PNG co
-py)> <./images/edges/4_cedges.png (PNG copy)> <./images/edges/4_u0edges.png (PN
-G copy)> <./images/edges/4_u1edges.png (PNG copy)>]
-<images/mdpm/real1.png, id=221, 256.96pt x 256.96pt>
+<images/mdpm/real1.png, id=214, 256.96pt x 256.96pt>
 File: images/mdpm/real1.png Graphic file (type png)
 
 <use images/mdpm/real1.png>
@@ -1574,7 +1557,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 249--249
 [][]| 
  []
 
-<images/mdpm/real2.png, id=222, 256.96pt x 256.96pt>
+<images/mdpm/real2.png, id=215, 256.96pt x 256.96pt>
 File: images/mdpm/real2.png Graphic file (type png)
 
 <use images/mdpm/real2.png>
@@ -1585,7 +1568,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 250--250
 [][]| 
  []
 
-<images/mdpm/real3.png, id=223, 256.96pt x 256.96pt>
+<images/mdpm/real3.png, id=216, 256.96pt x 256.96pt>
 File: images/mdpm/real3.png Graphic file (type png)
 
 <use images/mdpm/real3.png>
@@ -1596,7 +1579,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 251--251
 [][]| 
  []
 
-<images/mdpm/real4.png, id=224, 256.96pt x 256.96pt>
+<images/mdpm/real4.png, id=217, 256.96pt x 256.96pt>
 File: images/mdpm/real4.png Graphic file (type png)
 
 <use images/mdpm/real4.png>
@@ -1607,7 +1590,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 252--253
 [][]| 
  []
 
-<images/mdpm/gen1.png, id=225, 256.96pt x 256.96pt>
+<images/mdpm/gen1.png, id=218, 256.96pt x 256.96pt>
 File: images/mdpm/gen1.png Graphic file (type png)
  <use images/mdpm/gen1.png>
 Package pdftex.def Info: images/mdpm/gen1.png used on input line 253.
@@ -1617,7 +1600,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 253--253
 [][]| 
  []
 
-<images/mdpm/gen2.png, id=226, 256.96pt x 256.96pt>
+<images/mdpm/gen2.png, id=219, 256.96pt x 256.96pt>
 File: images/mdpm/gen2.png Graphic file (type png)
  <use images/mdpm/gen2.png>
 Package pdftex.def Info: images/mdpm/gen2.png used on input line 254.
@@ -1627,7 +1610,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 254--254
 [][]| 
  []
 
-<images/mdpm/gen3.png, id=227, 256.96pt x 256.96pt>
+<images/mdpm/gen3.png, id=220, 256.96pt x 256.96pt>
 File: images/mdpm/gen3.png Graphic file (type png)
  <use images/mdpm/gen3.png>
 Package pdftex.def Info: images/mdpm/gen3.png used on input line 255.
@@ -1637,7 +1620,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 255--255
 [][]| 
  []
 
-<images/mdpm/gen4.png, id=228, 256.96pt x 256.96pt>
+<images/mdpm/gen4.png, id=221, 256.96pt x 256.96pt>
 File: images/mdpm/gen4.png Graphic file (type png)
  <use images/mdpm/gen4.png>
 Package pdftex.def Info: images/mdpm/gen4.png used on input line 256.
@@ -1647,7 +1630,37 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 256--257
 [][]| 
  []
 
-) (./tex/conclusions.tex) (./paper.bbl
+) (./tex/conclusions.tex) (./paper.bbl [5 <./images/edges/1_original.png (PNG c
+opy)> <./images/edges/1_cimg.png (PNG copy)> <./images/edges/1_u0img.png (PNG c
+opy)> <./images/edges/1_u1img.png (PNG copy)> <./images/edges/1_oedges.png (PNG
+ copy)> <./images/edges/1_cedges.png (PNG copy)> <./images/edges/1_u0edges.png 
+(PNG copy)> <./images/edges/1_u1edges.png (PNG copy)> <./images/edges/2_origina
+l.png (PNG copy)> <./images/edges/2_cimg.png (PNG copy)> <./images/edges/2_u0im
+g.png (PNG copy)> <./images/edges/2_u1img.png (PNG copy)> <./images/edges/2_oed
+ges.png (PNG copy)> <./images/edges/2_cedges.png (PNG copy)> <./images/edges/2_
+u0edges.png (PNG copy)> <./images/edges/2_u1edges.png (PNG copy)> <./images/edg
+es/3_original.png (PNG copy)> <./images/edges/3_cimg.png (PNG copy)> <./images/
+edges/3_u0img.png (PNG copy)> <./images/edges/3_u1img.png (PNG copy)> <./images
+/edges/3_oedges.png (PNG copy)> <./images/edges/3_cedges.png (PNG copy)> <./ima
+ges/edges/3_u0edges.png (PNG copy)> <./images/edges/3_u1edges.png (PNG copy)> <
+./images/edges/4_original.png (PNG copy)> <./images/edges/4_cimg.png (PNG copy)
+> <./images/edges/4_u0img.png (PNG copy)> <./images/edges/4_u1img.png (PNG copy
+)> <./images/edges/4_oedges.png (PNG copy)> <./images/edges/4_cedges.png (PNG c
+opy)> <./images/edges/4_u0edges.png (PNG copy)> <./images/edges/4_u1edges.png (
+PNG copy)>] [6 <./images/figure3/flickr_cmp.png (PNG copy)> <./images/figure3/c
+gan_cmp.png (PNG copy)> <./images/figure3/ugan_cmp.png (PNG copy)> <./images/fi
+gure3/uganp_cmp.png (PNG copy)> <./images/figure3/flickr_crop1.png (PNG copy)> 
+<./images/figure3/flickr_crop2.png (PNG copy)> <./images/figure3/cgan_crop1.png
+ (PNG copy)> <./images/figure3/cgan_crop2.png (PNG copy)> <./images/figure3/uga
+n_crop1.png (PNG copy)> <./images/figure3/ugan_crop2.png (PNG copy)> <./images/
+figure3/flickr_crop3.png (PNG copy)> <./images/figure3/flickr_crop4.png (PNG co
+py)> <./images/figure3/cgan_crop3.png (PNG copy)> <./images/figure3/cgan_crop4.
+png (PNG copy)> <./images/figure3/ugan_crop3.png (PNG copy)> <./images/figure3/
+ugan_crop4.png (PNG copy)> <./images/mdpm/real1.png (PNG copy)> <./images/mdpm/
+real2.png (PNG copy)> <./images/mdpm/real3.png (PNG copy)> <./images/mdpm/real4
+.png (PNG copy)> <./images/mdpm/gen1.png (PNG copy)> <./images/mdpm/gen2.png (P
+NG copy)> <./images/mdpm/gen3.png (PNG copy)> <./images/mdpm/gen4.png (PNG copy
+)>]
 Underfull \hbox (badness 10000) in paragraph at lines 90--92
 []\OT1/ptm/m/n/8 I. Gul-ra-jani, F. Ahmed, M. Ar-jovsky, V. Du-moulin, and
  []
@@ -1658,16 +1671,7 @@ Underfull \hbox (badness 3557) in paragraph at lines 90--92
 /ptm/m/it/8 arXiv
  []
 
-[6 <./images/figure3/flickr_cmp.png (PNG copy)> <./images/figure3/cgan_cmp.png 
-(PNG copy)> <./images/figure3/ugan_cmp.png (PNG copy)> <./images/figure3/uganp_
-cmp.png (PNG copy)> <./images/figure3/flickr_crop1.png (PNG copy)> <./images/fi
-gure3/flickr_crop2.png (PNG copy)> <./images/figure3/cgan_crop1.png (PNG copy)>
- <./images/figure3/cgan_crop2.png (PNG copy)> <./images/figure3/ugan_crop1.png 
-(PNG copy)> <./images/figure3/ugan_crop2.png (PNG copy)> <./images/figure3/flic
-kr_crop3.png (PNG copy)> <./images/figure3/flickr_crop4.png (PNG copy)> <./imag
-es/figure3/cgan_crop3.png (PNG copy)> <./images/figure3/cgan_crop4.png (PNG cop
-y)> <./images/figure3/ugan_crop3.png (PNG copy)> <./images/figure3/ugan_crop4.p
-ng (PNG copy)>])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1680,10 +1684,7 @@ Before submitting the final camera ready copy, remember to:
  process uses the US letter (8.5in X 11in) paper size.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
-[7 <./images/mdpm/real1.png (PNG copy)> <./images/mdpm/real2.png (PNG copy)> <.
-/images/mdpm/real3.png (PNG copy)> <./images/mdpm/real4.png (PNG copy)> <./imag
-es/mdpm/gen1.png (PNG copy)> <./images/mdpm/gen2.png (PNG copy)> <./images/mdpm
-/gen3.png (PNG copy)> <./images/mdpm/gen4.png (PNG copy)>]
+[7]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
  (./paper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
@@ -1693,13 +1694,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 64.
  ) 
 Here is how much of TeX's memory you used:
- 7986 strings out of 493029
- 125516 string characters out of 6136234
- 211237 words of memory out of 5000000
- 11210 multiletter control sequences out of 15000+600000
+ 7986 strings out of 494953
+ 125516 string characters out of 6180977
+ 214494 words of memory out of 5000000
+ 10959 multiletter control sequences out of 15000+600000
  49846 words of font info for 111 fonts, out of 8000000 for 9000
- 1144 hyphenation exceptions out of 8191
- 30i,13n,35p,409b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 17 hyphenation exceptions out of 8191
+ 30i,13n,35p,409b,469s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1720,7 +1721,7 @@ s/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 8207302 bytes).
+Output written on paper.pdf (7 pages, 8206625 bytes).
 PDF statistics:
  360 PDF objects out of 1000 (max. 8388607)
  73 named destinations out of 1000 (max. 500000)
