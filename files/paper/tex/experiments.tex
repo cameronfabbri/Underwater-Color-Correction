@@ -125,6 +125,12 @@ As seen in Table \ref{fig:gdl_tbl}, the GDL is lower for both UGAN and UGAN-P. I
 lower score than UGAN-P, despite UGAN-P explicitly accounting for this metric in the objective function. Reasoning for
 this is left for our future work.
 
+Another metric we can use to compare image patches are the mean and standard deviation of a patch. The standard
+deviation gives us a sense of blurriness because it defines how far the data deviates from the mean. A lower standard
+deviation means that the data is closer to the mean \starnote{not sure if we exactly need to say that because I assume the reviewers will know what it is}. In the case of images, this would suggest a blurring effect due to the data being
+more clustered toward one pixel value. Table \ref{fig:mean_tbl} shows the mean and standard deviations for the local
+image patches seen in Figure \ref{fig:zoom}. 
+
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
 \begin{table}
@@ -132,7 +138,7 @@ this is left for our future work.
 \caption{Distances in image space}
 \begin{tabular}{| c | c | c | c |}
    \hline
-   Row/Method & CycleGAN & UGAN & UGAN-P \\ \hline
+   Row/Method & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
    A          & 116.45 & 85.71  & 86.15  \\ \hline
    B          & 114.49 & 97.92  & 101.01 \\ \hline
    C          & 120.84 & 96.53  & 97.57  \\ \hline
@@ -147,7 +153,7 @@ this is left for our future work.
 \centering
 \begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
   
-   ~\quad Original & ~CycleGAN & ~\quad UGAN & \quad UGAN-P \\
+   ~\quad Original & ~CycleGAN & ~\quad \textbf{UGAN} & \quad \textbf{UGAN-P} \\
 
    \includegraphics[width=0.8in]{1_original} &
    \includegraphics[width=0.8in]{1_cimg} &
@@ -260,6 +266,7 @@ the result of the edge detector.}
    Green & 0.36 $\pm$ 0.17 & 0.36 $\pm$ 0.14 & 0.37 $\pm$ 0.17 & 0.36 $\pm$ 0.17 \\ \hline
    Orange & 0.3 $\pm$ 0.15 & 0.25 $\pm$ 0.12 & 0.26 $\pm$ 0.13 & 0.27 $\pm$ 0.14 \\ \hline
 \end{tabular}
+\label{fig:mean_tbl}
 \end{table}
 
 \subsection{Diver Tracking using Frequency-Domain Detection}
