@@ -77,6 +77,11 @@ I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
 M.~Arjovsky and L.~Bottou, ``Towards principled methods for training generative
   adversarial networks,'' {\em arXiv preprint arXiv:1701.04862}, 2017.
 
+\bibitem{lecun2010mnist}
+Y.~LeCun, C.~Cortes, and C.~J. Burges, ``Mnist handwritten digit database,''
+  {\em AT\&T Labs [Online]. Available: http://yann.lecun.com/exdb/mnist},
+  vol.~2, 2010.
+
 \bibitem{mao2016least}
 X.~Mao, Q.~Li, H.~Xie, R.~Y. Lau, Z.~Wang, and S.~P. Smolley, ``Least squares
   generative adversarial networks,'' {\em arXiv preprint ArXiv:1611.04076},
@@ -150,16 +155,6 @@ J.~Canny, ``A computational approach to edge detection,'' {\em IEEE
   Transactions on pattern analysis and machine intelligence}, no.~6,
   pp.~679--698, 1986.
 
-\bibitem{kingma2014adam}
-D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
-  preprint arXiv:1412.6980}, 2014.
-
-\bibitem{abadi2016tensorflow}
-M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
-  A.~Davis, J.~Dean, M.~Devin, {\em et~al.}, ``Tensorflow: Large-scale machine
-  learning on heterogeneous distributed systems,'' {\em arXiv preprint
-  arXiv:1603.04467}, 2016.
-
 \bibitem{islam2017mixed}
 M.~J. Islam and J.~Sattar, ``Mixed-domain biological motion tracking for
   underwater human-robot interaction,'' in {\em 2017 IEEE International
@@ -170,5 +165,15 @@ F.~Shkurti, W.-D. Chang, P.~Henderson, M.~J. Islam, J.~C.~G. Higuera, J.~Li,
   T.~Manderson, A.~Xu, G.~Dudek, and J.~Sattar, ``Underwater multi-robot
   convoying using visual tracking by detection,'' in {\em 2017 IEEE
   International Conference on Intelligent Robots and Systems}, IEEE, 2017.
+
+\bibitem{kingma2014adam}
+D.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' {\em arXiv
+  preprint arXiv:1412.6980}, 2014.
+
+\bibitem{abadi2016tensorflow}
+M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
+  A.~Davis, J.~Dean, M.~Devin, {\em et~al.}, ``Tensorflow: Large-scale machine
+  learning on heterogeneous distributed systems,'' {\em arXiv preprint
+  arXiv:1603.04467}, 2016.
 
 \end{thebibliography}

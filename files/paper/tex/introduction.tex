@@ -25,21 +25,17 @@ used. This may cause difficulty in tasks such as segmentation, tracking, or clas
 color.
 
 As color and illumination begin to change with the depth, vision-based algorithms must need to be very generalizable in order to 
-work within
-the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a variety of underwater data to 
-train a visual
-system on, as well as the high amount of noise introduced, algorithms may (and do) perform poorly in these different
-domains. Figure~\ref{fig:samples} shows the high variability in visual scenes that may occur in
-underwater environments. A step towards a solution to this issue is to be able to restore the images such that they appear to be 
-above
-water, \emph{i.e.}, with colors corrected and suspended particles removed from the scene. By performing a many-to-one mapping of 
-these
-domains from underwater to not underwater (what the image would look like above water), algorithms that have difficulty performing 
-across
+work within the depth ranges a robot may operate in. Because of the high cost and difficulty of acquiring a variety of underwater 
+data to train a visual system on, as well as the high amount of noise introduced, algorithms may (and do) perform poorly in these 
+different domains. Figure~\ref{fig:samples} shows the high variability in visual scenes that may occur in underwater environments. 
+A step towards a solution to this issue is to be able to restore the images such that they appear to be above water, \emph{i.e.}, 
+with colors corrected and suspended particles removed from the scene. By performing a many-to-one mapping of these domains from 
+underwater to not underwater (what the image would look like above water), algorithms that have difficulty performing across 
 multiple forms of noise may be able to focus only one clean domain.
 
 
 \begin{figure}
+\vspace{2mm}
 \centering
 \begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
    
@@ -51,12 +47,12 @@ multiple forms of noise may be able to focus only one clean domain.
    \includegraphics[width=0.8in]{n01917289_5711_f1} &
    \includegraphics[width=0.8in]{n01917289_4087_f1} &
    \includegraphics[width=0.8in]{n02607072_10395_f1} \\
-
 \end{tabular}
 \label{fig:samples}
 \caption{Sample underwater images with natural and man-made artifacts (which in this case is our underwater robot) displaying the 
 diversity of distortion that can occur. With the varying camera-to-object distances in the images, the distortion and loss of 
 color varies between the different images.}
+\vspace{-5mm}
 \end{figure}
 
 Deep neural networks have been shown to be powerful non-linear function approximators, especially in the field of vision 
@@ -71,6 +67,6 @@ with the goal of improving the performance of vision-driven behaviors for autono
 %\starnote{Summarize the approach here. Then talk about datasets as you have done already.}
 We use the recently proposed CycleGAN~\cite{zhu2017unpaired} approach, which learns to translate an image from any arbitrary 
 domain $X$ to another arbitrary domain $Y$ \textit{without} image pairs, as a way to generate a paired dataset.
-By letting $X$ be a set of undistorted underwater images\starnote{need to say where we find the undistorted ones}, and
+By letting $X$ be a set of undistorted underwater images\nostarnote{need to say where we find the undistorted ones}, and
 $Y$ be a set of distorted underwater images, we can generate an image that appears to be underwater while retaining
 ground truth.

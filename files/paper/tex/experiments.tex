@@ -3,8 +3,8 @@
 
 \subsection{Datasets}
 We used several subsets of Imagenet~\cite{deng2009imagenet} for training and evaluation of our methods. We also evaluate a 
-tracking
-algorithm on a video of scuba divers taken from Youtube \footnote{https://www.youtube.com/watch?v=QmRFmhILd5o}. Subsets of 
+frequency- and spatial-domain diver-tracking algorithm on a video of scuba divers taken from YouTube\texttrademark\ 
+\footnote{https://www.youtube.com/watch?v=QmRFmhILd5o}. Subsets of 
 Imagenet
 containing underwater images were selected for the training of CycleGAN, and manually separated into two classes based on visual
 inspection. We let $X$ be the set of underwater images with no distortion, and $Y$ be the set of underwater images with 
@@ -39,9 +39,9 @@ $G: Y \rightarrow X$. We first use the Canny edge detector
 Second, we compare local image patches to provide sharpness metrics on our images. Lastly, we show how an existing
 tracking algorithm for an underwater robot improves performance with generated images.
 
-\begin{figure}
+\begin{figure}[th]
 \centering
-\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm}}
+\begin{tabular}{p{1.7cm} p{1.7cm} p{1.75cm}}
 
    ~\quad Original & ~\quad \textbf{UGAN} & \quad \textbf{UGAN-P} \\
 
@@ -78,7 +78,7 @@ tracking algorithm for an underwater robot improves performance with generated i
    \includegraphics[width=0.8in]{n02607072_6241_gen_1} \\
 
 \end{tabular}
-\caption{Samples from our Imagenet testing set. The network can both recover color and also correct color if a small amount is 
+\caption{Samples from our ImageNet testing set. The network can both recover color and also correct color if a small amount is 
 present.}
 \label{fig:test_samples}
 \end{figure}
@@ -96,41 +96,32 @@ present.}
 %\end{center}
 
 
-\subsection{Training and Inference Performance}
-In all of our experiments, we use $\lambda_{1} = 100$, $\lambda_{GP} = 10$, batch size of 32, and the Adam Optimizer 
-\cite{kingma2014adam} with learning rate $1e-4$. Following WGAN-GP, the discriminator is updated $n$ times for every update of the 
-generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$ and $\alpha = 1$. Our implementation was done using the 
-Tensorflow library \cite{abadi2016tensorflow}. \footnote{Code is available at 
-\url{https://github.com/cameronfabbri/Underwater-Color-Correction}} All networks were trained from scratch on a GTX 1080 for 100 
-epochs. Inference on the GPU takes on average $ 0.0138s$, which is about 72 Frames Per Second (FPS). On a CPU (Intel Core 
-i7-5930K), inference takes on average $ 0.1244s$, which is about 8 FPS. We find both of these measures acceptable for underwater 
-tasks.
-
 \subsection{Comparison to CycleGAN}
-It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a
-mapping $G: Y \rightarrow X$. Here we give a comparison to our methods. We use the Canny edge
-detector \cite{canny1986computational} to provide a color agnostic evaluation of the images, as the original contain
-distorted colors and cannot be compared back to as ground truth. Due to the fact that restoring color information
-should not alter the overall structure of the image, we measure the distance in the image space between the edges
-found in the original and generated images. Figure ~\ref{fig:canny_samples} shows the original images and results from
-edge detection. Table 1 provides the measurements from Figure ~\ref{fig:canny_samples}, as well as the average over our
-entire Flickr\texttrademark ~dataset. Both UGAN and UGAN-P are consistently closer in the image space to the original
-than that of CycleGAN, suggesting noise due to blur. Next, we evaluate this noise explicitly.
+It is important to note that during the process of learning a mapping $F: X \rightarrow Y$, CycleGAN also learns a mapping $G: Y 
+\rightarrow X$. Here we give a comparison to our methods. We use the Canny edge detector \cite{canny1986computational} to provide 
+a color agnostic evaluation of the images, as the original contain distorted colors and cannot be compared back to as ground 
+truth. Due to the fact that restoring color information should not alter the overall structure of the image, we measure the 
+distance in the image space between the edges found in the original and generated images. Figure ~\ref{fig:canny_samples} shows 
+the original images and results from edge detection. Table~\ref{tab:one} provides the measurements from Figure 
+~\ref{fig:canny_samples}, as well as the average over our entire Flickr\texttrademark\ dataset. Both UGAN and UGAN-P are 
+consistently closer in the image space to the original than that of CycleGAN, suggesting noise due to blur. Next, we evaluate this 
+noise explicitly.
 
-We explore the artifacts of content loss, as seen in Figure ~\ref{fig:zoom}. In particular, we compare local statistics
-of the highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL
-\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. A lower GDL measure implies a smoother transition
-between pixels, as a noisy image would have large jumps in the image's gradient, leading to a higher score. \starnote{I THINK. I would double check, bottom of page 4: https://arxiv.org/pdf/1511.05440.pdf}.
-As seen in Table \ref{fig:gdl_tbl}, the GDL is lower for both UGAN and UGAN-P. Interestingly, UGAN consistently has a
-lower score than UGAN-P, despite UGAN-P explicitly accounting for this metric in the objective function. Reasoning for
-this is left for our future work.
+We explore the artifacts of content loss, as seen in Figure ~\ref{fig:zoom}. In particular, we compare local statistics of the 
+highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL \cite{mathieu2015deep} from 
+(\ref{gdl_eq}) as a sharpness measure. A lower GDL measure implies a smoother transition between pixels, as a noisy image would 
+have large jumps in the image's gradient, leading to a higher score.\nostarnote{I THINK. I would double check, bottom of page 4: 
+https://arxiv.org/pdf/1511.05440.pdf.} As seen in Table \ref{fig:gdl_tbl}, the GDL is lower for both UGAN and UGAN-P. 
+Interestingly, UGAN consistently has a lower score than UGAN-P, despite UGAN-P explicitly accounting for this metric in the 
+objective function. Reasoning for this is left for our future work.
 
-Another metric we can use to compare image patches are the mean and standard deviation of a patch. The standard
-deviation gives us a sense of blurriness because it defines how far the data deviates from the mean. A lower standard
-deviation means that the data is closer to the mean \starnote{not sure if we exactly need to say that because I assume the reviewers will know what it is}. In the case of images, this would suggest a blurring effect due to the data being
-more clustered toward one pixel value. Table \ref{fig:mean_tbl} shows the mean and standard deviations for the local
-image patches seen in Figure \ref{fig:zoom}. Despite qualitative evaluation showing our methods are much sharper,
-quantitatively they show only slight improvement. Other metrics such as entropy are left as future work.
+Another metric we use to compare image patches are the mean and standard deviation of a patch. The standard deviation gives us a 
+sense of blurriness because it defines how far the data deviates from the mean.\nostarnote{ A lower standard deviation means that 
+the data is closer to the mean . not sure if we exactly need to say that because I assume the reviewers will know what it is.} In 
+the case of images, this would suggest a blurring effect due to the data being more clustered toward one pixel value. Table 
+\ref{fig:mean_tbl} shows the mean and standard deviations of the RGB values for the local image patches seen in Figure 
+\ref{fig:zoom}. Despite qualitative evaluation showing our methods are much sharper, quantitatively they show only slight 
+improvement. Other metrics such as entropy are left as future work.
 
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
@@ -146,13 +137,65 @@ quantitatively they show only slight improvement. Other metrics such as entropy 
    D          & 129.27 & 108.90 & 110.50 \\ \hline
    Mean       & 111.60 & 94.91  & 96.51 \\ \hline
 \end{tabular}
+\label{tab:one}
 \end{table}
 
 %\newpage
 
-\begin{figure}
+
+% \begin{figure*}[h]
+% \centering
+% \begin{tabular}{p{.4cm} p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
+%   
+%    Set & ~\quad Original & ~CycleGAN & ~\quad \textbf{UGAN} & \quad \textbf{UGAN-P} \\
+% 
+%    \multirow{2}{*}{A} & \includegraphics[width=0.8in]{1_original} &
+%    \includegraphics[width=0.8in]{1_cimg} &
+%    \includegraphics[width=0.8in]{1_u0img} &
+%    \includegraphics[width=0.8in]{1_u1img} \\ [-1ex]
+%    \includegraphics[width=0.8in]{1_oedges} &
+%    \includegraphics[width=0.8in]{1_cedges} &
+%    \includegraphics[width=0.8in]{1_u0edges} &
+%    \includegraphics[width=0.8in]{1_u1edges} \\
+% 
+%    \multirow{2}{*}{B} & \includegraphics[width=0.8in]{2_original} &
+%    \includegraphics[width=0.8in]{2_cimg} &
+%    \includegraphics[width=0.8in]{2_u0img} &
+%    \includegraphics[width=0.8in]{2_u1img} \\ [-1ex]
+%    \includegraphics[width=0.8in]{2_oedges} &
+%    \includegraphics[width=0.8in]{2_cedges} &
+%    \includegraphics[width=0.8in]{2_u0edges} &
+%    \includegraphics[width=0.8in]{2_u1edges} \\
+% 
+%    \multirow{2}{*}{C} & \includegraphics[width=0.8in]{3_original} &
+%    \includegraphics[width=0.8in]{3_cimg} &
+%    \includegraphics[width=0.8in]{3_u0img} &
+%    \includegraphics[width=0.8in]{3_u1img} \\ [-1ex]
+%    \includegraphics[width=0.8in]{3_oedges} &
+%    \includegraphics[width=0.8in]{3_cedges} &
+%    \includegraphics[width=0.8in]{3_u0edges} &
+%    \includegraphics[width=0.8in]{3_u1edges} \\
+%    
+%    \multirow{2}{*}{D} & \includegraphics[width=0.8in]{4_original} &
+%    \includegraphics[width=0.8in]{4_cimg} &
+%    \includegraphics[width=0.8in]{4_u0img} &
+%    \includegraphics[width=0.8in]{4_u1img} \\ [-1ex]
+%    \includegraphics[width=0.8in]{4_oedges} &
+%    \includegraphics[width=0.8in]{4_cedges} &
+%    \includegraphics[width=0.8in]{4_u0edges} &
+%    \includegraphics[width=0.8in]{4_u1edges} \\
+% 
+% \end{tabular}
+% \caption{Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN,
+% and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row
+% the result of the edge detector.}
+% \label{fig:canny_samples}
+% \end{figure*}
+
+
+\begin{figure}[h]
 \centering
-\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.7cm}}
+\begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm} p{1.75cm}}
   
    ~\quad Original & ~CycleGAN & ~\quad \textbf{UGAN} & \quad \textbf{UGAN-P} \\
 
@@ -195,8 +238,10 @@ quantitatively they show only slight improvement. Other metrics such as entropy 
 \end{tabular}
 \caption{Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN,
 and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row
-the result of the edge detector.}
+the result of the edge detector. The figure depicts four different sets of images, successively labeled A to D from top to 
+bottom. See Table~\ref{tab:one}.}
 \label{fig:canny_samples}
+\vspace{-5mm}
 \end{figure}
 
 % TODO definitely need help with formatting, but content is there
@@ -246,7 +291,7 @@ the result of the edge detector.}
 \caption{Gradient Difference Loss Metrics}
 \begin{tabular}{| c | c | c | c | }
    \hline
-   Patch/Method & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
+   \multicolumn{1}{|p{.7cm}|}{\centering Method/ \\ Patch} & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
    Red    & 11.53 & 9.39 & 10.93  \\ \hline
    Blue   & 7.52  & 4.83 &  5.50\\ \hline
    Green  & 4.15  & 3.18 & 3.25 \\ \hline
@@ -261,7 +306,8 @@ the result of the edge detector.}
 \caption{Mean and Standard Deviation Metrics}
 \begin{tabular}{| c | c | c | c | c | }
    \hline
-   Patch/Method & Original & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
+   \multicolumn{1}{|p{.7cm}|}{\centering Method/ \\ Patch} & Original & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ 
+\hline
    Red & 0.43 $\pm$ 0.23 & 0.42 $\pm$ 0.22 & 0.44 $\pm$ 0.23 & 0.45 $\pm$ 0.25 \\ \hline
    Blue & 0.51 $\pm$ 0.18 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 \\ \hline
    Green & 0.36 $\pm$ 0.17 & 0.36 $\pm$ 0.14 & 0.37 $\pm$ 0.17 & 0.36 $\pm$ 0.17 \\ \hline
@@ -310,7 +356,16 @@ compares the detection performance for both sets of images over a sequence of $5
 \label{mdpmStuff}
 \end{figure*}
 
+\subsection{Training and Inference Performance}
+In all of our experiments, we use $\lambda_{1} = 100$, $\lambda_{GP} = 10$, batch size of 32, and the Adam Optimizer 
+\cite{kingma2014adam} with learning rate $1e-4$. Following WGAN-GP, the discriminator is updated $n$ times for every update of the 
+generator, where $n = 5$. For UGAN-P, we set $\lambda_{2} = 1.0$ and $\alpha = 1$. Our implementation was done using the 
+Tensorflow library \cite{abadi2016tensorflow}. \footnote{Code is available at 
+\url{https://github.com/cameronfabbri/Underwater-Color-Correction}} All networks were trained from scratch on a GTX 1080 for 100 
+epochs. Inference on the GPU takes on average $ 0.0138s$, which is about 72 Frames Per Second (FPS). On a CPU (Intel Core 
+i7-5930K), inference takes on average $ 0.1244s$, which is about 8 FPS. In both cases, the input images have dimensions 
+$256\times 256\times 3$. We find both of these measures acceptable for underwater tasks.
 
 %Flippers of a human diver typically oscillate at frequencies between $1$ and $2$ Hz, which produces periodic intensity variations 
-in the image-space over time. These variations correspond to distinct signatures in the frequency-domain (high-amplitude spectra 
-at $1$-$2$Hz), which can be used for reliable detection.
+% in the image-space over time. These variations correspond to distinct signatures in the frequency-domain (high-amplitude spectra 
+% at $1$-$2$Hz), which can be used for reliable detection.
