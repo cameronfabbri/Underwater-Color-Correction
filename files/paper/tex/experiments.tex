@@ -129,7 +129,8 @@ Another metric we can use to compare image patches are the mean and standard dev
 deviation gives us a sense of blurriness because it defines how far the data deviates from the mean. A lower standard
 deviation means that the data is closer to the mean \starnote{not sure if we exactly need to say that because I assume the reviewers will know what it is}. In the case of images, this would suggest a blurring effect due to the data being
 more clustered toward one pixel value. Table \ref{fig:mean_tbl} shows the mean and standard deviations for the local
-image patches seen in Figure \ref{fig:zoom}. 
+image patches seen in Figure \ref{fig:zoom}. Despite qualitative evaluation showing our methods are much sharper,
+quantitatively they show only slight improvement. Other metrics such as entropy are left as future work.
 
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
