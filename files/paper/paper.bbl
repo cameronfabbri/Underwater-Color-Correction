@@ -73,6 +73,10 @@ I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
   A.~Courville, and Y.~Bengio, ``Generative adversarial nets,'' in {\em
   Advances in neural information processing systems}, pp.~2672--2680, 2014.
 
+\bibitem{arjovsky2017towards}
+M.~Arjovsky and L.~Bottou, ``Towards principled methods for training generative
+  adversarial networks,'' {\em arXiv preprint arXiv:1701.04862}, 2017.
+
 \bibitem{mao2016least}
 X.~Mao, Q.~Li, H.~Xie, R.~Y. Lau, Z.~Wang, and S.~P. Smolley, ``Least squares
   generative adversarial networks,'' {\em arXiv preprint ArXiv:1611.04076},

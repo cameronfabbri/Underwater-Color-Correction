@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 19:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -573,10 +573,10 @@ File: images/figure2/n01496331_873_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01496331_873_X.jpg>
 Package pdftex.def Info: images/figure2/n01496331_873_X.jpg used on input line 
-40.
+41.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 40--40
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 41--41
 [][]| 
  []
 
@@ -585,10 +585,10 @@ File: images/figure2/n01664065_4022_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01664065_4022_X.jpg>
 Package pdftex.def Info: images/figure2/n01664065_4022_X.jpg used on input line
- 41.
+ 42.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 41--41
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 42--42
 [][]| 
  []
 
@@ -597,10 +597,10 @@ File: images/figure2/n01917289_889_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01917289_889_X.jpg>
 Package pdftex.def Info: images/figure2/n01917289_889_X.jpg used on input line 
-42.
+43.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 42--42
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 43--43
 [][]| 
  []
 
@@ -609,10 +609,10 @@ File: images/figure2/n01914609_116_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01914609_116_X.jpg>
 Package pdftex.def Info: images/figure2/n01914609_116_X.jpg used on input line 
-43.
+44.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 43--44
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 44--45
 [][]| 
  []
 
@@ -621,10 +621,10 @@ File: images/figure2/n01496331_873_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01496331_873_Y.jpg>
 Package pdftex.def Info: images/figure2/n01496331_873_Y.jpg used on input line 
-44.
+45.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 44--44
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 45--45
 [][]| 
  []
 
@@ -633,10 +633,10 @@ File: images/figure2/n01664065_4022_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01664065_4022_Y.jpg>
 Package pdftex.def Info: images/figure2/n01664065_4022_Y.jpg used on input line
- 45.
+ 46.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 45--45
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 46--46
 [][]| 
  []
 
@@ -645,10 +645,10 @@ File: images/figure2/n01917289_889_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01917289_889_Y.jpg>
 Package pdftex.def Info: images/figure2/n01917289_889_Y.jpg used on input line 
-46.
+47.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 46--46
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 47--47
 [][]| 
  []
 
@@ -657,15 +657,15 @@ File: images/figure2/n01914609_116_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01914609_116_Y.jpg>
 Package pdftex.def Info: images/figure2/n01914609_116_Y.jpg used on input line 
-47.
+48.
 (pdftex.def)             Requested size: 57.81621pt x 57.81349pt.
 
-Overfull \hbox (9.44662pt too wide) in paragraph at lines 47--48
+Overfull \hbox (9.44662pt too wide) in paragraph at lines 48--49
 [][]| 
  []
 
 [2]
-Overfull \hbox (1.45053pt too wide) detected at line 82
+Overfull \hbox (1.45053pt too wide) detected at line 87
 [][] []
  []
 
@@ -1648,12 +1648,12 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 256--257
  []
 
 ) (./tex/conclusions.tex) (./paper.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
 []\OT1/ptm/m/n/8 I. Gul-ra-jani, F. Ahmed, M. Ar-jovsky, V. Du-moulin, and
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 86--88
+Underfull \hbox (badness 3557) in paragraph at lines 90--92
 \OT1/ptm/m/n/8 A. Courville, ``Im-proved train-ing of wasser-stein gans,'' \OT1
 /ptm/m/it/8 arXiv
  []
@@ -1693,13 +1693,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 64.
  ) 
 Here is how much of TeX's memory you used:
- 7984 strings out of 493029
- 125488 string characters out of 6136234
- 211233 words of memory out of 5000000
- 11209 multiletter control sequences out of 15000+600000
+ 7986 strings out of 493029
+ 125516 string characters out of 6136234
+ 211237 words of memory out of 5000000
+ 11210 multiletter control sequences out of 15000+600000
  49846 words of font info for 111 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,13n,35p,409b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,13n,35p,409b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1720,9 +1720,9 @@ s/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 8207121 bytes).
+Output written on paper.pdf (7 pages, 8207302 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
- 72 named destinations out of 1000 (max. 500000)
+ 360 PDF objects out of 1000 (max. 8388607)
+ 73 named destinations out of 1000 (max. 500000)
  601 words of extra memory for PDF output out of 10000 (max. 10000000)
 
