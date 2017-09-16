@@ -33,9 +33,9 @@ appear distorted. The last row in Figure ~\ref{fig:test_samples} shows a sample 
 left
 unchanged while the distorted sea anemone in the background has its color corrected.
 
-We use three metrics for a quantitative evaluation. First, we compare to CycleGAN, as it inherently learns an inverse
-mapping during the training of $F: X \rightarrow Y$, using the Canny edge detector
-\cite{canny1986computational}. This provides a color agnostic evaluation of the images in comparison to ground truth.
+For a quantitative evaluation we compare to CycleGAN, as it inherently learns an inverse mapping during the training of
+$G: Y \rightarrow X$. We first use the Canny edge detector
+\cite{canny1986computational}, as this provides a color agnostic evaluation of the images in comparison to ground truth.
 Second, we compare local image patches to provide sharpness metrics on our images. Lastly, we show how an existing
 tracking algorithm for an underwater robot improves performance with generated images.
 
@@ -43,7 +43,7 @@ tracking algorithm for an underwater robot improves performance with generated i
 \centering
 \begin{tabular}{p{1.7cm} p{1.7cm} p{1.7cm}}
 
-   ~\quad Original & ~\quad UGAN & \quad UGAN-P \\
+   ~\quad Original & ~\quad \textbf{UGAN} & \quad \textbf{UGAN-P} \\
 
    \includegraphics[width=0.8in]{n01917289_4982_real} &
    \includegraphics[width=0.8in]{n01917289_4982_gen_0} &
@@ -246,7 +246,7 @@ the result of the edge detector.}
 \caption{Gradient Difference Loss Metrics}
 \begin{tabular}{| c | c | c | c | }
    \hline
-   Patch/Method & CycleGAN & UGAN & UGAN-P \\ \hline
+   Patch/Method & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
    Red    & 11.53 & 9.39 & 10.93  \\ \hline
    Blue   & 7.52  & 4.83 &  5.50\\ \hline
    Green  & 4.15  & 3.18 & 3.25 \\ \hline
@@ -261,7 +261,7 @@ the result of the edge detector.}
 \caption{Mean and Standard Deviation Metrics}
 \begin{tabular}{| c | c | c | c | c | }
    \hline
-   Patch/Method & Original & CycleGAN & UGAN & UGAN-P \\ \hline
+   Patch/Method & Original & CycleGAN & \textbf{UGAN} & \textbf{UGAN-P} \\ \hline
    Red & 0.43 $\pm$ 0.23 & 0.42 $\pm$ 0.22 & 0.44 $\pm$ 0.23 & 0.45 $\pm$ 0.25 \\ \hline
    Blue & 0.51 $\pm$ 0.18 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 \\ \hline
    Green & 0.36 $\pm$ 0.17 & 0.36 $\pm$ 0.14 & 0.37 $\pm$ 0.17 & 0.36 $\pm$ 0.17 \\ \hline

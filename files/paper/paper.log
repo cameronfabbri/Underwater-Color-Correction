@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 22:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 SEP 2017 22:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -674,6 +674,10 @@ gure2/n01664065_4022_X.jpg> <./images/figure2/n01917289_889_X.jpg> <./images/fi
 gure2/n01914609_116_X.jpg> <./images/figure2/n01496331_873_Y.jpg> <./images/fig
 ure2/n01664065_4022_Y.jpg> <./images/figure2/n01917289_889_Y.jpg> <./images/fig
 ure2/n01914609_116_Y.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+[] \OT1/ptm/b/n/10 UGAN-
+ []
+
 <images/n01917289_4982_real.png, id=127, 256.96pt x 256.96pt>
 File: images/n01917289_4982_real.png Graphic file (type png)
 
@@ -958,26 +962,12 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 78--79
 [][]| 
  []
 
-[4 <./images/n01917289_4982_real.png (PNG copy)> <./images/n01917289_4982_gen_0
-.png (PNG copy)> <./images/n01917289_4982_gen_1.png (PNG copy)> <./images/n0149
-6331_16340_real.png (PNG copy)> <./images/n01496331_16340_gen_0.png (PNG copy)>
- <./images/n01496331_16340_gen_1.png (PNG copy)> <./images/n01496331_22183_real
-.png (PNG copy)> <./images/n01496331_22183_gen_0.png (PNG copy)> <./images/n014
-96331_22183_gen_1.png (PNG copy)> <./images/n01664065_29738_real.png (PNG copy)
-> <./images/n01664065_29738_gen_0.png (PNG copy)> <./images/n01664065_29738_gen
-_1.png (PNG copy)> <./images/n01496331_11938_real.png (PNG copy)> <./images/n01
-496331_11938_gen_0.png (PNG copy)> <./images/n01496331_11938_gen_1.png (PNG cop
-y)> <./images/n02606052_2969_real.png (PNG copy)> <./images/n02606052_2969_gen_
-0.png (PNG copy)> <./images/n02606052_2969_gen_1.png (PNG copy)> <./images/n019
-14609_1607_real.png (PNG copy)> <./images/n01914609_1607_gen_0.png (PNG copy)> 
-<./images/n01914609_1607_gen_1.png (PNG copy)> <./images/n02607072_6241_real.pn
-g (PNG copy)> <./images/n02607072_6241_gen_0.png (PNG copy)> <./images/n0260707
-2_6241_gen_1.png (PNG copy)>]
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 157--158
 [] \OT1/ptm/b/n/10 UGAN-
  []
 
-<images/edges/1_original.png, id=168, 256.96pt x 256.96pt>
+<images/edges/1_original.png, id=172, 256.96pt x 256.96pt>
 File: images/edges/1_original.png Graphic file (type png)
 
 <use images/edges/1_original.png>
@@ -988,7 +978,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 159--159
 [][]| 
  []
 
-<images/edges/1_cimg.png, id=169, 256.96pt x 256.96pt>
+<images/edges/1_cimg.png, id=173, 256.96pt x 256.96pt>
 File: images/edges/1_cimg.png Graphic file (type png)
 
 <use images/edges/1_cimg.png>
@@ -999,7 +989,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 160--160
 [][]| 
  []
 
-<images/edges/1_u0img.png, id=170, 256.96pt x 256.96pt>
+<images/edges/1_u0img.png, id=174, 256.96pt x 256.96pt>
 File: images/edges/1_u0img.png Graphic file (type png)
 
 <use images/edges/1_u0img.png>
@@ -1010,7 +1000,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 161--161
 [][]| 
  []
 
-<images/edges/1_u1img.png, id=171, 256.96pt x 256.96pt>
+<images/edges/1_u1img.png, id=175, 256.96pt x 256.96pt>
 File: images/edges/1_u1img.png Graphic file (type png)
 
 <use images/edges/1_u1img.png>
@@ -1021,7 +1011,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 162--162
 [][]| 
  []
 
-<images/edges/1_oedges.png, id=172, 256.96pt x 256.96pt>
+<images/edges/1_oedges.png, id=176, 256.96pt x 256.96pt>
 File: images/edges/1_oedges.png Graphic file (type png)
 
 <use images/edges/1_oedges.png>
@@ -1032,7 +1022,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 163--163
 [][]| 
  []
 
-<images/edges/1_cedges.png, id=173, 256.96pt x 256.96pt>
+<images/edges/1_cedges.png, id=177, 256.96pt x 256.96pt>
 File: images/edges/1_cedges.png Graphic file (type png)
 
 <use images/edges/1_cedges.png>
@@ -1043,7 +1033,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 164--164
 [][]| 
  []
 
-<images/edges/1_u0edges.png, id=174, 256.96pt x 256.96pt>
+<images/edges/1_u0edges.png, id=178, 256.96pt x 256.96pt>
 File: images/edges/1_u0edges.png Graphic file (type png)
 
 <use images/edges/1_u0edges.png>
@@ -1054,7 +1044,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 165--165
 [][]| 
  []
 
-<images/edges/1_u1edges.png, id=175, 256.96pt x 256.96pt>
+<images/edges/1_u1edges.png, id=179, 256.96pt x 256.96pt>
 File: images/edges/1_u1edges.png Graphic file (type png)
 
 <use images/edges/1_u1edges.png>
@@ -1065,7 +1055,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 166--167
 [][]| 
  []
 
-<images/edges/2_original.png, id=176, 256.96pt x 256.96pt>
+<images/edges/2_original.png, id=180, 256.96pt x 256.96pt>
 File: images/edges/2_original.png Graphic file (type png)
 
 <use images/edges/2_original.png>
@@ -1076,7 +1066,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 168--168
 [][]| 
  []
 
-<images/edges/2_cimg.png, id=177, 256.96pt x 256.96pt>
+<images/edges/2_cimg.png, id=181, 256.96pt x 256.96pt>
 File: images/edges/2_cimg.png Graphic file (type png)
 
 <use images/edges/2_cimg.png>
@@ -1087,7 +1077,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 169--169
 [][]| 
  []
 
-<images/edges/2_u0img.png, id=178, 256.96pt x 256.96pt>
+<images/edges/2_u0img.png, id=182, 256.96pt x 256.96pt>
 File: images/edges/2_u0img.png Graphic file (type png)
 
 <use images/edges/2_u0img.png>
@@ -1098,7 +1088,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 170--170
 [][]| 
  []
 
-<images/edges/2_u1img.png, id=179, 256.96pt x 256.96pt>
+<images/edges/2_u1img.png, id=183, 256.96pt x 256.96pt>
 File: images/edges/2_u1img.png Graphic file (type png)
 
 <use images/edges/2_u1img.png>
@@ -1109,7 +1099,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 171--171
 [][]| 
  []
 
-<images/edges/2_oedges.png, id=180, 256.96pt x 256.96pt>
+<images/edges/2_oedges.png, id=184, 256.96pt x 256.96pt>
 File: images/edges/2_oedges.png Graphic file (type png)
 
 <use images/edges/2_oedges.png>
@@ -1120,7 +1110,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 172--172
 [][]| 
  []
 
-<images/edges/2_cedges.png, id=181, 256.96pt x 256.96pt>
+<images/edges/2_cedges.png, id=185, 256.96pt x 256.96pt>
 File: images/edges/2_cedges.png Graphic file (type png)
 
 <use images/edges/2_cedges.png>
@@ -1131,7 +1121,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 173--173
 [][]| 
  []
 
-<images/edges/2_u0edges.png, id=182, 256.96pt x 256.96pt>
+<images/edges/2_u0edges.png, id=186, 256.96pt x 256.96pt>
 File: images/edges/2_u0edges.png Graphic file (type png)
 
 <use images/edges/2_u0edges.png>
@@ -1142,7 +1132,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 174--174
 [][]| 
  []
 
-<images/edges/2_u1edges.png, id=183, 256.96pt x 256.96pt>
+<images/edges/2_u1edges.png, id=187, 256.96pt x 256.96pt>
 File: images/edges/2_u1edges.png Graphic file (type png)
 
 <use images/edges/2_u1edges.png>
@@ -1153,7 +1143,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 175--176
 [][]| 
  []
 
-<images/edges/3_original.png, id=184, 256.96pt x 256.96pt>
+<images/edges/3_original.png, id=188, 256.96pt x 256.96pt>
 File: images/edges/3_original.png Graphic file (type png)
 
 <use images/edges/3_original.png>
@@ -1164,7 +1154,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 177--177
 [][]| 
  []
 
-<images/edges/3_cimg.png, id=185, 256.96pt x 256.96pt>
+<images/edges/3_cimg.png, id=189, 256.96pt x 256.96pt>
 File: images/edges/3_cimg.png Graphic file (type png)
 
 <use images/edges/3_cimg.png>
@@ -1175,7 +1165,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 178--178
 [][]| 
  []
 
-<images/edges/3_u0img.png, id=186, 256.96pt x 256.96pt>
+<images/edges/3_u0img.png, id=190, 256.96pt x 256.96pt>
 File: images/edges/3_u0img.png Graphic file (type png)
 
 <use images/edges/3_u0img.png>
@@ -1186,7 +1176,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 179--179
 [][]| 
  []
 
-<images/edges/3_u1img.png, id=187, 256.96pt x 256.96pt>
+<images/edges/3_u1img.png, id=191, 256.96pt x 256.96pt>
 File: images/edges/3_u1img.png Graphic file (type png)
 
 <use images/edges/3_u1img.png>
@@ -1197,7 +1187,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 180--180
 [][]| 
  []
 
-<images/edges/3_oedges.png, id=188, 256.96pt x 256.96pt>
+<images/edges/3_oedges.png, id=192, 256.96pt x 256.96pt>
 File: images/edges/3_oedges.png Graphic file (type png)
 
 <use images/edges/3_oedges.png>
@@ -1208,7 +1198,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 181--181
 [][]| 
  []
 
-<images/edges/3_cedges.png, id=189, 256.96pt x 256.96pt>
+<images/edges/3_cedges.png, id=193, 256.96pt x 256.96pt>
 File: images/edges/3_cedges.png Graphic file (type png)
 
 <use images/edges/3_cedges.png>
@@ -1219,7 +1209,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 182--182
 [][]| 
  []
 
-<images/edges/3_u0edges.png, id=190, 256.96pt x 256.96pt>
+<images/edges/3_u0edges.png, id=194, 256.96pt x 256.96pt>
 File: images/edges/3_u0edges.png Graphic file (type png)
 
 <use images/edges/3_u0edges.png>
@@ -1230,7 +1220,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 183--183
 [][]| 
  []
 
-<images/edges/3_u1edges.png, id=191, 256.96pt x 256.96pt>
+<images/edges/3_u1edges.png, id=195, 256.96pt x 256.96pt>
 File: images/edges/3_u1edges.png Graphic file (type png)
 
 <use images/edges/3_u1edges.png>
@@ -1241,7 +1231,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 184--185
 [][]| 
  []
 
-<images/edges/4_original.png, id=192, 256.96pt x 256.96pt>
+<images/edges/4_original.png, id=196, 256.96pt x 256.96pt>
 File: images/edges/4_original.png Graphic file (type png)
 
 <use images/edges/4_original.png>
@@ -1252,7 +1242,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 186--186
 [][]| 
  []
 
-<images/edges/4_cimg.png, id=193, 256.96pt x 256.96pt>
+<images/edges/4_cimg.png, id=197, 256.96pt x 256.96pt>
 File: images/edges/4_cimg.png Graphic file (type png)
 
 <use images/edges/4_cimg.png>
@@ -1263,7 +1253,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 187--187
 [][]| 
  []
 
-<images/edges/4_u0img.png, id=194, 256.96pt x 256.96pt>
+<images/edges/4_u0img.png, id=198, 256.96pt x 256.96pt>
 File: images/edges/4_u0img.png Graphic file (type png)
 
 <use images/edges/4_u0img.png>
@@ -1274,7 +1264,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 188--188
 [][]| 
  []
 
-<images/edges/4_u1img.png, id=195, 256.96pt x 256.96pt>
+<images/edges/4_u1img.png, id=199, 256.96pt x 256.96pt>
 File: images/edges/4_u1img.png Graphic file (type png)
 
 <use images/edges/4_u1img.png>
@@ -1285,7 +1275,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 189--189
 [][]| 
  []
 
-<images/edges/4_oedges.png, id=196, 256.96pt x 256.96pt>
+<images/edges/4_oedges.png, id=200, 256.96pt x 256.96pt>
 File: images/edges/4_oedges.png Graphic file (type png)
 
 <use images/edges/4_oedges.png>
@@ -1296,7 +1286,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 190--190
 [][]| 
  []
 
-<images/edges/4_cedges.png, id=197, 256.96pt x 256.96pt>
+<images/edges/4_cedges.png, id=201, 256.96pt x 256.96pt>
 File: images/edges/4_cedges.png Graphic file (type png)
 
 <use images/edges/4_cedges.png>
@@ -1307,7 +1297,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 191--191
 [][]| 
  []
 
-<images/edges/4_u0edges.png, id=198, 256.96pt x 256.96pt>
+<images/edges/4_u0edges.png, id=202, 256.96pt x 256.96pt>
 File: images/edges/4_u0edges.png Graphic file (type png)
 
 <use images/edges/4_u0edges.png>
@@ -1318,7 +1308,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 192--192
 [][]| 
  []
 
-<images/edges/4_u1edges.png, id=199, 256.96pt x 256.96pt>
+<images/edges/4_u1edges.png, id=203, 256.96pt x 256.96pt>
 File: images/edges/4_u1edges.png Graphic file (type png)
 
 <use images/edges/4_u1edges.png>
@@ -1329,7 +1319,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 193--194
 [][]| 
  []
 
-<images/figure3/flickr_cmp.png, id=200, 256.96pt x 256.96pt>
+<images/figure3/flickr_cmp.png, id=204, 256.96pt x 256.96pt>
 File: images/figure3/flickr_cmp.png Graphic file (type png)
 
 <use images/figure3/flickr_cmp.png>
@@ -1340,7 +1330,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 209--209
 [][]| 
  []
 
-<images/figure3/cgan_cmp.png, id=201, 256.96pt x 256.96pt>
+<images/figure3/cgan_cmp.png, id=205, 256.96pt x 256.96pt>
 File: images/figure3/cgan_cmp.png Graphic file (type png)
 
 <use images/figure3/cgan_cmp.png>
@@ -1351,7 +1341,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 210--210
 [][]| 
  []
 
-<images/figure3/ugan_cmp.png, id=202, 256.96pt x 256.96pt>
+<images/figure3/ugan_cmp.png, id=206, 256.96pt x 256.96pt>
 File: images/figure3/ugan_cmp.png Graphic file (type png)
 
 <use images/figure3/ugan_cmp.png>
@@ -1362,7 +1352,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 211--211
 [][]| 
  []
 
-<images/figure3/uganp_cmp.png, id=203, 256.96pt x 256.96pt>
+<images/figure3/uganp_cmp.png, id=207, 256.96pt x 256.96pt>
 File: images/figure3/uganp_cmp.png Graphic file (type png)
 
 <use images/figure3/uganp_cmp.png>
@@ -1373,7 +1363,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 212--212
 [][]| 
  []
 
-<images/figure3/flickr_crop1.png, id=204, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop1.png, id=208, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop1.png Graphic file (type png)
 
 <use images/figure3/flickr_crop1.png>
@@ -1385,7 +1375,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 220--220
 [][]| 
  []
 
-<images/figure3/flickr_crop2.png, id=205, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop2.png, id=209, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop2.png Graphic file (type png)
 
 <use images/figure3/flickr_crop2.png>
@@ -1397,7 +1387,7 @@ Overfull \hbox (5.17844pt too wide) in paragraph at lines 221--221
 [][]| 
  []
 
-<images/figure3/cgan_crop1.png, id=206, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop1.png, id=210, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop1.png Graphic file (type png)
 
 <use images/figure3/cgan_crop1.png>
@@ -1408,7 +1398,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 222--222
 [][]| 
  []
 
-<images/figure3/cgan_crop2.png, id=207, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop2.png, id=211, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop2.png Graphic file (type png)
 
 <use images/figure3/cgan_crop2.png>
@@ -1419,7 +1409,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 223--223
 [][]| 
  []
 
-<images/figure3/ugan_crop1.png, id=208, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop1.png, id=212, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop1.png Graphic file (type png)
 
 <use images/figure3/ugan_crop1.png>
@@ -1430,7 +1420,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 224--224
 [][]| 
  []
 
-<images/figure3/ugan_crop2.png, id=209, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop2.png, id=213, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop2.png Graphic file (type png)
 
 <use images/figure3/ugan_crop2.png>
@@ -1459,7 +1449,7 @@ Overfull \hbox (3.75615pt too wide) in paragraph at lines 227--228
 [][]| 
  []
 
-<images/figure3/flickr_crop3.png, id=210, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop3.png, id=214, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop3.png Graphic file (type png)
 
 <use images/figure3/flickr_crop3.png>
@@ -1471,7 +1461,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 229--229
 [][]| 
  []
 
-<images/figure3/flickr_crop4.png, id=211, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop4.png, id=215, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop4.png Graphic file (type png)
 
 <use images/figure3/flickr_crop4.png>
@@ -1483,7 +1473,7 @@ Overfull \hbox (5.17844pt too wide) in paragraph at lines 230--230
 [][]| 
  []
 
-<images/figure3/cgan_crop3.png, id=212, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop3.png, id=216, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop3.png Graphic file (type png)
 
 <use images/figure3/cgan_crop3.png>
@@ -1494,7 +1484,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 231--231
 [][]| 
  []
 
-<images/figure3/cgan_crop4.png, id=213, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop4.png, id=217, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop4.png Graphic file (type png)
 
 <use images/figure3/cgan_crop4.png>
@@ -1505,7 +1495,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 232--232
 [][]| 
  []
 
-<images/figure3/ugan_crop3.png, id=214, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop3.png, id=218, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop3.png Graphic file (type png)
 
 <use images/figure3/ugan_crop3.png>
@@ -1516,7 +1506,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 233--233
 [][]| 
  []
 
-<images/figure3/ugan_crop4.png, id=215, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop4.png, id=219, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop4.png Graphic file (type png)
 
 <use images/figure3/ugan_crop4.png>
@@ -1555,24 +1545,7 @@ Overfull \hbox (19.8947pt too wide) in paragraph at lines 262--271
  [][] 
  []
 
-[5 <./images/edges/1_original.png (PNG copy)> <./images/edges/1_cimg.png (PNG c
-opy)> <./images/edges/1_u0img.png (PNG copy)> <./images/edges/1_u1img.png (PNG 
-copy)> <./images/edges/1_oedges.png (PNG copy)> <./images/edges/1_cedges.png (P
-NG copy)> <./images/edges/1_u0edges.png (PNG copy)> <./images/edges/1_u1edges.p
-ng (PNG copy)> <./images/edges/2_original.png (PNG copy)> <./images/edges/2_cim
-g.png (PNG copy)> <./images/edges/2_u0img.png (PNG copy)> <./images/edges/2_u1i
-mg.png (PNG copy)> <./images/edges/2_oedges.png (PNG copy)> <./images/edges/2_c
-edges.png (PNG copy)> <./images/edges/2_u0edges.png (PNG copy)> <./images/edges
-/2_u1edges.png (PNG copy)> <./images/edges/3_original.png (PNG copy)> <./images
-/edges/3_cimg.png (PNG copy)> <./images/edges/3_u0img.png (PNG copy)> <./images
-/edges/3_u1img.png (PNG copy)> <./images/edges/3_oedges.png (PNG copy)> <./imag
-es/edges/3_cedges.png (PNG copy)> <./images/edges/3_u0edges.png (PNG copy)> <./
-images/edges/3_u1edges.png (PNG copy)> <./images/edges/4_original.png (PNG copy
-)> <./images/edges/4_cimg.png (PNG copy)> <./images/edges/4_u0img.png (PNG copy
-)> <./images/edges/4_u1img.png (PNG copy)> <./images/edges/4_oedges.png (PNG co
-py)> <./images/edges/4_cedges.png (PNG copy)> <./images/edges/4_u0edges.png (PN
-G copy)> <./images/edges/4_u1edges.png (PNG copy)>]
-<images/mdpm/real1.png, id=226, 256.96pt x 256.96pt>
+<images/mdpm/real1.png, id=221, 256.96pt x 256.96pt>
 File: images/mdpm/real1.png Graphic file (type png)
 
 <use images/mdpm/real1.png>
@@ -1583,7 +1556,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 289--289
 [][]| 
  []
 
-<images/mdpm/real2.png, id=227, 256.96pt x 256.96pt>
+<images/mdpm/real2.png, id=222, 256.96pt x 256.96pt>
 File: images/mdpm/real2.png Graphic file (type png)
 
 <use images/mdpm/real2.png>
@@ -1594,7 +1567,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 290--290
 [][]| 
  []
 
-<images/mdpm/real3.png, id=228, 256.96pt x 256.96pt>
+<images/mdpm/real3.png, id=223, 256.96pt x 256.96pt>
 File: images/mdpm/real3.png Graphic file (type png)
 
 <use images/mdpm/real3.png>
@@ -1605,7 +1578,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 291--291
 [][]| 
  []
 
-<images/mdpm/real4.png, id=229, 256.96pt x 256.96pt>
+<images/mdpm/real4.png, id=224, 256.96pt x 256.96pt>
 File: images/mdpm/real4.png Graphic file (type png)
 
 <use images/mdpm/real4.png>
@@ -1616,7 +1589,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 292--293
 [][]| 
  []
 
-<images/mdpm/gen1.png, id=230, 256.96pt x 256.96pt>
+<images/mdpm/gen1.png, id=225, 256.96pt x 256.96pt>
 File: images/mdpm/gen1.png Graphic file (type png)
  <use images/mdpm/gen1.png>
 Package pdftex.def Info: images/mdpm/gen1.png used on input line 293.
@@ -1626,7 +1599,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 293--293
 [][]| 
  []
 
-<images/mdpm/gen2.png, id=231, 256.96pt x 256.96pt>
+<images/mdpm/gen2.png, id=226, 256.96pt x 256.96pt>
 File: images/mdpm/gen2.png Graphic file (type png)
  <use images/mdpm/gen2.png>
 Package pdftex.def Info: images/mdpm/gen2.png used on input line 294.
@@ -1636,7 +1609,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 294--294
 [][]| 
  []
 
-<images/mdpm/gen3.png, id=232, 256.96pt x 256.96pt>
+<images/mdpm/gen3.png, id=227, 256.96pt x 256.96pt>
 File: images/mdpm/gen3.png Graphic file (type png)
  <use images/mdpm/gen3.png>
 Package pdftex.def Info: images/mdpm/gen3.png used on input line 295.
@@ -1646,7 +1619,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 295--295
 [][]| 
  []
 
-<images/mdpm/gen4.png, id=233, 256.96pt x 256.96pt>
+<images/mdpm/gen4.png, id=228, 256.96pt x 256.96pt>
 File: images/mdpm/gen4.png Graphic file (type png)
  <use images/mdpm/gen4.png>
 Package pdftex.def Info: images/mdpm/gen4.png used on input line 296.
@@ -1656,16 +1629,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 296--297
 [][]| 
  []
 
-) (./tex/conclusions.tex) (./paper.bbl [6 <./images/figure3/flickr_cmp.png (PNG
- copy)> <./images/figure3/cgan_cmp.png (PNG copy)> <./images/figure3/ugan_cmp.p
-ng (PNG copy)> <./images/figure3/uganp_cmp.png (PNG copy)> <./images/figure3/fl
-ickr_crop1.png (PNG copy)> <./images/figure3/flickr_crop2.png (PNG copy)> <./im
-ages/figure3/cgan_crop1.png (PNG copy)> <./images/figure3/cgan_crop2.png (PNG c
-opy)> <./images/figure3/ugan_crop1.png (PNG copy)> <./images/figure3/ugan_crop2
-.png (PNG copy)> <./images/figure3/flickr_crop3.png (PNG copy)> <./images/figur
-e3/flickr_crop4.png (PNG copy)> <./images/figure3/cgan_crop3.png (PNG copy)> <.
-/images/figure3/cgan_crop4.png (PNG copy)> <./images/figure3/ugan_crop3.png (PN
-G copy)> <./images/figure3/ugan_crop4.png (PNG copy)>]
+) (./tex/conclusions.tex) (./paper.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 90--92
 []\OT1/ptm/m/n/8 I. Gul-ra-jani, F. Ahmed, M. Ar-jovsky, V. Du-moulin, and
  []
@@ -1676,10 +1640,7 @@ Underfull \hbox (badness 3557) in paragraph at lines 90--92
 /ptm/m/it/8 arXiv
  []
 
-[7 <./images/mdpm/real1.png (PNG copy)> <./images/mdpm/real2.png (PNG copy)> <.
-/images/mdpm/real3.png (PNG copy)> <./images/mdpm/real4.png (PNG copy)> <./imag
-es/mdpm/gen1.png (PNG copy)> <./images/mdpm/gen2.png (PNG copy)> <./images/mdpm
-/gen3.png (PNG copy)> <./images/mdpm/gen4.png (PNG copy)>])
+[5])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1692,29 +1653,69 @@ Before submitting the final camera ready copy, remember to:
  process uses the US letter (8.5in X 11in) paper size.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 64.
-[8
+[6 <./images/n01917289_4982_real.png (PNG copy)> <./images/n01917289_4982_gen_0
+.png (PNG copy)> <./images/n01917289_4982_gen_1.png (PNG copy)> <./images/n0149
+6331_16340_real.png (PNG copy)> <./images/n01496331_16340_gen_0.png (PNG copy)>
+ <./images/n01496331_16340_gen_1.png (PNG copy)> <./images/n01496331_22183_real
+.png (PNG copy)> <./images/n01496331_22183_gen_0.png (PNG copy)> <./images/n014
+96331_22183_gen_1.png (PNG copy)> <./images/n01664065_29738_real.png (PNG copy)
+> <./images/n01664065_29738_gen_0.png (PNG copy)> <./images/n01664065_29738_gen
+_1.png (PNG copy)> <./images/n01496331_11938_real.png (PNG copy)> <./images/n01
+496331_11938_gen_0.png (PNG copy)> <./images/n01496331_11938_gen_1.png (PNG cop
+y)> <./images/n02606052_2969_real.png (PNG copy)> <./images/n02606052_2969_gen_
+0.png (PNG copy)> <./images/n02606052_2969_gen_1.png (PNG copy)> <./images/n019
+14609_1607_real.png (PNG copy)> <./images/n01914609_1607_gen_0.png (PNG copy)> 
+<./images/n01914609_1607_gen_1.png (PNG copy)> <./images/n02607072_6241_real.pn
+g (PNG copy)> <./images/n02607072_6241_gen_0.png (PNG copy)> <./images/n0260707
+2_6241_gen_1.png (PNG copy)>] [7
 
-]
+ <./images/edges/1_original.png (PNG copy)> <./images/edges/1_cimg.png (PNG cop
+y)> <./images/edges/1_u0img.png (PNG copy)> <./images/edges/1_u1img.png (PNG co
+py)> <./images/edges/1_oedges.png (PNG copy)> <./images/edges/1_cedges.png (PNG
+ copy)> <./images/edges/1_u0edges.png (PNG copy)> <./images/edges/1_u1edges.png
+ (PNG copy)> <./images/edges/2_original.png (PNG copy)> <./images/edges/2_cimg.
+png (PNG copy)> <./images/edges/2_u0img.png (PNG copy)> <./images/edges/2_u1img
+.png (PNG copy)> <./images/edges/2_oedges.png (PNG copy)> <./images/edges/2_ced
+ges.png (PNG copy)> <./images/edges/2_u0edges.png (PNG copy)> <./images/edges/2
+_u1edges.png (PNG copy)> <./images/edges/3_original.png (PNG copy)> <./images/e
+dges/3_cimg.png (PNG copy)> <./images/edges/3_u0img.png (PNG copy)> <./images/e
+dges/3_u1img.png (PNG copy)> <./images/edges/3_oedges.png (PNG copy)> <./images
+/edges/3_cedges.png (PNG copy)> <./images/edges/3_u0edges.png (PNG copy)> <./im
+ages/edges/3_u1edges.png (PNG copy)> <./images/edges/4_original.png (PNG copy)>
+ <./images/edges/4_cimg.png (PNG copy)> <./images/edges/4_u0img.png (PNG copy)>
+ <./images/edges/4_u1img.png (PNG copy)> <./images/edges/4_oedges.png (PNG copy
+)> <./images/edges/4_cedges.png (PNG copy)> <./images/edges/4_u0edges.png (PNG 
+copy)> <./images/edges/4_u1edges.png (PNG copy)>] [8 <./images/figure3/flickr_c
+mp.png (PNG copy)> <./images/figure3/cgan_cmp.png (PNG copy)> <./images/figure3
+/ugan_cmp.png (PNG copy)> <./images/figure3/uganp_cmp.png (PNG copy)> <./images
+/figure3/flickr_crop1.png (PNG copy)> <./images/figure3/flickr_crop2.png (PNG c
+opy)> <./images/figure3/cgan_crop1.png (PNG copy)> <./images/figure3/cgan_crop2
+.png (PNG copy)> <./images/figure3/ugan_crop1.png (PNG copy)> <./images/figure3
+/ugan_crop2.png (PNG copy)> <./images/figure3/flickr_crop3.png (PNG copy)> <./i
+mages/figure3/flickr_crop4.png (PNG copy)> <./images/figure3/cgan_crop3.png (PN
+G copy)> <./images/figure3/cgan_crop4.png (PNG copy)> <./images/figure3/ugan_cr
+op3.png (PNG copy)> <./images/figure3/ugan_crop4.png (PNG copy)> <./images/mdpm
+/real1.png (PNG copy)> <./images/mdpm/real2.png (PNG copy)> <./images/mdpm/real
+3.png (PNG copy)> <./images/mdpm/real4.png (PNG copy)> <./images/mdpm/gen1.png 
+(PNG copy)> <./images/mdpm/gen2.png (PNG copy)> <./images/mdpm/gen3.png (PNG co
+py)> <./images/mdpm/gen4.png (PNG copy)>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 64.
- (./paper.aux)
+
+(./paper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 64.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 64.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 1981843567A7AB73A821A2B489EEB466;954.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 64.
  ) 
 Here is how much of TeX's memory you used:
  7994 strings out of 493029
  125596 string characters out of 6136234
- 220450 words of memory out of 5000000
+ 230247 words of memory out of 5000000
  11213 multiletter control sequences out of 15000+600000
  50953 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,13n,35p,409b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,13n,35p,409b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -1735,7 +1736,7 @@ s/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 8212405 bytes).
+Output written on paper.pdf (8 pages, 8211881 bytes).
 PDF statistics:
  370 PDF objects out of 1000 (max. 8388607)
  77 named destinations out of 1000 (max. 500000)
