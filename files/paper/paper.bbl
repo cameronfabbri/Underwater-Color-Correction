@@ -160,6 +160,11 @@ M.~Abadi, A.~Agarwal, P.~Barham, E.~Brevdo, Z.~Chen, C.~Citro, G.~S. Corrado,
   learning on heterogeneous distributed systems,'' {\em arXiv preprint
   arXiv:1603.04467}, 2016.
 
+\bibitem{pertuz2013analysis}
+S.~Pertuz, D.~Puig, and M.~A. Garcia, ``Analysis of focus measure operators for
+  shape-from-focus,'' {\em Pattern Recognition}, vol.~46, no.~5,
+  pp.~1415--1432, 2013.
+
 \bibitem{islam2017mixed}
 M.~J. Islam and J.~Sattar, ``Mixed-domain biological motion tracking for
   underwater human-robot interaction,'' in {\em 2017 IEEE International

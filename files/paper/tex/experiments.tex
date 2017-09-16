@@ -118,7 +118,7 @@ entire dataset.
 
 We explore the artifacts of content loss, as seen in Figure ~\ref{fig:zoom}. In particular, we compare local statistics
 of the highlighted image patches, where each image patch is resized to $64 \times 64$. We use the GDL
-\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. 
+\cite{mathieu2015deep} from (\ref{gdl_eq}) as a sharpness measure. Laplacian stuff \cite{pertuz2013analysis}
 
 % I would like this table to match up with the figure showing edge detections. I wasn't able to
 % get letters on the left side at each row though.
@@ -197,7 +197,7 @@ the result of the edge detector.}
    \includegraphics[width=1.7in]{flickr_cmp} &
    \includegraphics[width=1.7in]{cgan_cmp} &
    \includegraphics[width=1.7in]{ugan_cmp} &
-   \includegraphics[width=1.7in]{uganp_cmp} \\ [-11ex]
+   \includegraphics[width=1.7in]{uganp_cmp} \\ [-2ex]
    
 \end{tabular}
 \end{figure*}
@@ -223,12 +223,38 @@ the result of the edge detector.}
    \includegraphics[width=0.8in]{ugan_crop3} &
    \includegraphics[width=0.8in]{ugan_crop4} \\
 
-
 \end{tabular}
 \caption{Comparison of local image patches. Each patch was resized to $64 \times 64$.}
 \label{fig:zoom}
 \end{figure*}
 
+\begin{table}[ht]
+\footnotesize
+\centering
+\caption{Gradient Difference Loss Metrics}
+\begin{tabular}{| c | c | c | c | }
+   \hline
+   Patch/Method & CycleGAN & UGAN & UGAN-P \\ \hline
+   Red    & 11.53 & 9.39 & 10.93  \\ \hline
+   Blue   & 7.52  & 4.83 &  5.50\\ \hline
+   Green  & 4.15  & 3.18 & 3.25 \\ \hline
+   Orange & 6.72  & 5.65 & 5.79 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\footnotesize
+\centering
+\caption{Mean and Standard Deviation Metrics}
+\begin{tabular}{| c | c | c | c | c | }
+   \hline
+   Patch/Method & Original & CycleGAN & UGAN & UGAN-P \\ \hline
+   Red & 0.43 $\pm$ 0.23 & 0.42 $\pm$ 0.22 & 0.44 $\pm$ 0.23 & 0.45 $\pm$ 0.25 \\ \hline
+   Blue & 0.51 $\pm$ 0.18 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 & 0.57 $\pm$ 0.17 \\ \hline
+   Green & 0.36 $\pm$ 0.17 & 0.36 $\pm$ 0.14 & 0.37 $\pm$ 0.17 & 0.36 $\pm$ 0.17 \\ \hline
+   Orange & 0.3 $\pm$ 0.15 & 0.25 $\pm$ 0.12 & 0.26 $\pm$ 0.13 & 0.27 $\pm$ 0.14 \\ \hline
+\end{tabular}
+\end{table}
 
 \subsection{Diver Tracking using Frequency-Domain Detection}
 We investigate the frequency-domain characteristics of the restored images through a case-study of periodic motion tracking in 
