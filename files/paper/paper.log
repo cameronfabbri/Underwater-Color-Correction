@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  16 SEP 2017 02:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.6)  17 SEP 2017 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
 (./ieeeconf.cls
 
 LaTeX Warning: You have requested document class `ieeeconf',
@@ -370,7 +370,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 ** ATTENTION: Overriding command lockouts (line 22).
 ** ATTENTION: Overriding IEEE standard margins (line 23).
-No file paper.aux.
+(./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -387,7 +387,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count117
 \scratchdimen=\dimen139
@@ -460,22 +460,7 @@ File: omspcr.fd
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 53.
  (./tex/abstract.tex) (./tex/introduction.tex
-
-LaTeX Warning: Citation `shkurti2012multi' on page 1 undefined on input line 7.
-
-
-
-LaTeX Warning: Citation `whitcomb2000advances' on page 1 undefined on input lin
-e 7.
-
-
-LaTeX Warning: Citation `bingham2010robotic' on page 1 undefined on input line 
-7.
-
-
-LaTeX Warning: Reference `fig:samples' on page 1 undefined on input line 21.
-
-<images/figure1/n01496331_7428_f1.png, id=63, 256.96pt x 256.96pt>
+<images/figure1/n01496331_7428_f1.png, id=64, 256.96pt x 256.96pt>
 File: images/figure1/n01496331_7428_f1.png Graphic file (type png)
 
 <use images/figure1/n01496331_7428_f1.png>
@@ -487,7 +472,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 32--32
 [][]| 
  []
 
-<images/figure1/n01496331_16340_f1.png, id=64, 256.96pt x 256.96pt>
+<images/figure1/n01496331_16340_f1.png, id=65, 256.96pt x 256.96pt>
 File: images/figure1/n01496331_16340_f1.png Graphic file (type png)
 
 <use images/figure1/n01496331_16340_f1.png>
@@ -499,7 +484,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 33--33
 [][]| 
  []
 
-<images/figure1/n01914609_5148_f1.png, id=65, 256.96pt x 256.96pt>
+<images/figure1/n01914609_5148_f1.png, id=66, 256.96pt x 256.96pt>
 File: images/figure1/n01914609_5148_f1.png Graphic file (type png)
 
 <use images/figure1/n01914609_5148_f1.png>
@@ -511,7 +496,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 34--34
 [][]| 
  []
 
-<images/figure1/robot_f1.png, id=66, 256.96pt x 256.96pt>
+<images/figure1/robot_f1.png, id=67, 256.96pt x 256.96pt>
 File: images/figure1/robot_f1.png Graphic file (type png)
 
 <use images/figure1/robot_f1.png>
@@ -522,7 +507,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 35--36
 [][]| 
  []
 
-<images/figure1/n01664065_30279_f1.png, id=67, 256.96pt x 256.96pt>
+<images/figure1/n01664065_30279_f1.png, id=68, 256.96pt x 256.96pt>
 File: images/figure1/n01664065_30279_f1.png Graphic file (type png)
 
 <use images/figure1/n01664065_30279_f1.png>
@@ -534,7 +519,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 36--36
 [][]| 
  []
 
-<images/figure1/n01917289_5711_f1.png, id=68, 256.96pt x 256.96pt>
+<images/figure1/n01917289_5711_f1.png, id=69, 256.96pt x 256.96pt>
 File: images/figure1/n01917289_5711_f1.png Graphic file (type png)
 
 <use images/figure1/n01917289_5711_f1.png>
@@ -546,7 +531,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 37--37
 [][]| 
  []
 
-<images/figure1/n01917289_4087_f1.png, id=69, 256.96pt x 256.96pt>
+<images/figure1/n01917289_4087_f1.png, id=70, 256.96pt x 256.96pt>
 File: images/figure1/n01917289_4087_f1.png Graphic file (type png)
 
 <use images/figure1/n01917289_4087_f1.png>
@@ -558,7 +543,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 38--38
 [][]| 
  []
 
-<images/figure1/n02607072_10395_f1.png, id=70, 256.96pt x 256.96pt>
+<images/figure1/n02607072_10395_f1.png, id=71, 256.96pt x 256.96pt>
 File: images/figure1/n02607072_10395_f1.png Graphic file (type png)
 
 <use images/figure1/n02607072_10395_f1.png>
@@ -570,18 +555,6 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 39--40
 [][]| 
  []
 
-
-LaTeX Warning: Citation `krizhevsky2012imagenet' on page 1 undefined on input l
-ine 49.
-
-
-LaTeX Warning: Citation `zhang2016colorful' on page 1 undefined on input line 5
-0.
-
-
-LaTeX Warning: Citation `zhu2017unpaired' on page 1 undefined on input line 58.
-
-
 ) (./tex/related.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -590,59 +563,8 @@ LaTeX Warning: Citation `zhu2017unpaired' on page 1 undefined on input line 58.
 <./images/figure1/robot_f1.png> <./images/figure1/n01664065_30279_f1.png (PNG c
 opy)> <./images/figure1/n01917289_5711_f1.png (PNG copy)> <./images/figure1/n01
 917289_4087_f1.png (PNG copy)> <./images/figure1/n02607072_10395_f1.png (PNG co
-py)>]
-
-LaTeX Warning: Citation `zhang2016colorful' on page 2 undefined on input line 5
-.
-
-
-LaTeX Warning: Citation `iizuka2016let' on page 2 undefined on input line 5.
-
-
-LaTeX Warning: Citation `jordt2014underwater' on page 2 undefined on input line
- 6.
-
-
-LaTeX Warning: Citation `torres2005color' on page 2 undefined on input line 7.
-
-
-LaTeX Warning: Citation `li2017watergan' on page 2 undefined on input line 8.
-
-
-LaTeX Warning: Citation `pathak2016context' on page 2 undefined on input line 1
-9.
-
-
-LaTeX Warning: Citation `Gatys_2016_CVPR' on page 2 undefined on input line 19.
-
-
-
-LaTeX Warning: Citation `isola2016image' on page 2 undefined on input line 20.
-
-
-LaTeX Warning: Citation `zhu2017unpaired' on page 2 undefined on input line 20.
-
-
-
-LaTeX Warning: Reference `sec:gans' on page 2 undefined on input line 23.
-
-
-LaTeX Warning: Citation `isola2016image' on page 2 undefined on input line 23.
-
-) (./tex/methodology.tex
-
-LaTeX Warning: Reference `fig:cgan_samples' on page 2 undefined on input line 2
-1.
-
-
-LaTeX Warning: Reference `sec:experiments' on page 2 undefined on input line 23
-.
-
-
-LaTeX Warning: Citation `goodfellow2014generative' on page 2 undefined on input
- line 29.
-
-<images/figure2/n01496331_873_X.jpg, id=85, 256.96pt x 256.96pt>
+py)>]) (./tex/methodology.tex
+<images/figure2/n01496331_873_X.jpg, id=89, 256.96pt x 256.96pt>
 File: images/figure2/n01496331_873_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01496331_873_X.jpg>
@@ -654,7 +576,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 44--44
 [][]| 
  []
 
-<images/figure2/n01664065_4022_X.jpg, id=86, 256.96pt x 256.96pt>
+<images/figure2/n01664065_4022_X.jpg, id=90, 256.96pt x 256.96pt>
 File: images/figure2/n01664065_4022_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01664065_4022_X.jpg>
@@ -666,7 +588,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 45--45
 [][]| 
  []
 
-<images/figure2/n01917289_889_X.jpg, id=87, 256.96pt x 256.96pt>
+<images/figure2/n01917289_889_X.jpg, id=91, 256.96pt x 256.96pt>
 File: images/figure2/n01917289_889_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01917289_889_X.jpg>
@@ -678,7 +600,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 46--46
 [][]| 
  []
 
-<images/figure2/n01914609_116_X.jpg, id=88, 256.96pt x 256.96pt>
+<images/figure2/n01914609_116_X.jpg, id=92, 256.96pt x 256.96pt>
 File: images/figure2/n01914609_116_X.jpg Graphic file (type jpg)
 
 <use images/figure2/n01914609_116_X.jpg>
@@ -690,7 +612,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 47--48
 [][]| 
  []
 
-<images/figure2/n01496331_873_Y.jpg, id=89, 256.96pt x 256.96pt>
+<images/figure2/n01496331_873_Y.jpg, id=93, 256.96pt x 256.96pt>
 File: images/figure2/n01496331_873_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01496331_873_Y.jpg>
@@ -702,7 +624,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 48--48
 [][]| 
  []
 
-<images/figure2/n01664065_4022_Y.jpg, id=90, 256.96pt x 256.96pt>
+<images/figure2/n01664065_4022_Y.jpg, id=94, 256.96pt x 256.96pt>
 File: images/figure2/n01664065_4022_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01664065_4022_Y.jpg>
@@ -714,7 +636,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 49--49
 [][]| 
  []
 
-<images/figure2/n01917289_889_Y.jpg, id=91, 256.96pt x 256.96pt>
+<images/figure2/n01917289_889_Y.jpg, id=95, 256.96pt x 256.96pt>
 File: images/figure2/n01917289_889_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01917289_889_Y.jpg>
@@ -726,7 +648,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 50--50
 [][]| 
  []
 
-<images/figure2/n01914609_116_Y.jpg, id=92, 256.96pt x 256.96pt>
+<images/figure2/n01914609_116_Y.jpg, id=96, 256.96pt x 256.96pt>
 File: images/figure2/n01914609_116_Y.jpg Graphic file (type jpg)
 
 <use images/figure2/n01914609_116_Y.jpg>
@@ -743,118 +665,12 @@ g> <./images/figure2/n01917289_889_X.jpg> <./images/figure2/n01914609_116_X.jpg
 > <./images/figure2/n01496331_873_Y.jpg> <./images/figure2/n01664065_4022_Y.jpg
 > <./images/figure2/n01917289_889_Y.jpg> <./images/figure2/n01914609_116_Y.jpg>
 ]
-
-LaTeX Warning: Citation `arjovsky2017towards' on page 3 undefined on input line
- 70.
-
-
-LaTeX Warning: Citation `lecun2010mnist' on page 3 undefined on input line 73.
-
-
-LaTeX Warning: Citation `mao2016least' on page 3 undefined on input line 77.
-
-
-LaTeX Warning: Citation `arjovsky2017wasserstein' on page 3 undefined on input 
-line 77.
-
-
-LaTeX Warning: Citation `gulrajani2017improved' on page 3 undefined on input li
-ne 77.
-
-
-LaTeX Warning: Citation `zhao2016energy' on page 3 undefined on input line 77.
-
-
-LaTeX Warning: Citation `arjovsky2017wasserstein' on page 3 undefined on input 
-line 78.
-
-
-LaTeX Warning: Citation `villani2008optimal' on page 3 undefined on input line 
-79.
-
-
-LaTeX Warning: Citation `gulrajani2017improved' on page 3 undefined on input li
-ne 82.
-
-
-LaTeX Warning: Citation `arjovsky2017wasserstein' on page 3 undefined on input 
-line 83.
-
-
-LaTeX Warning: Citation `gulrajani2017improved' on page 3 undefined on input li
-ne 85.
-
-
 Overfull \hbox (1.45053pt too wide) detected at line 92
 [][] []
  []
 
-
-LaTeX Warning: Citation `mathieu2015deep' on page 3 undefined on input line 124
-.
-
-
-LaTeX Warning: Citation `isola2016image' on page 3 undefined on input line 148.
-
-
-
-LaTeX Warning: Citation `ronneberger2015u' on page 3 undefined on input line 14
-9.
-
-
-LaTeX Warning: Citation `pmlr-v37-ioffe15' on page 3 undefined on input line 15
-7.
-
-
-LaTeX Warning: Citation `nair2010rectified' on page 3 undefined on input line 1
-58.
-
-
-LaTeX Warning: Citation `ulyanov2016instance' on page 3 undefined on input line
- 160.
-
-
-LaTeX Warning: Citation `radford2015unsupervised' on page 3 undefined on input 
-line 163.
-
-
-LaTeX Warning: Citation `gulrajani2017improved' on page 3 undefined on input li
-ne 166.
-
-
-LaTeX Warning: Citation `ba2016layer' on page 3 undefined on input line 166.
-
-
-LaTeX Warning: Citation `isola2016image' on page 3 undefined on input line 167.
-
-
-
-LaTeX Warning: Citation `li2016precomputed' on page 3 undefined on input line 1
-67.
-
-) (./tex/experiments.tex
-
-LaTeX Warning: Citation `deng2009imagenet' on page 3 undefined on input line 5.
-
-
-
-LaTeX Warning: Reference `fig:cgan_samples' on page 3 undefined on input line 1
-6.
-
-[3]
-
-LaTeX Warning: Reference `fig:test_samples' on page 4 undefined on input line 2
-4.
-
-
-LaTeX Warning: Reference `fig:test_samples' on page 4 undefined on input line 3
-2.
-
-
-LaTeX Warning: Citation `canny1986computational' on page 4 undefined on input l
-ine 38.
-
-<images/n01917289_4982_real.png, id=120, 256.96pt x 256.96pt>
+) (./tex/experiments.tex [3]
+<images/n01917289_4982_real.png, id=127, 256.96pt x 256.96pt>
 File: images/n01917289_4982_real.png Graphic file (type png)
 
 <use images/n01917289_4982_real.png>
@@ -865,7 +681,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 48--48
 [][]| 
  []
 
-<images/n01917289_4982_gen_0.png, id=121, 256.96pt x 256.96pt>
+<images/n01917289_4982_gen_0.png, id=128, 256.96pt x 256.96pt>
 File: images/n01917289_4982_gen_0.png Graphic file (type png)
 
 <use images/n01917289_4982_gen_0.png>
@@ -877,7 +693,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 49--49
 [][]| 
  []
 
-<images/n01917289_4982_gen_1.png, id=122, 256.96pt x 256.96pt>
+<images/n01917289_4982_gen_1.png, id=129, 256.96pt x 256.96pt>
 File: images/n01917289_4982_gen_1.png Graphic file (type png)
 
 <use images/n01917289_4982_gen_1.png>
@@ -889,7 +705,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 50--51
 [][]| 
  []
 
-<images/n01496331_16340_real.png, id=123, 256.96pt x 256.96pt>
+<images/n01496331_16340_real.png, id=130, 256.96pt x 256.96pt>
 File: images/n01496331_16340_real.png Graphic file (type png)
 
 <use images/n01496331_16340_real.png>
@@ -901,7 +717,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 52--52
 [][]| 
  []
 
-<images/n01496331_16340_gen_0.png, id=124, 256.96pt x 256.96pt>
+<images/n01496331_16340_gen_0.png, id=131, 256.96pt x 256.96pt>
 File: images/n01496331_16340_gen_0.png Graphic file (type png)
 
 <use images/n01496331_16340_gen_0.png>
@@ -913,7 +729,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 53--53
 [][]| 
  []
 
-<images/n01496331_16340_gen_1.png, id=125, 256.96pt x 256.96pt>
+<images/n01496331_16340_gen_1.png, id=132, 256.96pt x 256.96pt>
 File: images/n01496331_16340_gen_1.png Graphic file (type png)
 
 <use images/n01496331_16340_gen_1.png>
@@ -925,7 +741,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 54--55
 [][]| 
  []
 
-<images/n01496331_22183_real.png, id=126, 256.96pt x 256.96pt>
+<images/n01496331_22183_real.png, id=133, 256.96pt x 256.96pt>
 File: images/n01496331_22183_real.png Graphic file (type png)
 
 <use images/n01496331_22183_real.png>
@@ -937,7 +753,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 56--56
 [][]| 
  []
 
-<images/n01496331_22183_gen_0.png, id=127, 256.96pt x 256.96pt>
+<images/n01496331_22183_gen_0.png, id=134, 256.96pt x 256.96pt>
 File: images/n01496331_22183_gen_0.png Graphic file (type png)
 
 <use images/n01496331_22183_gen_0.png>
@@ -949,7 +765,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 57--57
 [][]| 
  []
 
-<images/n01496331_22183_gen_1.png, id=128, 256.96pt x 256.96pt>
+<images/n01496331_22183_gen_1.png, id=135, 256.96pt x 256.96pt>
 File: images/n01496331_22183_gen_1.png Graphic file (type png)
 
 <use images/n01496331_22183_gen_1.png>
@@ -961,7 +777,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 58--59
 [][]| 
  []
 
-<images/n01664065_29738_real.png, id=129, 256.96pt x 256.96pt>
+<images/n01664065_29738_real.png, id=136, 256.96pt x 256.96pt>
 File: images/n01664065_29738_real.png Graphic file (type png)
 
 <use images/n01664065_29738_real.png>
@@ -973,7 +789,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 60--60
 [][]| 
  []
 
-<images/n01664065_29738_gen_0.png, id=130, 256.96pt x 256.96pt>
+<images/n01664065_29738_gen_0.png, id=137, 256.96pt x 256.96pt>
 File: images/n01664065_29738_gen_0.png Graphic file (type png)
 
 <use images/n01664065_29738_gen_0.png>
@@ -985,7 +801,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 61--61
 [][]| 
  []
 
-<images/n01664065_29738_gen_1.png, id=131, 256.96pt x 256.96pt>
+<images/n01664065_29738_gen_1.png, id=138, 256.96pt x 256.96pt>
 File: images/n01664065_29738_gen_1.png Graphic file (type png)
 
 <use images/n01664065_29738_gen_1.png>
@@ -997,7 +813,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 62--63
 [][]| 
  []
 
-<images/n01496331_11938_real.png, id=132, 256.96pt x 256.96pt>
+<images/n01496331_11938_real.png, id=139, 256.96pt x 256.96pt>
 File: images/n01496331_11938_real.png Graphic file (type png)
 
 <use images/n01496331_11938_real.png>
@@ -1009,7 +825,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 64--64
 [][]| 
  []
 
-<images/n01496331_11938_gen_0.png, id=133, 256.96pt x 256.96pt>
+<images/n01496331_11938_gen_0.png, id=140, 256.96pt x 256.96pt>
 File: images/n01496331_11938_gen_0.png Graphic file (type png)
 
 <use images/n01496331_11938_gen_0.png>
@@ -1021,7 +837,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 65--65
 [][]| 
  []
 
-<images/n01496331_11938_gen_1.png, id=134, 256.96pt x 256.96pt>
+<images/n01496331_11938_gen_1.png, id=141, 256.96pt x 256.96pt>
 File: images/n01496331_11938_gen_1.png Graphic file (type png)
 
 <use images/n01496331_11938_gen_1.png>
@@ -1033,7 +849,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 66--67
 [][]| 
  []
 
-<images/n02606052_2969_real.png, id=135, 256.96pt x 256.96pt>
+<images/n02606052_2969_real.png, id=142, 256.96pt x 256.96pt>
 File: images/n02606052_2969_real.png Graphic file (type png)
 
 <use images/n02606052_2969_real.png>
@@ -1044,7 +860,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 68--68
 [][]| 
  []
 
-<images/n02606052_2969_gen_0.png, id=136, 256.96pt x 256.96pt>
+<images/n02606052_2969_gen_0.png, id=143, 256.96pt x 256.96pt>
 File: images/n02606052_2969_gen_0.png Graphic file (type png)
 
 <use images/n02606052_2969_gen_0.png>
@@ -1056,7 +872,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 69--69
 [][]| 
  []
 
-<images/n02606052_2969_gen_1.png, id=137, 256.96pt x 256.96pt>
+<images/n02606052_2969_gen_1.png, id=144, 256.96pt x 256.96pt>
 File: images/n02606052_2969_gen_1.png Graphic file (type png)
 
 <use images/n02606052_2969_gen_1.png>
@@ -1068,7 +884,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 70--71
 [][]| 
  []
 
-<images/n01914609_1607_real.png, id=138, 256.96pt x 256.96pt>
+<images/n01914609_1607_real.png, id=145, 256.96pt x 256.96pt>
 File: images/n01914609_1607_real.png Graphic file (type png)
 
 <use images/n01914609_1607_real.png>
@@ -1079,7 +895,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 72--72
 [][]| 
  []
 
-<images/n01914609_1607_gen_0.png, id=139, 256.96pt x 256.96pt>
+<images/n01914609_1607_gen_0.png, id=146, 256.96pt x 256.96pt>
 File: images/n01914609_1607_gen_0.png Graphic file (type png)
 
 <use images/n01914609_1607_gen_0.png>
@@ -1091,7 +907,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 73--73
 [][]| 
  []
 
-<images/n01914609_1607_gen_1.png, id=140, 256.96pt x 256.96pt>
+<images/n01914609_1607_gen_1.png, id=147, 256.96pt x 256.96pt>
 File: images/n01914609_1607_gen_1.png Graphic file (type png)
 
 <use images/n01914609_1607_gen_1.png>
@@ -1103,7 +919,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 74--75
 [][]| 
  []
 
-<images/n02607072_6241_real.png, id=141, 256.96pt x 256.96pt>
+<images/n02607072_6241_real.png, id=148, 256.96pt x 256.96pt>
 File: images/n02607072_6241_real.png Graphic file (type png)
 
 <use images/n02607072_6241_real.png>
@@ -1114,7 +930,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 76--76
 [][]| 
  []
 
-<images/n02607072_6241_gen_0.png, id=142, 256.96pt x 256.96pt>
+<images/n02607072_6241_gen_0.png, id=149, 256.96pt x 256.96pt>
 File: images/n02607072_6241_gen_0.png Graphic file (type png)
 
 <use images/n02607072_6241_gen_0.png>
@@ -1126,7 +942,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 77--77
 [][]| 
  []
 
-<images/n02607072_6241_gen_1.png, id=143, 256.96pt x 256.96pt>
+<images/n02607072_6241_gen_1.png, id=150, 256.96pt x 256.96pt>
 File: images/n02607072_6241_gen_1.png Graphic file (type png)
 
 <use images/n02607072_6241_gen_1.png>
@@ -1139,55 +955,24 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 78--79
  []
 
 
-LaTeX Warning: Citation `canny1986computational' on page 4 undefined on input l
-ine 101.
+Underfull \vbox (badness 1642) has occurred while \output is active []
 
-
-LaTeX Warning: Reference `fig:canny_samples' on page 4 undefined on input line 
-104.
-
-
-LaTeX Warning: Reference `tab:one' on page 4 undefined on input line 105.
-
-
-LaTeX Warning: Reference `fig:canny_samples' on page 4 undefined on input line 
-106.
-
-
-LaTeX Warning: Reference `fig:zoom' on page 4 undefined on input line 110.
-
-
-LaTeX Warning: Citation `mathieu2015deep' on page 4 undefined on input line 111
-.
-
-
-LaTeX Warning: Reference `gdl_eq' on page 4 undefined on input line 112.
-
-
-LaTeX Warning: Reference `fig:gdl_tbl' on page 4 undefined on input line 114.
-
-[4 <./images/n01917289_4982_real.png (PNG copy)> <./images/n01917289_4982_gen_0
-.png (PNG copy)> <./images/n01917289_4982_gen_1.png (PNG copy)> <./images/n0149
-6331_16340_real.png (PNG copy)> <./images/n01496331_16340_gen_0.png (PNG copy)>
- <./images/n01496331_16340_gen_1.png (PNG copy)> <./images/n01496331_22183_real
-.png (PNG copy)> <./images/n01496331_22183_gen_0.png (PNG copy)> <./images/n014
-96331_22183_gen_1.png (PNG copy)> <./images/n01664065_29738_real.png (PNG copy)
-> <./images/n01664065_29738_gen_0.png (PNG copy)> <./images/n01664065_29738_gen
-_1.png (PNG copy)> <./images/n01496331_11938_real.png (PNG copy)> <./images/n01
-496331_11938_gen_0.png (PNG copy)> <./images/n01496331_11938_gen_1.png (PNG cop
-y)> <./images/n02606052_2969_real.png (PNG copy)> <./images/n02606052_2969_gen_
-0.png (PNG copy)> <./images/n02606052_2969_gen_1.png (PNG copy)> <./images/n019
-14609_1607_real.png (PNG copy)> <./images/n01914609_1607_gen_0.png (PNG copy)> 
-<./images/n01914609_1607_gen_1.png (PNG copy)> <./images/n02607072_6241_real.pn
-g (PNG copy)> <./images/n02607072_6241_gen_0.png (PNG copy)> <./images/n0260707
-2_6241_gen_1.png (PNG copy)>]
-
-LaTeX Warning: Reference `fig:mean_tbl' on page 5 undefined on input line 122.
-
-
-LaTeX Warning: Reference `fig:zoom' on page 5 undefined on input line 123.
-
-<images/edges/1_original.png, id=150, 256.96pt x 256.96pt>
+ [4 <./images/n01917289_4982_real.png (PNG copy)> <./images/n01917289_4982_gen_
+0.png (PNG copy)> <./images/n01917289_4982_gen_1.png (PNG copy)> <./images/n014
+96331_16340_real.png (PNG copy)> <./images/n01496331_16340_gen_0.png (PNG copy)
+> <./images/n01496331_16340_gen_1.png (PNG copy)> <./images/n01496331_22183_rea
+l.png (PNG copy)> <./images/n01496331_22183_gen_0.png (PNG copy)> <./images/n01
+496331_22183_gen_1.png (PNG copy)> <./images/n01664065_29738_real.png (PNG copy
+)> <./images/n01664065_29738_gen_0.png (PNG copy)> <./images/n01664065_29738_ge
+n_1.png (PNG copy)> <./images/n01496331_11938_real.png (PNG copy)> <./images/n0
+1496331_11938_gen_0.png (PNG copy)> <./images/n01496331_11938_gen_1.png (PNG co
+py)> <./images/n02606052_2969_real.png (PNG copy)> <./images/n02606052_2969_gen
+_0.png (PNG copy)> <./images/n02606052_2969_gen_1.png (PNG copy)> <./images/n01
+914609_1607_real.png (PNG copy)> <./images/n01914609_1607_gen_0.png (PNG copy)>
+ <./images/n01914609_1607_gen_1.png (PNG copy)> <./images/n02607072_6241_real.p
+ng (PNG copy)> <./images/n02607072_6241_gen_0.png (PNG copy)> <./images/n026070
+72_6241_gen_1.png (PNG copy)>] <images/edges/1_original.png, id=167, 256.96pt x
+ 256.96pt>
 File: images/edges/1_original.png Graphic file (type png)
 
 <use images/edges/1_original.png>
@@ -1198,7 +983,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 202--202
 [][]| 
  []
 
-<images/edges/1_cimg.png, id=151, 256.96pt x 256.96pt>
+<images/edges/1_cimg.png, id=168, 256.96pt x 256.96pt>
 File: images/edges/1_cimg.png Graphic file (type png)
 
 <use images/edges/1_cimg.png>
@@ -1209,7 +994,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 203--203
 [][]| 
  []
 
-<images/edges/1_u0img.png, id=152, 256.96pt x 256.96pt>
+<images/edges/1_u0img.png, id=169, 256.96pt x 256.96pt>
 File: images/edges/1_u0img.png Graphic file (type png)
 
 <use images/edges/1_u0img.png>
@@ -1220,7 +1005,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 204--204
 [][]| 
  []
 
-<images/edges/1_u1img.png, id=153, 256.96pt x 256.96pt>
+<images/edges/1_u1img.png, id=170, 256.96pt x 256.96pt>
 File: images/edges/1_u1img.png Graphic file (type png)
 
 <use images/edges/1_u1img.png>
@@ -1231,7 +1016,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 205--205
 [][]| 
  []
 
-<images/edges/1_oedges.png, id=154, 256.96pt x 256.96pt>
+<images/edges/1_oedges.png, id=171, 256.96pt x 256.96pt>
 File: images/edges/1_oedges.png Graphic file (type png)
 
 <use images/edges/1_oedges.png>
@@ -1242,7 +1027,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 206--206
 [][]| 
  []
 
-<images/edges/1_cedges.png, id=155, 256.96pt x 256.96pt>
+<images/edges/1_cedges.png, id=172, 256.96pt x 256.96pt>
 File: images/edges/1_cedges.png Graphic file (type png)
 
 <use images/edges/1_cedges.png>
@@ -1253,7 +1038,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 207--207
 [][]| 
  []
 
-<images/edges/1_u0edges.png, id=156, 256.96pt x 256.96pt>
+<images/edges/1_u0edges.png, id=173, 256.96pt x 256.96pt>
 File: images/edges/1_u0edges.png Graphic file (type png)
 
 <use images/edges/1_u0edges.png>
@@ -1264,7 +1049,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 208--208
 [][]| 
  []
 
-<images/edges/1_u1edges.png, id=157, 256.96pt x 256.96pt>
+<images/edges/1_u1edges.png, id=174, 256.96pt x 256.96pt>
 File: images/edges/1_u1edges.png Graphic file (type png)
 
 <use images/edges/1_u1edges.png>
@@ -1275,7 +1060,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 209--210
 [][]| 
  []
 
-<images/edges/2_original.png, id=158, 256.96pt x 256.96pt>
+<images/edges/2_original.png, id=175, 256.96pt x 256.96pt>
 File: images/edges/2_original.png Graphic file (type png)
 
 <use images/edges/2_original.png>
@@ -1286,7 +1071,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 211--211
 [][]| 
  []
 
-<images/edges/2_cimg.png, id=159, 256.96pt x 256.96pt>
+<images/edges/2_cimg.png, id=176, 256.96pt x 256.96pt>
 File: images/edges/2_cimg.png Graphic file (type png)
 
 <use images/edges/2_cimg.png>
@@ -1297,7 +1082,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 212--212
 [][]| 
  []
 
-<images/edges/2_u0img.png, id=160, 256.96pt x 256.96pt>
+<images/edges/2_u0img.png, id=177, 256.96pt x 256.96pt>
 File: images/edges/2_u0img.png Graphic file (type png)
 
 <use images/edges/2_u0img.png>
@@ -1308,7 +1093,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 213--213
 [][]| 
  []
 
-<images/edges/2_u1img.png, id=161, 256.96pt x 256.96pt>
+<images/edges/2_u1img.png, id=178, 256.96pt x 256.96pt>
 File: images/edges/2_u1img.png Graphic file (type png)
 
 <use images/edges/2_u1img.png>
@@ -1319,7 +1104,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 214--214
 [][]| 
  []
 
-<images/edges/2_oedges.png, id=162, 256.96pt x 256.96pt>
+<images/edges/2_oedges.png, id=179, 256.96pt x 256.96pt>
 File: images/edges/2_oedges.png Graphic file (type png)
 
 <use images/edges/2_oedges.png>
@@ -1330,7 +1115,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 215--215
 [][]| 
  []
 
-<images/edges/2_cedges.png, id=163, 256.96pt x 256.96pt>
+<images/edges/2_cedges.png, id=180, 256.96pt x 256.96pt>
 File: images/edges/2_cedges.png Graphic file (type png)
 
 <use images/edges/2_cedges.png>
@@ -1341,7 +1126,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 216--216
 [][]| 
  []
 
-<images/edges/2_u0edges.png, id=164, 256.96pt x 256.96pt>
+<images/edges/2_u0edges.png, id=181, 256.96pt x 256.96pt>
 File: images/edges/2_u0edges.png Graphic file (type png)
 
 <use images/edges/2_u0edges.png>
@@ -1352,7 +1137,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 217--217
 [][]| 
  []
 
-<images/edges/2_u1edges.png, id=165, 256.96pt x 256.96pt>
+<images/edges/2_u1edges.png, id=182, 256.96pt x 256.96pt>
 File: images/edges/2_u1edges.png Graphic file (type png)
 
 <use images/edges/2_u1edges.png>
@@ -1363,7 +1148,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 218--219
 [][]| 
  []
 
-<images/edges/3_original.png, id=166, 256.96pt x 256.96pt>
+<images/edges/3_original.png, id=183, 256.96pt x 256.96pt>
 File: images/edges/3_original.png Graphic file (type png)
 
 <use images/edges/3_original.png>
@@ -1374,7 +1159,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 220--220
 [][]| 
  []
 
-<images/edges/3_cimg.png, id=167, 256.96pt x 256.96pt>
+<images/edges/3_cimg.png, id=184, 256.96pt x 256.96pt>
 File: images/edges/3_cimg.png Graphic file (type png)
 
 <use images/edges/3_cimg.png>
@@ -1385,7 +1170,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 221--221
 [][]| 
  []
 
-<images/edges/3_u0img.png, id=168, 256.96pt x 256.96pt>
+<images/edges/3_u0img.png, id=185, 256.96pt x 256.96pt>
 File: images/edges/3_u0img.png Graphic file (type png)
 
 <use images/edges/3_u0img.png>
@@ -1396,7 +1181,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 222--222
 [][]| 
  []
 
-<images/edges/3_u1img.png, id=169, 256.96pt x 256.96pt>
+<images/edges/3_u1img.png, id=186, 256.96pt x 256.96pt>
 File: images/edges/3_u1img.png Graphic file (type png)
 
 <use images/edges/3_u1img.png>
@@ -1407,7 +1192,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 223--223
 [][]| 
  []
 
-<images/edges/3_oedges.png, id=170, 256.96pt x 256.96pt>
+<images/edges/3_oedges.png, id=187, 256.96pt x 256.96pt>
 File: images/edges/3_oedges.png Graphic file (type png)
 
 <use images/edges/3_oedges.png>
@@ -1418,7 +1203,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 224--224
 [][]| 
  []
 
-<images/edges/3_cedges.png, id=171, 256.96pt x 256.96pt>
+<images/edges/3_cedges.png, id=188, 256.96pt x 256.96pt>
 File: images/edges/3_cedges.png Graphic file (type png)
 
 <use images/edges/3_cedges.png>
@@ -1429,7 +1214,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 225--225
 [][]| 
  []
 
-<images/edges/3_u0edges.png, id=172, 256.96pt x 256.96pt>
+<images/edges/3_u0edges.png, id=189, 256.96pt x 256.96pt>
 File: images/edges/3_u0edges.png Graphic file (type png)
 
 <use images/edges/3_u0edges.png>
@@ -1440,7 +1225,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 226--226
 [][]| 
  []
 
-<images/edges/3_u1edges.png, id=173, 256.96pt x 256.96pt>
+<images/edges/3_u1edges.png, id=190, 256.96pt x 256.96pt>
 File: images/edges/3_u1edges.png Graphic file (type png)
 
 <use images/edges/3_u1edges.png>
@@ -1451,7 +1236,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 227--228
 [][]| 
  []
 
-<images/edges/4_original.png, id=174, 256.96pt x 256.96pt>
+<images/edges/4_original.png, id=191, 256.96pt x 256.96pt>
 File: images/edges/4_original.png Graphic file (type png)
 
 <use images/edges/4_original.png>
@@ -1462,7 +1247,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 229--229
 [][]| 
  []
 
-<images/edges/4_cimg.png, id=175, 256.96pt x 256.96pt>
+<images/edges/4_cimg.png, id=192, 256.96pt x 256.96pt>
 File: images/edges/4_cimg.png Graphic file (type png)
 
 <use images/edges/4_cimg.png>
@@ -1473,7 +1258,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 230--230
 [][]| 
  []
 
-<images/edges/4_u0img.png, id=176, 256.96pt x 256.96pt>
+<images/edges/4_u0img.png, id=193, 256.96pt x 256.96pt>
 File: images/edges/4_u0img.png Graphic file (type png)
 
 <use images/edges/4_u0img.png>
@@ -1484,7 +1269,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 231--231
 [][]| 
  []
 
-<images/edges/4_u1img.png, id=177, 256.96pt x 256.96pt>
+<images/edges/4_u1img.png, id=194, 256.96pt x 256.96pt>
 File: images/edges/4_u1img.png Graphic file (type png)
 
 <use images/edges/4_u1img.png>
@@ -1495,7 +1280,7 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 232--232
 [][]| 
  []
 
-<images/edges/4_oedges.png, id=178, 256.96pt x 256.96pt>
+<images/edges/4_oedges.png, id=195, 256.96pt x 256.96pt>
 File: images/edges/4_oedges.png Graphic file (type png)
 
 <use images/edges/4_oedges.png>
@@ -1506,7 +1291,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 233--233
 [][]| 
  []
 
-<images/edges/4_cedges.png, id=179, 256.96pt x 256.96pt>
+<images/edges/4_cedges.png, id=196, 256.96pt x 256.96pt>
 File: images/edges/4_cedges.png Graphic file (type png)
 
 <use images/edges/4_cedges.png>
@@ -1517,7 +1302,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 234--234
 [][]| 
  []
 
-<images/edges/4_u0edges.png, id=180, 256.96pt x 256.96pt>
+<images/edges/4_u0edges.png, id=197, 256.96pt x 256.96pt>
 File: images/edges/4_u0edges.png Graphic file (type png)
 
 <use images/edges/4_u0edges.png>
@@ -1528,7 +1313,7 @@ Overfull \hbox (9.44662pt too wide) in paragraph at lines 235--235
 [][]| 
  []
 
-<images/edges/4_u1edges.png, id=181, 256.96pt x 256.96pt>
+<images/edges/4_u1edges.png, id=198, 256.96pt x 256.96pt>
 File: images/edges/4_u1edges.png Graphic file (type png)
 
 <use images/edges/4_u1edges.png>
@@ -1540,15 +1325,9 @@ Overfull \hbox (8.0239pt too wide) in paragraph at lines 236--237
  []
 
 
-LaTeX Warning: Reference `tab:one' on page 5 undefined on input line 242.
-
-
-LaTeX Warning: Reference `tab:one' on page 5 undefined on input line 242.
-
-
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/figure3/flickr_cmp.png, id=182, 256.96pt x 256.96pt>
+<images/figure3/flickr_cmp.png, id=201, 256.96pt x 256.96pt>
 File: images/figure3/flickr_cmp.png Graphic file (type png)
 
 <use images/figure3/flickr_cmp.png>
@@ -1559,7 +1338,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 254--254
 [][]| 
  []
 
-<images/figure3/cgan_cmp.png, id=183, 256.96pt x 256.96pt>
+<images/figure3/cgan_cmp.png, id=202, 256.96pt x 256.96pt>
 File: images/figure3/cgan_cmp.png Graphic file (type png)
 
 <use images/figure3/cgan_cmp.png>
@@ -1570,7 +1349,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 255--255
 [][]| 
  []
 
-<images/figure3/ugan_cmp.png, id=184, 256.96pt x 256.96pt>
+<images/figure3/ugan_cmp.png, id=203, 256.96pt x 256.96pt>
 File: images/figure3/ugan_cmp.png Graphic file (type png)
 
 <use images/figure3/ugan_cmp.png>
@@ -1581,7 +1360,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 256--256
 [][]| 
  []
 
-<images/figure3/uganp_cmp.png, id=185, 256.96pt x 256.96pt>
+<images/figure3/uganp_cmp.png, id=204, 256.96pt x 256.96pt>
 File: images/figure3/uganp_cmp.png Graphic file (type png)
 
 <use images/figure3/uganp_cmp.png>
@@ -1592,7 +1371,7 @@ Overfull \hbox (9.04774pt too wide) in paragraph at lines 257--257
 [][]| 
  []
 
-<images/figure3/flickr_crop1.png, id=186, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop1.png, id=205, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop1.png Graphic file (type png)
 
 <use images/figure3/flickr_crop1.png>
@@ -1604,7 +1383,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 265--265
 [][]| 
  []
 
-<images/figure3/flickr_crop2.png, id=187, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop2.png, id=206, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop2.png Graphic file (type png)
 
 <use images/figure3/flickr_crop2.png>
@@ -1616,7 +1395,7 @@ Overfull \hbox (5.17844pt too wide) in paragraph at lines 266--266
 [][]| 
  []
 
-<images/figure3/cgan_crop1.png, id=188, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop1.png, id=207, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop1.png Graphic file (type png)
 
 <use images/figure3/cgan_crop1.png>
@@ -1627,7 +1406,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 267--267
 [][]| 
  []
 
-<images/figure3/cgan_crop2.png, id=189, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop2.png, id=208, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop2.png Graphic file (type png)
 
 <use images/figure3/cgan_crop2.png>
@@ -1638,7 +1417,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 268--268
 [][]| 
  []
 
-<images/figure3/ugan_crop1.png, id=190, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop1.png, id=209, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop1.png Graphic file (type png)
 
 <use images/figure3/ugan_crop1.png>
@@ -1649,7 +1428,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 269--269
 [][]| 
  []
 
-<images/figure3/ugan_crop2.png, id=191, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop2.png, id=210, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop2.png Graphic file (type png)
 
 <use images/figure3/ugan_crop2.png>
@@ -1678,7 +1457,7 @@ Overfull \hbox (3.75615pt too wide) in paragraph at lines 272--273
 [][]| 
  []
 
-<images/figure3/flickr_crop3.png, id=192, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop3.png, id=211, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop3.png Graphic file (type png)
 
 <use images/figure3/flickr_crop3.png>
@@ -1690,7 +1469,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 274--274
 [][]| 
  []
 
-<images/figure3/flickr_crop4.png, id=193, 64.24pt x 64.24pt>
+<images/figure3/flickr_crop4.png, id=212, 64.24pt x 64.24pt>
 File: images/figure3/flickr_crop4.png Graphic file (type png)
 
 <use images/figure3/flickr_crop4.png>
@@ -1702,7 +1481,7 @@ Overfull \hbox (5.17844pt too wide) in paragraph at lines 275--275
 [][]| 
  []
 
-<images/figure3/cgan_crop3.png, id=194, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop3.png, id=213, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop3.png Graphic file (type png)
 
 <use images/figure3/cgan_crop3.png>
@@ -1713,7 +1492,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 276--276
 [][]| 
  []
 
-<images/figure3/cgan_crop4.png, id=195, 64.24pt x 64.24pt>
+<images/figure3/cgan_crop4.png, id=214, 64.24pt x 64.24pt>
 File: images/figure3/cgan_crop4.png Graphic file (type png)
 
 <use images/figure3/cgan_crop4.png>
@@ -1724,7 +1503,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 277--277
 [][]| 
  []
 
-<images/figure3/ugan_crop3.png, id=196, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop3.png, id=215, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop3.png Graphic file (type png)
 
 <use images/figure3/ugan_crop3.png>
@@ -1735,7 +1514,7 @@ Overfull \hbox (6.60117pt too wide) in paragraph at lines 278--278
 [][]| 
  []
 
-<images/figure3/ugan_crop4.png, id=197, 64.24pt x 64.24pt>
+<images/figure3/ugan_crop4.png, id=216, 64.24pt x 64.24pt>
 File: images/figure3/ugan_crop4.png Graphic file (type png)
 
 <use images/figure3/ugan_crop4.png>
@@ -1770,18 +1549,6 @@ Overfull \hbox (4.09808pt too wide) in paragraph at lines 263--285
  []
 
 
-LaTeX Warning: Reference `fig:gdl_tbl' on page 5 undefined on input line 285.
-
-
-LaTeX Warning: Reference `fig:mean_tbl' on page 5 undefined on input line 285.
-
-
-LaTeX Warning: Reference `fig:gdl_tbl' on page 5 undefined on input line 285.
-
-
-LaTeX Warning: Reference `fig:mean_tbl' on page 5 undefined on input line 285.
-
-
 Overfull \hbox (7.19489pt too wide) in paragraph at lines 295--295
  []\OT1/ptm/m/n/8 Method/ 
  []
@@ -1790,117 +1557,6 @@ Overfull \hbox (7.19489pt too wide) in paragraph at lines 295--295
 Overfull \hbox (7.19489pt too wide) in paragraph at lines 310--310
  []\OT1/ptm/m/n/8 Method/ 
  []
-
-
-LaTeX Warning: Citation `islam2017mixed' on page 5 undefined on input line 323.
-
-
-
-LaTeX Warning: Citation `shkurti2017underwater' on page 5 undefined on input li
-ne 326.
-
-
-LaTeX Warning: Reference `mdpmStuff' on page 5 undefined on input line 328.
-
-<images/mdpm/real1.png, id=198, 256.96pt x 256.96pt>
-File: images/mdpm/real1.png Graphic file (type png)
-
-<use images/mdpm/real1.png>
-Package pdftex.def Info: images/mdpm/real1.png used on input line 336.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 336--336
-[][]| 
- []
-
-<images/mdpm/real2.png, id=199, 256.96pt x 256.96pt>
-File: images/mdpm/real2.png Graphic file (type png)
-
-<use images/mdpm/real2.png>
-Package pdftex.def Info: images/mdpm/real2.png used on input line 337.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 337--337
-[][]| 
- []
-
-<images/mdpm/real3.png, id=200, 256.96pt x 256.96pt>
-File: images/mdpm/real3.png Graphic file (type png)
-
-<use images/mdpm/real3.png>
-Package pdftex.def Info: images/mdpm/real3.png used on input line 338.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 338--338
-[][]| 
- []
-
-<images/mdpm/real4.png, id=201, 256.96pt x 256.96pt>
-File: images/mdpm/real4.png Graphic file (type png)
-
-<use images/mdpm/real4.png>
-Package pdftex.def Info: images/mdpm/real4.png used on input line 339.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 339--340
-[][]| 
- []
-
-<images/mdpm/gen1.png, id=202, 256.96pt x 256.96pt>
-File: images/mdpm/gen1.png Graphic file (type png)
- <use images/mdpm/gen1.png>
-Package pdftex.def Info: images/mdpm/gen1.png used on input line 340.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 340--340
-[][]| 
- []
-
-<images/mdpm/gen2.png, id=203, 256.96pt x 256.96pt>
-File: images/mdpm/gen2.png Graphic file (type png)
- <use images/mdpm/gen2.png>
-Package pdftex.def Info: images/mdpm/gen2.png used on input line 341.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 341--341
-[][]| 
- []
-
-<images/mdpm/gen3.png, id=204, 256.96pt x 256.96pt>
-File: images/mdpm/gen3.png Graphic file (type png)
- <use images/mdpm/gen3.png>
-Package pdftex.def Info: images/mdpm/gen3.png used on input line 342.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 342--342
-[][]| 
- []
-
-<images/mdpm/gen4.png, id=205, 256.96pt x 256.96pt>
-File: images/mdpm/gen4.png Graphic file (type png)
- <use images/mdpm/gen4.png>
-Package pdftex.def Info: images/mdpm/gen4.png used on input line 343.
-(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
-
-Overfull \hbox (9.04774pt too wide) in paragraph at lines 343--344
-[][]| 
- []
-
-
-LaTeX Warning: Citation `islam2017mixed' on page 5 undefined on input line 356.
-
-
-
-LaTeX Warning: Citation `islam2017mixed' on page 5 undefined on input line 356.
-
-
-
-LaTeX Warning: Citation `kingma2014adam' on page 5 undefined on input line 362.
-
-
-
-LaTeX Warning: Citation `abadi2016tensorflow' on page 5 undefined on input line
- 364.
 
 
 Underfull \vbox (badness 4036) has occurred while \output is active []
@@ -1921,21 +1577,101 @@ ges/edges/3_cedges.png (PNG copy)> <./images/edges/3_u0edges.png (PNG copy)> <.
 y)> <./images/edges/4_cimg.png (PNG copy)> <./images/edges/4_u0img.png (PNG cop
 y)> <./images/edges/4_u1img.png (PNG copy)> <./images/edges/4_oedges.png (PNG c
 opy)> <./images/edges/4_cedges.png (PNG copy)> <./images/edges/4_u0edges.png (P
-NG copy)> <./images/edges/4_u1edges.png (PNG copy)>] [6 <./images/figure3/flick
-r_cmp.png (PNG copy)> <./images/figure3/cgan_cmp.png (PNG copy)> <./images/figu
-re3/ugan_cmp.png (PNG copy)> <./images/figure3/uganp_cmp.png (PNG copy)> <./ima
-ges/figure3/flickr_crop1.png (PNG copy)> <./images/figure3/flickr_crop2.png (PN
-G copy)> <./images/figure3/cgan_crop1.png (PNG copy)> <./images/figure3/cgan_cr
-op2.png (PNG copy)> <./images/figure3/ugan_crop1.png (PNG copy)> <./images/figu
-re3/ugan_crop2.png (PNG copy)> <./images/figure3/flickr_crop3.png (PNG copy)> <
-./images/figure3/flickr_crop4.png (PNG copy)> <./images/figure3/cgan_crop3.png 
-(PNG copy)> <./images/figure3/cgan_crop4.png (PNG copy)> <./images/figure3/ugan
-_crop3.png (PNG copy)> <./images/figure3/ugan_crop4.png (PNG copy)> <./images/m
-dpm/real1.png (PNG copy)> <./images/mdpm/real2.png (PNG copy)> <./images/mdpm/r
-eal3.png (PNG copy)> <./images/mdpm/real4.png (PNG copy)> <./images/mdpm/gen1.p
-ng (PNG copy)> <./images/mdpm/gen2.png (PNG copy)> <./images/mdpm/gen3.png (PNG
- copy)> <./images/mdpm/gen4.png (PNG copy)>]) (./tex/conclusions.tex) (./paper.
-bbl
+NG copy)> <./images/edges/4_u1edges.png (PNG copy)>]
+<images/mdpm/real1.png, id=231, 256.96pt x 256.96pt>
+File: images/mdpm/real1.png Graphic file (type png)
+
+<use images/mdpm/real1.png>
+Package pdftex.def Info: images/mdpm/real1.png used on input line 336.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 336--336
+[][]| 
+ []
+
+<images/mdpm/real2.png, id=232, 256.96pt x 256.96pt>
+File: images/mdpm/real2.png Graphic file (type png)
+
+<use images/mdpm/real2.png>
+Package pdftex.def Info: images/mdpm/real2.png used on input line 337.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 337--337
+[][]| 
+ []
+
+<images/mdpm/real3.png, id=233, 256.96pt x 256.96pt>
+File: images/mdpm/real3.png Graphic file (type png)
+
+<use images/mdpm/real3.png>
+Package pdftex.def Info: images/mdpm/real3.png used on input line 338.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 338--338
+[][]| 
+ []
+
+<images/mdpm/real4.png, id=234, 256.96pt x 256.96pt>
+File: images/mdpm/real4.png Graphic file (type png)
+
+<use images/mdpm/real4.png>
+Package pdftex.def Info: images/mdpm/real4.png used on input line 339.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 339--340
+[][]| 
+ []
+
+<images/mdpm/gen1.png, id=235, 256.96pt x 256.96pt>
+File: images/mdpm/gen1.png Graphic file (type png)
+ <use images/mdpm/gen1.png>
+Package pdftex.def Info: images/mdpm/gen1.png used on input line 340.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 340--340
+[][]| 
+ []
+
+<images/mdpm/gen2.png, id=236, 256.96pt x 256.96pt>
+File: images/mdpm/gen2.png Graphic file (type png)
+ <use images/mdpm/gen2.png>
+Package pdftex.def Info: images/mdpm/gen2.png used on input line 341.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 341--341
+[][]| 
+ []
+
+<images/mdpm/gen3.png, id=237, 256.96pt x 256.96pt>
+File: images/mdpm/gen3.png Graphic file (type png)
+ <use images/mdpm/gen3.png>
+Package pdftex.def Info: images/mdpm/gen3.png used on input line 342.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 342--342
+[][]| 
+ []
+
+<images/mdpm/gen4.png, id=238, 256.96pt x 256.96pt>
+File: images/mdpm/gen4.png Graphic file (type png)
+ <use images/mdpm/gen4.png>
+Package pdftex.def Info: images/mdpm/gen4.png used on input line 343.
+(pdftex.def)             Requested size: 122.85876pt x 122.86104pt.
+
+Overfull \hbox (9.04774pt too wide) in paragraph at lines 343--344
+[][]| 
+ []
+
+) (./tex/conclusions.tex) (./paper.bbl [6 <./images/figure3/flickr_cmp.png (PNG
+ copy)> <./images/figure3/cgan_cmp.png (PNG copy)> <./images/figure3/ugan_cmp.p
+ng (PNG copy)> <./images/figure3/uganp_cmp.png (PNG copy)> <./images/figure3/fl
+ickr_crop1.png (PNG copy)> <./images/figure3/flickr_crop2.png (PNG copy)> <./im
+ages/figure3/cgan_crop1.png (PNG copy)> <./images/figure3/cgan_crop2.png (PNG c
+opy)> <./images/figure3/ugan_crop1.png (PNG copy)> <./images/figure3/ugan_crop2
+.png (PNG copy)> <./images/figure3/flickr_crop3.png (PNG copy)> <./images/figur
+e3/flickr_crop4.png (PNG copy)> <./images/figure3/cgan_crop3.png (PNG copy)> <.
+/images/figure3/cgan_crop4.png (PNG copy)> <./images/figure3/ugan_crop3.png (PN
+G copy)> <./images/figure3/ugan_crop4.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 81--84
 []\OT1/ptm/m/n/8 Y. Le-Cun, C. Cortes, and C. J. Burges, ``Mnist hand-
  []
@@ -1957,7 +1693,10 @@ Underfull \hbox (badness 3557) in paragraph at lines 95--97
 /ptm/m/it/8 arXiv
  []
 
-[7])
+[7 <./images/mdpm/real1.png (PNG copy)> <./images/mdpm/real2.png (PNG copy)> <.
+/images/mdpm/real3.png (PNG copy)> <./images/mdpm/real4.png (PNG copy)> <./imag
+es/mdpm/gen1.png (PNG copy)> <./images/mdpm/gen2.png (PNG copy)> <./images/mdpm
+/gen3.png (PNG copy)> <./images/mdpm/gen4.png (PNG copy)>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1981,21 +1720,18 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 90692174DF3F1DB813A91F3EF28A657A;954.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
  ) 
 Here is how much of TeX's memory you used:
- 8006 strings out of 493029
- 125870 string characters out of 6136234
- 220129 words of memory out of 5000000
- 11223 multiletter control sequences out of 15000+600000
+ 8008 strings out of 494953
+ 125890 string characters out of 6180978
+ 217131 words of memory out of 5000000
+ 10972 multiletter control sequences out of 15000+600000
  50953 words of font info for 112 fonts, out of 8000000 for 9000
- 1144 hyphenation exceptions out of 8191
- 30i,13n,35p,512b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 17 hyphenation exceptions out of 8191
+ 30i,13n,35p,512b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -2015,9 +1751,9 @@ ts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 8201924 bytes).
+Output written on paper.pdf (8 pages, 8204723 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
+ 374 PDF objects out of 1000 (max. 8388607)
  77 named destinations out of 1000 (max. 500000)
  601 words of extra memory for PDF output out of 10000 (max. 10000000)
 

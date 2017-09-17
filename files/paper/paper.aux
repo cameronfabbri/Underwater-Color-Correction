@@ -72,22 +72,18 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-C}Image Gradient Difference Loss}{3}{subsection.3.3}}
 \newlabel{gdl_eq}{{5}{3}{Image Gradient Difference Loss}{equation.3.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-D}Network Architecture and Training Details}{3}{subsection.3.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments}{3}{section.4}}
-\newlabel{sec:experiments}{{IV}{3}{Experiments}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Datasets}{3}{subsection.4.1}}
 \citation{canny1986computational}
 \citation{canny1986computational}
-\citation{mathieu2015deep}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experiments}{4}{section.4}}
+\newlabel{sec:experiments}{{IV}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Datasets}{4}{subsection.4.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Evaluation}{4}{subsection.4.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}Comparison to CycleGAN}{4}{subsection.4.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Samples from our ImageNet testing set. The network can both recover color and also correct color if a small amount is present.}}{4}{figure.3}}
 \newlabel{fig:test_samples}{{3}{4}{Samples from our ImageNet testing set. The network can both recover color and also correct color if a small amount is present}{figure.3}{}}
+\citation{mathieu2015deep}
 \citation{islam2017mixed}
 \citation{shkurti2017underwater}
-\citation{islam2017mixed}
-\citation{islam2017mixed}
-\citation{kingma2014adam}
-\citation{abadi2016tensorflow}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Distances in image space}}{5}{table.1}}
 \newlabel{tab:one}{{I}{5}{Distances in image space}{table.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Gradient Difference Loss Metrics}}{5}{table.2}}
@@ -97,11 +93,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-D}Diver Tracking using Frequency-Domain Detection}{5}{subsection.4.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN, and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row the result of the edge detector. The figure depicts four different sets of images, successively labeled A to D from top to bottom. See Table\nobreakspace  {}\ref  {tab:one}.}}{5}{figure.4}}
 \newlabel{fig:canny_samples}{{4}{5}{Running the Canny Edge Detector on sample images. Both variants of UGAN contain less noise than CycleGAN, and are closer in the image space to the original. For each pair, the top row is the input image, and bottom row the result of the edge detector. The figure depicts four different sets of images, successively labeled A to D from top to bottom. See Table~\ref {tab:one}}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Local image patches extracted for quantitative comparisons, shown in Tables\nobreakspace  {}\ref  {fig:gdl_tbl} and\nobreakspace  {}\ref  {fig:mean_tbl}. Each patch was resized to $64 \times 64$, but shown enlarged for viewing ability.}}{6}{figure.5}}
-\newlabel{fig:zoom}{{5}{6}{Local image patches extracted for quantitative comparisons, shown in Tables~\ref {fig:gdl_tbl} and~\ref {fig:mean_tbl}. Each patch was resized to $64 \times 64$, but shown enlarged for viewing ability}{figure.5}{}}
-\newlabel{fig:mdpm}{{IV-D}{6}{Diver Tracking using Frequency-Domain Detection}{subsection.4.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Performance of MDPM tracker \cite  {islam2017mixed} on both real (top row) and generated (second row) images; the Table compares the detection performance for both sets of images over a sequence of $500$ frames. }}{6}{figure.6}}
-\newlabel{mdpmStuff}{{6}{6}{Performance of MDPM tracker \cite {islam2017mixed} on both real (top row) and generated (second row) images; the Table compares the detection performance for both sets of images over a sequence of $500$ frames}{figure.6}{}}
+\citation{islam2017mixed}
+\citation{islam2017mixed}
+\citation{kingma2014adam}
+\citation{abadi2016tensorflow}
 \bibdata{cambibs}
 \bibcite{shkurti2012multi}{1}
 \bibcite{whitcomb2000advances}{2}
@@ -109,6 +104,11 @@
 \bibcite{krizhevsky2012imagenet}{4}
 \bibcite{zhang2016colorful}{5}
 \bibcite{zhu2017unpaired}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Local image patches extracted for quantitative comparisons, shown in Tables\nobreakspace  {}\ref  {fig:gdl_tbl} and\nobreakspace  {}\ref  {fig:mean_tbl}. Each patch was resized to $64 \times 64$, but shown enlarged for viewing ability.}}{6}{figure.5}}
+\newlabel{fig:zoom}{{5}{6}{Local image patches extracted for quantitative comparisons, shown in Tables~\ref {fig:gdl_tbl} and~\ref {fig:mean_tbl}. Each patch was resized to $64 \times 64$, but shown enlarged for viewing ability}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-E}Training and Inference Performance}{6}{subsection.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{6}{section.5}}
+\@writefile{toc}{\contentsline {section}{References}{6}{section*.2}}
 \bibcite{iizuka2016let}{7}
 \bibcite{jordt2014underwater}{8}
 \bibcite{torres2005color}{9}
@@ -132,10 +132,10 @@
 \bibcite{radford2015unsupervised}{27}
 \bibcite{ba2016layer}{28}
 \bibcite{li2016precomputed}{29}
+\newlabel{fig:mdpm}{{IV-D}{7}{Diver Tracking using Frequency-Domain Detection}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Performance of MDPM tracker \cite  {islam2017mixed} on both real (top row) and generated (second row) images; the Table compares the detection performance for both sets of images over a sequence of $500$ frames. }}{7}{figure.6}}
+\newlabel{mdpmStuff}{{6}{7}{Performance of MDPM tracker \cite {islam2017mixed} on both real (top row) and generated (second row) images; the Table compares the detection performance for both sets of images over a sequence of $500$ frames}{figure.6}{}}
 \bibcite{deng2009imagenet}{30}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-E}Training and Inference Performance}{7}{subsection.4.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{7}{section.5}}
-\@writefile{toc}{\contentsline {section}{References}{7}{section*.2}}
 \bibcite{canny1986computational}{31}
 \bibcite{islam2017mixed}{32}
 \bibcite{shkurti2017underwater}{33}
