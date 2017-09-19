@@ -36,7 +36,7 @@ if __name__ == '__main__':
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
 
-   images = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='images')
+   images = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 227, 227, 3), name='images')
    labels = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 2), name='labels')
 
    logits = network(images, num_classes=2, is_training=True)
@@ -96,7 +96,7 @@ if __name__ == '__main__':
       batch_paths = train_paths[idx]
       batch_ls    = train_labels[idx]
       
-      batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
+      batch_images = np.empty((BATCH_SIZE, 227, 227, 3), dtype=np.float32)
       batch_labels = np.empty((BATCH_SIZE, 2), dtype=np.float32)
 
       i = 0
@@ -104,7 +104,7 @@ if __name__ == '__main__':
          zero = np.asarray([0,0])
 
          img = misc.imread(image).astype('float32')/255.0
-         img = misc.imresize(img, (256, 256))
+         img = misc.imresize(img, (227, 227))
 
          zero[label] = 1
          batch_labels[i, ...] = zero
@@ -122,7 +122,7 @@ if __name__ == '__main__':
       print 'epoch:',epoch_num,'step:',step,'loss:',loss_,log_[0]
       step += 1
       
-      if step%100 == 0:
+      if step%500 == 0:
          print 'Saving model...'
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
