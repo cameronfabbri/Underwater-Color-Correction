@@ -20,15 +20,18 @@ if __name__ == '__main__':
    labels = []
 
    for path in trainA_paths:
-      img = np.reshape(misc.imread(path)/255.0, (256*256*3))
+      img = misc.imread(path)/255.0
+      img = misc.imresize(img, (64,64))
+      img = np.reshape(img, (64*64*3))
       images.append(img)
       labels.append(1)
 
    for path in trainB_paths:
-      img = np.reshape(misc.imread(path)/255.0, (256*256*3))
+      img = misc.imread(path)/255.0
+      img = misc.imresize(img, (64,64))
+      img = np.reshape(img, (64*64*3))
       images.append(img)
       labels.append(0)
-
 
    images = np.asarray(images)
    labels = np.asarray(labels)
@@ -59,8 +62,8 @@ if __name__ == '__main__':
 
       try:
          img = misc.imread(path)/255.0
-         img = misc.imresize(img, (256,256))
-         img = np.reshape(img, (256*256*3))
+         img = misc.imresize(img, (64,64))
+         img = np.reshape(img, (64*64*3))
       except:
          continue
 
