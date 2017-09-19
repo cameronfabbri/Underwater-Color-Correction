@@ -14,6 +14,7 @@ import tensorflow as tf
 from tqdm import tqdm
 from scipy import misc
 import numpy as np
+from pynvml import *
 import argparse
 import ntpath
 import sys
@@ -23,14 +24,14 @@ import time
 
 sys.path.insert(0, 'ops/')
 sys.path.insert(0, 'nets/')
-from tf_ops import *
 
+from tf_ops import *
 import data_ops
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
    parser.add_argument('--LEARNING_RATE', required=False,default=1e-4,type=float,help='Learning rate')
-   parser.add_argument('--INSTANCE_NORM', required=False,default=0,type=int,help='Instance normalization in G')
+   parser.add_argument('--INSTANCE_NORM', required=False,default=0,type=int,help='Instance normalization in G encoder')
    parser.add_argument('--LOSS_METHOD',   required=False,default='wgan',help='Loss function for GAN')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
    parser.add_argument('--LAYER_NORM',    required=False,default=0,type=int,help='Layer normalization in D')
@@ -57,6 +58,8 @@ if __name__ == '__main__':
    EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
                      +'/LAYER_NORM_'+str(LAYER_NORM)\
+                     +'/INSTANCE_NORM_'+str(INSTANCE_NORM)\
+                     +'/PIXEL_SHUF_'+str(PIXEL_SHUF)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -99,6 +102,15 @@ if __name__ == '__main__':
    print 'LAYER_NORM:    ',LAYER_NORM
    print
 
+   # pick the GPU with the most memory available
+   nvmlInit()
+   deviceCount = nvmlDeviceGetCount()
+   gpus = []
+   for i in range(deviceCount):
+      handle = nvmlDeviceGetHandleByIndex(i)
+      mem = nvmlDeviceGetMemoryInfo(handle).free
+      gpus.append(float(mem))
+
    if NETWORK == 'pix2pix': from pix2pix import *
    if NETWORK == 'resnet': from resnet import *
 
@@ -112,7 +124,7 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image = netG(image_u, LOSS_METHOD)
+   gen_image = netG(image_u, INSTANCE_NORM, PIXEL_SHUF, LOSS_METHOD)
 
    # send 'above' water images to D
    D_real = netD(image_r, LAYER_NORM, LOSS_METHOD)
@@ -213,11 +225,12 @@ if __name__ == '__main__':
    num_test  = len(test_paths)
 
    n_critic = 1
-   if LOSS_METHOD == 'wgan': n_critic = 5
+   if LOSS_METHOD == 'wgan': n_critic = 2
 
    epoch_num = step/(num_train/BATCH_SIZE)
 
    while epoch_num < EPOCHS:
+      s = time.time()
       epoch_num = step/(num_train/BATCH_SIZE)
 
       idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
@@ -234,7 +247,7 @@ if __name__ == '__main__':
          batchA_images[i, ...] = a_img
          batchB_images[i, ...] = b_img
          i += 1
-
+      
       for itr in xrange(n_critic):
          sess.run(D_train_op, feed_dict={image_u:batchA_images, image_r:batchB_images})
 
@@ -242,10 +255,12 @@ if __name__ == '__main__':
       D_loss, G_loss, summary = sess.run([errD, errG, merged_summary_op], feed_dict={image_u:batchA_images, image_r:batchB_images})
 
       summary_writer.add_summary(summary, step)
-      print 'epoch:',epoch_num,'step:',step,'D loss:',D_loss,'G_loss:',G_loss
+
+      ss = time.time()-s
+      print 'epoch:',epoch_num,'step:',step,'D loss:',D_loss,'G_loss:',G_loss,'time:',ss
       step += 1
       
-      if step%100 == 0:
+      if step%500 == 0:
          print 'Saving model...'
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
