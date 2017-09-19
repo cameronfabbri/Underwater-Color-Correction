@@ -19,7 +19,7 @@ from network import *
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
-   parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
+   parser.add_argument('--BATCH_SIZE',    required=False,default=8,type=int,help='Batch size')
    parser.add_argument('--LEARNING_RATE', required=False,default=1e-4,type=float,help='Learning rate')
    a = parser.parse_args()
 
@@ -80,9 +80,6 @@ if __name__ == '__main__':
    trainB_paths  = np.asarray(glob.glob('../datasets/underwater_imagenet/trainB/*.jpg'))
    trainB_labels = np.repeat(0, len(trainB_paths))
 
-   trainA_labels = np.asarray(trainA_labels)
-   trainB_labels = np.asarray(trainB_labels)
-
    train_paths  = np.concatenate([trainA_paths, trainB_paths])
    train_labels = np.concatenate([trainA_labels, trainB_labels])
    
@@ -103,7 +100,7 @@ if __name__ == '__main__':
       for image,label in zip(batch_paths, batch_ls):
          zero = np.asarray([0,0])
 
-         img = misc.imread(image).astype('float32')/255.0
+         img = misc.imread(image).astype('float32')
          img = misc.imresize(img, (227, 227))
 
          zero[label] = 1
@@ -111,9 +108,12 @@ if __name__ == '__main__':
          batch_images[i, ...] = img
 
          #print batch_labels[0]
-         #misc.imsave('img.png', img)
+         #misc.imsave('img_'+str(i)+'.png', img)
          #exit()
          i += 1
+
+      print batch_labels
+      exit()
 
       sess.run(train_op, feed_dict={images:batch_images, labels:batch_labels})
       log_, loss_, summary = sess.run([logits, loss, merged_summary_op], feed_dict={images:batch_images, labels:batch_labels})

@@ -24,8 +24,6 @@ def network(x, num_classes=2, is_training=True):
    conv = tcl.max_pool2d(conv, 3, 2)
    print conv
    
-   #conv = tf.pad(conv, ([0,0], [1,1], [1,1], [0,0]))
-   
    conv = tcl.conv2d(conv, 384, 3, 1, activation_fn=tf.identity, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='conv3')
    conv = tf.nn.relu(conv)
    print conv
