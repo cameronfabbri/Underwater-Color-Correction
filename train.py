@@ -29,26 +29,30 @@ import data_ops
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
-   parser.add_argument('--LAYER_NORM',    required=False,default=0,type=int,help='Pixel shuffle')
-   parser.add_argument('--DATA',          required=False,default='rocks',type=str,help='Dataset to use')
-   parser.add_argument('--EPOCHS',        required=False,default=4,type=int,help='Number of epochs for GAN')
-   parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
-   parser.add_argument('--L1_WEIGHT',     required=False,default=100.,type=float,help='Weight for L1 loss')
-   parser.add_argument('--IG_WEIGHT',     required=False,default=1.,type=float,help='Weight for image gradient loss')
+   parser.add_argument('--LEARNING_RATE', required=False,default=1e-4,type=float,help='Learning rate')
+   parser.add_argument('--INSTANCE_NORM', required=False,default=0,type=int,help='Instance normalization in G')
+   parser.add_argument('--LOSS_METHOD',   required=False,default='wgan',help='Loss function for GAN')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
-   parser.add_argument('--LOSS_METHOD',   required=False,default='gan',help='Loss function for GAN')
-   parser.add_argument('--LEARNING_RATE', required=False,default=2e-5,type=float,help='Learning rate')
+   parser.add_argument('--LAYER_NORM',    required=False,default=0,type=int,help='Layer normalization in D')
+   parser.add_argument('--PIXEL_SHUF',    required=False,default=0,type=int,help='Pixel shuffle instead of transpose conv')
+   parser.add_argument('--L1_WEIGHT',     required=False,default=100.,type=float,help='Weight for L1 loss')
+   parser.add_argument('--IG_WEIGHT',     required=False,default=1.0,type=float,help='Weight for image gradient loss')
+   parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
+   parser.add_argument('--EPOCHS',        required=False,default=100,type=int,help='Number of epochs for GAN')
+   parser.add_argument('--DATA',          required=False,default='underwater_imagenet',type=str,help='Dataset to use')
    a = parser.parse_args()
 
    LEARNING_RATE = float(a.LEARNING_RATE)
+   INSTANCE_NORM = bool(a.INSTANCE_NORM)
    LOSS_METHOD   = a.LOSS_METHOD
    BATCH_SIZE    = a.BATCH_SIZE
+   LAYER_NORM    = bool(a.LAYER_NORM)
+   PIXEL_SHUF    = bool(a.PIXEL_SHUF)
    L1_WEIGHT     = float(a.L1_WEIGHT)
    IG_WEIGHT     = float(a.IG_WEIGHT)
    NETWORK       = a.NETWORK
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
-   LAYER_NORM          = bool(a.LAYER_NORM)
    
    EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
