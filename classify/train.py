@@ -36,7 +36,7 @@ if __name__ == '__main__':
    # global step that is saved with a model to keep track of how many steps/epochs
    global_step = tf.Variable(0, name='global_step', trainable=False)
 
-   images = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 224, 224, 3), name='images')
+   images = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='images')
    labels = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 2), name='labels')
 
    logits = network(images, num_classes=2, is_training=True)
@@ -74,18 +74,18 @@ if __name__ == '__main__':
 
    # underwater photos
    trainA_paths  = np.asarray(glob.glob('../datasets/underwater_imagenet/trainA/*.jpg'))
-   trainA_labels = np.repeat(np.asarray([1,0]), len(trainA_paths))
+   trainA_labels = np.repeat(1, len(trainA_paths))
 
    # normal photos (ground truth)
    trainB_paths  = np.asarray(glob.glob('../datasets/underwater_imagenet/trainB/*.jpg'))
-   trainB_labels = np.repeat(np.asarray([0,1]), len(trainB_paths))
-   
+   trainB_labels = np.repeat(0, len(trainB_paths))
+
    trainA_labels = np.asarray(trainA_labels)
    trainB_labels = np.asarray(trainB_labels)
 
    train_paths  = np.concatenate([trainA_paths, trainB_paths])
    train_labels = np.concatenate([trainA_labels, trainB_labels])
-
+   
    num_train = len(train_paths)
 
    while True:
@@ -93,18 +93,26 @@ if __name__ == '__main__':
       epoch_num = step/(num_train/BATCH_SIZE)
 
       idx = np.random.choice(np.arange(num_train), BATCH_SIZE, replace=False)
-      batch_paths  = train_paths[idx]
-      batch_labels = train_labels[idx]
+      batch_paths = train_paths[idx]
+      batch_ls    = train_labels[idx]
       
-      batch_images = np.empty((BATCH_SIZE, 224, 224, 3), dtype=np.float32)
+      batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
       batch_labels = np.empty((BATCH_SIZE, 2), dtype=np.float32)
 
       i = 0
-      for image,label in zip(batch_paths, batch_labels):
+      for image,label in zip(batch_paths, batch_ls):
+         zero = np.asarray([0,0])
+
          img = misc.imread(image).astype('float32')/255.0
-         img = misc.imresize(img, (224, 224))
-         batch_labels[i, ...] = label
+         img = misc.imresize(img, (256, 256))
+
+         zero[label] = 1
+         batch_labels[i, ...] = zero
          batch_images[i, ...] = img
+
+         #print batch_labels[0]
+         #misc.imsave('img.png', img)
+         #exit()
          i += 1
 
       sess.run(train_op, feed_dict={images:batch_images, labels:batch_labels})
@@ -119,3 +127,7 @@ if __name__ == '__main__':
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
          print 'Model saved\n'
+
+
+
+
