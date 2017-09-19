@@ -73,18 +73,21 @@ if __name__ == '__main__':
    except: pass
    try: os.makedirs(TEST_IMAGES_DIR)
    except: pass
-   
+
+   # TODO add new things to pickle file - INCLUDING BATCH SIZE AND LEARNING RATE
    # write all this info to a pickle file in the experiments directory
    exp_info = dict()
    exp_info['LEARNING_RATE'] = LEARNING_RATE
+   exp_info['INSTANCE_NORM'] = INSTANCE_NORM
    exp_info['LOSS_METHOD']   = LOSS_METHOD
    exp_info['BATCH_SIZE']    = BATCH_SIZE
+   exp_info['LAYER_NORM']    = LAYER_NORM
+   exp_info['PIXEL_SHUF']    = PIXEL_SHUF
    exp_info['L1_WEIGHT']     = L1_WEIGHT
    exp_info['IG_WEIGHT']     = IG_WEIGHT
    exp_info['NETWORK']       = NETWORK
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
-   exp_info['LAYER_NORM']            = LAYER_NORM
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
    data = pickle.dumps(exp_info)
    exp_pkl.write(data)
@@ -92,14 +95,16 @@ if __name__ == '__main__':
    
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
+   print 'INSTANCE_NORM: ',INSTANCE_NORM
    print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'BATCH_SIZE:    ',BATCH_SIZE
+   print 'LAYER_NORM:    ',LAYER_NORM
+   print 'PIXEL_SHUF:    ',PIXEL_SHUF
    print 'L1_WEIGHT:     ',L1_WEIGHT
    print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
    print 'DATA:          ',DATA
-   print 'LAYER_NORM:    ',LAYER_NORM
    print
 
    # pick the GPU with the most memory available
