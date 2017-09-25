@@ -1,0 +1,58 @@
+\documentclass[11pt, twocolumn]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {images/}{images/figure1/}{images/figure2/}{images/figure3/} {images/edges/}}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{adjustbox}
+\usepackage{url}
+\usepackage{hyperref} % JS: Remove this if you cannot compile.
+\usepackage{multirow}
+
+\pdfminorversion=4
+% Junaed's definition of a sidenote to look into
+\newcommand{\marginlabel}[1]{\mbox{}\marginpar[\raggedleft\hspace{0pt}{#1}]{
+\raggedright\hspace{0pt}{#1}}}
+\newcommand{\starnote}[1]{\marginlabel{$\bigstar$}\textbf{[#1]}}
+\newcommand{\nostarnote}[1]{}
+\newcommand{\baad}[1]{} 
+% End Junaed's definition
+
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\title{Enhancing Underwater Imagery using Generative Adversarial Networks}
+\author{Cameron Fabbri$^{1}$, Md Jahidul Islam$^{2}$, and Junaed Sattar$^{3}$
+\thanks{				
+  The authors are with the Department of Computer Science and Engineering, University of Minnesota-Twin  Cities, MN 55455, USA. \newline
+ {\tt\small\{$^{1}$fabbr013, $^{2}$islam034, $^{3}$junaed\}@umn.edu}
+}
+}
+
+
+\begin{document}
+\maketitle
+
+\input{tex/abstract}
+\input{tex_plain_version/introduction}
+\input{tex/related}
+\input{tex_plain_version/methodology.tex}
+\input{tex_plain_version/experiments}
+\input{tex/conclusions}
+
+
+\bibliography{cambibs}
+\bibliographystyle{plain}
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
