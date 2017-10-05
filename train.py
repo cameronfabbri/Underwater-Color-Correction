@@ -217,12 +217,18 @@ if __name__ == '__main__':
 
    # underwater photos
    trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
-
    # normal photos (ground truth)
    trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
-   
    # testing paths
    test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+
+   if len(trainA_paths) == 0:
+      # underwater photos
+      trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.png'))
+      # normal photos (ground truth)
+      trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.png'))
+      # testing paths
+      test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.png'))
 
    print len(trainB_paths),'training images'
 
