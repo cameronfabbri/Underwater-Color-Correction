@@ -216,19 +216,18 @@ if __name__ == '__main__':
    merged_summary_op = tf.summary.merge_all()
 
    # underwater photos
-   trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
+   #trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
    # normal photos (ground truth)
-   trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
+   #trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
 
-   if len(trainA_paths) == 0:
-      # underwater photos
-      trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.png'))
-      # normal photos (ground truth)
-      trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.png'))
-      # testing paths
-      test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.png'))
+   # underwater photos
+   trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.png'))
+   # normal photos (ground truth)
+   trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.png'))
+   # testing paths
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.png'))
 
    print len(trainB_paths),'training images'
 
@@ -282,6 +281,7 @@ if __name__ == '__main__':
          
          batch_images = np.empty((BATCH_SIZE, 256, 256, 3), dtype=np.float32)
 
+         print 'Testing...'
          i = 0
          for a in batch_paths:
             a_img = misc.imread(a).astype('float32')
@@ -297,3 +297,4 @@ if __name__ == '__main__':
             misc.imsave(IMAGES_DIR+str(step)+'_gen.png', gen)
             c += 1
             if c == 5: break
+         print 'Done with test images'
