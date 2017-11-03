@@ -19,12 +19,8 @@
 \newcommand{\baad}[1]{} 
 % End Junaed's definition
 
-
-
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
-
 
 \title{Enhancing Underwater Imagery using Generative Adversarial Networks}
 \author{Cameron Fabbri$^{1}$, Md Jahidul Islam$^{2}$, and Junaed Sattar$^{3}$
@@ -38,18 +34,28 @@
 }
 
 \begin{document}
-%\twocolumn[{%
-%\renewcommand\twocolumn[1][]{#1}%
 %\maketitle
-%\begin{center}
-%    \centering
-%    \includegraphics[width=5in]{V8PYG3g}
-%\end{center}%
-%}]
 
-\maketitle
+\twocolumn[
+\begin{@twocolumnfalse}
+	\maketitle
+	\begin{abstract}
+Autonomous underwater vehicles (AUVs) rely on a variety of sensors -- acoustic, inertial and visual -- for intelligent decision 
+making. Due to its non-intrusive, passive nature, and high information content, vision is an attractive sensing modality, 
+particularly at shallower depths. However, factors such as light refraction and absorption, suspended particles in the water, and 
+color distortion affect the quality of visual data, resulting in noisy and distorted images. AUVs that rely on visual sensing thus 
+face difficult challenges, and consequently exhibit poor performance on vision-driven tasks. This paper proposes a method to 
+improve the quality of visual underwater scenes using Generative Adversarial Networks (GANs), with the goal of improving input to 
+vision-driven behaviors further down the autonomy pipeline. Furthermore, we show how recently proposed methods are able to 
+generate a dataset for the purpose of such underwater image restoration. For any visually-guided underwater robots, this 
+improvement can result in increased safety and reliability through robust visual perception. To that effect, we present 
+quantitative and qualitative data which demonstrates that images corrected through the proposed approach generate more visually 
+appealing images, and also provide increased accuracy for a diver tracking algorithm.
+	\end{abstract}
+\end{@twocolumnfalse}
+]
 
-\input{tex/abstract}
+%\input{tex/abstract}
 \input{tex_plain_version/introduction}
 \input{tex/related}
 \input{tex_plain_version/methodology.tex}
