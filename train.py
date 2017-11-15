@@ -201,13 +201,6 @@ if __name__ == '__main__':
    merged_summary_op = tf.summary.merge_all()
 
    # underwater photos
-   #trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
-   # normal photos (ground truth)
-   #trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
-   # testing paths
-   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
-
-   # underwater photos
    trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
    # normal photos (ground truth)
    trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
