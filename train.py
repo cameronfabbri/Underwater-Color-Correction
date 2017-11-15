@@ -31,11 +31,8 @@ import data_ops
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
    parser.add_argument('--LEARNING_RATE', required=False,default=1e-4,type=float,help='Learning rate')
-   parser.add_argument('--INSTANCE_NORM', required=False,default=0,type=int,help='Instance normalization in G encoder')
    parser.add_argument('--LOSS_METHOD',   required=False,default='wgan',help='Loss function for GAN')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
-   parser.add_argument('--LAYER_NORM',    required=False,default=0,type=int,help='Layer normalization in D')
-   parser.add_argument('--PIXEL_SHUF',    required=False,default=0,type=int,help='Pixel shuffle instead of transpose conv')
    parser.add_argument('--L1_WEIGHT',     required=False,default=100.,type=float,help='Weight for L1 loss')
    parser.add_argument('--IG_WEIGHT',     required=False,default=1.0,type=float,help='Weight for image gradient loss')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
@@ -44,11 +41,8 @@ if __name__ == '__main__':
    a = parser.parse_args()
 
    LEARNING_RATE = float(a.LEARNING_RATE)
-   INSTANCE_NORM = bool(a.INSTANCE_NORM)
    LOSS_METHOD   = a.LOSS_METHOD
    BATCH_SIZE    = a.BATCH_SIZE
-   LAYER_NORM    = bool(a.LAYER_NORM)
-   PIXEL_SHUF    = bool(a.PIXEL_SHUF)
    L1_WEIGHT     = float(a.L1_WEIGHT)
    IG_WEIGHT     = float(a.IG_WEIGHT)
    NETWORK       = a.NETWORK
@@ -57,9 +51,6 @@ if __name__ == '__main__':
    
    EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
-                     +'/LAYER_NORM_'+str(LAYER_NORM)\
-                     +'/INSTANCE_NORM_'+str(INSTANCE_NORM)\
-                     +'/PIXEL_SHUF_'+str(PIXEL_SHUF)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -78,11 +69,8 @@ if __name__ == '__main__':
    # write all this info to a pickle file in the experiments directory
    exp_info = dict()
    exp_info['LEARNING_RATE'] = LEARNING_RATE
-   exp_info['INSTANCE_NORM'] = INSTANCE_NORM
    exp_info['LOSS_METHOD']   = LOSS_METHOD
    exp_info['BATCH_SIZE']    = BATCH_SIZE
-   exp_info['LAYER_NORM']    = LAYER_NORM
-   exp_info['PIXEL_SHUF']    = PIXEL_SHUF
    exp_info['L1_WEIGHT']     = L1_WEIGHT
    exp_info['IG_WEIGHT']     = IG_WEIGHT
    exp_info['NETWORK']       = NETWORK
@@ -95,11 +83,8 @@ if __name__ == '__main__':
    
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
-   print 'INSTANCE_NORM: ',INSTANCE_NORM
    print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'BATCH_SIZE:    ',BATCH_SIZE
-   print 'LAYER_NORM:    ',LAYER_NORM
-   print 'PIXEL_SHUF:    ',PIXEL_SHUF
    print 'L1_WEIGHT:     ',L1_WEIGHT
    print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
@@ -129,13 +114,13 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image = netG(image_u, INSTANCE_NORM, PIXEL_SHUF, LOSS_METHOD)
+   gen_image = netG(image_u, LOSS_METHOD)
 
    # send 'above' water images to D
-   D_real = netD(image_r, LAYER_NORM, LOSS_METHOD)
+   D_real = netD(image_r, LOSS_METHOD)
 
    # send corrected underwater images to D
-   D_fake = netD(gen_image, LAYER_NORM, LOSS_METHOD, reuse=True)
+   D_fake = netD(gen_image, LOSS_METHOD, reuse=True)
 
    e = 1e-12
    if LOSS_METHOD == 'least_squares':
@@ -159,7 +144,7 @@ if __name__ == '__main__':
       # gradient penalty
       epsilon = tf.random_uniform([], 0.0, 1.0)
       x_hat = image_r*epsilon + (1-epsilon)*gen_image
-      d_hat = netD(x_hat, LAYER_NORM, LOSS_METHOD, reuse=True)
+      d_hat = netD(x_hat, LOSS_METHOD, reuse=True)
       gradients = tf.gradients(d_hat, x_hat)[0]
       slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=[1]))
       gradient_penalty = 10*tf.reduce_mean((slopes-1.0)**2)
@@ -223,11 +208,11 @@ if __name__ == '__main__':
    #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
 
    # underwater photos
-   trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.png'))
+   trainA_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainA/*.jpg'))
    # normal photos (ground truth)
-   trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.png'))
+   trainB_paths = np.asarray(glob.glob('datasets/'+DATA+'/trainB/*.jpg'))
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.png'))
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
 
    print len(trainB_paths),'training images'
 
