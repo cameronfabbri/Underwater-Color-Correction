@@ -9,8 +9,11 @@ We used [this video from Youtube](https://www.youtube.com/watch?v=QmRFmhILd5o) a
 hand picked images from Imagenet for our "clean" domain.
 
 
+## Results
+![result1](https://i.imgur.com/V8PYG3g.png)
+
 Other videos in consideration:
 
-diving2: https://www.youtube.com/watch?v=OSdrb1XNXZI
+https://www.youtube.com/watch?v=OSdrb1XNXZI
 
-diving3: https://www.youtube.com/watch?v=ALN6y2PLCq0
+https://www.youtube.com/watch?v=ALN6y2PLCq0
