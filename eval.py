@@ -36,11 +36,8 @@ if __name__ == '__main__':
    a = pickle.load(pkl_file)
 
    LEARNING_RATE = a['LEARNING_RATE']
-   INSTANCE_NORM = a['INSTANCE_NORM']
    LOSS_METHOD   = a['LOSS_METHOD']
    BATCH_SIZE    = a['BATCH_SIZE']
-   LAYER_NORM    = a['LAYER_NORM']
-   PIXEL_SHUF    = a['PIXEL_SHUF']
    L1_WEIGHT     = a['L1_WEIGHT']
    IG_WEIGHT     = a['IG_WEIGHT']
    NETWORK       = a['NETWORK']
@@ -49,9 +46,6 @@ if __name__ == '__main__':
 
    EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
-                     +'/LAYER_NORM_'+str(LAYER_NORM)\
-                     +'/INSTANCE_NORM_'+str(INSTANCE_NORM)\
-                     +'/PIXEL_SHUF_'+str(PIXEL_SHUF)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
@@ -65,11 +59,8 @@ if __name__ == '__main__':
 
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
-   print 'INSTANCE_NORM: ',INSTANCE_NORM
    print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'BATCH_SIZE:    ',BATCH_SIZE
-   print 'LAYER_NORM:    ',LAYER_NORM
-   print 'PIXEL_SHUF:    ',PIXEL_SHUF
    print 'L1_WEIGHT:     ',L1_WEIGHT
    print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
@@ -87,7 +78,7 @@ if __name__ == '__main__':
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
 
    # generated corrected colors
-   gen_image = netG(image_u, INSTANCE_NORM, PIXEL_SHUF, LOSS_METHOD)
+   gen_image = netG(image_u, LOSS_METHOD)
 
    saver = tf.train.Saver(max_to_keep=1)
 
@@ -108,7 +99,7 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.png'))
+   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
    #test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg')))
 
    #random.shuffle(test_paths)
