@@ -1,6 +1,6 @@
 # Underwater GAN (UGAN)
 
-### [Project Page](http://irvlab.cs.umn.edu/enhancing-underwater-imagery-using-generative-adversarial-networks) [arxiv](https://arxiv.org/pdf/1801.04011.pdf)
+### [[Project Page]](http://irvlab.cs.umn.edu/enhancing-underwater-imagery-using-generative-adversarial-networks) [[arxiv]](https://arxiv.org/pdf/1801.04011.pdf)
 
 Color correction for underwater vision.
 
