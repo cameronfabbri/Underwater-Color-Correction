@@ -12,6 +12,9 @@ hand picked images from Imagenet for our "clean" domain.
 ## Results
 ![result1](https://i.imgur.com/V8PYG3g.png)
 
+## CycleGAN Comparison
+![result2](https://i.imgur.com/5WAjX7X.png)
+
 Other videos in consideration:
 
 https://www.youtube.com/watch?v=OSdrb1XNXZI
