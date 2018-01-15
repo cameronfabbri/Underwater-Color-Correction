@@ -1,3 +1,4 @@
+# Underwater GAN (UGAN)
 Color correction for underwater vision.
 
 CycleGAN was used to perform style transfer on 'normal' (above water) Imagenet photos to appear to
