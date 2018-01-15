@@ -6,7 +6,8 @@ Color correction for underwater vision. This project uses CycleGAN to perform st
 photos to appear to be underwater.
 
 We used [this video from Youtube](https://www.youtube.com/watch?v=QmRFmhILd5o) as our distorted domain, and
-hand picked images from Imagenet for our "clean" domain.
+hand picked images from Imagenet for our "clean" domain. CycleGAN was used to distort clean images to provide
+us a dataset.
 
 
 ## Results
