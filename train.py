@@ -232,6 +232,22 @@ if __name__ == '__main__':
       for a,b in zip(batchA_paths, batchB_paths):
          a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
          b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
+
+         '''
+         # Data augmentation here
+         r = random.random() # random decimal between 0 and 1
+         if r < 0.5:
+            # flip image left right
+            a_img = np.fliplr(a_img)
+            b_img = np.fliplr(b_img)
+         
+         r = random.random() # random decimal between 0 and 1
+         if r < 0.5:
+            # flip image up down
+            a_img = np.flipud(a_img)
+            b_img = np.flipud(b_img)
+         '''
+
          batchA_images[i, ...] = a_img
          batchB_images[i, ...] = b_img
          i += 1
