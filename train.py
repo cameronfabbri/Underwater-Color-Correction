@@ -233,6 +233,8 @@ if __name__ == '__main__':
          a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
          b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
 
+         # TODO put in data aug flag here, also include blur, noise, and sending the correct
+         # image in as the input so the network learns that it doesn't always have to correct color.
          '''
          # Data augmentation here
          r = random.random() # random decimal between 0 and 1
@@ -283,7 +285,7 @@ if __name__ == '__main__':
             batch_images[i, ...] = a_img
             i += 1
 
-         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))#, image_r:batchB_images}))
+         gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
 
          c = 0
          for gen, real in zip(gen_images, batch_images):
