@@ -99,15 +99,24 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
+   '''
+   exts = ['*.jpg', '*.jpeg', '*.JPEG', '*.png']
+   test_paths = []
+   for ex in exts:
+      test_paths.extend(glob.glob('datasets/'+DATA+'/test/'+ex))
+   test_paths = np.asarray(test_paths)
+   '''
    #test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg')))
+   test_paths = sorted(np.asarray(glob.glob('/mnt/data1/videos/barbados/2018/images/*.png')))
+   IMAGES_DIR = '/mnt/data1/videos/barbados/2018/out_images/'
 
    #random.shuffle(test_paths)
 
    num_test = len(test_paths)
 
    print 'num test:',num_test
-
+   print 'IMAGES_DIR:',IMAGES_DIR
+   
    c = 0
    times = []
    for img_path in tqdm(test_paths):
