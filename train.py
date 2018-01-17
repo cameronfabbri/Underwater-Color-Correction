@@ -11,20 +11,21 @@
 
 import cPickle as pickle
 import tensorflow as tf
-from tqdm import tqdm
 from scipy import misc
+from tqdm import tqdm
 import numpy as np
-from pynvml import *
 import argparse
 import ntpath
-import sys
-import os
+import random
 import glob
 import time
+import sys
+import os
+import cv2
 
+# my imports
 sys.path.insert(0, 'ops/')
 sys.path.insert(0, 'nets/')
-
 from tf_ops import *
 import data_ops
 
@@ -34,8 +35,9 @@ if __name__ == '__main__':
    parser.add_argument('--LOSS_METHOD',   required=False,default='wgan',help='Loss function for GAN')
    parser.add_argument('--BATCH_SIZE',    required=False,default=32,type=int,help='Batch size')
    parser.add_argument('--L1_WEIGHT',     required=False,default=100.,type=float,help='Weight for L1 loss')
-   parser.add_argument('--IG_WEIGHT',     required=False,default=1.0,type=float,help='Weight for image gradient loss')
+   parser.add_argument('--IG_WEIGHT',     required=False,default=1.,type=float,help='Weight for image gradient loss')
    parser.add_argument('--NETWORK',       required=False,default='pix2pix',type=str,help='Network to use')
+   parser.add_argument('--AUGMENT',       required=False,default=0,type=int,help='Augment data or not')
    parser.add_argument('--EPOCHS',        required=False,default=100,type=int,help='Number of epochs for GAN')
    parser.add_argument('--DATA',          required=False,default='underwater_imagenet',type=str,help='Dataset to use')
    a = parser.parse_args()
@@ -46,6 +48,7 @@ if __name__ == '__main__':
    L1_WEIGHT     = float(a.L1_WEIGHT)
    IG_WEIGHT     = float(a.IG_WEIGHT)
    NETWORK       = a.NETWORK
+   AUGMENT       = a.AUGMENT
    EPOCHS        = a.EPOCHS
    DATA          = a.DATA
    
@@ -53,10 +56,11 @@ if __name__ == '__main__':
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
+                     +'/AUGMENT_'+str(AUGMENT)\
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR      = EXPERIMENT_DIR+'images/'
-   TEST_IMAGES_DIR = EXPERIMENT_DIR+'test_images/'
+   #TEST_IMAGES_DIR = EXPERIMENT_DIR+'test_images/'
 
    print
    print 'Creating',EXPERIMENT_DIR
@@ -74,6 +78,7 @@ if __name__ == '__main__':
    exp_info['L1_WEIGHT']     = L1_WEIGHT
    exp_info['IG_WEIGHT']     = IG_WEIGHT
    exp_info['NETWORK']       = NETWORK
+   exp_info['AUGMENT']       = AUGMENT
    exp_info['EPOCHS']        = EPOCHS
    exp_info['DATA']          = DATA
    exp_pkl = open(EXPERIMENT_DIR+'info.pkl', 'wb')
@@ -88,18 +93,10 @@ if __name__ == '__main__':
    print 'L1_WEIGHT:     ',L1_WEIGHT
    print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
+   print 'AUGMENT:       ',AUGMENT
    print 'EPOCHS:        ',EPOCHS
    print 'DATA:          ',DATA
    print
-
-   # pick the GPU with the most memory available
-   nvmlInit()
-   deviceCount = nvmlDeviceGetCount()
-   gpus = []
-   for i in range(deviceCount):
-      handle = nvmlDeviceGetHandleByIndex(i)
-      mem = nvmlDeviceGetMemoryInfo(handle).free
-      gpus.append(float(mem))
 
    if NETWORK == 'pix2pix': from pix2pix import *
    if NETWORK == 'resnet': from resnet import *
@@ -135,7 +132,6 @@ if __name__ == '__main__':
       errD_fake = tf.nn.sigmoid(D_fake)
       errG = tf.reduce_mean(-tf.log(errD_fake + e))
       errD = tf.reduce_mean(-(tf.log(errD_real+e)+tf.log(1-errD_fake+e)))
-
    if LOSS_METHOD == 'wgan':
       # cost functions
       errD = tf.reduce_mean(D_real) - tf.reduce_mean(D_fake)
@@ -213,9 +209,12 @@ if __name__ == '__main__':
    num_test  = len(test_paths)
 
    n_critic = 1
-   if LOSS_METHOD == 'wgan': n_critic = 2
+   if LOSS_METHOD == 'wgan': n_critic = 5
 
    epoch_num = step/(num_train/BATCH_SIZE)
+
+   # kernel for gaussian blurring
+   kernel = np.ones((5,5),np.float32)/25
 
    while epoch_num < EPOCHS:
       s = time.time()
@@ -233,23 +232,37 @@ if __name__ == '__main__':
          a_img = data_ops.preprocess(misc.imread(a).astype('float32'))
          b_img = data_ops.preprocess(misc.imread(b).astype('float32'))
 
-         # TODO put in data aug flag here, also include blur, noise, and sending the correct
-         # image in as the input so the network learns that it doesn't always have to correct color.
-         '''
-         # Data augmentation here
-         r = random.random() # random decimal between 0 and 1
-         if r < 0.5:
+         # Data augmentation here - each has 50% chance
+         if AUGMENT:
+            r = random.random()
             # flip image left right
-            a_img = np.fliplr(a_img)
-            b_img = np.fliplr(b_img)
-         
-         r = random.random() # random decimal between 0 and 1
-         if r < 0.5:
+            if r < 0.5:
+               #print 'lr'
+               a_img = np.fliplr(a_img)
+               b_img = np.fliplr(b_img)
+            
+            r = random.random()
             # flip image up down
-            a_img = np.flipud(a_img)
-            b_img = np.flipud(b_img)
-         '''
+            if r < 0.5:
+               #print 'updown'
+               a_img = np.flipud(a_img)
+               b_img = np.flipud(b_img)
+            
+            r = random.random()
+            # send in the clean image for both
+            if r < 0.5:
+               #print 'clean'
+               a_img = b_img
 
+            r = random.random()
+            # perform some gaussian blur on distorted image
+            if r < 0.5:
+               #print 'blur'
+               a_img = cv2.filter2D(a_img,-1,kernel)
+
+         #misc.imsave('a_img.png', a_img)
+         #misc.imsave('b_img.png', b_img)
+         #exit()
          batchA_images[i, ...] = a_img
          batchB_images[i, ...] = b_img
          i += 1
