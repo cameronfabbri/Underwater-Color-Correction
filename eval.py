@@ -41,6 +41,7 @@ if __name__ == '__main__':
    L1_WEIGHT     = a['L1_WEIGHT']
    IG_WEIGHT     = a['IG_WEIGHT']
    NETWORK       = a['NETWORK']
+   AUGMENT       = a['AUGMENT']
    EPOCHS        = a['EPOCHS']
    DATA          = a['DATA']
 
@@ -48,6 +49,7 @@ if __name__ == '__main__':
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
+                     +'/AUGMENT_'+str(AUGMENT)\
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
@@ -99,19 +101,18 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   '''
+   #'''
    exts = ['*.jpg', '*.jpeg', '*.JPEG', '*.png']
    test_paths = []
    for ex in exts:
       test_paths.extend(glob.glob('datasets/'+DATA+'/test/'+ex))
    test_paths = np.asarray(test_paths)
-   '''
+   #'''
    #test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg')))
-   test_paths = sorted(np.asarray(glob.glob('/mnt/data1/videos/barbados/2018/images/*.png')))
-   IMAGES_DIR = '/mnt/data1/videos/barbados/2018/out_images/'
+   #test_paths = sorted(np.asarray(glob.glob('/mnt/data1/videos/barbados/2018/images/*.png')))
+   #IMAGES_DIR = '/mnt/data1/videos/barbados/2018/out_images/'
 
    #random.shuffle(test_paths)
-
    num_test = len(test_paths)
 
    print 'num test:',num_test
