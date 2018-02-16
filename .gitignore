@@ -11,4 +11,7 @@ checkpoints/
 *.swo
 *.pyc
 *.pkl
-
+*.MP4
+*.mp4
+*.avi
+*.mpeg
