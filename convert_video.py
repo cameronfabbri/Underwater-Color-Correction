@@ -16,6 +16,7 @@ import numpy as np
 import argparse
 import random
 import ntpath
+import math
 import time
 import glob
 import sys
@@ -113,6 +114,7 @@ if __name__ == '__main__':
       of memory holding a ton of images
    '''
    vidcap = cv2.VideoCapture(video_file)
+   fps = int(math.floor(vidcap.get(cv2.CAP_PROP_FPS)))
    success, vimg = vidcap.read()
    count = 0
    while success:
@@ -122,15 +124,9 @@ if __name__ == '__main__':
       cv2.imwrite(video_dir+'/original/frame_%d.png'%count, vimg)
       count += 1
 
-   exit()
-   c = 0
-   times = []
-   for img_path in tqdm(original_dir+'*.png'):
-      print img_path
-      exit()
+   for img_path in tqdm(sorted(glob.glob(original_dir+'*.png'))):
 
       img_name = ntpath.basename(img_path)
-
       img_name = img_name.split('.')[0]
 
       batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
@@ -142,18 +138,25 @@ if __name__ == '__main__':
 
       s = time.time()
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
-      tot = time.time()-s
-      
-      times.append(tot)
 
       for gen, real in zip(gen_images, batch_images):
-         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
-         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
-         misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
-         misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
+         misc.imsave(corrected_dir+img_name+'.png', gen)
 
-         c += 1
+   # create corrected video
+   cmd = 'ffmpeg -framerate '+str(fps)+' -i '+corrected_dir+'frame_%d.png -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p ' + video_dir+'/corrected.mp4'
+   os.system(cmd)
+
+   # create original video in size 256x256
+   cmd = 'ffmpeg -framerate '+str(fps)+' -i '+original_dir+'frame_%d.png -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p ' + video_dir+'/original.mp4'
+   os.system(cmd)
+
+   # create side by side video
+   cmd = 'ffmpeg -i ' + video_dir + '/original.mp4 -i ' + video_dir + '/corrected.mp4 -filter_complex \'[0:v]pad=iw*2:ih[int];[int][1:v]overlay=W/2:0[vid]\' -map [vid] -c:v libx264 -crf 23 -preset veryfast '+video_dir+'/comparison.mp4'
+   os.system(cmd)
+
+   # remove image files
+   os.system('rm -rf '+original_dir + ' ' + corrected_dir)
 
    print
-   print 'average time:',np.mean(np.asarray(times))
    print
+   print 'Videos saved to '+video_dir+'/'
