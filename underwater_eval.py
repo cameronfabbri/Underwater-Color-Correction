@@ -1,14 +1,3 @@
-'''
-
-   Main training file
-
-   The goal is to correct the colors in underwater images.
-   CycleGAN was used to create images that appear to be underwater.
-   Those will be sent into the generator, which will attempt to correct the
-   colors.
-
-'''
-
 import cPickle as pickle
 import tensorflow as tf
 from scipy import misc
