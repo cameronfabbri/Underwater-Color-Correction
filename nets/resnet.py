@@ -6,7 +6,9 @@ sys.path.insert(0, 'ops/')
 from tf_ops import *
 
 def resBlock(x, num):
-   
+
+   x = relu(x)
+
    conv1 = tcl.conv2d(x, 256, 3, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_resconv1_'+str(num))
    print 'res_conv1:',conv1
 
@@ -27,7 +29,7 @@ def netG(x, LOSS_METHOD):
    conv2 = tcl.conv2d(conv1, 128, 3, 2, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv2')
    print 'conv2:',conv2
    
-   conv3 = tcl.conv2d(conv2, 256, 3, 2, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv3')
+   conv3 = tcl.conv2d(conv2, 256, 3, 2, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv3')
    print 'conv3:',conv3
    print
    
