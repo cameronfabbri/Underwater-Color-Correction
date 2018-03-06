@@ -68,7 +68,8 @@ def netG(x, LOSS_METHOD):
    conv5 = tcl.conv2d_transpose(conv4, 64, 3, 2, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv5')
    print 'conv5:',conv5
    
-   conv6 = tcl.conv2d(conv5, 3, 7, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv6')
+   conv6 = tcl.conv2d(conv5, 3, 7, 1, activation_fn=tf.identity, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv6')
+   conv6 = tanh(conv6)
    print 'conv6:',conv6
 
    return conv6
