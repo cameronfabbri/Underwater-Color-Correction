@@ -280,7 +280,7 @@ if __name__ == '__main__':
       print 'epoch:',epoch_num,'step:',step,'D loss:',D_loss,'G_loss:',G_loss,'time:',ss
       step += 1
       
-      if step%1 == 0:
+      if step%500 == 0:
          print 'Saving model...'
          saver.save(sess, EXPERIMENT_DIR+'checkpoint-'+str(step))
          saver.export_meta_graph(EXPERIMENT_DIR+'checkpoint-'+str(step)+'.meta')
