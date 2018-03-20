@@ -20,8 +20,8 @@ import random
 import glob
 import time
 import sys
-import os
 import cv2
+import os
 
 # my imports
 sys.path.insert(0, 'ops/')
