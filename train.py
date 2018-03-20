@@ -60,7 +60,6 @@ if __name__ == '__main__':
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR      = EXPERIMENT_DIR+'images/'
-   #TEST_IMAGES_DIR = EXPERIMENT_DIR+'test_images/'
 
    print
    print 'Creating',EXPERIMENT_DIR
