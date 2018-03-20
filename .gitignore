@@ -1,3 +1,9 @@
+sample/
+test/
+logs/
+sample*
+test*
+logs*
 *.zip
 *.png
 *.jpg
