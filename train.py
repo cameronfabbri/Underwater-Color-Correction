@@ -134,7 +134,7 @@ if __name__ == '__main__':
    if LOSS_METHOD == 'wgan':
       # cost functions
       errD = tf.reduce_mean(D_real) - tf.reduce_mean(D_fake)
-      errG = tf.reduce_mean(D_fake)
+      errG = -tf.reduce_mean(D_fake)
 
       # gradient penalty
       epsilon = tf.random_uniform([], 0.0, 1.0)
