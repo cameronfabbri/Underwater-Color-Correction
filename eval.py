@@ -147,6 +147,8 @@ if __name__ == '__main__':
 
          c += 1
 
+   avg_time = float(np.mean(np.asarray(times)))
    print
-   print 'average time:',np.mean(np.asarray(times))
+   print 'average time:',avg_time
+   print 'fps:',1.0/avg_time
    print
