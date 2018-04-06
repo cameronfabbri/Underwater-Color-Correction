@@ -2,6 +2,8 @@
 
    Evaluation File
 
+   Tests images from the test set of whatever dataset we used - in the pickle file
+
 '''
 
 import cPickle as pickle
@@ -98,27 +100,19 @@ if __name__ == '__main__':
          print "Could not restore model"
          pass
    
-   step = int(sess.run(global_step))
-
    # testing paths
-   #'''
    exts = ['*.jpg', '*.jpeg', '*.JPEG', '*.png']
    test_paths = []
    for ex in exts:
       test_paths.extend(glob.glob('datasets/'+DATA+'/test/'+ex))
    test_paths = np.asarray(test_paths)
-   #'''
-   #test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving1/*.jpg')))
-   #test_paths = sorted(np.asarray(glob.glob('/mnt/data1/videos/barbados/2018/images/*.png')))
-   #IMAGES_DIR = '/mnt/data1/videos/barbados/2018/out_images/'
 
-   #random.shuffle(test_paths)
    num_test = len(test_paths)
 
    print 'num test:',num_test
    print 'IMAGES_DIR:',IMAGES_DIR
    
-   c = 0
+   step = int(sess.run(global_step))
    times = []
    for img_path in tqdm(test_paths):
 
@@ -136,16 +130,11 @@ if __name__ == '__main__':
       s = time.time()
       gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
       tot = time.time()-s
-      
       times.append(tot)
 
       for gen, real in zip(gen_images, batch_images):
-         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_real.png', real)
-         #misc.imsave(IMAGES_DIR+str(step)+'_'+str(c)+'_gen.png', gen)
          misc.imsave(IMAGES_DIR+img_name+'_real.png', real)
          misc.imsave(IMAGES_DIR+img_name+'_gen.png', gen)
-
-         c += 1
 
    avg_time = float(np.mean(np.asarray(times)))
    print

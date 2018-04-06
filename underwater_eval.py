@@ -1,3 +1,7 @@
+'''
+   Evaluates images from the diving video
+'''
+
 import cPickle as pickle
 import tensorflow as tf
 from scipy import misc
@@ -47,7 +51,6 @@ if __name__ == '__main__':
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
                      +'/DATA_'+DATA+'/'\
 
-   #IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
    IMAGES_DIR     = EXPERIMENT_DIR+'diving'+num_d+'/'
 
    print
@@ -94,10 +97,7 @@ if __name__ == '__main__':
    step = int(sess.run(global_step))
 
    # testing paths
-   #test_paths = np.asarray(glob.glob('datasets/'+DATA+'/test/*.jpg'))
    test_paths = sorted(np.asarray(glob.glob('/mnt/data2/images/underwater/youtube/diving'+num_d+'/*.jpg')))
-
-   #random.shuffle(test_paths)
 
    num_test = len(test_paths)
 
