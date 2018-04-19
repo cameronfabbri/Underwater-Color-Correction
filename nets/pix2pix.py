@@ -90,7 +90,7 @@ def netG(x, LOSS_METHOD):
    dec_conv8 = tanh(dec_conv8)
    print 'dec_conv8', dec_conv8
    
-   return dec_conv8
+   return dec_conv8, enc_conv8
 
 
 def netD(x, LOSS_METHOD, reuse=False):

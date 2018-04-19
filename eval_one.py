@@ -34,23 +34,25 @@ if __name__ == '__main__':
 
    pkl_file = open(sys.argv[1], 'rb')
    a = pickle.load(pkl_file)
-
+   
    LEARNING_RATE = a['LEARNING_RATE']
    LOSS_METHOD   = a['LOSS_METHOD']
    BATCH_SIZE    = a['BATCH_SIZE']
-   EPOCHS        = a['EPOCHS']
    L1_WEIGHT     = a['L1_WEIGHT']
    IG_WEIGHT     = a['IG_WEIGHT']
    NETWORK       = a['NETWORK']
+   AUGMENT       = a['AUGMENT']
+   EPOCHS        = a['EPOCHS']
    DATA          = a['DATA']
-   LAYER_NORM    = a['LAYER_NORM']
 
-   EXPERIMENT_DIR = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
+   EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
-                     +'/LAYER_NORM_'+str(LAYER_NORM)\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
+                     +'/AUGMENT_'+str(AUGMENT)\
                      +'/DATA_'+DATA+'/'\
+
+   IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
 
    test_image = sys.argv[2]
 
@@ -58,9 +60,11 @@ if __name__ == '__main__':
    print 'LEARNING_RATE: ',LEARNING_RATE
    print 'LOSS_METHOD:   ',LOSS_METHOD
    print 'BATCH_SIZE:    ',BATCH_SIZE
+   print 'L1_WEIGHT:     ',L1_WEIGHT
+   print 'IG_WEIGHT:     ',IG_WEIGHT
    print 'NETWORK:       ',NETWORK
    print 'EPOCHS:        ',EPOCHS
-   print 'LAYER_NORM:    ',LAYER_NORM
+   print 'DATA:          ',DATA
    print
 
    if NETWORK == 'pix2pix': from pix2pix import *
@@ -73,7 +77,7 @@ if __name__ == '__main__':
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
 
    # generated corrected colors
-   gen_image = netG(image_u, LOSS_METHOD)
+   gen_image, enc_conv8 = netG(image_u, LOSS_METHOD)
 
    saver = tf.train.Saver(max_to_keep=1)
 
@@ -102,6 +106,7 @@ if __name__ == '__main__':
    a_img = misc.imread(test_image).astype('float32')
    a_img = misc.imresize(a_img, (256, 256, 3))
    a_img = data_ops.preprocess(a_img)
+   a_img = np.expand_dims(a_img, 0)
    batch_images[0, ...] = a_img
 
    gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
