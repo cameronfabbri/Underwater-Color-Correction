@@ -1,6 +1,7 @@
 '''
 
-   Evaluation file for only a single image.
+   This interpolates between embeddings.
+   Must pass in a distorted image and it's clean pair.
 
 '''
 
@@ -20,16 +21,16 @@ import glob
 import cPickle as pickle
 from tqdm import tqdm
 
-sys.path.insert(0, 'ops/')
-sys.path.insert(0, 'nets/')
+sys.path.insert(0, '../ops/')
+sys.path.insert(0, '../nets/')
 from tf_ops import *
 
 import data_ops
 
 if __name__ == '__main__':
 
-   if len(sys.argv) < 3:
-      print 'You must provide an info.pkl file and an image'
+   if len(sys.argv) < 2:
+      print 'You must provide an info.pkl file'
       exit()
 
    pkl_file = open(sys.argv[1], 'rb')
@@ -45,7 +46,7 @@ if __name__ == '__main__':
    EPOCHS        = a['EPOCHS']
    DATA          = a['DATA']
 
-   EXPERIMENT_DIR  = 'checkpoints/LOSS_METHOD_'+LOSS_METHOD\
+   EXPERIMENT_DIR  = '../checkpoints/LOSS_METHOD_'+LOSS_METHOD\
                      +'/NETWORK_'+NETWORK\
                      +'/L1_WEIGHT_'+str(L1_WEIGHT)\
                      +'/IG_WEIGHT_'+str(IG_WEIGHT)\
@@ -53,8 +54,6 @@ if __name__ == '__main__':
                      +'/DATA_'+DATA+'/'\
 
    IMAGES_DIR     = EXPERIMENT_DIR+'test_images/'
-
-   test_image = sys.argv[2]
 
    print
    print 'LEARNING_RATE: ',LEARNING_RATE
@@ -75,11 +74,17 @@ if __name__ == '__main__':
 
    # underwater image
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
+   embedding_p = tf.placeholder(tf.float32, shape=(1,1,1,512), name='embedding_p')
 
    # generated corrected colors
    layers    = netG_encoder(image_u)
    gen_image = netG_decoder(layers)
+   embedding = layers[-1]
 
+   layers[-1] = embedding_p
+   gen_image2 = netG_decoder(layers, reuse=True)
+   
+   
    saver = tf.train.Saver(max_to_keep=1)
 
    init = tf.group(tf.local_variables_initializer(), tf.global_variables_initializer())
@@ -98,19 +103,47 @@ if __name__ == '__main__':
    
    step = int(sess.run(global_step))
 
-   img_name = ntpath.basename(test_image)
-   img_name = img_name.split('.')[0]
+   '''
+      For each pair of images, get the embedding of each, then send through the decoder
+   '''
+   clean_images = glob.glob('clean/*.*')
+   distorted_images = glob.glob('distorted/*.*')
 
-   batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
+   for cimg, dimg in zip(clean_images, distorted_images):
 
-   a_img = misc.imread(test_image).astype('float32')
-   a_img = misc.imresize(a_img, (256, 256, 3))
-   a_img = data_ops.preprocess(a_img)
-   a_img = np.expand_dims(a_img, 0)
-   batch_images[0, ...] = a_img
+      batch_cimages = np.empty((1, 256, 256, 3), dtype=np.float32)
+      batch_dimages = np.empty((1, 256, 256, 3), dtype=np.float32)
 
-   gen_images = np.asarray(sess.run(gen_image, feed_dict={image_u:batch_images}))
+      img = misc.imread(cimg).astype('float32')
+      img = misc.imresize(img, (256, 256, 3))
+      img = data_ops.preprocess(img)
+      batch_cimages[0, ...] = img
+      
+      img = misc.imread(dimg).astype('float32')
+      img = misc.imresize(img, (256, 256, 3))
+      img = data_ops.preprocess(img)
+      batch_dimages[0, ...] = img
 
-   misc.imsave('./'+img_name+'_real.png', batch_images[0])
-   misc.imsave('./'+img_name+'_gen.png', gen_images[0])
+      # send through decoder and get embeddings
+      c_embedding = sess.run(embedding, feed_dict={image_u:batch_cimages})
+      d_embedding = sess.run(embedding, feed_dict={image_u:batch_dimages})
+      c_embedding = np.squeeze(c_embedding)
+      d_embedding = np.squeeze(d_embedding)
 
+      # now that we have the embeddings, interpolate between them
+      alpha = np.linspace(0,1, num=5)
+      latent_vectors = []
+      x1 = c_embedding
+      x2 = d_embedding
+      for a in alpha:
+         vector = x1*(1-a) + x2*a
+         latent_vectors.append(vector)
+      latent_vectors = np.asarray(latent_vectors)
+
+      cc = 0
+      for e in latent_vectors:
+         e = np.random.normal(-1.5e-6, 7e-6, size=[1,1,1,512]).astype(np.float32)
+         int_img = np.squeeze(sess.run(gen_image2, feed_dict={embedding_p:e, image_u:batch_cimages}))
+         misc.imsave('./'+str(cc)+'.png', int_img)
+         cc+=1
+      exit()

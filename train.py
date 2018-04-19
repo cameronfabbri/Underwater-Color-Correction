@@ -110,7 +110,8 @@ if __name__ == '__main__':
    image_r = tf.placeholder(tf.float32, shape=(BATCH_SIZE, 256, 256, 3), name='image_r')
 
    # generated corrected colors
-   gen_image, enc_conv8 = netG(image_u, LOSS_METHOD)
+   layers    = netG_encoder(image_u)
+   gen_image = netG_decoder(layers)
 
    # send 'above' water images to D
    D_real = netD(image_r, LOSS_METHOD)

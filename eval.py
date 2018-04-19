@@ -82,7 +82,8 @@ if __name__ == '__main__':
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
 
    # generated corrected colors
-   gen_image, enc_conv8 = netG(image_u, LOSS_METHOD)
+   layers    = netG_encoder(image_u)
+   gen_image = netG_decoder(layers)
 
    saver = tf.train.Saver(max_to_keep=1)
 
