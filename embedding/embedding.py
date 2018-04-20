@@ -74,17 +74,11 @@ if __name__ == '__main__':
 
    # underwater image
    image_u = tf.placeholder(tf.float32, shape=(1, 256, 256, 3), name='image_u')
-   embedding_p = tf.placeholder(tf.float32, shape=(1,1,1,512), name='embedding_p')
 
    # generated corrected colors
    layers    = netG_encoder(image_u)
    gen_image = netG_decoder(layers)
-   embedding = layers[-1]
 
-   layers[-1] = embedding_p
-   gen_image2 = netG_decoder(layers, reuse=True)
-   
-   
    saver = tf.train.Saver(max_to_keep=1)
 
    init = tf.group(tf.local_variables_initializer(), tf.global_variables_initializer())
@@ -103,9 +97,6 @@ if __name__ == '__main__':
    
    step = int(sess.run(global_step))
 
-   '''
-      For each pair of images, get the embedding of each, then send through the decoder
-   '''
    clean_images = glob.glob('clean/*.*')
    distorted_images = glob.glob('distorted/*.*')
 
@@ -124,7 +115,13 @@ if __name__ == '__main__':
       img = data_ops.preprocess(img)
       batch_dimages[0, ...] = img
 
-      # send through decoder and get embeddings
+      # send through decoder and get all layers
+      all_layers = sess.run(layers, feed_dict={image_u:batch_cimages})
+      print all_layers[0].shape
+
+
+
+      exit()
       c_embedding = sess.run(embedding, feed_dict={image_u:batch_cimages})
       d_embedding = sess.run(embedding, feed_dict={image_u:batch_dimages})
       c_embedding = np.squeeze(c_embedding)
