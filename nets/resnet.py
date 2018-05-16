@@ -20,9 +20,8 @@ def resBlock(x, num):
    return output
 
 
-def netG(x, LOSS_METHOD):
+def netG(x):
       
-
    conv1 = tcl.conv2d(x, 64, 7, 1, activation_fn=tf.nn.relu, normalizer_fn=tcl.batch_norm, weights_initializer=tf.random_normal_initializer(stddev=0.02), scope='g_conv1')
    print 'conv1:',conv1
 
