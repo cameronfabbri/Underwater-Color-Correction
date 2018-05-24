@@ -1,3 +1,5 @@
+*.jpeg
+*.gif
 dataset*
 sample/
 test/
