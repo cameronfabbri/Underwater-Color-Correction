@@ -19,6 +19,7 @@ import time
 import glob
 import cPickle as pickle
 from tqdm import tqdm
+import cv2
 
 sys.path.insert(0, 'ops/')
 sys.path.insert(0, 'nets/')
@@ -103,7 +104,10 @@ if __name__ == '__main__':
 
    batch_images = np.empty((1, 256, 256, 3), dtype=np.float32)
 
-   a_img = misc.imread(test_image).astype('float32')
+   #a_img = misc.imread(test_image).astype('float32')
+   a_img = cv2.imread(test_image)
+   a_img = cv2.cvtColor(a_img, cv2.COLOR_BGR2RGB)
+   a_img = a_img.astype('float32')
    a_img = misc.imresize(a_img, (256, 256, 3))
    a_img = data_ops.preprocess(a_img)
    a_img = np.expand_dims(a_img, 0)

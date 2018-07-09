@@ -238,21 +238,18 @@ if __name__ == '__main__':
             r = random.random()
             # flip image left right
             if r < 0.5:
-               #print 'lr'
                a_img = np.fliplr(a_img)
                b_img = np.fliplr(b_img)
             
             r = random.random()
             # flip image up down
             if r < 0.5:
-               #print 'updown'
                a_img = np.flipud(a_img)
                b_img = np.flipud(b_img)
             
             r = random.random()
             # send in the clean image for both
             if r < 0.5:
-               #print 'clean'
                a_img = b_img
 
             r = random.random()
@@ -261,9 +258,6 @@ if __name__ == '__main__':
                #print 'blur'
                a_img = cv2.filter2D(a_img,-1,kernel)
 
-         #misc.imsave('a_img.png', a_img)
-         #misc.imsave('b_img.png', b_img)
-         #exit()
          batchA_images[i, ...] = a_img
          batchB_images[i, ...] = b_img
          i += 1
